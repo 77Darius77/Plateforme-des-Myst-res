@@ -63,6 +63,7 @@
   <nav>
     <a href="#calculateur">✦ Calculateur</a>
     <a href="#archetypes">✦ Archétypes</a>
+    <a href="#">✦ Blog</a>
     <a href="#infographie">✦ Infographie</a>
     <a href="#methode">✦ Méthode</a>
   </nav>
@@ -92,8 +93,19 @@
     <p class="slate">Entre ta date de naissance et découvre ton chemin de vie et ton ticún.</p>
   </div>
 
+  <div style="max-width:600px;margin:0 auto 1.5rem;text-align:center;">
+    <p style="color:#d0d6e0;font-size:0.95rem;">
+      <strong style="color:#34d399;">Chemin de vie</strong> = ton don, ta mission d'âme.
+      <strong style="color:#fbbf24;">Ticún</strong> = le défi que tu es venu·e rectifier.
+    </p>
+    <p style="color:#8a8f98;font-size:0.85rem;">
+      Entre ta date de naissance et découvre tes deux nombres sacrés.
+    </p>
+  </div>
+
   <div class="calc-form">
-    <input type="text" id="dateInput" placeholder="JJ/MM/AAAA (ex: 23/10/1990)" maxlength="10" autocomplete="off" aria-label="Date de naissance au format JJ/MM/AAAA">
+    <input type="text" id="dateInput" inputmode="numeric" pattern="\d{2}/\d{2}/\d{4}" placeholder="JJ/MM/AAAA" maxlength="10" autocomplete="off" aria-label="Date de naissance au format JJ/MM/AAAA">
+    <button type="button" onclick="document.getElementById('dateInput').value='23/10/1990';reveal()" style="background:transparent;border:1px solid #334155;color:#94a3b8;padding:0.9rem 1.2rem;border-radius:8px;cursor:pointer;font-family:var(--font-mono);font-size:0.85rem;">Essayer avec un exemple</button>
     <button id="calcBtn" onclick="reveal()" aria-label="Calculer ma numérologie">Révéler mes nombres ✦</button>
   </div>
   <div class="error-msg" id="errorMsg"></div>
@@ -160,6 +172,8 @@
 
 <!-- ═══════════ FOOTER ═══════════ -->
 <footer>
+  <p style="color:#34d399;font-family:var(--font-mono);font-size:0.8rem;margin-bottom:0.8rem;">🔒 Zéro tracking · Aucune donnée collectée · Calcul 100% local</p>
+  <p style="color:#64748b;font-size:0.7rem;margin-bottom:0.8rem;">À titre informatif uniquement — ne remplace pas un avis médical, psychologique ou financier.</p>
   <p>Sources : <a href="https://www.youtube.com/watch?v=eVfgONpEoDo" target="_blank">Podcast Lo Grande — Raúl Durán</a></p>
   <p>Créé avec <span class="heart">♥</span> pour partager la sagesse des nombres.</p>
   <p style="margin-top:0.5rem;font-size:0.7rem;">Numérologie Cabalistique © 2026 — Méthode Raúl Durán</p>
@@ -171,5 +185,6 @@
 <script src="assets/js/calculateur.js"></script>
 <script src="assets/js/main.js"></script>
 
+<button onclick="window.scrollTo({top:0,behavior:'smooth'})" id="scrollTopBtn" style="position:fixed;bottom:2rem;right:2rem;background:#1e293b;color:#fbbf24;border:1px solid #334155;border-radius:50%;width:44px;height:44px;cursor:pointer;font-size:1.2rem;z-index:100;opacity:0;transition:opacity 0.3s;pointer-events:none;" aria-label="Retour en haut de page">↑</button>
 </body>
 </html>

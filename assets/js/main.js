@@ -112,3 +112,17 @@ document.querySelectorAll('section').forEach(s => {
 // Révéler le hero immédiatement
 document.getElementById('hero').style.opacity = '1';
 document.getElementById('hero').style.transform = 'translateY(0)';
+
+/* ─── Scroll-to-top button ─── */
+const scrollBtn = document.getElementById('scrollTopBtn');
+if (scrollBtn) {
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > 500) {
+      scrollBtn.style.opacity = '1';
+      scrollBtn.style.pointerEvents = 'auto';
+    } else {
+      scrollBtn.style.opacity = '0';
+      scrollBtn.style.pointerEvents = 'none';
+    }
+  });
+}

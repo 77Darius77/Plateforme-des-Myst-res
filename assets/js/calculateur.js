@@ -176,4 +176,20 @@ function initFromURL() {
   }
 }
 
-document.addEventListener('DOMContentLoaded', initFromURL);
+document.addEventListener('DOMContentLoaded', function() {
+  initFromURL();
+
+  /* ─── Feedback visuel on-input ─── */
+  const dateInput = document.getElementById('dateInput');
+  if (dateInput) {
+    dateInput.addEventListener('input', function(e) {
+      const val = e.target.value;
+      const regex = /^\d{2}\/\d{2}\/\d{4}$/;
+      if (regex.test(val)) {
+        e.target.style.borderColor = '#34d399';
+      } else if (val.length > 0) {
+        e.target.style.borderColor = '#334155';
+      }
+    });
+  }
+});
