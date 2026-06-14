@@ -2,6 +2,26 @@
    NUMÉROLOGIE CABALISTIQUE — Main (UI)
    ═══════════════════════════════════════════ */
 
+/* ─── Theme toggle ─── */
+(function themeInit() {
+  const saved = localStorage.getItem('theme');
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  if (saved === 'light' || (!saved && !prefersDark)) {
+    document.documentElement.setAttribute('data-theme', 'light');
+  }
+})();
+function toggleTheme() {
+  const current = document.documentElement.getAttribute('data-theme');
+  const next = current === 'light' ? 'dark' : 'light';
+  document.documentElement.setAttribute('data-theme', next);
+  localStorage.setItem('theme', next);
+  updateThemeIcon(next);
+}
+function updateThemeIcon(theme) {
+  const btn = document.getElementById('themeToggle');
+  if (btn) btn.textContent = theme === 'light' ? '☀️' : '🌙';
+}
+
 /* ─── Générer les 22 cartes d'archétypes ─── */
 (function buildArchetypes() {
   const grid = document.getElementById('archetypesGrid');
@@ -9,6 +29,9 @@
     const a = ARCHETYPES[i];
     const card = document.createElement('div');
     card.className = `archetype-card c-${i}`;
+    card.setAttribute('role', 'button');
+    card.setAttribute('tabindex', '0');
+    card.setAttribute('aria-label', `Archétype ${i} : ${a.force}`);
     card.innerHTML = `
       <div class="card-inner">
         <div class="card-front">
@@ -49,6 +72,12 @@
             </div>
           `;
         }, 300);
+      }
+    });
+    card.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        this.click();
       }
     });
     grid.appendChild(card);

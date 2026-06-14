@@ -18,7 +18,7 @@
   --amber: #fb923c;
   --slate: #94a3b8;
   --text: #e2e8f0;
-  --text-dim: #64748b;
+  --text-dim: #94a3b8;
   --font-mono: 'JetBrains Mono', monospace;
   --font-sans: 'Inter', system-ui, sans-serif;
   --radius: 10px;
@@ -60,3 +60,36 @@ h3 { font-size: 1.1rem; }
 .emerald { color: var(--emerald); }
 .cyan { color: var(--cyan); }
 .slate { color: var(--slate); }
+
+/* Mode clair */
+[data-theme="light"] {
+  --bg-deep: #f7f8f8;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f0f0f0;
+  --border: #d0d6e0;
+  --text: #020617;
+  --text-dim: #475569;
+  --slate: #475569;
+}
+[data-theme="light"] body::before {
+  background: linear-gradient(180deg, #f7f8f8 0%, #ffffff 50%, #f7f8f8 100%),
+              repeating-linear-gradient(0deg, transparent, transparent 39px, #e5e5e5 39px, #e5e5e5 40px),
+              repeating-linear-gradient(90deg, transparent, transparent 39px, #e5e5e5 39px, #e5e5e5 40px);
+}
+[data-theme="light"] .result-card,
+[data-theme="light"] .archetype-card,
+[data-theme="light"] .step,
+[data-theme="light"] #calculateur {
+  background: #ffffff;
+  border-color: #d0d6e0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  html { scroll-behavior: auto; }
+}

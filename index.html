@@ -12,6 +12,16 @@
 </head>
 <body>
 
+<!-- ═══════════ SKIP-TO-CONTENT ═══════════ -->
+<a href="#calculateur" class="skip-link">Aller au calculateur</a>
+
+<noscript>
+  <div style="background:#0f172a;color:#fbbf24;text-align:center;padding:2rem;font-family:system-ui;">
+    <p>⚠️ JavaScript est nécessaire pour le calculateur de numérologie.</p>
+    <p>Vous pouvez utiliser notre <a href="https://github.com/77Darius77/numerologie" style="color:#fbbf24;">outil Python</a> en attendant.</p>
+  </div>
+</noscript>
+
 <!-- ═══════════ HEADER ═══════════ -->
 <header>
   <div class="logo">◈ Numérologie Cabalistique</div>
@@ -48,8 +58,8 @@
   </div>
 
   <div class="calc-form">
-    <input type="text" id="dateInput" placeholder="JJ/MM/AAAA (ex: 23/10/1990)" maxlength="10" autocomplete="off">
-    <button id="calcBtn" onclick="reveal()">Révéler mes nombres ✦</button>
+    <input type="text" id="dateInput" placeholder="JJ/MM/AAAA (ex: 23/10/1990)" maxlength="10" autocomplete="off" aria-label="Date de naissance au format JJ/MM/AAAA">
+    <button id="calcBtn" onclick="reveal()" aria-label="Calculer ma numérologie">Révéler mes nombres ✦</button>
   </div>
   <div class="error-msg" id="errorMsg"></div>
 
@@ -77,7 +87,7 @@
     <h2>✦ Infographie</h2>
     <p class="slate">Les 22 archétypes en un coup d'œil.</p>
   </div>
-  <object data="infographie_22_archetypes.svg" type="image/svg+xml" style="max-width:100%;height:auto;border-radius:10px;border:1px solid #334155;">
+  <object data="infographie_22_archetypes.svg" type="image/svg+xml" style="max-width:100%;height:auto;border-radius:10px;border:1px solid #334155;" aria-label="Infographie des 22 archétypes de la numérologie cabalistique" role="img">
     Ton navigateur ne supporte pas le SVG inline.
   </object>
 </section>

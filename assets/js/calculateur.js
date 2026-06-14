@@ -39,7 +39,12 @@ function calculer(dateStr) {
   if (parts.length !== 3) throw new Error('Format invalide. Utilise JJ/MM/AAAA');
   const [j, m, a] = parts.map(Number);
   if (isNaN(j) || isNaN(m) || isNaN(a)) throw new Error('La date doit contenir uniquement des chiffres');
-  if (j < 1 || j > 31 || m < 1 || m > 12 || a < 1000 || a > 9999) throw new Error('Date invalide');
+  // Validation calendaire réelle
+  const d = new Date(a, m - 1, j);
+  if (d.getDate() !== j || d.getMonth() + 1 !== m || d.getFullYear() !== a) {
+    throw new Error('Date inexistante (ex: 31 février)');
+  }
+  if (a < 1000 || a > 9999) throw new Error('Année hors limites');
 
   const jour = reduire(j);
   const mois = reduire(m);
@@ -58,6 +63,17 @@ function reveal() {
   const resultat = document.getElementById('resultat');
   const btn = document.getElementById('calcBtn');
 
+  // Accessibilité ARIA — une seule initialisation
+  if (!resultat.hasAttribute('aria-live')) {
+    resultat.setAttribute('aria-live', 'polite');
+  }
+  if (!errorEl.hasAttribute('aria-live')) {
+    errorEl.setAttribute('aria-live', 'assertive');
+  }
+  if (!input.hasAttribute('aria-describedby')) {
+    input.setAttribute('aria-describedby', 'errorMsg');
+  }
+
   errorEl.textContent = '';
   resultat.classList.remove('visible');
 
@@ -69,36 +85,53 @@ function reveal() {
     btn.disabled = true;
 
     setTimeout(() => {
-      // Détail du calcul
-      document.getElementById('calcDetail').innerHTML =
-        `Jour ${r.jour} + Mois ${r.mois} + Année ${r.annee} = <span>${r.jour + r.mois + r.annee}</span> → <span>Chemin de vie ${r.chemin}</span><br>` +
-        `max(${r.jour},${r.mois},${r.annee}) − mid − min → <span>Ticún ${r.ticun}</span>`;
+      // Détail du calcul — textContent pour les données utilisateur
+      document.getElementById('calcDetail').textContent =
+        `Jour ${r.jour} + Mois ${r.mois} + Année ${r.annee} = ${r.jour + r.mois + r.annee} → Chemin de vie ${r.chemin}\n` +
+        `max(${r.jour},${r.mois},${r.annee}) − mid − min → Ticún ${r.ticun}`;
 
-      // Cartes résultat
+      // Cartes résultat — innerHTML pour la structure fixe, textContent pour les valeurs dynamiques
       const cv = ARCHETYPES[r.chemin];
       const tc = ARCHETYPES[r.ticun];
-      document.getElementById('resultCards').innerHTML = `
+      const cardsContainer = document.getElementById('resultCards');
+      cardsContainer.innerHTML = `
         <div class="result-card emerald-card">
           <div class="label">Chemin de vie / Don</div>
-          <div class="big-num">${r.chemin}</div>
-          <div class="desc"><strong>${cv.force}</strong><br><span style="font-size:0.8rem;color:#64748b">Ombre : ${cv.faiblesse}</span></div>
+          <div class="big-num"></div>
+          <div class="desc"><strong></strong><br><span style="font-size:0.8rem;color:#64748b">Ombre : <span class="ombre-val"></span></span></div>
         </div>
         <div class="result-card gold">
           <div class="label">Ticún / Défi d'âme</div>
-          <div class="big-num">${r.ticun}</div>
-          <div class="desc"><strong>${tc.force}</strong><br><span style="font-size:0.8rem;color:#64748b">Ombre : ${tc.faiblesse}</span></div>
+          <div class="big-num"></div>
+          <div class="desc"><strong></strong><br><span style="font-size:0.8rem;color:#64748b">Ombre : <span class="ombre-val"></span></span></div>
         </div>
       `;
+      const cards = cardsContainer.children;
+      cards[0].querySelector('.big-num').textContent = r.chemin;
+      cards[0].querySelector('.desc strong').textContent = cv.force;
+      cards[0].querySelector('.ombre-val').textContent = cv.faiblesse;
+      cards[1].querySelector('.big-num').textContent = r.ticun;
+      cards[1].querySelector('.desc strong').textContent = tc.force;
+      cards[1].querySelector('.ombre-val').textContent = tc.faiblesse;
 
-      // Interprétation
-      document.getElementById('resultInterpretation').innerHTML = `
-        <p style="color:#fbbf24;font-weight:600;margin-bottom:0.5rem;">🔮 Lecture croisée — ${r.chemin} + ${r.ticun}</p>
-        <p>${cv.interpretation}</p>
-        <p style="margin-top:0.8rem;">${tc.interpretation}</p>
+      // Interprétation — innerHTML pour la structure fixe, textContent pour les valeurs dynamiques
+      const interpContainer = document.getElementById('resultInterpretation');
+      interpContainer.innerHTML = `
+        <p style="color:#fbbf24;font-weight:600;margin-bottom:0.5rem;"></p>
+        <p></p>
+        <p style="margin-top:0.8rem;"></p>
       `;
+      const interpPs = interpContainer.children;
+      interpPs[0].textContent = `🔮 Lecture croisée — ${r.chemin} + ${r.ticun}`;
+      interpPs[1].textContent = cv.interpretation;
+      interpPs[2].textContent = tc.interpretation;
 
       resultat.classList.add('visible');
       resultat.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+      // Mise à jour de l'URL pour partage
+      const newURL = window.location.pathname + '?date=' + encodeURIComponent(r.date);
+      window.history.pushState({}, '', newURL);
 
       btn.textContent = 'Révéler mes nombres ✦';
       btn.disabled = false;
@@ -117,3 +150,30 @@ function reveal() {
 document.getElementById('dateInput').addEventListener('keydown', function(e) {
   if (e.key === 'Enter') reveal();
 });
+
+/* ═══════════════════════════════════════════
+   INIT DEPUIS L'URL — partage ?date=JJ/MM/AAAA
+   ═══════════════════════════════════════════ */
+function initFromURL() {
+  const params = new URLSearchParams(window.location.search);
+  const dateParam = params.get('date');
+  if (!dateParam) return;
+
+  // Regex stricte : JJ/MM/AAAA
+  const regex = /^(\d{2})\/(\d{2})\/(\d{4})$/;
+  if (!regex.test(dateParam)) return; // ignorer silencieusement
+
+  // Valider la date via le calculateur
+  try {
+    const r = calculer(dateParam);
+    // Pré-remplir l'input
+    const input = document.getElementById('dateInput');
+    if (input) input.value = dateParam;
+    // Déclencher le calcul
+    reveal();
+  } catch (_) {
+    // Date invalide → ignorer silencieusement
+  }
+}
+
+document.addEventListener('DOMContentLoaded', initFromURL);
