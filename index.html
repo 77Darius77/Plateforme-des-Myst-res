@@ -3,23 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Numérologie Cabalistique — Découvre tes nombres</title>
-<meta name="description" content="Découvre ta numérologie cabalistique gratuitement. Calcule ton chemin de vie et ton ticún selon la méthode Raúl Durán. 22 archétypes, infographie, blog. Sans pub, sans tracking.">
-<meta name="keywords" content="numérologie, cabalistique, calcul numérologie, chemin de vie, ticún, Raúl Durán, archétypes, kabbale, gratuit">
+<title>Plateforme des Mystères — Sagesses Ésotériques</title>
+<meta name="description" content="Explorez les sagesses ancestrales : numérologie cabalistique, tarologie, astrologie et oracles. Découvrez votre chemin de vie, votre ticún et les 22 archétypes. Sans pub, sans tracking.">
+<meta name="keywords" content="numérologie, cabalistique, tarologie, astrologie, oracles, ésotérisme, chemin de vie, ticún, Raúl Durán, archétypes, kabbale, Belline, Gé, runes, Yi King">
 <meta name="author" content="Plateforme des Mystères">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://mysteres.fr/">
 
-<meta property="og:title" content="Numérologie Cabalistique — Découvre tes nombres">
-<meta property="og:description" content="Calcule ton chemin de vie et ton ticún selon la méthode Raúl Durán. 22 archétypes, infographie, blog. Gratuit, sans pub.">
+<meta property="og:title" content="Plateforme des Mystères — Sagesses Ésotériques">
+<meta property="og:description" content="Explorez les sagesses ancestrales : numérologie cabalistique, tarologie, astrologie et oracles. Gratuit, sans pub, sans tracking.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://mysteres.fr/">
 <meta property="og:image" content="https://mysteres.fr/assets/images/infographie_22_archetypes.svg">
 <meta property="og:locale" content="fr_FR">
 
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Numérologie Cabalistique — Découvre tes nombres">
-<meta name="twitter:description" content="Chemin de vie, ticún, 22 archétypes. Gratuit, sans pub.">
+<meta name="twitter:title" content="Plateforme des Mystères — Sagesses Ésotériques">
+<meta name="twitter:description" content="Numérologie, tarologie, astrologie, oracles. Gratuit, sans pub.">
 <meta name="twitter:image" content="https://mysteres.fr/assets/images/infographie_22_archetypes.svg">
 
 <script type="application/ld+json">
@@ -28,7 +28,7 @@
   "@type": "WebSite",
   "name": "Plateforme des Mystères",
   "url": "https://mysteres.fr/",
-  "description": "Découvre ta numérologie cabalistique gratuitement — chemin de vie, ticún, 22 archétypes.",
+  "description": "Explorez les sagesses ancestrales : numérologie cabalistique, tarologie, astrologie et oracles.",
   "inLanguage": "fr",
   "potentialAction": {
     "@type": "SearchAction",
@@ -38,6 +38,7 @@
 }
 </script>
 
+<link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
 <link rel="sitemap" type="application/xml" href="/sitemap.xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -49,28 +50,155 @@
 <!-- Analytics (décommenter pour activer) -->
 <!-- <script defer data-domain="mysteres.fr" src="https://plausible.io/js/script.js"></script> -->
 
+<style>
+/* ─── Landing Page: Discipline Cards (grille 2×2) ─── */
+.disciplines-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.discipline-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  transition: var(--transition);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.discipline-card:hover {
+  border-color: var(--gold);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+}
+.discipline-card .disc-icon {
+  font-size: 2.5rem;
+  margin-bottom: 0.8rem;
+}
+.discipline-card h3 {
+  font-family: var(--font-mono);
+  font-size: 1.2rem;
+  margin-bottom: 0.6rem;
+  color: var(--gold);
+}
+.discipline-card .disc-desc {
+  font-size: 0.9rem;
+  color: var(--slate);
+  line-height: 1.6;
+  margin-bottom: 1.2rem;
+  flex: 1;
+}
+.discipline-card .disc-cta {
+  display: inline-block;
+  padding: 0.6rem 1.5rem;
+  background: var(--gold);
+  color: var(--bg-deep);
+  font-family: var(--font-mono);
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  transition: var(--transition);
+}
+.discipline-card .disc-cta:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(251, 191, 36, 0.3);
+}
+.discipline-card .disc-badge {
+  display: inline-block;
+  padding: 0.5rem 1.2rem;
+  border: 1px solid var(--border);
+  border-radius: 50px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  cursor: default;
+}
+
+/* ─── Landing Page: Article Cards ─── */
+.articles-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.2rem;
+  max-width: 960px;
+  margin: 0 auto;
+}
+.article-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  transition: var(--transition);
+}
+.article-card:hover {
+  border-color: var(--gold);
+  transform: translateY(-2px);
+}
+.article-card .article-meta {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: 0.6rem;
+}
+.article-card h3 {
+  font-size: 1rem;
+  margin-bottom: 0.6rem;
+  line-height: 1.4;
+}
+.article-card h3 a {
+  color: var(--text);
+  text-decoration: none;
+  transition: var(--transition);
+}
+.article-card h3 a:hover {
+  color: var(--gold);
+}
+.article-card p {
+  font-size: 0.85rem;
+  color: var(--slate);
+  line-height: 1.6;
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+  .disciplines-grid {
+    grid-template-columns: 1fr;
+  }
+  .articles-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+
 </head>
 <body>
 
 <!-- ═══════════ SKIP-TO-CONTENT ═══════════ -->
-<a href="#calculateur" class="skip-link">Aller au calculateur</a>
+<a href="#hero" class="skip-link">Aller au contenu principal</a>
 
 <noscript>
   <div style="background:#0f172a;color:#fbbf24;text-align:center;padding:2rem;font-family:system-ui;">
-    <p>⚠️ JavaScript est nécessaire pour le calculateur de numérologie.</p>
-    <p>Vous pouvez utiliser notre <a href="https://github.com/77Darius77/numerologie" style="color:#fbbf24;">outil Python</a> en attendant.</p>
+    <p>⚠️ Certaines fonctionnalités interactives nécessitent JavaScript.</p>
+    <p>Découvrez notre <a href="pages/numerologie/cabalistique.html" style="color:#fbbf24;">calculateur de numérologie</a> et explorez les articles du blog.</p>
   </div>
 </noscript>
 
 <!-- ═══════════ HEADER ═══════════ -->
 <header>
-  <div class="logo">◈ Numérologie Cabalistique</div>
+  <div class="logo">◈ Plateforme des Mystères</div>
   <nav>
-    <a href="#calculateur">✦ Calculateur</a>
-    <a href="#archetypes">✦ Archétypes</a>
-    <a href="#">✦ Blog</a>
-    <a href="#infographie">✦ Infographie</a>
-    <a href="#methode">✦ Méthode</a>
+    <a href="pages/numerologie/cabalistique.html">✦ Calculateur</a>
+    <a href="#articles">✦ Blog</a>
+    <a href="#portails">✦ Disciplines</a>
   </nav>
   <button id="themeToggle" onclick="toggleTheme()" style="background:transparent;border:1px solid #334155;color:#94a3b8;padding:0.4rem 0.8rem;border-radius:20px;cursor:pointer;font-size:0.9rem;margin-left:auto;transition:all 0.3s;" aria-label="Changer le thème">🌙</button>
 </header>
@@ -79,100 +207,91 @@
 <section id="hero">
   <h1>
     <span class="pulse"></span>
-    Les nombres sont le <span class="gold">langage</span><br>de la <span class="emerald">conscience</span>
+    Les Mystères se <span class="gold">révèlent</span><br>à qui sait <span class="emerald">lire</span>
   </h1>
   <p class="subtitle">
-    Découvre ce que ta date de naissance révèle sur ton chemin de vie, tes dons, et les défis que ton âme est venue rectifier — selon la sagesse cabalistique.
+    Explorez les sagesses ancestrales à travers les nombres, les symboles, les astres et les oracles.
   </p>
-  <a href="#calculateur" class="cta">✦ Révéler mes nombres</a>
+  <a href="pages/numerologie/cabalistique.html" class="cta">Découvrir la Numérologie ✦</a>
   <p class="quote">
     « Dieu est là où sont tes problèmes. La plupart fuient leurs problèmes — alors que les problèmes sont le laboratoire que la vie t'offre pour exercer tes dons. »
     <br><span class="gold">— Talmud</span>
   </p>
 </section>
 
-<!-- ═══════════ CALCULATEUR ═══════════ -->
-<section id="calculateur">
+<!-- ═══════════ PORTAILS — 4 DISCIPLINES ═══════════ -->
+<section id="portails">
   <div class="section-title">
-    <div class="num">[ 01 ]</div>
-    <h2>✦ Calculateur Numérologique</h2>
-    <p class="slate">Entre ta date de naissance et découvre ton chemin de vie et ton ticún.</p>
+    <div class="num">[ EXPLOREZ ]</div>
+    <h2>✦ Les Quatre Voies</h2>
+    <p class="slate">Chaque discipline est une porte vers la connaissance de soi.</p>
   </div>
 
-  <div style="max-width:600px;margin:0 auto 1.5rem;text-align:center;">
-    <p style="color:#d0d6e0;font-size:0.95rem;">
-      <strong style="color:#34d399;">Chemin de vie</strong> = ton don, ta mission d'âme.
-      <strong style="color:#fbbf24;">Ticún</strong> = le défi que tu es venu·e rectifier.
-    </p>
-    <p style="color:#8a8f98;font-size:0.85rem;">
-      Entre ta date de naissance et découvre tes deux nombres sacrés.
-    </p>
-  </div>
+  <div class="disciplines-grid">
 
-  <div class="calc-form">
-    <input type="text" id="dateInput" inputmode="numeric" pattern="\d{2}/\d{2}/\d{4}" placeholder="JJ/MM/AAAA" maxlength="10" autocomplete="off" aria-label="Date de naissance au format JJ/MM/AAAA">
-    <button type="button" onclick="document.getElementById('dateInput').value='23/10/1990';reveal()" style="background:transparent;border:1px solid #334155;color:#94a3b8;padding:0.9rem 1.2rem;border-radius:8px;cursor:pointer;font-family:var(--font-mono);font-size:0.85rem;">Essayer avec un exemple</button>
-    <button id="calcBtn" onclick="reveal()" aria-label="Calculer ma numérologie">Révéler mes nombres ✦</button>
-  </div>
-  <div class="error-msg" id="errorMsg"></div>
+    <!-- Carte 1 : Numérologie -->
+    <div class="discipline-card card-numerologie">
+      <div class="disc-icon">🔢</div>
+      <h3>Numérologie</h3>
+      <p class="disc-desc">La science des nombres. Découvrez votre chemin de vie et votre ticún selon la méthode Raúl Durán.</p>
+      <a href="pages/numerologie/cabalistique.html" class="disc-cta">Explorer ✦</a>
+    </div>
 
-  <div id="resultat">
-    <div class="calc-detail" id="calcDetail"></div>
-    <div class="result-cards" id="resultCards"></div>
-    <div class="result-interpretation" id="resultInterpretation"></div>
+    <!-- Carte 2 : Tarologie -->
+    <div class="discipline-card card-tarologie">
+      <div class="disc-icon">🃏</div>
+      <h3>Tarologie</h3>
+      <p class="disc-desc">Les 22 arcanes majeurs du Tarot de Marseille. Symbolisme, interprétation et tirages.</p>
+      <span class="disc-badge">Bientôt</span>
+    </div>
+
+    <!-- Carte 3 : Astrologie -->
+    <div class="discipline-card card-astrologie">
+      <div class="disc-icon">⭐</div>
+      <h3>Astrologie</h3>
+      <p class="disc-desc">Les astres et votre thème natal. Signes, maisons, aspects et transits planétaires.</p>
+      <span class="disc-badge">Bientôt</span>
+    </div>
+
+    <!-- Carte 4 : Oracles -->
+    <div class="discipline-card card-oracles">
+      <div class="disc-icon">🔮</div>
+      <h3>Oracles</h3>
+      <p class="disc-desc">Belline, Gé, Runes, Yi King. Des sagesses divinatoires pour éclairer votre chemin.</p>
+      <span class="disc-badge">Bientôt</span>
+    </div>
+
   </div>
 </section>
 
-<!-- ═══════════ ARCHÉTYPES ═══════════ -->
-<section id="archetypes">
+<!-- ═══════════ DERNIERS ARTICLES ═══════════ -->
+<section id="articles">
   <div class="section-title">
-    <div class="num">[ 02 ]</div>
-    <h2>✦ Les 22 Archétypes</h2>
-    <p class="slate">Chaque nombre (1-22) est à la fois un don et un défi. Clique pour découvrir l'ombre.</p>
+    <div class="num">[ BLOG ]</div>
+    <h2>✦ Derniers Articles</h2>
+    <p class="slate">Réflexions, analyses et explorations ésotériques.</p>
   </div>
-  <div class="grid" id="archetypesGrid"></div>
-</section>
 
-<!-- ═══════════ INFOGRAPHIE ═══════════ -->
-<section id="infographie">
-  <div class="section-title">
-    <div class="num">[ 03 ]</div>
-    <h2>✦ Infographie</h2>
-    <p class="slate">Les 22 archétypes en un coup d'œil.</p>
-  </div>
-  <object data="infographie_22_archetypes.svg" type="image/svg+xml" style="max-width:100%;height:auto;border-radius:10px;border:1px solid #334155;" aria-label="Infographie des 22 archétypes de la numérologie cabalistique" role="img">
-    Ton navigateur ne supporte pas le SVG inline.
-  </object>
-</section>
+  <div class="articles-grid">
 
-<!-- ═══════════ MÉTHODE ═══════════ -->
-<section id="methode">
-  <div class="section-title">
-    <div class="num">[ 04 ]</div>
-    <h2>✦ La Méthode</h2>
-    <p class="slate">Comment fonctionne le calcul, selon Raúl Durán.</p>
-  </div>
-  <div class="steps">
-    <div class="step">
-      <div class="step-num">1</div>
-      <h3>Réduire</h3>
-      <p>Chaque composant de ta date (jour, mois, année) est réduit à un nombre ≤ 22 en sommant ses chiffres.</p>
-    </div>
-    <div class="step">
-      <div class="step-num">2</div>
-      <h3>Chemin de vie</h3>
-      <p>La somme des trois nombres réduits donne ton chemin de vie — ton don, ta « personalidad profunda ».</p>
-    </div>
-    <div class="step">
-      <div class="step-num">3</div>
-      <h3>Ticún</h3>
-      <p>La soustraction ordonnée des trois nombres (max − mid − min) révèle ton ticún — le défi que ton âme est venue rectifier.</p>
-    </div>
-    <div class="step">
-      <div class="step-num">4</div>
-      <h3>Interpréter</h3>
-      <p>Chaque nombre correspond à un archétype avec une force (don) et une faiblesse (ticún). La clé est d'utiliser le don pour traverser le défi.</p>
-    </div>
+    <article class="article-card">
+      <div class="article-meta">Numérologie · 5 min</div>
+      <h3><a href="blog/reflexions-numerologie.html">Réflexions sur la numérologie cabalistique</a></h3>
+      <p>Les nombres ne mentent pas. Plongée dans la sagesse des 22 archétypes et ce qu'ils révèlent de notre chemin d'âme.</p>
+    </article>
+
+    <article class="article-card">
+      <div class="article-meta">Méthode · 7 min</div>
+      <h3><a href="blog/methode-raul-duran.html">La méthode Raúl Durán expliquée</a></h3>
+      <p>Comment fonctionne le calcul cabalistique ? Les étapes, les réductions, et l'interprétation des nombres sacrés.</p>
+    </article>
+
+    <article class="article-card">
+      <div class="article-meta">Analyse · 6 min</div>
+      <h3><a href="blog/analyse-donald-trump.html">Donald Trump : portrait numérologique</a></h3>
+      <p>Chemin de vie, ticún et archétypes. Une analyse chiffrée de l'ancien président américain selon la méthode cabalistique.</p>
+    </article>
+
   </div>
 </section>
 
@@ -182,15 +301,13 @@
   <p style="color:#64748b;font-size:0.7rem;margin-bottom:0.8rem;">À titre informatif uniquement — ne remplace pas un avis médical, psychologique ou financier.</p>
   <p>Sources : <a href="https://www.youtube.com/watch?v=eVfgONpEoDo" target="_blank">Podcast Lo Grande — Raúl Durán</a></p>
   <p>Créé avec <span class="heart">♥</span> pour partager la sagesse des nombres.</p>
-  <p style="margin-top:0.5rem;font-size:0.7rem;">Numérologie Cabalistique © 2026 — Méthode Raúl Durán</p>
+  <p style="margin-top:0.5rem;font-size:0.7rem;">Plateforme des Mystères © 2026</p>
 </footer>
 
 <!-- ═══════════ TOAST ═══════════ -->
 <div class="toast" id="toast"></div>
 
-<script src="assets/js/calculateur.js"></script>
 <script src="assets/js/main.js"></script>
-<!-- <script src="assets/js/tests-calculateur.js"></script> -->
 
 <button onclick="window.scrollTo({top:0,behavior:'smooth'})" id="scrollTopBtn" style="position:fixed;bottom:2rem;right:2rem;background:#1e293b;color:#fbbf24;border:1px solid #334155;border-radius:50%;width:44px;height:44px;cursor:pointer;font-size:1.2rem;z-index:100;opacity:0;transition:opacity 0.3s;pointer-events:none;" aria-label="Retour en haut de page">↑</button>
 </body>
