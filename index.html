@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Numérologie Cabalistique — Découvre tes nombres</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&amp;family=Inter:wght@300;400;600&amp;display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════
+   NUMÉROLOGIE CABALISTIQUE — Design System
+   Inspiré de Raúl Durán, Lo Grande Podcast
+   Créé avec amour par Géolie
+   ═══════════════════════════════════════════ */
+
+:root {
+  --bg-deep: #020617;
+  --bg-card: #0f172a;
+  --bg-card-hover: #1e293b;
+  --border: #334155;
+  --gold: #fbbf24;
+  --gold-dim: #d97706;
+  --emerald: #34d399;
+  --cyan: #22d3ee;
+  --violet: #a78bfa;
+  --rose: #fb7185;
+  --amber: #fb923c;
+  --slate: #94a3b8;
+  --text: #e2e8f0;
+  --text-dim: #64748b;
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --radius: 10px;
+  --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg-deep);
+  color: var(--text);
+  font-family: var(--font-sans);
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* Background pattern */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    linear-gradient(180deg, #020617 0%, #0f172a 50%, #020617 100%),
+    repeating-linear-gradient(0deg, transparent, transparent 39px, #1e293b 39px, #1e293b 40px),
+    repeating-linear-gradient(90deg, transparent, transparent 39px, #1e293b 39px, #1e293b 40px);
+  z-index: -1;
+  opacity: 0.5;
+}
+
+/* ═══════════ TYPOGRAPHIE ═══════════ */
+h1, h2, h3, .mono { font-family: var(--font-mono); }
+h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 700; }
+h2 { font-size: clamp(1.5rem, 3vw, 2.2rem); margin-bottom: 1.5rem; }
+h3 { font-size: 1.1rem; }
+
+.gold { color: var(--gold); }
+.emerald { color: var(--emerald); }
+.cyan { color: var(--cyan); }
+.slate { color: var(--slate); }
+
+/* ═══════════ HEADER ═══════════ */
+header {
+  padding: 2rem 1.5rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  background: rgba(15, 23, 42, 0.8);
+  backdrop-filter: blur(10px);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+header .logo {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  color: var(--gold);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+nav { margin-top: 0.8rem; }
+nav a {
+  color: var(--slate);
+  text-decoration: none;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  margin: 0 1rem;
+  transition: var(--transition);
+}
+nav a:hover { color: var(--gold); }
+
+/* ═══════════ HERO ═══════════ */
+#hero {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 4rem 1.5rem;
+  position: relative;
+}
+
+#hero .pulse {
+  width: 8px; height: 8px;
+  background: var(--gold);
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 0.5rem;
+  animation: pulse 2s infinite;
+  vertical-align: middle;
+}
+
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(251, 191, 36, 0.5); }
+  50% { box-shadow: 0 0 0 12px rgba(251, 191, 36, 0); }
+}
+
+#hero h1 { margin-bottom: 1rem; }
+#hero .subtitle {
+  font-size: 1.1rem;
+  color: var(--slate);
+  max-width: 600px;
+  margin-bottom: 2rem;
+}
+
+#hero .cta {
+  display: inline-block;
+  padding: 0.9rem 2.2rem;
+  background: var(--gold);
+  color: var(--bg-deep);
+  font-family: var(--font-mono);
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: 50px;
+  transition: var(--transition);
+  cursor: pointer;
+  border: none;
+  font-size: 1rem;
+}
+#hero .cta:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 30px rgba(251, 191, 36, 0.3);
+}
+
+#hero .quote {
+  margin-top: 3rem;
+  font-style: italic;
+  color: var(--text-dim);
+  max-width: 500px;
+  font-size: 0.95rem;
+}
+
+/* ═══════════ SECTIONS ═══════════ */
+section {
+  padding: 5rem 1.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+.section-title .num {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--gold);
+  letter-spacing: 0.3em;
+  margin-bottom: 0.5rem;
+}
+
+/* ═══════════ CALCULATEUR ═══════════ */
+#calculateur {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 3rem 2rem;
+  text-align: center;
+}
+
+.calc-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem 0;
+}
+
+.calc-form input {
+  padding: 0.9rem 1.2rem;
+  border-radius: 8px;
+  border: 1.5px solid var(--border);
+  background: var(--bg-card);
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  width: 220px;
+  transition: var(--transition);
+}
+.calc-form input:focus {
+  outline: none;
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.15);
+}
+
+.calc-form button {
+  padding: 0.9rem 2rem;
+  background: var(--gold);
+  color: var(--bg-deep);
+  font-family: var(--font-mono);
+  font-weight: 700;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: var(--transition);
+}
+.calc-form button:hover {
+  background: #fcd34d;
+  transform: translateY(-1px);
+}
+
+.calc-form button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.error-msg {
+  color: var(--rose);
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+  min-height: 1.2em;
+}
+
+/* Résultat */
+#resultat {
+  display: none;
+  margin-top: 2rem;
+  animation: fadeInUp 0.6s ease;
+}
+
+#resultat.visible { display: block; }
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.result-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.2rem;
+  margin-top: 1.5rem;
+}
+
+.result-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  text-align: left;
+  transition: var(--transition);
+}
+
+.result-card:hover {
+  border-color: var(--gold);
+  transform: translateY(-2px);
+}
+
+.result-card .big-num {
+  font-family: var(--font-mono);
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.result-card .label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.5rem;
+}
+
+.result-card .desc {
+  font-size: 0.9rem;
+  color: var(--slate);
+}
+
+.result-card.gold { border-color: var(--gold); }
+.result-card.gold .big-num { color: var(--gold); }
+.result-card.emerald-card { border-color: var(--emerald); }
+.result-card.emerald-card .big-num { color: var(--emerald); }
+
+.result-interpretation {
+  background: rgba(251, 191, 36, 0.05);
+  border: 1px solid rgba(251, 191, 36, 0.2);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  margin-top: 1.5rem;
+  text-align: left;
+  font-style: italic;
+  color: var(--slate);
+  line-height: 1.8;
+}
+
+/* Calcul détaillé */
+.calc-detail {
+  margin-top: 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  text-align: center;
+}
+.calc-detail span { color: var(--cyan); }
+
+/* ═══════════ ARCHÉTYPES ═══════════ */
+#archetypes .grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1rem;
+}
+
+.archetype-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.3rem;
+  cursor: pointer;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+  perspective: 1000px;
+}
+
+.archetype-card:hover {
+  border-color: var(--gold);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+}
+
+.archetype-card .card-inner {
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.archetype-card.flipped .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+  backface-visibility: hidden;
+}
+.card-back {
+  position: absolute;
+  inset: 0;
+  padding: 1.3rem;
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  transform: rotateY(180deg);
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--border);
+}
+
+.archetype-card .num-circle {
+  font-family: var(--font-mono);
+  font-size: 1.5rem;
+  font-weight: 700;
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+}
+
+.archetype-card .force { color: var(--emerald); font-weight: 600; margin-bottom: 0.3rem; }
+.archetype-card .faiblesse { color: var(--slate); font-size: 0.85rem; }
+.archetype-card .flip-hint {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--text-dim);
+  margin-top: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+}
+
+/* Couleurs par numéro */
+.c-1 .num-circle { background: rgba(251,191,36,0.15); color: #fbbf24; border: 1px solid #fbbf24; }
+.c-2 .num-circle { background: rgba(34,211,238,0.1); color: #22d3ee; border: 1px solid #22d3ee; }
+.c-3 .num-circle { background: rgba(251,146,60,0.1); color: #fb923c; border: 1px solid #fb923c; }
+.c-4 .num-circle { background: rgba(167,139,250,0.1); color: #a78bfa; border: 1px solid #a78bfa; }
+.c-5 .num-circle { background: rgba(52,211,153,0.1); color: #34d399; border: 1px solid #34d399; }
+.c-6 .num-circle { background: rgba(251,113,133,0.1); color: #fb7185; border: 1px solid #fb7185; }
+.c-7 .num-circle { background: rgba(148,163,184,0.1); color: #94a3b8; border: 1px solid #94a3b8; }
+.c-8 .num-circle { background: rgba(251,191,36,0.15); color: #fbbf24; border: 1px solid #fbbf24; }
+.c-9 .num-circle { background: rgba(34,211,238,0.1); color: #22d3ee; border: 1px solid #22d3ee; }
+.c-10 .num-circle { background: rgba(167,139,250,0.1); color: #a78bfa; border: 1px solid #a78bfa; }
+.c-11 .num-circle { background: rgba(251,146,60,0.1); color: #fb923c; border: 1px solid #fb923c; }
+.c-12 .num-circle { background: rgba(52,211,153,0.1); color: #34d399; border: 1px solid #34d399; }
+.c-13 .num-circle { background: rgba(251,113,133,0.2); color: #fb7185; border: 2px solid #fb7185; }
+.c-14 .num-circle { background: rgba(148,163,184,0.1); color: #94a3b8; border: 1px solid #94a3b8; }
+.c-15 .num-circle { background: rgba(251,191,36,0.15); color: #fbbf24; border: 1px solid #fbbf24; }
+.c-16 .num-circle { background: rgba(34,211,238,0.1); color: #22d3ee; border: 1px solid #22d3ee; }
+.c-17 .num-circle { background: rgba(251,146,60,0.1); color: #fb923c; border: 1px solid #fb923c; }
+.c-18 .num-circle { background: rgba(167,139,250,0.1); color: #a78bfa; border: 1px solid #a78bfa; }
+.c-19 .num-circle { background: rgba(52,211,153,0.1); color: #34d399; border: 1px solid #34d399; }
+.c-20 .num-circle { background: rgba(251,113,133,0.1); color: #fb7185; border: 1px solid #fb7185; }
+.c-21 .num-circle { background: rgba(148,163,184,0.1); color: #94a3b8; border: 1px solid #94a3b8; }
+.c-22 .num-circle { background: rgba(251,191,36,0.25); color: #fbbf24; border: 2px solid #fbbf24; }
+
+/* ═══════════ INFOGRAPHIE ═══════════ */
+#infographie { text-align: center; }
+#infographie img, #infographie object {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+}
+
+/* ═══════════ METHODE ═══════════ */
+#methode .steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.step {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  text-align: center;
+  transition: var(--transition);
+}
+.step:hover { border-color: var(--gold); }
+
+.step .step-num {
+  font-family: var(--font-mono);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--gold);
+  margin-bottom: 0.5rem;
+}
+
+.step h3 { margin-bottom: 0.5rem; }
+.step p { font-size: 0.9rem; color: var(--slate); }
+
+/* ═══════════ FOOTER ═══════════ */
+footer {
+  text-align: center;
+  padding: 3rem 1.5rem;
+  border-top: 1px solid var(--border);
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+}
+
+footer .heart { color: var(--rose); }
+footer a { color: var(--gold); text-decoration: none; }
+
+/* ═══════════ TOAST ═══════════ */
+.toast {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background: var(--bg-card);
+  border: 1px solid var(--gold);
+  border-radius: var(--radius);
+  padding: 1rem 1.5rem;
+  color: var(--gold);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  z-index: 200;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: var(--transition);
+  pointer-events: none;
+}
+.toast.show { opacity: 1; transform: translateY(0); }
+
+/* ═══════════ RESPONSIVE ═══════════ */
+@media (max-width: 768px) {
+  section { padding: 3rem 1rem; }
+  .calc-form { flex-direction: column; }
+  .calc-form input { width: 100%; }
+  .result-cards { grid-template-columns: 1fr; }
+  #archetypes .grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════ HEADER ═══════════ -->
+<header>
+  <div class="logo">◈ Numérologie Cabalistique</div>
+  <nav>
+    <a href="#calculateur">✦ Calculateur</a>
+    <a href="#archetypes">✦ Archétypes</a>
+    <a href="#infographie">✦ Infographie</a>
+    <a href="#methode">✦ Méthode</a>
+  </nav>
+</header>
+
+<!-- ═══════════ HERO ═══════════ -->
+<section id="hero">
+  <h1>
+    <span class="pulse"></span>
+    Les nombres sont le <span class="gold">langage</span><br>de la <span class="emerald">conscience</span>
+  </h1>
+  <p class="subtitle">
+    Découvre ce que ta date de naissance révèle sur ton chemin de vie, tes dons, et les défis que ton âme est venue rectifier — selon la sagesse cabalistique.
+  </p>
+  <a href="#calculateur" class="cta">✦ Révéler mes nombres</a>
+  <p class="quote">
+    « Dieu est là où sont tes problèmes. La plupart fuient leurs problèmes — alors que les problèmes sont le laboratoire que la vie t'offre pour exercer tes dons. »
+    <br><span class="gold">— Talmud</span>
+  </p>
+</section>
+
+<!-- ═══════════ CALCULATEUR ═══════════ -->
+<section id="calculateur">
+  <div class="section-title">
+    <div class="num">[ 01 ]</div>
+    <h2>✦ Calculateur Numérologique</h2>
+    <p class="slate">Entre ta date de naissance et découvre ton chemin de vie et ton ticún.</p>
+  </div>
+
+  <div class="calc-form">
+    <input type="text" id="dateInput" placeholder="JJ/MM/AAAA (ex: 23/10/1990)" maxlength="10" autocomplete="off">
+    <button id="calcBtn" onclick="reveal()">Révéler mes nombres ✦</button>
+  </div>
+  <div class="error-msg" id="errorMsg"></div>
+
+  <div id="resultat">
+    <div class="calc-detail" id="calcDetail"></div>
+    <div class="result-cards" id="resultCards"></div>
+    <div class="result-interpretation" id="resultInterpretation"></div>
+  </div>
+</section>
+
+<!-- ═══════════ ARCHÉTYPES ═══════════ -->
+<section id="archetypes">
+  <div class="section-title">
+    <div class="num">[ 02 ]</div>
+    <h2>✦ Les 22 Archétypes</h2>
+    <p class="slate">Chaque nombre (1-22) est à la fois un don et un défi. Clique pour découvrir l'ombre.</p>
+  </div>
+  <div class="grid" id="archetypesGrid"></div>
+</section>
+
+<!-- ═══════════ INFOGRAPHIE ═══════════ -->
+<section id="infographie">
+  <div class="section-title">
+    <div class="num">[ 03 ]</div>
+    <h2>✦ Infographie</h2>
+    <p class="slate">Les 22 archétypes en un coup d'œil.</p>
+  </div>
+  <object data="infographie_22_archetypes.svg" type="image/svg+xml" style="max-width:100%;height:auto;border-radius:10px;border:1px solid #334155;">
+    Ton navigateur ne supporte pas le SVG inline.
+  </object>
+</section>
+
+<!-- ═══════════ MÉTHODE ═══════════ -->
+<section id="methode">
+  <div class="section-title">
+    <div class="num">[ 04 ]</div>
+    <h2>✦ La Méthode</h2>
+    <p class="slate">Comment fonctionne le calcul, selon Raúl Durán.</p>
+  </div>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <h3>Réduire</h3>
+      <p>Chaque composant de ta date (jour, mois, année) est réduit à un nombre ≤ 22 en sommant ses chiffres.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <h3>Chemin de vie</h3>
+      <p>La somme des trois nombres réduits donne ton chemin de vie — ton don, ta « personalidad profunda ».</p>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <h3>Ticún</h3>
+      <p>La soustraction ordonnée des trois nombres (max − mid − min) révèle ton ticún — le défi que ton âme est venue rectifier.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <h3>Interpréter</h3>
+      <p>Chaque nombre correspond à un archétype avec une force (don) et une faiblesse (ticún). La clé est d'utiliser le don pour traverser le défi.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer>
+  <p>Sources : <a href="https://www.youtube.com/watch?v=eVfgONpEoDo" target="_blank">Podcast Lo Grande — Raúl Durán</a></p>
+  <p>Créé avec <span class="heart">♥</span> pour partager la sagesse des nombres.</p>
+  <p style="margin-top:0.5rem;font-size:0.7rem;">Numérologie Cabalistique © 2026 — Méthode Raúl Durán</p>
+</footer>
+
+<!-- ═══════════ TOAST ═══════════ -->
+<div class="toast" id="toast"></div>
+
+<script>
+/* ═══════════════════════════════════════════
+   NUMÉROLOGIE CABALISTIQUE — Calculateur JS
+   ═══════════════════════════════════════════ */
+
+const ARCHETYPES = {
+  1:  { force: "Leader, pionnier, indépendance", faiblesse: "Égoïsme, domination", interpretation: "Tu es né·e pour ouvrir des chemins. Ta force est l'initiative, l'audace, la capacité à te lancer sans attendre. Mais ton ombre est l'égoïsme — apprends à ouvrir la voie sans écraser ceux qui marchent avec toi." },
+  2:  { force: "Coopération, diplomatie, patience", faiblesse: "Dépendance affective", interpretation: "Tu es un·e pacificateur·rice naturel·le. Ta force est l'harmonie, l'écoute, l'art de rassembler. Attention à ne pas confondre coopération et fusion — ta valeur ne dépend pas de celle des autres." },
+  3:  { force: "Communication, créativité, joie", faiblesse: "Dispersion, superficialité", interpretation: "Tu rayonnes par ta parole et ta créativité. Le monde a besoin de ta lumière. Mais veille à ne pas t'éparpiller — la profondeur vaut mieux que mille étincelles." },
+  4:  { force: "Structure, ordre, discipline", faiblesse: "Rigidité, peur du changement", interpretation: "Tu es le pilier sur lequel les autres s'appuient. Ta discipline construit des cathédrales. Mais souviens-toi que même les pyramides respirent — la vie a besoin de mouvement." },
+  5:  { force: "Liberté, aventure, adaptabilité", faiblesse: "Instabilité, excès", interpretation: "Tu es l'explorateur·rice de l'âme. Ta soif de nouveauté est un trésor. Apprends à danser avec le changement sans brûler toutes tes maisons." },
+  6:  { force: "Responsabilité, famille, service", faiblesse: "Mensonge (6↔9)", interpretation: "Tu portes le monde sur tes épaules avec une générosité rare. Mais le 6 cache un secret : renverse-le, il devient le 9, la Vérité. Ne te mens pas pour plaire." },
+  7:  { force: "Sagesse intérieure, analyse, spiritualité", faiblesse: "Isolement, froideur", interpretation: "Tu vois ce que les autres ne voient pas. Ta profondeur d'analyse est un don précieux. Mais n'enferme pas ta sagesse dans une tour d'ivoire — descends partager." },
+  8:  { force: "Pouvoir, conquête, stratégie", faiblesse: "Avidité, manipulation", interpretation: "Tu es bâti·e pour accomplir de grandes choses. Le pouvoir est ton outil. Utilise-le comme un jardinier, pas comme un conquérant — cultive, ne détruis pas." },
+  9:  { force: "Vérité, sagesse universelle", faiblesse: "Mensonge (9↔6)", interpretation: "Tu es un phare de vérité. Ta mission est d'incarner l'authenticité absolue. Mais le 9 inversé est le 6, le mensonge — ne te cache pas derrière des façades, même pour te protéger." },
+  10: { force: "Compréhension : jamais seul·e", faiblesse: "Peur de la solitude", interpretation: "Tu sais profondément que nous sommes tous reliés. Ta force est cette connexion universelle. Mais ta peur d'être seul·e peut te faire oublier que la solitude est parfois une alliée." },
+  11: { force: "Intuition, connexion inter-mondes", faiblesse: "Dépendance, nier son intuition", interpretation: "Tu perçois les mondes invisibles. Ton intuition est une boussole infaillible — à condition de l'écouter, et de ne pas la sacrifier pour plaire." },
+  12: { force: "Sacrifice, grande capacité de travail", faiblesse: "Esclavage — ne pas savoir dire non", interpretation: "Tu peux déplacer des montagnes par ton travail. Mais apprends à dire NON. Le sacrifice a de la valeur seulement s'il est choisi, pas subi." },
+  13: { force: "Transformation, Amour (Ahavá), le Phénix", faiblesse: "Transformation douloureuse prolongée", interpretation: "Le 13 n'est pas maudit — c'est le nombre de l'Amour. Tu es l'alchimiste qui transforme la souffrance en or. Embrasse le changement : c'est en mourant qu'on renaît." },
+  14: { force: "Engagement, respect des contrats", faiblesse: "Fuir les engagements", interpretation: "Ta parole est ton sceau. Tu honores tes promesses avec une loyauté exemplaire. Mais ton ombre te pousse à fuir quand l'engagement fait peur — apprends à rester." },
+  15: { force: "Passion (tous domaines)", faiblesse: "Addictions, surtout sexuelles", interpretation: "Tu vibres avec une intensité rare. La passion est ton carburant. Mais canalise-la — une rivière sans berges devient un marécage." },
+  16: { force: "Perfectionnisme sain, excellence", faiblesse: "Auto-exigence excessive, souffrance", interpretation: "Tu vises l'excellence, et tu l'atteins. Mais quand le perfectionnisme devient un fouet, il blesse. Accepte que « assez bien » soit parfois parfait." },
+  17: { force: "Douceur, tactilité, chaleur humaine", faiblesse: "Froideur, absence de contact", interpretation: "Tu es une source de chaleur et de réconfort. Ta douceur guérit. Mais si tu te coupes du contact, tu te prives de ta propre médecine." },
+  18: { force: "Décodage des secrets familiaux, rêves", faiblesse: "Secrets non révélés, ombre familiale", interpretation: "Tu es le·a détective des secrets de famille. Les rêves te parlent. Mais attention à ne pas découvrir ce que tu n'es pas prêt·e à révéler." },
+  19: { force: "Rayonnement, exemplarité, conscience", faiblesse: "Implosion, problème d'estime de soi", interpretation: "Tu es fait·e pour briller et inspirer. Le monde a besoin de ta lumière. Mais si tu doutes de toi, cette lumière s'éteint — allume-la, même si ta main tremble." },
+  20: { force: "Reconnaissance, titres, diplômes", faiblesse: "« Qui est mon père ? » — absence", interpretation: "Tu as soif de reconnaissance, et c'est légitime. Mais la vraie question du 20 est : qui suis-je au-delà des titres ? La réponse est en toi, pas dans le regard des autres." },
+  21: { force: "Vision globale, langues, liberté", faiblesse: "Esclavage, ne pas se sentir libre", interpretation: "Tu vois le monde comme un aigle voit la terre. Rien ne t'échappe. Mais ta liberté est sacrée — ne laisse personne te mettre en cage." },
+  22: { force: "Le Joker — toutes possibilités, libre arbitre", faiblesse: "Chaos, dispersion, chaos sexuel", interpretation: "Tu portes en toi toutes les possibilités de la création. C'est un don vertigineux. Mais sans discipline, ce pouvoir devient chaos — choisis, puis construis." }
+};
+
+function reduire(n) {
+  while (n > 22) {
+    n = String(n).split('').reduce((a, b) => a + parseInt(b), 0);
+  }
+  return n;
+}
+
+function calculer(dateStr) {
+  const parts = dateStr.split('/');
+  if (parts.length !== 3) throw new Error('Format invalide. Utilise JJ/MM/AAAA');
+  const [j, m, a] = parts.map(Number);
+  if (isNaN(j) || isNaN(m) || isNaN(a)) throw new Error('La date doit contenir uniquement des chiffres');
+  if (j < 1 || j > 31 || m < 1 || m > 12 || a < 1000 || a > 9999) throw new Error('Date invalide');
+
+  const jour = reduire(j);
+  const mois = reduire(m);
+  const annee = reduire(a);
+  const chemin = reduire(jour + mois + annee);
+  const sorted = [jour, mois, annee].sort((a, b) => b - a);
+  let ticun = Math.abs((sorted[0] - sorted[1]) - sorted[2]);
+  if (ticun === 0) ticun = 22;
+
+  return { jour, mois, annee, chemin, ticun, date: dateStr };
+}
+
+function reveal() {
+  const input = document.getElementById('dateInput');
+  const errorEl = document.getElementById('errorMsg');
+  const resultat = document.getElementById('resultat');
+  const btn = document.getElementById('calcBtn');
+
+  errorEl.textContent = '';
+  resultat.classList.remove('visible');
+
+  try {
+    const r = calculer(input.value.trim());
+
+    // Animation du bouton
+    btn.textContent = '✦ Révélation en cours...';
+    btn.disabled = true;
+
+    setTimeout(() => {
+      // Détail du calcul
+      document.getElementById('calcDetail').innerHTML =
+        `Jour ${r.jour} + Mois ${r.mois} + Année ${r.annee} = <span>${r.jour + r.mois + r.annee}</span> → <span>Chemin de vie ${r.chemin}</span><br>` +
+        `max(${r.jour},${r.mois},${r.annee}) − mid − min → <span>Ticún ${r.ticun}</span>`;
+
+      // Cartes résultat
+      const cv = ARCHETYPES[r.chemin];
+      const tc = ARCHETYPES[r.ticun];
+      document.getElementById('resultCards').innerHTML = `
+        <div class="result-card emerald-card">
+          <div class="label">Chemin de vie / Don</div>
+          <div class="big-num">${r.chemin}</div>
+          <div class="desc"><strong>${cv.force}</strong><br><span style="font-size:0.8rem;color:#64748b">Ombre : ${cv.faiblesse}</span></div>
+        </div>
+        <div class="result-card gold">
+          <div class="label">Ticún / Défi d'âme</div>
+          <div class="big-num">${r.ticun}</div>
+          <div class="desc"><strong>${tc.force}</strong><br><span style="font-size:0.8rem;color:#64748b">Ombre : ${tc.faiblesse}</span></div>
+        </div>
+      `;
+
+      // Interprétation
+      document.getElementById('resultInterpretation').innerHTML = `
+        <p style="color:#fbbf24;font-weight:600;margin-bottom:0.5rem;">🔮 Lecture croisée — ${r.chemin} + ${r.ticun}</p>
+        <p>${cv.interpretation}</p>
+        <p style="margin-top:0.8rem;">${tc.interpretation}</p>
+      `;
+
+      resultat.classList.add('visible');
+      resultat.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+      btn.textContent = 'Révéler mes nombres ✦';
+      btn.disabled = false;
+
+      showToast('✨ Tes nombres sont révélés !');
+    }, 600);
+
+  } catch (e) {
+    errorEl.textContent = '⚠ ' + e.message;
+    btn.textContent = 'Révéler mes nombres ✦';
+    btn.disabled = false;
+  }
+}
+
+// Permettre la validation avec Entrée
+document.getElementById('dateInput').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') reveal();
+});
+
+/* ═══════════ GÉNÉRER LES ARCHÉTYPES ═══════════ */
+(function buildArchetypes() {
+  const grid = document.getElementById('archetypesGrid');
+  for (let i = 1; i <= 22; i++) {
+    const a = ARCHETYPES[i];
+    const card = document.createElement('div');
+    card.className = `archetype-card c-${i}`;
+    card.innerHTML = `
+      <div class="card-inner">
+        <div class="card-front">
+          <div class="num-circle">${i}</div>
+          <div class="force">✦ ${a.force}</div>
+          <div class="faiblesse">◆ Ombre : ${a.faiblesse}</div>
+          <div class="flip-hint">[ clic pour l'interprétation ]</div>
+        </div>
+      </div>
+    `;
+    card.addEventListener('click', function() {
+      if (card.classList.contains('flipped')) {
+        card.classList.remove('flipped');
+        setTimeout(() => {
+          card.querySelector('.card-inner').innerHTML = `
+            <div class="card-front">
+              <div class="num-circle">${i}</div>
+              <div class="force">✦ ${a.force}</div>
+              <div class="faiblesse">◆ Ombre : ${a.faiblesse}</div>
+              <div class="flip-hint">[ clic pour l'interprétation ]</div>
+            </div>
+          `;
+        }, 300);
+      } else {
+        card.querySelector('.card-inner').innerHTML = `
+          <div class="card-front">
+            <div class="num-circle">${i}</div>
+            <div class="force">✦ ${a.force}</div>
+            <div class="faiblesse">◆ Ombre : ${a.faiblesse}</div>
+            <div class="flip-hint">[ clic pour l'interprétation ]</div>
+          </div>
+        `;
+        card.classList.add('flipped');
+        setTimeout(() => {
+          card.querySelector('.card-inner').innerHTML = `
+            <div class="card-back">
+              <p style="color:#e2e8f0;font-size:0.9rem;line-height:1.6;">${a.interpretation}</p>
+            </div>
+          `;
+        }, 300);
+      }
+    });
+    grid.appendChild(card);
+  }
+})();
+
+/* ═══════════ TOAST ═══════════ */
+function showToast(msg) {
+  const toast = document.getElementById('toast');
+  toast.textContent = msg;
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 3000);
+}
+
+/* ═══════════ ANIMATION AU SCROLL ═══════════ */
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('section').forEach(s => {
+  s.style.opacity = '0';
+  s.style.transform = 'translateY(30px)';
+  s.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+  observer.observe(s);
+});
+
+// Révéler le hero immédiatement
+document.getElementById('hero').style.opacity = '1';
+document.getElementById('hero').style.transform = 'translateY(0)';
+</script>
+
+</body>
+</html>
