@@ -1,0 +1,261 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Numérologie Cabalistique — Calcule ton chemin de vie",
+  "url": "https://mysteres.fr/numerologie/cabalistique.html",
+  "description": "Calcule ton chemin de vie et ton ticún selon la méthode Raúl Durán. 22 archétypes, interprétation personnalisée.",
+  "inLanguage": "fr",
+  "about": {
+    "@type": "Thing",
+    "name": "Numérologie Cabalistique"
+  }
+};
+---
+
+<Layout
+  title="Numérologie Cabalistique — Calcule ton chemin de vie"
+  description="Calcule ton chemin de vie et ton ticún selon la méthode Raúl Durán. 22 archétypes, interprétation personnalisée. Gratuit, sans inscription."
+  keywords="numérologie, cabalistique, calcul numérologie, chemin de vie, ticún, Raúl Durán, archétypes, kabbale, gratuit"
+  canonicalPath="numerologie/cabalistique.html"
+  jsonLd={jsonLd}
+  scripts={["/assets/js/calculateur.js"]}
+>
+
+<!-- ═══════════ HERO / BANNIÈRE ═══════════ -->
+<section id="hero">
+  <h1>
+    <span class="pulse"></span>
+    Les nombres sont le <span class="gold">langage</span><br>de la <span class="emerald">conscience</span>
+  </h1>
+  <p class="subtitle">
+    Découvre ce que ta date de naissance révèle sur ton chemin de vie, tes dons, et les défis que ton âme est venue rectifier — selon la sagesse cabalistique de Raúl Durán.
+  </p>
+  <a href="#calculateur" class="cta">✦ Révéler mes nombres</a>
+  <p class="quote">
+    « Dieu est là où sont tes problèmes. La plupart fuient leurs problèmes — alors que les problèmes sont le laboratoire que la vie t'offre pour exercer tes dons. »
+    <br><span class="gold">— Talmud</span>
+  </p>
+</section>
+
+<!-- ═══════════ CALCULATEUR ═══════════ -->
+<section id="calculateur">
+  <div class="section-title">
+    <div class="num">[ 01 ]</div>
+    <h2>✦ Calculateur Numérologique</h2>
+    <p class="slate">Entre ta date de naissance et découvre ton chemin de vie et ton ticún.</p>
+  </div>
+
+  <div style="max-width:600px;margin:0 auto 1.5rem;text-align:center;">
+    <p style="color:#d0d6e0;font-size:0.95rem;">
+      <strong style="color:#34d399;">Chemin de vie</strong> = ton don, ta mission d'âme.
+      <strong style="color:#fbbf24;">Ticún</strong> = le défi que tu es venu·e rectifier.
+    </p>
+    <p style="color:#8a8f98;font-size:0.85rem;">
+      Entre ta date de naissance et découvre tes deux nombres sacrés.
+    </p>
+  </div>
+
+  <div class="calc-form">
+    <input type="text" id="dateInput" inputmode="numeric" pattern="\d{2}/\d{2}/\d{4}" placeholder="JJ/MM/AAAA" maxlength="10" autocomplete="off" aria-label="Date de naissance au format JJ/MM/AAAA">
+    <button type="button" onclick="document.getElementById('dateInput').value='23/10/1990';reveal()" style="background:transparent;border:1px solid #334155;color:#94a3b8;padding:0.9rem 1.2rem;border-radius:8px;cursor:pointer;font-family:var(--font-mono);font-size:0.85rem;">Essayer avec un exemple</button>
+    <button id="calcBtn" onclick="reveal()" aria-label="Calculer ma numérologie">Révéler mes nombres ✦</button>
+  </div>
+  <div class="error-msg" id="errorMsg"></div>
+
+  <div id="resultat">
+    <div class="calc-detail reveal-section" id="calcDetail"></div>
+    <div class="result-cards reveal-section" id="resultCards"></div>
+    <div class="result-interpretation reveal-section" id="resultInterpretation"></div>
+    <div class="repartition-section reveal-section" id="repartitionSection"></div>
+  </div>
+</section>
+
+<!-- ═══════════ ARCHÉTYPES ═══════════ -->
+<section id="archetypes">
+  <div class="section-title">
+    <div class="num">[ 02 ]</div>
+    <h2>✦ Les 22 Archétypes</h2>
+    <p class="slate">Chaque nombre (1-22) est à la fois un don et un défi. Clique pour découvrir l'ombre.</p>
+  </div>
+  <div class="grid" id="archetypesGrid"></div>
+</section>
+
+<!-- ═══════════ INFOGRAPHIE ═══════════ -->
+<section id="infographie">
+  <div class="section-title">
+    <div class="num">[ 03 ]</div>
+    <h2>✦ Infographie</h2>
+    <p class="slate">Les 22 archétypes en un coup d'œil.</p>
+  </div>
+  <object data="../../assets/images/infographie_22_archetypes.svg" type="image/svg+xml" style="max-width:100%;height:auto;border-radius:10px;border:1px solid #334155;" aria-label="Infographie des 22 archétypes de la numérologie cabalistique" role="img">
+    Ton navigateur ne supporte pas le SVG inline.
+  </object>
+</section>
+
+<!-- ═══════════ MÉTHODE ═══════════ -->
+<section id="methode">
+  <div class="section-title">
+    <div class="num">[ 04 ]</div>
+    <h2>✦ La Méthode</h2>
+    <p class="slate">Comment fonctionne le calcul, selon Raúl Durán.</p>
+  </div>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <h3>Réduire</h3>
+      <p>Chaque composant de ta date (jour, mois, année) est réduit à un nombre ≤ 22 en sommant ses chiffres.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <h3>Chemin de vie</h3>
+      <p>La somme des trois nombres réduits donne ton chemin de vie — ton don, ta « personalidad profunda ».</p>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <h3>Ticún</h3>
+      <p>La soustraction ordonnée des trois nombres (max − mid − min) révèle ton ticún — le défi que ton âme est venue rectifier.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <h3>Interpréter</h3>
+      <p>Chaque nombre correspond à un archétype avec une force (don) et une faiblesse (ticún). La clé est d'utiliser le don pour traverser le défi.</p>
+    </div>
+  </div>
+</section>
+
+  <p slot="sources" style="color:#64748b;font-size:0.75rem;margin-bottom:0.8rem;">
+    Sources : <a href="https://www.youtube.com/watch?v=eVfgONpEoDo" target="_blank">Podcast Lo Grande — Raúl Durán</a>
+  </p>
+
+</Layout>
+
+<style>
+  /* ═══════════ NOUVELLES SECTIONS RÉSULTAT — calculateur cabalistique ═══════════ */
+
+  /* ─── Nombres bruts (petites cartes alignées) ─── */
+  .raw-numbers {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin: 1.5rem 0;
+    flex-wrap: wrap;
+  }
+  .raw-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1rem 1.5rem;
+    text-align: center;
+    min-width: 100px;
+  }
+  .raw-num {
+    font-family: var(--font-mono);
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--gold);
+    display: block;
+    line-height: 1.2;
+  }
+  .raw-label {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  .raw-desc {
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    margin-top: 0.3rem;
+  }
+
+  /* ─── Interprétations Jour/Mois/Année ─── */
+  .detail-interpretations {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+  .interp-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.2rem 1.5rem;
+  }
+  .interp-card h4 {
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+  }
+  .interp-card p {
+    font-size: 0.95rem;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+
+  /* ─── Répartition Dons / Défis ─── */
+  .repartition {
+    margin: 1.5rem 0;
+  }
+  .repartition h4 {
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    color: var(--gold);
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+  .repart-spectrum {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+  .repart-spectrum > div {
+    flex: 1;
+    text-align: center;
+    padding: 1rem;
+    border-radius: 12px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+  }
+  .repart-num {
+    font-family: var(--font-mono);
+    font-size: 1.8rem;
+    font-weight: 700;
+    display: block;
+    margin-bottom: 0.3rem;
+  }
+  .repart-don .repart-num { color: var(--gold); }
+  .repart-defi .repart-num { color: var(--text-muted); }
+  .repart-ambiv .repart-num { color: var(--cyan); }
+  .repart-spectrum small {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-top: 0.3rem;
+  }
+
+  /* ─── Portrait d'Âme ─── */
+  .portrait {
+    background: rgba(223, 178, 108, 0.05);
+    border: 1px solid rgba(223, 178, 108, 0.2);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+  }
+  .portrait h4 {
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    color: var(--gold);
+    margin-bottom: 0.8rem;
+  }
+  .portrait-text {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--text-dim);
+    font-style: italic;
+  }
+</style>

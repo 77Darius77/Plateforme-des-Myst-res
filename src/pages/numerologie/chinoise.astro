@@ -1,0 +1,66 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Numérologie Chinoise — Le Carré Lo Shu",
+  "url": "https://mysteres.fr/numerologie/chinoise.html",
+  "description": "Découvrez la numérologie chinoise : Carré Lo Shu, 9 palais, Yi King. Chaque nombre résonne avec un élément, une direction et un trigramme.",
+  "inLanguage": "fr",
+  "about": {
+    "@type": "Thing",
+    "name": "Numérologie Chinoise"
+  }
+};
+---
+
+<Layout
+  title="Numérologie Chinoise — Le Carré Lo Shu"
+  description="Découvrez la numérologie chinoise : Carré Lo Shu, 9 palais, Yi King. Chaque nombre résonne avec un élément, une direction et un trigramme. Gratuit, sans tracking."
+  keywords="numérologie, chinoise, Carré Lo Shu, 9 palais, Yi King, I Ching, trigrammes, éléments, feng shui"
+  canonicalPath="numerologie/chinoise.html"
+  jsonLd={jsonLd}
+>
+
+<!-- ═══════════ BANNIÈRE ═══════════ -->
+<section id="hero">
+  <h1>
+    <span class="pulse"></span>
+    🔢 <span class="gold">Numérologie Chinoise</span><br>Le Carré <span class="emerald">Lo Shu</span>
+  </h1>
+  <p class="subtitle">
+    La numérologie chinoise s'appuie sur le Carré Lo Shu, les 9 palais, et le Yi King.
+    Chaque nombre résonne avec un élément, une direction et un trigramme.
+  </p>
+  <p class="quote">
+    « Les nombres sont les piliers du ciel et de la terre. »
+    <br><span class="gold">— Yi King</span>
+  </p>
+</section>
+
+<!-- ═══════════ CONTENU ═══════════ -->
+<section id="contenu">
+  <div class="section-title">
+    <div class="num">[ 01 ]</div>
+    <h2>✦ En cours de création</h2>
+    <p class="slate">Cette section est en cours de création.</p>
+  </div>
+
+  <div style="max-width:700px;margin:2rem auto;background:#1e293b;border:1px solid #334155;border-radius:12px;padding:2.5rem;text-align:center;">
+    <div style="font-size:3rem;margin-bottom:1rem;">☯</div>
+    <p style="color:#cbd5e1;font-size:1.1rem;line-height:1.8;">
+      La numérologie chinoise s'appuie sur le Carré Lo Shu, les 9 palais, et le Yi King. Chaque nombre résonne avec un élément, une direction, et un trigramme.
+    </p>
+    <p style="color:#94a3b8;font-size:1rem;margin-top:1.5rem;">
+      Revenez bientôt pour explorer cette sagesse millénaire !
+    </p>
+    <a href="index.html" style="display:inline-block;background:#f472b6;color:#0f172a;font-family:var(--font-mono);font-size:0.9rem;padding:0.7rem 1.6rem;border-radius:8px;text-decoration:none;font-weight:700;margin-top:2rem;transition:all 0.3s;" onmouseover="this.style.background='#ec4899'" onmouseout="this.style.background='#f472b6'">← Retour à la numérologie</a>
+  </div>
+</section>
+
+  <p slot="sources" style="color:#64748b;font-size:0.75rem;margin-bottom:0.8rem;">
+    Sources : Carré Lo Shu, Yi King (I Ching), tradition chinoise
+  </p>
+
+</Layout>

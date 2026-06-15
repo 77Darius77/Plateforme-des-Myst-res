@@ -1,0 +1,47 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "name": "Tarot de Thoth — L'œuvre d'Aleister Crowley",
+  "url": "https://mysteres.fr/tarologie/thoth.html",
+  "description": "Découvrez le Tarot de Thoth, peint par Lady Frieda Harris sous la direction d'Aleister Crowley.",
+  "inLanguage": "fr"
+};
+---
+
+<Layout
+  title="Tarot de Thoth — Tarologie"
+  description="Découvrez le Tarot de Thoth, peint par Lady Frieda Harris sous la direction d'Aleister Crowley. Intègre l'astrologie, la kabbale et l'alchimie dans ses 78 lames."
+  keywords="tarot de thoth, crowley, aleister crowley, friedah harris, kabbale, alchimie, tarologie"
+  canonicalPath="tarologie/thoth.html"
+  jsonLd={jsonLd}
+>
+
+<!-- ═══════════ FIL D'ARIANE ═══════════ -->
+<nav class="breadcrumb" aria-label="Fil d'Ariane" style="padding:0.8rem 1.5rem;font-family:var(--font-mono);font-size:0.8rem;color:var(--text-muted);">
+  <a href="../index.html" style="color:var(--cyan);">Accueil</a> &rsaquo;
+  <a href="index.html" style="color:var(--cyan);">Tarologie</a> &rsaquo;
+  <span style="color:var(--text-primary);">Tarot de Thoth</span>
+</nav>
+
+<!-- ═══════════ BANNIÈRE "BIENTÔT" ═══════════ -->
+<section id="hero" style="text-align:center;padding:6rem 1.5rem 4rem;max-width:700px;margin:0 auto;">
+  <h1>
+    <span class="pulse"></span>
+    🃏 <span class="gold">Tarot de Thoth</span><br>L'œuvre d'<span class="emerald">Aleister Crowley</span>
+  </h1>
+  <p class="subtitle">
+    Cette section est en cours de création. Le Tarot de Thoth, peint par Lady Frieda Harris sous la direction d'Aleister Crowley, intègre l'astrologie, la kabbale et l'alchimie dans ses 78 lames. Revenez bientôt !
+  </p>
+  <a href="../tarologie/index.html" class="cta">← Retour à la Tarologie</a>
+</section>
+
+<!-- ═══════════ NAVIGATION PRÉCÉDENT / SUIVANT ═══════════ -->
+<nav class="sub-nav" style="display:flex;justify-content:space-between;max-width:600px;margin:2rem auto;padding:1rem;">
+  <a href="rider-waite.html" style="color:var(--cyan);font-family:var(--font-mono);">← Rider-Waite-Smith</a>
+  <span></span>
+</nav>
+
+</Layout>

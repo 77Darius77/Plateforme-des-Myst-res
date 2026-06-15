@@ -1,0 +1,52 @@
+---
+interface Props {
+  sources?: string;
+}
+
+const { sources } = Astro.props;
+---
+<footer>
+  <div class="footer-grid">
+
+    <!-- Colonne 1 : Identité -->
+    <div class="footer-col">
+      <h4>◈ Plateforme des Mystères</h4>
+      <p>Explorez les sagesses ancestrales à travers les nombres, les symboles, les astres et les oracles.</p>
+      <p class="footer-badge">🔒 Zéro tracking · 100% local</p>
+    </div>
+
+    <!-- Colonne 2 : Disciplines -->
+    <div class="footer-col">
+      <h5>Disciplines</h5>
+      <ul>
+        <li><a href="/numerologie/index.html">Numérologie</a></li>
+        <li><a href="/tarologie/index.html">Tarologie</a></li>
+        <li><a href="/astrologie/index.html">Astrologie</a></li>
+        <li><a href="/oracles/index.html">Oracles</a></li>
+      </ul>
+    </div>
+
+    <!-- Colonne 3 : Ressources -->
+    <div class="footer-col">
+      <h5>Ressources</h5>
+      <ul>
+        <li><a href="/blog/index.html">Blog</a></li>
+        <li><a href="/numerologie/cabalistique.html">Calculateur</a></li>
+        <li><a href="/a-propos.html">À propos</a></li>
+      </ul>
+    </div>
+
+    <!-- Colonne 4 : Légal -->
+    <div class="footer-col">
+      <h5>Informations</h5>
+      <p class="footer-legal">À titre informatif uniquement — ne remplace pas un avis médical, psychologique ou financier.</p>
+      <slot name="sources" />
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <p>Créé avec <span class="heart">♥</span> pour partager la sagesse des nombres.</p>
+    <p>Plateforme des Mystères © 2026</p>
+  </div>
+</footer>

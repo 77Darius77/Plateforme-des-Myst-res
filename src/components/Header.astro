@@ -1,0 +1,42 @@
+---
+interface Props {
+  logo?: string;
+  navLinks?: Array<{ href: string; text: string }>;
+  currentPath?: string;
+}
+
+const { 
+  logo = "Plateforme des Mystères", 
+  navLinks = [
+    { href: "/blog/index.html", text: "Blog" },
+    { href: "/index.html#portails", text: "Disciplines" },
+    { href: "/a-propos.html", text: "À propos" }
+  ],
+  currentPath = ""
+} = Astro.props;
+
+function isActive(linkHref: string, path: string): boolean {
+  if (!path) return false;
+  const clean = path.replace(/^\/|\/$/g, '').split('#')[0];
+  const linkClean = linkHref.replace(/^\/|\/$/g, '').split('#')[0];
+  if (linkClean === 'index.html' && clean === 'index.html') return true;
+  if (linkClean === 'blog/index.html' && clean.startsWith('blog')) return true;
+  if (linkClean === 'a-propos.html' && clean === 'a-propos.html') return true;
+  if (linkClean === 'index.html#portails' && (clean.startsWith('numerologie') || clean.startsWith('tarologie') || clean.startsWith('astrologie') || clean.startsWith('oracles'))) return true;
+  return false;
+}
+---
+<header>
+  <div class="header-container">
+    <a href="/index.html" class="logo">
+      <span class="symbol">◈</span>
+      <span class="text">{logo}</span>
+    </a>
+    <nav>
+      {navLinks.map(({ href, text }) => (
+        <a href={href} class={isActive(href, currentPath) ? 'active' : ''}>{text}</a>
+      ))}
+    </nav>
+    <button id="themeToggle" onclick="toggleTheme()" class="theme-btn" aria-label="Changer le thème">🌙</button>
+  </div>
+</header>

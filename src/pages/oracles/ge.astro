@@ -1,0 +1,47 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "name": "Oracle Gé — La géomancie divinatoire",
+  "url": "https://mysteres.fr/oracles/ge.html",
+  "description": "Découvrez l'Oracle Gé, ou Géomancie, un art divinatoire millénaire basé sur l'interprétation de figures.",
+  "inLanguage": "fr"
+};
+---
+
+<Layout
+  title="Oracle Gé (Géomancie) — Oracles"
+  description="Découvrez l'Oracle Gé, ou Géomancie, un art divinatoire millénaire basé sur l'interprétation de figures tracées dans le sable ou sur papier."
+  keywords="oracle gé, géomancie, divination, figures géomantiques, art divinatoire"
+  canonicalPath="oracles/ge.html"
+  jsonLd={jsonLd}
+>
+
+<!-- ═══════════ FIL D'ARIANE ═══════════ -->
+<nav class="breadcrumb" aria-label="Fil d'Ariane" style="padding:0.8rem 1.5rem;font-family:var(--font-mono);font-size:0.8rem;color:var(--text-muted);">
+  <a href="../index.html" style="color:var(--cyan);">Accueil</a> &rsaquo;
+  <a href="index.html" style="color:var(--cyan);">Oracles</a> &rsaquo;
+  <span style="color:var(--text-primary);">Oracle Gé</span>
+</nav>
+
+<!-- ═══════════ BANNIÈRE "BIENTÔT" ═══════════ -->
+<section id="hero" style="text-align:center;padding:6rem 1.5rem 4rem;max-width:700px;margin:0 auto;">
+  <h1>
+    <span class="pulse"></span>
+    🔮 <span class="gold">Oracle Gé</span><br>La géomancie <span class="emerald">divinatoire</span>
+  </h1>
+  <p class="subtitle">
+    Cette section est en cours de création. L'Oracle Gé, ou Géomancie, est un art divinatoire millénaire basé sur l'interprétation de figures tracées dans le sable ou sur papier. Revenez bientôt !
+  </p>
+  <a href="../oracles/index.html" class="cta">← Retour aux Oracles</a>
+</section>
+
+<!-- ═══════════ NAVIGATION PRÉCÉDENT / SUIVANT ═══════════ -->
+<nav class="sub-nav" style="display:flex;justify-content:space-between;max-width:600px;margin:2rem auto;padding:1rem;">
+  <a href="belline.html" style="color:var(--cyan);font-family:var(--font-mono);">← Oracle de Belline</a>
+  <a href="runes.html" style="color:var(--cyan);font-family:var(--font-mono);">Runes →</a>
+</nav>
+
+</Layout>

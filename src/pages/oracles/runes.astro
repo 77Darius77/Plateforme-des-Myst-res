@@ -1,0 +1,47 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "name": "Runes — L'alphabet sacré des anciens",
+  "url": "https://mysteres.fr/oracles/runes.html",
+  "description": "Découvrez les runes, l'alphabet sacré des peuples germaniques et nordiques.",
+  "inLanguage": "fr"
+};
+---
+
+<Layout
+  title="Runes Nordiques — Oracles"
+  description="Découvrez les runes, l'alphabet sacré des peuples germaniques et nordiques. Chaque rune est un symbole de pouvoir pour la divination et la magie depuis plus de 2000 ans."
+  keywords="runes, runes nordiques, futhark, divination runique, alphabet sacré, vikings"
+  canonicalPath="oracles/runes.html"
+  jsonLd={jsonLd}
+>
+
+<!-- ═══════════ FIL D'ARIANE ═══════════ -->
+<nav class="breadcrumb" aria-label="Fil d'Ariane" style="padding:0.8rem 1.5rem;font-family:var(--font-mono);font-size:0.8rem;color:var(--text-muted);">
+  <a href="../index.html" style="color:var(--cyan);">Accueil</a> &rsaquo;
+  <a href="index.html" style="color:var(--cyan);">Oracles</a> &rsaquo;
+  <span style="color:var(--text-primary);">Runes</span>
+</nav>
+
+<!-- ═══════════ BANNIÈRE "BIENTÔT" ═══════════ -->
+<section id="hero" style="text-align:center;padding:6rem 1.5rem 4rem;max-width:700px;margin:0 auto;">
+  <h1>
+    <span class="pulse"></span>
+    🔮 <span class="gold">Runes</span><br>L'alphabet sacré des <span class="emerald">anciens</span>
+  </h1>
+  <p class="subtitle">
+    Cette section est en cours de création. Les runes sont l'alphabet sacré des peuples germaniques et nordiques. Chaque rune est un symbole de pouvoir, utilisé pour la divination et la magie depuis plus de 2000 ans. Revenez bientôt !
+  </p>
+  <a href="../oracles/index.html" class="cta">← Retour aux Oracles</a>
+</section>
+
+<!-- ═══════════ NAVIGATION PRÉCÉDENT / SUIVANT ═══════════ -->
+<nav class="sub-nav" style="display:flex;justify-content:space-between;max-width:600px;margin:2rem auto;padding:1rem;">
+  <a href="ge.html" style="color:var(--cyan);font-family:var(--font-mono);">← Oracle Gé</a>
+  <span></span>
+</nav>
+
+</Layout>

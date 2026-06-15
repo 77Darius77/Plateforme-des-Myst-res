@@ -1,0 +1,311 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Plateforme des Mystères",
+  "url": "https://mysteres.fr/",
+  "description": "Explorez les sagesses ancestrales : numérologie cabalistique, tarologie, astrologie et oracles.",
+  "inLanguage": "fr",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://mysteres.fr/?date={date}",
+    "query-input": "required name=date"
+  }
+};
+---
+
+<Layout
+  title="Plateforme des Mystères — Sagesses Ésotériques"
+  description="Explorez les sagesses ancestrales : numérologie cabalistique, tarologie, astrologie et oracles. Découvrez votre chemin de vie, votre ticún et les 22 archétypes. Sans pub, sans tracking."
+  keywords="numérologie, cabalistique, tarologie, astrologie, oracles, ésotérisme, chemin de vie, ticún, Raúl Durán, archétypes, kabbale, Belline, Gé, runes, Yi King"
+  canonicalPath="index.html"
+  jsonLd={jsonLd}
+>
+
+<!-- ═══════════ PORTAILS — 4 DISCIPLINES ═══════════ -->
+<section id="portails" class="reveal">
+  <div class="section-title">
+    <div class="num">[ EXPLOREZ ]</div>
+    <h1>✦ Les Quatre Voies</h1>
+    <p class="slate">Chaque discipline est une porte vers la connaissance de soi.</p>
+  </div>
+
+  <div class="disciplines-grid reveal">
+
+    <!-- Carte 1 : Numérologie -->
+    <div class="discipline-card card-numerologie">
+      <div class="disc-icon">🔢</div>
+      <h3>Numérologie</h3>
+      <p class="disc-desc">La science des nombres. Découvrez votre chemin de vie et votre ticún selon la méthode Raúl Durán.</p>
+      <div class="cta-group">
+        <a href="numerologie/index.html" class="disc-cta">Les 4 Écoles</a>
+        <a href="numerologie/cabalistique.html" class="disc-cta secondary">Calculateur ✦</a>
+      </div>
+    </div>
+
+    <!-- Carte 2 : Tarologie -->
+    <div class="discipline-card card-tarologie">
+      <div class="disc-icon">🃏</div>
+      <h3>Tarologie</h3>
+      <p class="disc-desc">Les 22 arcanes majeurs du Tarot de Marseille. Symbolisme, interprétation et tirages.</p>
+      <div class="cta-group">
+        <a href="tarologie/index.html" class="disc-cta">Les 4 Traditions ✦</a>
+      </div>
+    </div>
+
+    <!-- Carte 3 : Astrologie -->
+    <div class="discipline-card card-astrologie">
+      <div class="disc-icon">⭐</div>
+      <h3>Astrologie</h3>
+      <p class="disc-desc">Les astres et votre thème natal. Signes, maisons, aspects et transits planétaires.</p>
+      <div class="cta-group">
+        <a href="astrologie/index.html" class="disc-cta">Les 4 Systèmes ✦</a>
+      </div>
+    </div>
+
+    <!-- Carte 4 : Oracles -->
+    <div class="discipline-card card-oracles">
+      <div class="disc-icon">🔮</div>
+      <h3>Oracles</h3>
+      <p class="disc-desc">Belline, Gé, Runes, Yi King. Des sagesses divinatoires pour éclairer votre chemin.</p>
+      <div class="cta-group">
+        <a href="oracles/index.html" class="disc-cta">Les 4 Oracles ✦</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════ DERNIERS ARTICLES ═══════════ -->
+<section id="articles" class="reveal">
+  <div class="section-title">
+    <div class="num">[ BLOG ]</div>
+    <h2>✦ Derniers Articles</h2>
+    <p class="slate">Réflexions, analyses et explorations ésotériques.</p>
+  </div>
+
+  <div class="articles-grid">
+
+    <a href="blog/ponts-numerologie-tarot.html" class="article-card">
+      <div class="article-meta">Tarot · 10 min</div>
+      <h3>Numérologie et Tarot : les ponts entre deux sagesses</h3>
+      <p>Les 22 arcanes majeurs du Tarot et les 22 archétypes de la numérologie cabalistique : deux langages pour une même vérité.</p>
+    </a>
+
+    <a href="blog/72-noms-dieu.html" class="article-card">
+      <div class="article-meta">Kabbale · 9 min</div>
+      <h3>Les 72 Noms de Dieu : une initiation</h3>
+      <p>Structure, méditation, tableau des attributs et lien avec les 22 archétypes. Une introduction à la tradition kabbalistique.</p>
+    </a>
+
+    <a href="blog/reflexions-numerologie.html" class="article-card">
+      <div class="article-meta">Numérologie · 5 min</div>
+      <h3>Réflexions sur la numérologie cabalistique</h3>
+      <p>Les nombres ne mentent pas. Plongée dans la sagesse des 22 archétypes et ce qu'ils révèlent de notre chemin d'âme.</p>
+    </a>
+
+    <a href="blog/methode-raul-duran.html" class="article-card">
+      <div class="article-meta">Méthode · 7 min</div>
+      <h3>La méthode Raúl Durán expliquée</h3>
+      <p>Comment fonctionne le calcul cabalistique ? Les étapes, les réductions, et l'interprétation des nombres sacrés.</p>
+    </a>
+
+    <a href="blog/analyse-donald-trump.html" class="article-card">
+      <div class="article-meta">Analyse · 6 min</div>
+      <h3>Donald Trump : portrait numérologique</h3>
+      <p>Chemin de vie, ticún et archétypes. Une analyse chiffrée de l'ancien président américain selon la méthode cabalistique.</p>
+    </a>
+
+    <a href="blog/guide-22-archetypes.html" class="article-card">
+      <div class="article-meta">Référence · 10 min</div>
+      <h3>Le guide des 22 archétypes</h3>
+      <p>Tableau complet de tous les archétypes (1-22) avec leur force, leur faiblesse et leur interprétation détaillée.</p>
+    </a>
+
+  </div>
+
+  <div style="text-align:center;margin-top:3rem;">
+    <a href="blog/index.html" class="disc-cta" style="display:inline-block;max-width:280px;">Voir tous les articles →</a>
+  </div>
+</section>
+
+  <p slot="sources" style="color:#64748b;font-size:0.75rem;margin-bottom:0.8rem;">
+    Sources : <a href="https://www.youtube.com/watch?v=eVfgONpEoDo" target="_blank">Podcast Lo Grande — Raúl Durán</a>
+  </p>
+
+</Layout>
+
+<style is:global>
+/* ─── Landing Page: Discipline Cards ─── */
+.disciplines-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+}
+.discipline-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 3rem 2rem;
+  text-align: center;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  backdrop-filter: blur(8px);
+}
+.discipline-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(circle at top right, rgba(255,255,255,0.015) 0%, transparent 60%);
+  pointer-events: none;
+}
+.discipline-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+  border-color: var(--gold);
+}
+.discipline-card .disc-icon {
+  font-size: 3rem;
+  margin-bottom: 1.25rem;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.discipline-card:hover .disc-icon {
+  transform: scale(1.15) translateY(-2px);
+}
+.discipline-card h3 {
+  font-family: var(--font-sans);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.8rem;
+  color: var(--gold);
+  letter-spacing: -0.01em;
+}
+.discipline-card .disc-desc {
+  font-size: 0.95rem;
+  color: var(--text-dim);
+  line-height: 1.65;
+  margin-bottom: 2rem;
+  flex: 1;
+}
+.cta-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 100%;
+  max-width: 280px;
+}
+.discipline-card .disc-cta {
+  display: block;
+  width: 100%;
+  padding: 0.75rem 1.5rem;
+  background: var(--gold);
+  color: var(--bg-deep);
+  font-family: var(--font-sans);
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  transition: var(--transition);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border: 1px solid transparent;
+  text-align: center;
+}
+.discipline-card .disc-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(223, 178, 108, 0.35);
+  filter: brightness(1.1);
+}
+.discipline-card .disc-cta.secondary {
+  background: transparent;
+  border-color: var(--border);
+  color: var(--text);
+}
+.discipline-card .disc-cta.secondary:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: var(--gold);
+  box-shadow: none;
+  color: var(--gold);
+}
+
+/* ─── Landing Page: Article Cards ─── */
+.articles-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+}
+.article-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 2rem;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: var(--text);
+}
+.article-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  border-color: var(--gold);
+}
+.article-card .article-meta {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: 0.8rem;
+}
+.article-card h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 0.8rem;
+  line-height: 1.45;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  transition: var(--transition);
+}
+.article-card:hover h3 {
+  color: var(--gold);
+}
+.article-card p {
+  font-size: 0.9rem;
+  color: var(--text-dim);
+  line-height: 1.65;
+  flex: 1;
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 992px) {
+  .articles-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 768px) {
+  .disciplines-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .discipline-card {
+    padding: 2.5rem 1.5rem;
+  }
+  .articles-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+</style>

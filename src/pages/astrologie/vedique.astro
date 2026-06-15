@@ -1,0 +1,47 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "name": "Astrologie Védique (Jyotish) — La science de la lumière",
+  "url": "https://mysteres.fr/astrologie/vedique.html",
+  "description": "Découvrez l'astrologie védique ou Jyotish, pilier de la tradition hindoue.",
+  "inLanguage": "fr"
+};
+---
+
+<Layout
+  title="Astrologie Védique (Jyotish) — Astrologie"
+  description="Découvrez l'astrologie védique ou Jyotish, pilier de la tradition hindoue. Zodiaque sidéral, nakshatras et dashas pour une compréhension profonde de votre destin."
+  keywords="astrologie védique, jyotish, nakshatras, dashas, zodiaque sidéral, tradition hindoue"
+  canonicalPath="astrologie/vedique.html"
+  jsonLd={jsonLd}
+>
+
+<!-- ═══════════ FIL D'ARIANE ═══════════ -->
+<nav class="breadcrumb" aria-label="Fil d'Ariane" style="padding:0.8rem 1.5rem;font-family:var(--font-mono);font-size:0.8rem;color:var(--text-muted);">
+  <a href="../index.html" style="color:var(--cyan);">Accueil</a> &rsaquo;
+  <a href="index.html" style="color:var(--cyan);">Astrologie</a> &rsaquo;
+  <span style="color:var(--text-primary);">Astrologie Védique</span>
+</nav>
+
+<!-- ═══════════ BANNIÈRE "BIENTÔT" ═══════════ -->
+<section id="hero" style="text-align:center;padding:6rem 1.5rem 4rem;max-width:700px;margin:0 auto;">
+  <h1>
+    <span class="pulse"></span>
+    ⭐ <span class="gold">Astrologie Védique</span><br>La science de la <span class="emerald">lumière</span>
+  </h1>
+  <p class="subtitle">
+    Cette section est en cours de création. L'astrologie védique, ou Jyotish, est un pilier de la tradition hindoue. Elle utilise le zodiaque sidéral, les nakshatras (demeures lunaires), et les dashas (périodes planétaires). Revenez bientôt !
+  </p>
+  <a href="../astrologie/index.html" class="cta">← Retour à l'Astrologie</a>
+</section>
+
+<!-- ═══════════ NAVIGATION PRÉCÉDENT / SUIVANT ═══════════ -->
+<nav class="sub-nav" style="display:flex;justify-content:space-between;max-width:600px;margin:2rem auto;padding:1rem;">
+  <a href="siderale.html" style="color:var(--cyan);font-family:var(--font-mono);">← Astrologie Sidérale</a>
+  <span></span>
+</nav>
+
+</Layout>

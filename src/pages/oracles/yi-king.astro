@@ -1,0 +1,34 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "name": "Yi King — Le Livre des Mutations",
+  "url": "https://mysteres.fr/oracles/yi-king.html",
+  "description": "Découvrez le Yi King, le Livre des Mutations. 64 hexagrammes pour naviguer le changement avec sagesse.",
+  "inLanguage": "fr"
+};
+---
+
+<Layout
+  title="Yi King — Oracles"
+  description="Découvrez le Yi King (I Ching), le Livre des Mutations. 64 hexagrammes pour naviguer le changement avec sagesse."
+  keywords="yi king, i ching, livre des mutations, hexagrammes, divination chinoise, oracles"
+  canonicalPath="oracles/yi-king.html"
+  jsonLd={jsonLd}
+>
+
+<!-- ═══════════ BANNIÈRE "BIENTÔT" ═══════════ -->
+<section id="hero" style="text-align:center;padding:6rem 1.5rem 4rem;max-width:700px;margin:0 auto;">
+  <h1>
+    <span class="pulse"></span>
+    ☯ <span class="gold">Yi King</span><br>Le Livre des <span class="emerald">Mutations</span>
+  </h1>
+  <p class="subtitle">
+    Cette section est en cours de création. Le Yi King (I Ching), ou Livre des Mutations, est la plus ancienne méthode divinatoire chinoise. Ses 64 hexagrammes offrent une sagesse intemporelle pour naviguer le changement et prendre des décisions éclairées. Revenez bientôt !
+  </p>
+  <a href="../oracles/index.html" class="cta">← Retour aux Oracles</a>
+</section>
+
+</Layout>

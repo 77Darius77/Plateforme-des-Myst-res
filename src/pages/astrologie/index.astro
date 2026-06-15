@@ -1,0 +1,113 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Astrologie — Plateforme des Mystères",
+  "url": "https://mysteres.fr/astrologie/",
+  "description": "Découvrez les différents systèmes astrologiques : tropical, sidéral, védique et chinois.",
+  "inLanguage": "fr",
+  "about": {
+    "@type": "Thing",
+    "name": "Astrologie"
+  }
+};
+---
+
+<Layout
+  title="Astrologie — Plateforme des Mystères"
+  description="Découvrez les 4 systèmes astrologiques : tropicale, sidérale, védique et chinoise. Gratuit, sans tracking."
+  keywords="astrologie, tropicale, sidérale, védique, jyotish, chinoise, zodiaque, signes astrologiques"
+  canonicalPath="astrologie/index.html"
+  jsonLd={jsonLd}
+>
+
+
+<!-- ═══════════ FIL D'ARIANE ═══════════ -->
+<nav class="breadcrumb" aria-label="Fil d'Ariane" style="padding:0.8rem 1.5rem;font-family:var(--font-mono);font-size:0.8rem;color:var(--text-muted);max-width:1200px;margin:0 auto;">
+  <a href="../index.html" style="color:var(--cyan);">Accueil</a> &rsaquo;
+  <span style="color:var(--text);">Astrologie</span>
+</nav>
+
+<div class="hub-container">
+  <!-- Sidebar d'Introduction -->
+  <aside class="hub-sidebar">
+    <h1>
+      <span class="pulse"></span>
+      ⭐ <span class="gold">Astrologie</span><br>La sagesse des <span class="emerald">astres</span>
+    </h1>
+    <p class="subtitle">
+      Quatre systèmes pour décrypter le ciel.
+      De la tradition tropicale occidentale à l'astrologie chinoise, chaque approche
+      offre une grille de lecture unique pour comprendre l'influence des astres.
+    </p>
+    <div class="quote">
+      « Les astres inclinent mais n'obligent pas. »
+      <br><span class="gold">— Proverbe astrologique</span>
+    </div>
+  </aside>
+
+  <!-- Grille des Systèmes -->
+  <main class="hub-main">
+    <div class="section-title">
+      <div class="num">[ 01 ]</div>
+      <h2>✦ Les 4 Systèmes</h2>
+      <p class="slate">Choisis la tradition qui résonne avec ta vision du cosmos.</p>
+    </div>
+
+    <div class="mystere-grid">
+
+      <!-- Carte 1 : Astrologie Tropicale -->
+      <div class="mystere-card" style="--card-accent-color: var(--gold); --hover-accent-color: var(--gold);">
+        <div class="card-icon">🌞</div>
+        <h3>ASTROLOGIE TROPICALE</h3>
+        <p>
+          Le zodiaque des saisons, pratiqué en Occident. Basée sur le point vernal,
+          elle définit le signe solaire, l'ascendant et le thème natal.
+        </p>
+        <span class="badge-disabled">Bientôt</span>
+      </div>
+
+      <!-- Carte 2 : Astrologie Sidérale -->
+      <div class="mystere-card" style="--card-accent-color: var(--emerald); --hover-accent-color: var(--emerald);">
+        <div class="card-icon">🌌</div>
+        <h3>ASTROLOGIE SIDÉRALE</h3>
+        <p>
+          Le zodiaque des étoiles fixes. Alignée sur les constellations réelles,
+          cette approche astronomique précise corrige la précession des équinoxes.
+        </p>
+        <span class="badge-disabled">Bientôt</span>
+      </div>
+
+      <!-- Carte 3 : Astrologie Védique -->
+      <div class="mystere-card" style="--card-accent-color: var(--violet); --hover-accent-color: var(--violet);">
+        <div class="card-icon">🕉️</div>
+        <h3>ASTROLOGIE VÉDIQUE</h3>
+        <p>
+          Jyotish, la science de la lumière. Issue des Vedas, elle utilise
+          les nakṣatra (27 demeures lunaires) et un système unique de périodes planétaires.
+        </p>
+        <span class="badge-disabled">Bientôt</span>
+      </div>
+
+      <!-- Carte 4 : Astrologie Chinoise -->
+      <div class="mystere-card" style="--card-accent-color: var(--rose); --hover-accent-color: var(--rose);">
+        <div class="card-icon">🐉</div>
+        <h3>ASTROLOGIE CHINOISE</h3>
+        <p>
+          Les 12 signes animaliers et les 5 éléments. Un système fondé sur le calendrier
+          lunaire, où chaque année est gouvernée par un animal et un élément.
+        </p>
+        <span class="badge-disabled">Bientôt</span>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+  <p slot="sources" style="color:#64748b;font-size:0.75rem;margin-bottom:0.8rem;">
+    Sources : tradition occidentale (tropicale), astronomie (sidérale), Jyotish (védique), calendrier lunaire (chinoise)
+  </p>
+
+</Layout>

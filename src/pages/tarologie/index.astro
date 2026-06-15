@@ -1,0 +1,113 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Tarologie — Plateforme des Mystères",
+  "url": "https://mysteres.fr/tarologie/",
+  "description": "Découvrez les différentes traditions de tarot : Marseille, Rider-Waite-Smith, Thoth et Lenormand.",
+  "inLanguage": "fr",
+  "about": {
+    "@type": "Thing",
+    "name": "Tarologie"
+  }
+};
+---
+
+<Layout
+  title="Tarologie — Plateforme des Mystères"
+  description="Découvrez les 4 traditions du tarot : Marseille, Rider-Waite-Smith, Tarot de Thoth et Petit Lenormand. Gratuit, sans tracking."
+  keywords="tarologie, tarot, tarot de marseille, rider-waite, tarot de thoth, lenormand, arcanes, divination"
+  canonicalPath="tarologie/index.html"
+  jsonLd={jsonLd}
+>
+
+
+<!-- ═══════════ FIL D'ARIANE ═══════════ -->
+<nav class="breadcrumb" aria-label="Fil d'Ariane" style="padding:0.8rem 1.5rem;font-family:var(--font-mono);font-size:0.8rem;color:var(--text-muted);max-width:1200px;margin:0 auto;">
+  <a href="../index.html" style="color:var(--cyan);">Accueil</a> &rsaquo;
+  <span style="color:var(--text);">Tarologie</span>
+</nav>
+
+<div class="hub-container">
+  <!-- Sidebar d'Introduction -->
+  <aside class="hub-sidebar">
+    <h1>
+      <span class="pulse"></span>
+      🃏 <span class="gold">Tarologie</span><br>Le langage des <span class="emerald">arcanes</span>
+    </h1>
+    <p class="subtitle">
+      Quatre traditions pour lire les symboles de l'âme.
+      Du Tarot de Marseille à l'Oracle Lenormand, chaque jeu offre une clé unique
+      pour déchiffrer les messages de l'inconscient.
+    </p>
+    <div class="quote">
+      « Le Tarot est un miroir qui reflète les profondeurs de l'inconscient. »
+      <br><span class="gold">— Carl Jung</span>
+    </div>
+  </aside>
+
+  <!-- Grille des Traditions -->
+  <main class="hub-main">
+    <div class="section-title">
+      <div class="num">[ 01 ]</div>
+      <h2>✦ Les 4 Traditions</h2>
+      <p class="slate">Choisis le jeu qui résonne avec ton cheminement intérieur.</p>
+    </div>
+
+    <div class="mystere-grid">
+
+      <!-- Carte 1 : Tarot de Marseille -->
+      <div class="mystere-card" style="--card-accent-color: var(--gold); --hover-accent-color: var(--gold);">
+        <div class="card-icon">🃏</div>
+        <h3>TAROT DE MARSEILLE</h3>
+        <p>
+          La tradition ancestrale. 22 arcanes majeurs, 56 mineurs. Un langage symbolique
+          médiéval qui parle directement à l'âme.
+        </p>
+        <span class="badge-disabled">Bientôt</span>
+      </div>
+
+      <!-- Carte 2 : Rider-Waite-Smith -->
+      <div class="mystere-card" style="--card-accent-color: var(--emerald); --hover-accent-color: var(--emerald);">
+        <div class="card-icon">🎴</div>
+        <h3>RIDER-WAITE-SMITH</h3>
+        <p>
+          Le tarot illustré le plus populaire au monde. Chaque arcane mineur raconte
+          une scène, réndant la lecture intuitive et visuelle.
+        </p>
+        <span class="badge-disabled">Bientôt</span>
+      </div>
+
+      <!-- Carte 3 : Tarot de Thoth -->
+      <div class="mystere-card" style="--card-accent-color: var(--violet); --hover-accent-color: var(--violet);">
+        <div class="card-icon">⚡</div>
+        <h3>TAROT DE THOTH</h3>
+        <p>
+          L'œuvre d'Aleister Crowley et Lady Frieda Harris. 78 cartes imprégnées
+          de kabbale, d'astrologie et d'alchimie.
+        </p>
+        <span class="badge-disabled">Bientôt</span>
+      </div>
+
+      <!-- Carte 4 : Petit Lenormand -->
+      <div class="mystere-card" style="--card-accent-color: var(--rose); --hover-accent-color: var(--rose);">
+        <div class="card-icon">🔮</div>
+        <h3>PETIT LENORMAND</h3>
+        <p>
+          36 cartes pour la divination quotidienne. Un système simple et précis,
+          créé par Mademoiselle Lenormand, célèbre voyante du XIXe siècle.
+        </p>
+        <span class="badge-disabled">Bientôt</span>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+  <p slot="sources" style="color:#64748b;font-size:0.75rem;margin-bottom:0.8rem;">
+    Sources : Tarot de Marseille (tradition médiévale), Rider-Waite-Smith (A. E. Waite & P. Colman Smith), Tarot de Thoth (Crowley & Harris), Petit Lenormand (Mlle Lenormand)
+  </p>
+
+</Layout>

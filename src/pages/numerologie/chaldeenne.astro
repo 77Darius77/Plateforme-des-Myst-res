@@ -1,0 +1,66 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Numérologie Chaldéenne — La sagesse babylonienne",
+  "url": "https://mysteres.fr/numerologie/chaldeenne.html",
+  "description": "Découvrez la numérologie chaldéenne, héritée des anciens Babyloniens. Valeurs vibratoires de 1 à 52, nombres maîtres, alphabet mystique.",
+  "inLanguage": "fr",
+  "about": {
+    "@type": "Thing",
+    "name": "Numérologie Chaldéenne"
+  }
+};
+---
+
+<Layout
+  title="Numérologie Chaldéenne — La sagesse babylonienne"
+  description="Découvrez la numérologie chaldéenne, héritée des anciens Babyloniens. Valeurs vibratoires de 1 à 52, nombres maîtres, alphabet mystique. Gratuit, sans tracking."
+  keywords="numérologie, chaldéenne, babylonienne, nombres maîtres, vibrations, alphabet mystique, ancienne tradition"
+  canonicalPath="numerologie/chaldeenne.html"
+  jsonLd={jsonLd}
+>
+
+<!-- ═══════════ BANNIÈRE ═══════════ -->
+<section id="hero">
+  <h1>
+    <span class="pulse"></span>
+    🔢 <span class="gold">Numérologie Chaldéenne</span><br>La sagesse <span class="emerald">babylonienne</span>
+  </h1>
+  <p class="subtitle">
+    Héritée des anciens Babyloniens, la numérologie chaldéenne utilise des valeurs vibratoires de 1 à 52.
+    Contrairement au système pythagoricien, elle ne réduit pas les nombres maîtres.
+  </p>
+  <p class="quote">
+    « Chaque lettre est une vibration, chaque nombre une porte vers l'invisible. »
+    <br><span class="gold">— Tradition chaldéenne</span>
+  </p>
+</section>
+
+<!-- ═══════════ CONTENU ═══════════ -->
+<section id="contenu">
+  <div class="section-title">
+    <div class="num">[ 01 ]</div>
+    <h2>✦ En cours de création</h2>
+    <p class="slate">Cette section est en cours de création.</p>
+  </div>
+
+  <div style="max-width:700px;margin:2rem auto;background:#1e293b;border:1px solid #334155;border-radius:12px;padding:2.5rem;text-align:center;">
+    <div style="font-size:3rem;margin-bottom:1rem;">✧</div>
+    <p style="color:#cbd5e1;font-size:1.1rem;line-height:1.8;">
+      La numérologie chaldéenne, héritée des anciens Babyloniens, utilise des valeurs vibratoires de 1 à 52. Contrairement au système pythagoricien, elle ne réduit pas les nombres maîtres.
+    </p>
+    <p style="color:#94a3b8;font-size:1rem;margin-top:1.5rem;">
+      Revenez bientôt pour explorer cette tradition antique !
+    </p>
+    <a href="index.html" style="display:inline-block;background:#a78bfa;color:#0f172a;font-family:var(--font-mono);font-size:0.9rem;padding:0.7rem 1.6rem;border-radius:8px;text-decoration:none;font-weight:700;margin-top:2rem;transition:all 0.3s;" onmouseover="this.style.background='#8b5cf6'" onmouseout="this.style.background='#a78bfa'">← Retour à la numérologie</a>
+  </div>
+</section>
+
+  <p slot="sources" style="color:#64748b;font-size:0.75rem;margin-bottom:0.8rem;">
+    Sources : Tradition babylonienne, numérologie chaldéenne
+  </p>
+
+</Layout>

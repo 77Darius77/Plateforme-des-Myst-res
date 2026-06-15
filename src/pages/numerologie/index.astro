@@ -1,0 +1,113 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Numérologie — Plateforme des Mystères",
+  "url": "https://mysteres.fr/numerologie/",
+  "description": "Découvrez les différentes écoles de numérologie : cabalistique, pythagoricienne, chaldéenne et chinoise.",
+  "inLanguage": "fr",
+  "about": {
+    "@type": "Thing",
+    "name": "Numérologie"
+  }
+};
+---
+
+<Layout
+  title="Numérologie — Plateforme des Mystères"
+  description="Découvrez les différentes écoles de numérologie : cabalistique, pythagoricienne, chaldéenne et chinoise. Gratuit, sans tracking."
+  keywords="numérologie, écoles de numérologie, cabalistique, pythagoricienne, chaldéenne, chinoise, chemin de vie, archétypes"
+  canonicalPath="numerologie/index.html"
+  jsonLd={jsonLd}
+>
+
+
+<!-- ═══════════ FIL D'ARIANE ═══════════ -->
+<nav class="breadcrumb" aria-label="Fil d'Ariane" style="padding:0.8rem 1.5rem;font-family:var(--font-mono);font-size:0.8rem;color:var(--text-muted);max-width:1200px;margin:0 auto;">
+  <a href="../index.html" style="color:var(--cyan);">Accueil</a> &rsaquo;
+  <span style="color:var(--text);">Numérologie</span>
+</nav>
+
+<div class="hub-container">
+  <!-- Sidebar d'Introduction -->
+  <aside class="hub-sidebar">
+    <h1>
+      <span class="pulse"></span>
+      🔢 <span class="gold">Numérologie</span><br>La science des <span class="emerald">nombres</span>
+    </h1>
+    <p class="subtitle">
+      Depuis l'Antiquité, les nombres sont considérés comme le langage universel de l'âme.
+      Chaque école — cabalistique, pythagoricienne, chaldéenne, chinoise — offre une clé unique
+      pour décoder les vibrations qui façonnent notre destinée.
+    </p>
+    <div class="quote">
+      « Le monde est bâti sur la puissance des nombres. »
+      <br><span class="gold">— Pythagore</span>
+    </div>
+  </aside>
+
+  <!-- Grille des Écoles -->
+  <main class="hub-main">
+    <div class="section-title">
+      <div class="num">[ 01 ]</div>
+      <h2>✦ Les 4 Écoles</h2>
+      <p class="slate">Choisis la tradition qui résonne avec ton cheminement intérieur.</p>
+    </div>
+
+    <div class="mystere-grid">
+
+      <!-- Carte 1 : Cabalistique -->
+      <div class="mystere-card" style="--card-accent-color: var(--gold); --hover-accent-color: var(--gold);">
+        <div class="card-icon">★</div>
+        <h3>CABALISTIQUE</h3>
+        <p>
+          Méthode Raúl Durán. 22 archétypes, chemin de vie, ticún. Chaque nombre (1–22) est un don
+          et un défi que l'âme vient rectifier.
+        </p>
+        <a href="cabalistique.html" class="btn-explore">Explorer ✦</a>
+      </div>
+
+      <!-- Carte 2 : Pythagoricienne -->
+      <div class="mystere-card" style="--card-accent-color: var(--emerald); --hover-accent-color: var(--emerald);">
+        <div class="card-icon">✦</div>
+        <h3>PYTHAGORICIENNE</h3>
+        <p>
+          Nombres 1 à 9. Nombre d'expression, chemin de vie, nombre intime. La tradition occidentale
+          fondée par Pythagore, reliant maths et métaphysique.
+        </p>
+        <span class="badge-disabled">Bientôt</span>
+      </div>
+
+      <!-- Carte 3 : Chaldéenne -->
+      <div class="mystere-card" style="--card-accent-color: var(--violet); --hover-accent-color: var(--violet);">
+        <div class="card-icon">✧</div>
+        <h3>CHALDÉENNE</h3>
+        <p>
+          Système antique babylonien. Vibrations de 1 à 52. Chaque lettre possède une vibration
+          mystique unique, antérieure au système pythagoricien.
+        </p>
+        <span class="badge-disabled">Bientôt</span>
+      </div>
+
+      <!-- Carte 4 : Chinoise -->
+      <div class="mystere-card" style="--card-accent-color: var(--rose); --hover-accent-color: var(--rose);">
+        <div class="card-icon">☯</div>
+        <h3>CHINOISE</h3>
+        <p>
+          Carré Lo Shu, trigrammes, I Ching. Une sagesse millénaire où les nombres s'incarnent
+          dans la géomancie et le cycle des éléments.
+        </p>
+        <span class="badge-disabled">Bientôt</span>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+  <p slot="sources" style="color:#64748b;font-size:0.75rem;margin-bottom:0.8rem;">
+    Sources : Raúl Durán (cabalistique), Pythagore (pythagoricienne), tradition babylonienne (chaldéenne), I Ching (chinoise)
+  </p>
+
+</Layout>

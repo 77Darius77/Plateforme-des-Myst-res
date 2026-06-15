@@ -1,0 +1,66 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Numérologie Pythagoricienne — L'harmonie des nombres",
+  "url": "https://mysteres.fr/numerologie/pythagoricienne.html",
+  "description": "Découvrez la numérologie pythagoricienne, basée sur les travaux de Pythagore. Nombres 1 à 9, nombre d'expression, chemin de vie, nombre intime.",
+  "inLanguage": "fr",
+  "about": {
+    "@type": "Thing",
+    "name": "Numérologie Pythagoricienne"
+  }
+};
+---
+
+<Layout
+  title="Numérologie Pythagoricienne — L'harmonie des nombres"
+  description="Découvrez la numérologie pythagoricienne, basée sur les travaux de Pythagore. Nombres 1 à 9, nombre d'expression, chemin de vie, nombre intime. Gratuit, sans tracking."
+  keywords="numérologie, pythagoricienne, Pythagore, nombre d'expression, chemin de vie, nombre intime, nombres 1 à 9, vibrations"
+  canonicalPath="numerologie/pythagoricienne.html"
+  jsonLd={jsonLd}
+>
+
+<!-- ═══════════ BANNIÈRE ═══════════ -->
+<section id="hero">
+  <h1>
+    <span class="pulse"></span>
+    🔢 <span class="gold">Numérologie Pythagoricienne</span><br>L'harmonie des <span class="emerald">nombres</span>
+  </h1>
+  <p class="subtitle">
+    Basée sur les travaux de Pythagore, cette tradition associe les nombres 1 à 9 aux vibrations de l'âme.
+    Découvrez votre nombre d'expression, votre chemin de vie, et votre nombre intime.
+  </p>
+  <p class="quote">
+    « Le monde est bâti sur la puissance des nombres. »
+    <br><span class="gold">— Pythagore</span>
+  </p>
+</section>
+
+<!-- ═══════════ CONTENU ═══════════ -->
+<section id="contenu">
+  <div class="section-title">
+    <div class="num">[ 01 ]</div>
+    <h2>✦ En cours de création</h2>
+    <p class="slate">Cette section est en cours de création.</p>
+  </div>
+
+  <div style="max-width:700px;margin:2rem auto;background:#1e293b;border:1px solid #334155;border-radius:12px;padding:2.5rem;text-align:center;">
+    <div style="font-size:3rem;margin-bottom:1rem;">✦</div>
+    <p style="color:#cbd5e1;font-size:1.1rem;line-height:1.8;">
+      La numérologie pythagoricienne, basée sur les travaux de Pythagore, associe les nombres 1 à 9 aux vibrations de l'âme. Découvrez votre nombre d'expression, votre chemin de vie, et votre nombre intime.
+    </p>
+    <p style="color:#94a3b8;font-size:1rem;margin-top:1.5rem;">
+      Revenez bientôt pour explorer cette tradition millénaire !
+    </p>
+    <a href="index.html" style="display:inline-block;background:#34d399;color:#0f172a;font-family:var(--font-mono);font-size:0.9rem;padding:0.7rem 1.6rem;border-radius:8px;text-decoration:none;font-weight:700;margin-top:2rem;transition:all 0.3s;" onmouseover="this.style.background='#10b981'" onmouseout="this.style.background='#34d399'">← Retour à la numérologie</a>
+  </div>
+</section>
+
+  <p slot="sources" style="color:#64748b;font-size:0.75rem;margin-bottom:0.8rem;">
+    Sources : Pythagore, tradition pythagoricienne
+  </p>
+
+</Layout>

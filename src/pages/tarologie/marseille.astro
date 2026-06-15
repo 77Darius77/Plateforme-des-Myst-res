@@ -1,0 +1,47 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "name": "Tarot de Marseille — La tradition ancestrale",
+  "url": "https://mysteres.fr/tarologie/marseille.html",
+  "description": "Découvrez le Tarot de Marseille, ses 22 arcanes majeurs et 56 mineurs.",
+  "inLanguage": "fr"
+};
+---
+
+<Layout
+  title="Tarot de Marseille — Tarologie"
+  description="Découvrez le Tarot de Marseille, ses 22 arcanes majeurs et 56 mineurs. L'un des plus anciens jeux de tarot encore utilisés, aux symboles médiévaux qui parlent directement à l'âme."
+  keywords="tarot de marseille, arcanes majeurs, arcanes mineurs, divination, tarologie"
+  canonicalPath="tarologie/marseille.html"
+  jsonLd={jsonLd}
+>
+
+<!-- ═══════════ FIL D'ARIANE ═══════════ -->
+<nav class="breadcrumb" aria-label="Fil d'Ariane" style="padding:0.8rem 1.5rem;font-family:var(--font-mono);font-size:0.8rem;color:var(--text-muted);">
+  <a href="../index.html" style="color:var(--cyan);">Accueil</a> &rsaquo;
+  <a href="index.html" style="color:var(--cyan);">Tarologie</a> &rsaquo;
+  <span style="color:var(--text-primary);">Tarot de Marseille</span>
+</nav>
+
+<!-- ═══════════ BANNIÈRE "BIENTÔT" ═══════════ -->
+<section id="hero" style="text-align:center;padding:6rem 1.5rem 4rem;max-width:700px;margin:0 auto;">
+  <h1>
+    <span class="pulse"></span>
+    🃏 <span class="gold">Tarot de Marseille</span><br>La tradition <span class="emerald">ancestrale</span>
+  </h1>
+  <p class="subtitle">
+    Cette section est en cours de création. Le Tarot de Marseille, avec ses 22 arcanes majeurs et 56 mineurs, est l'un des plus anciens jeux de tarot encore utilisés. Ses symboles médiévaux parlent directement à l'âme. Revenez bientôt !
+  </p>
+  <a href="../tarologie/index.html" class="cta">← Retour à la Tarologie</a>
+</section>
+
+<!-- ═══════════ NAVIGATION PRÉCÉDENT / SUIVANT ═══════════ -->
+<nav class="sub-nav" style="display:flex;justify-content:space-between;max-width:600px;margin:2rem auto;padding:1rem;">
+  <span></span>
+  <a href="rider-waite.html" style="color:var(--cyan);font-family:var(--font-mono);">Rider-Waite-Smith →</a>
+</nav>
+
+</Layout>

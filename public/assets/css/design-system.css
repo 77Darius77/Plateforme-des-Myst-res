@@ -1,0 +1,122 @@
+/* ═══════════════════════════════════════════
+   NUMÉROLOGIE CABALISTIQUE — Design System
+   Inspiré de Raúl Durán, Lo Grande Podcast
+   Créé avec amour par Géolie
+   ═══════════════════════════════════════════ */
+
+/* ═══════════════════════════════════════════
+   PLATEFORME DES MYSTÈRES — Design System
+   ═══════════════════════════════════════════ */
+
+:root {
+  --bg-deep: #080a10;
+  --bg-card: #0f131e;
+  --bg-card-hover: #151b2a;
+  --border: rgba(255, 255, 255, 0.07);
+  --gold: #dfb26c;
+  --gold-dim: #c59750;
+  --emerald: #3dd399;
+  --cyan: #3bd3ee;
+  --violet: #b78bfa;
+  --rose: #fb8195;
+  --amber: #fb9e4c;
+  --slate: #94a3b8;
+  --text: #f1f5f9;
+  --text-dim: #94a3b8;
+  --text-muted: #64748b;
+  --font-mono: 'Fira Code', 'Courier New', Courier, monospace;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --radius: 16px;
+  --transition: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+/* Transition fluide du thème */
+*, *::before, *::after {
+  transition: background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+              color 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
+              border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
+              box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+body {
+  background: var(--bg-deep);
+  color: var(--text);
+  font-family: var(--font-sans);
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* Background system: Cosmic glow radial gradients */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(circle at 10% 20%, rgba(59, 211, 238, 0.03) 0%, transparent 40%),
+    radial-gradient(circle at 90% 80%, rgba(183, 139, 250, 0.035) 0%, transparent 40%),
+    radial-gradient(circle at 50% 50%, rgba(223, 178, 108, 0.02) 0%, transparent 60%),
+    var(--bg-deep);
+  z-index: -2;
+  opacity: 1;
+}
+
+/* ═══════════ TYPOGRAPHIE ═══════════ */
+h1, h2, h3, h4, .mono { font-family: var(--font-sans); }
+h1 { 
+  font-size: clamp(2.5rem, 6vw, 4rem); 
+  font-weight: 800; 
+  letter-spacing: -0.03em;
+}
+h2 { 
+  font-size: clamp(1.8rem, 4vw, 2.75rem); 
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+h3 { 
+  font-size: 1.35rem; 
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.gold { color: var(--gold); }
+.emerald { color: var(--emerald); }
+.cyan { color: var(--cyan); }
+.slate { color: var(--slate); }
+
+/* Mode clair */
+[data-theme="light"] {
+  --bg-deep: #f6f8fb;
+  --bg-card: #ffffff;
+  --bg-card-hover: #fcfcfd;
+  --border: rgba(0, 0, 0, 0.08);
+  --text: #0f172a;
+  --text-dim: #475569;
+  --text-muted: #64748b;
+  --gold: #b4853b;
+  --gold-dim: #8b6020;
+  --emerald: #059669;
+  --cyan: #0891b2;
+  --violet: #7c3aed;
+  --rose: #db2777;
+  --slate: #475569;
+}
+[data-theme="light"] body::before {
+  background:
+    radial-gradient(circle at 10% 20%, rgba(8, 145, 178, 0.03) 0%, transparent 45%),
+    radial-gradient(circle at 90% 80%, rgba(124, 58, 237, 0.03) 0%, transparent 45%),
+    var(--bg-deep);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  html { scroll-behavior: auto; }
+}

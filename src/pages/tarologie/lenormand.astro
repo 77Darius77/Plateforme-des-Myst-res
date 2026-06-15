@@ -1,0 +1,34 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "name": "Petit Lenormand — La divination quotidienne",
+  "url": "https://mysteres.fr/tarologie/lenormand.html",
+  "description": "Découvrez le Petit Lenormand, 36 cartes pour la divination quotidienne.",
+  "inLanguage": "fr"
+};
+---
+
+<Layout
+  title="Petit Lenormand — Tarologie"
+  description="Découvrez le Petit Lenormand, 36 cartes pour la divination quotidienne. Créé par Mademoiselle Lenormand, célèbre voyante du XIXe siècle."
+  keywords="petit lenormand, lenormand, cartes divinatoires, mademoiselle lenormand, divination, tarologie"
+  canonicalPath="tarologie/lenormand.html"
+  jsonLd={jsonLd}
+>
+
+<!-- ═══════════ BANNIÈRE "BIENTÔT" ═══════════ -->
+<section id="hero" style="text-align:center;padding:6rem 1.5rem 4rem;max-width:700px;margin:0 auto;">
+  <h1>
+    <span class="pulse"></span>
+    🔮 <span class="gold">Petit Lenormand</span><br>La divination <span class="emerald">quotidienne</span>
+  </h1>
+  <p class="subtitle">
+    Cette section est en cours de création. Le Petit Lenormand, avec ses 36 cartes au langage simple et direct, est l'un des oracles les plus accessibles pour la divination quotidienne. Créé par Mademoiselle Lenormand, célèbre voyante du XIXe siècle, il offre des réponses claires et pragmatiques. Revenez bientôt !
+  </p>
+  <a href="../tarologie/index.html" class="cta">← Retour à la Tarologie</a>
+</section>
+
+</Layout>

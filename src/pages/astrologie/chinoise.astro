@@ -1,0 +1,34 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "name": "Astrologie Chinoise — Les 12 signes animaliers",
+  "url": "https://mysteres.fr/astrologie/chinoise.html",
+  "description": "Découvrez l'astrologie chinoise, ses 12 signes animaliers et ses 5 éléments.",
+  "inLanguage": "fr"
+};
+---
+
+<Layout
+  title="Astrologie Chinoise — Astrologie"
+  description="Découvrez l'astrologie chinoise, ses 12 signes animaliers et ses 5 éléments. Un système millénaire fondé sur le calendrier lunaire."
+  keywords="astrologie chinoise, signes chinois, zodiaque chinois, rat, buffle, tigre, lapin, dragon, serpent, cheval, chèvre, singe, coq, chien, cochon, 5 éléments"
+  canonicalPath="astrologie/chinoise.html"
+  jsonLd={jsonLd}
+>
+
+<!-- ═══════════ BANNIÈRE "BIENTÔT" ═══════════ -->
+<section id="hero" style="text-align:center;padding:6rem 1.5rem 4rem;max-width:700px;margin:0 auto;">
+  <h1>
+    <span class="pulse"></span>
+    🐉 <span class="gold">Astrologie Chinoise</span><br>Les 12 signes <span class="emerald">animaliers</span>
+  </h1>
+  <p class="subtitle">
+    Cette section est en cours de création. L'astrologie chinoise, fondée sur le calendrier lunaire, associe 12 animaux à 5 éléments pour décrire la personnalité et le destin. Chaque année est gouvernée par un animal et un élément, créant un cycle de 60 ans. Revenez bientôt !
+  </p>
+  <a href="../astrologie/index.html" class="cta">← Retour à l'Astrologie</a>
+</section>
+
+</Layout>

@@ -1,0 +1,47 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "name": "Tarot Rider-Waite-Smith — Le tarot illustré",
+  "url": "https://mysteres.fr/tarologie/rider-waite.html",
+  "description": "Découvrez le Tarot Rider-Waite-Smith, créé en 1909, le tarot le plus populaire au monde.",
+  "inLanguage": "fr"
+};
+---
+
+<Layout
+  title="Tarot Rider-Waite-Smith — Tarologie"
+  description="Découvrez le Tarot Rider-Waite-Smith, créé en 1909, le tarot le plus populaire au monde. Ses illustrations riches en symbolisme en font l'outil idéal pour l'introspection."
+  keywords="rider waite smith, tarot illustré, arcanes, divination, tarologie, symbolisme"
+  canonicalPath="tarologie/rider-waite.html"
+  jsonLd={jsonLd}
+>
+
+<!-- ═══════════ FIL D'ARIANE ═══════════ -->
+<nav class="breadcrumb" aria-label="Fil d'Ariane" style="padding:0.8rem 1.5rem;font-family:var(--font-mono);font-size:0.8rem;color:var(--text-muted);">
+  <a href="../index.html" style="color:var(--cyan);">Accueil</a> &rsaquo;
+  <a href="index.html" style="color:var(--cyan);">Tarologie</a> &rsaquo;
+  <span style="color:var(--text-primary);">Tarot Rider-Waite-Smith</span>
+</nav>
+
+<!-- ═══════════ BANNIÈRE "BIENTÔT" ═══════════ -->
+<section id="hero" style="text-align:center;padding:6rem 1.5rem 4rem;max-width:700px;margin:0 auto;">
+  <h1>
+    <span class="pulse"></span>
+    🃏 <span class="gold">Tarot Rider-Waite-Smith</span><br>Le tarot <span class="emerald">illustré</span>
+  </h1>
+  <p class="subtitle">
+    Cette section est en cours de création. Le Rider-Waite-Smith, créé en 1909, est le tarot le plus populaire au monde. Ses illustrations riches en symbolisme en font l'outil idéal pour l'introspection. Revenez bientôt !
+  </p>
+  <a href="../tarologie/index.html" class="cta">← Retour à la Tarologie</a>
+</section>
+
+<!-- ═══════════ NAVIGATION PRÉCÉDENT / SUIVANT ═══════════ -->
+<nav class="sub-nav" style="display:flex;justify-content:space-between;max-width:600px;margin:2rem auto;padding:1rem;">
+  <a href="marseille.html" style="color:var(--cyan);font-family:var(--font-mono);">← Tarot de Marseille</a>
+  <a href="thoth.html" style="color:var(--cyan);font-family:var(--font-mono);">Tarot de Thoth →</a>
+</nav>
+
+</Layout>

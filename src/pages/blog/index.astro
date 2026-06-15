@@ -1,0 +1,120 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "Blog — Plateforme des Mystères",
+  "url": "https://mysteres.fr/blog/",
+  "description": "Articles sur la numérologie cabalistique, les archétypes et l'ésotérisme.",
+  "inLanguage": "fr"
+};
+---
+
+<Layout
+  title="Blog — Plateforme des Mystères"
+  description="Articles, réflexions et analyses sur la numérologie cabalistique, la méthode Raúl Durán, les 22 archétypes et les sagesses ésotériques."
+  keywords="numérologie, blog, ésotérisme, archétypes, Raúl Durán, kabbale, ticún, chemin de vie"
+  canonicalPath="blog/index.html"
+  jsonLd={jsonLd}
+  useBlogStyles={true}
+>
+
+<!-- ═══════════ HERO BLOG ═══════════ -->
+<section class="blog-hero">
+  <h1>
+    <span class="pulse"></span>
+    Le <span class="gold">Blog</span> des <span class="emerald">Mystères</span>
+  </h1>
+  <p>
+    Réflexions, analyses et explorations autour de la numérologie cabalistique,
+    des 22 archétypes et des sagesses ancestrales.
+  </p>
+</section>
+
+<!-- ═══════════ LISTE DES ARTICLES ═══════════ -->
+<section id="articles" class="blog-section">
+  <div class="section-title">
+    <div class="num">[ ARTICLES ]</div>
+    <h2>✦ Tous les Articles</h2>
+    <p class="slate">Plongez dans les enseignements de Raúl Durán et la sagesse des nombres.</p>
+  </div>
+
+  <div class="blog-grid">
+
+    <a href="ponts-numerologie-tarot.html" class="blog-card">
+      <div class="blog-meta">Tarot · 10 min</div>
+      <h3>Numérologie et Tarot : les ponts entre deux sagesses</h3>
+      <p>Les 22 arcanes majeurs du Tarot et les 22 archétypes de la numérologie cabalistique : mêmes lettres hébraïques, mêmes correspondances, deux langages pour une même vérité.</p>
+      <span class="blog-read">Lire l'article →</span>
+    </a>
+
+    <a href="72-noms-dieu.html" class="blog-card">
+      <div class="blog-meta">Kabbale · 9 min</div>
+      <h3>Les 72 Noms de Dieu : une initiation</h3>
+      <p>D'où viennent les 72 Noms de Dieu ? Structure, méditation, tableau des attributs et lien avec les 22 archétypes de la numérologie cabalistique.</p>
+      <span class="blog-read">Lire l'article →</span>
+    </a>
+
+    <a href="reflexions-numerologie.html" class="blog-card">
+      <div class="blog-meta">Numérologie · 12 min</div>
+      <h3>Réflexions sur la numérologie cabalistique</h3>
+      <p>Questions philosophiques, ponts avec d'autres traditions ésotériques, limites épistémologiques et garde-fous. Un regard lucide sur un système fascinant.</p>
+      <span class="blog-read">Lire l'article →</span>
+    </a>
+
+    <a href="methode-raul-duran.html" class="blog-card">
+      <div class="blog-meta">Méthode · 7 min</div>
+      <h3>La méthode Raúl Durán expliquée</h3>
+      <p>Le calcul pas à pas : réduction, chemin de vie, ticún. Avec l'exemple concret de la date 23/10/1990 et le tableau complet des 22 archétypes.</p>
+      <span class="blog-read">Lire l'article →</span>
+    </a>
+
+    <a href="analyse-donald-trump.html" class="blog-card">
+      <div class="blog-meta">Analyse · 6 min</div>
+      <h3>Donald Trump : portrait numérologique</h3>
+      <p>Personnalité profonde 44, reconnaissance 20, mensonge 6, ticún 22 — que révèlent les nombres de l'ancien président américain ? La guématrie 146 décryptée.</p>
+      <span class="blog-read">Lire l'article →</span>
+    </a>
+
+    <a href="guide-22-archetypes.html" class="blog-card">
+      <div class="blog-meta">Référence · 10 min</div>
+      <h3>Le guide des 22 archétypes</h3>
+      <p>Tableau complet de tous les archétypes (1-22) avec leur force, leur faiblesse et leur interprétation détaillée selon la méthode Raúl Durán.</p>
+      <span class="blog-read">Lire l'article →</span>
+    </a>
+
+  </div>
+</section>
+
+  <p slot="sources" style="color:#64748b;font-size:0.75rem;margin-bottom:0.8rem;">
+    Sources : <a href="https://www.youtube.com/watch?v=eVfgONpEoDo" target="_blank">Podcast Lo Grande — Raúl Durán</a>
+  </p>
+
+</Layout>
+
+<style is:global>
+/* ─── Blog Listing Hero ─── */
+.blog-hero {
+  text-align: center;
+  padding: 4rem 1.5rem 2rem;
+  max-width: 720px;
+  margin: 0 auto;
+}
+.blog-hero h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  margin-bottom: 1rem;
+}
+.blog-hero p {
+  color: var(--slate);
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
+/* ─── Blog Section Title ─── */
+.blog-section {
+  padding: 3rem 1.5rem 4rem;
+  max-width: 960px;
+  margin: 0 auto;
+}
+</style>
