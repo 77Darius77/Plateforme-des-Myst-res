@@ -44,8 +44,49 @@ const { sources } = Astro.props;
 
   </div>
 
+  <!-- Soutien -->
+  <div class="footer-support">
+    <p>Ce site est gratuit, sans pub, sans tracking.</p>
+    <a href="https://ko-fi.com/plateformedesmysteres" target="_blank" rel="noopener" class="kofi-btn">
+      ☕ Offrir un café
+    </a>
+  </div>
+
   <div class="footer-bottom">
     <p>Créé avec <span class="heart">♥</span> pour partager la sagesse des nombres.</p>
     <p>Plateforme des Mystères © 2026</p>
   </div>
 </footer>
+
+<style>
+  .footer-support {
+    text-align: center;
+    padding: 1.5rem 1rem 0.5rem;
+    border-top: 1px solid var(--border);
+    margin-top: 1rem;
+  }
+  .footer-support p {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-bottom: 0.75rem;
+  }
+  .kofi-btn {
+    display: inline-block;
+    padding: 0.5rem 1.25rem;
+    background: rgba(255, 94, 58, 0.12);
+    border: 1px solid rgba(255, 94, 58, 0.35);
+    border-radius: 999px;
+    color: #ff9e7a;
+    font-size: 0.85rem;
+    font-family: var(--font-mono);
+    text-decoration: none;
+    transition: all 0.25s ease;
+    letter-spacing: 0.03em;
+  }
+  .kofi-btn:hover {
+    background: rgba(255, 94, 58, 0.22);
+    border-color: rgba(255, 94, 58, 0.6);
+    color: #ffb49a;
+    transform: translateY(-1px);
+  }
+</style>
