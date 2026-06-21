@@ -16,3 +16,22 @@
   for = "/assets/images/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
+
+# Redirects .html → URLs propres (compatibilité liens externes)
+[[redirects]]
+  from = "/:section/index.html"
+  to = "/:section/"
+  status = 301
+  force = false
+
+[[redirects]]
+  from = "/:section/:page.html"
+  to = "/:section/:page/"
+  status = 301
+  force = false
+
+[[redirects]]
+  from = "/:page.html"
+  to = "/:page/"
+  status = 301
+  force = false

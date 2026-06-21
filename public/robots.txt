@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://mysteres.fr/sitemap.xml
+Sitemap: https://mysteres.fr/sitemap-index.xml

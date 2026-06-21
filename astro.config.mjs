@@ -1,10 +1,11 @@
 import { defineConfig } from 'astro/config';
+import sitemap from '@astrojs/sitemap';
 
-// https://astro.build/config
 export default defineConfig({
   outDir: './dist',
-  site: 'https://mysteres.fr', // Set target canonical site URL
+  site: 'https://mysteres.fr',
   build: {
-    format: 'file'
-  }
+    format: 'directory'
+  },
+  integrations: [sitemap()]
 });
