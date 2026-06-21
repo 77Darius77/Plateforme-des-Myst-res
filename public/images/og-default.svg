@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="#1e1040"/>
+      <stop offset="100%" stop-color="#0a0520"/>
+    </radialGradient>
+  </defs>
+  <!-- Fond -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <!-- Cercle décoratif -->
+  <circle cx="600" cy="315" r="280" fill="none" stroke="#7c3aed" stroke-width="1" opacity="0.4"/>
+  <circle cx="600" cy="315" r="240" fill="none" stroke="#fbbf24" stroke-width="0.5" opacity="0.3"/>
+  <!-- Étoile à 8 branches -->
+  <g transform="translate(600,315)" fill="none" stroke="#fbbf24" stroke-width="1.5" opacity="0.6">
+    <line x1="0" y1="-200" x2="0" y2="200"/>
+    <line x1="-200" y1="0" x2="200" y2="0"/>
+    <line x1="-141" y1="-141" x2="141" y2="141"/>
+    <line x1="141" y1="-141" x2="-141" y2="141"/>
+  </g>
+  <!-- Symboles ésotériques -->
+  <text x="600" y="180" text-anchor="middle" font-family="Georgia, serif" font-size="48" fill="#fbbf24" opacity="0.7">☽ ✦ ☾</text>
+  <!-- Titre -->
+  <text x="600" y="300" text-anchor="middle" font-family="Georgia, serif" font-size="72" font-weight="bold" fill="#fbbf24" letter-spacing="2">Plateforme</text>
+  <text x="600" y="385" text-anchor="middle" font-family="Georgia, serif" font-size="72" font-weight="bold" fill="#a78bfa" letter-spacing="4">des Mystères</text>
+  <!-- Sous-titre -->
+  <text x="600" y="460" text-anchor="middle" font-family="Georgia, serif" font-size="28" fill="#94a3b8" letter-spacing="6">ÉSOTÉRISME · NUMÉROLOGIE · TAROLOGIE</text>
+  <!-- Séparateur décoratif -->
+  <line x1="300" y1="420" x2="900" y2="420" stroke="#fbbf24" stroke-width="0.5" opacity="0.4"/>
+  <!-- URL -->
+  <text x="600" y="560" text-anchor="middle" font-family="monospace" font-size="22" fill="#64748b" letter-spacing="2">mysteres.fr</text>
+</svg>
