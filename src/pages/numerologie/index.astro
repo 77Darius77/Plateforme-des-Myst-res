@@ -57,8 +57,8 @@ const jsonLd = {
   <main class="hub-main">
     <div class="section-title">
       <div class="num">[ 01 ]</div>
-      <h2>✦ Les 4 Écoles</h2>
-      <p class="slate">Choisis la tradition qui résonne avec ton cheminement intérieur.</p>
+      <h2>✦ Les Outils d'Analyse</h2>
+      <p class="slate">Choisis la tradition ou l'approche qui résonne avec ton cheminement intérieur.</p>
     </div>
 
     <div class="mystere-grid">
@@ -105,12 +105,31 @@ const jsonLd = {
         <a href="/numerologie/chinoise/" class="btn-explore">Explorer ✦</a>
       </div>
 
+      <!-- Carte 5 : Numérologie du Prénom -->
+      <div class="mystere-card mystere-card-full" style="--card-accent-color: var(--cyan); --hover-accent-color: var(--cyan);">
+        <div class="card-icon">✎</div>
+        <h3>NUMÉROLOGIE DU PRÉNOM</h3>
+        <p>
+          Découvrez la mission d'âme de votre prénom (Nombre Actif), vos leçons karmiques (nombres manquants) et vos mémoires transgénérationnelles (filtres comportementaux ancestraux).
+        </p>
+        <a href="/numerologie/prenom/" class="btn-explore">Explorer ✦</a>
+      </div>
+
     </div>
   </main>
 </div>
 
   <p slot="sources" style="color:#64748b;font-size:0.75rem;margin-bottom:0.8rem;">
-    Sources : Raúl Durán (cabalistique), Pythagore (pythagoricienne), tradition babylonienne (chaldéenne), I Ching (chinoise)
+    Sources : Raúl Durán (cabalistique), Pythagore (pythagoricienne), tradition babylonienne (chaldéenne), I Ching (chinoise), écoles karmiques françaises
   </p>
 
 </Layout>
+
+<style>
+  @media (min-width: 769px) {
+    .mystere-card-full {
+      grid-column: span 2;
+    }
+  }
+</style>
+

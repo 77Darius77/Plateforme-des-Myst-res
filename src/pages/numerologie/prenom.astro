@@ -1,0 +1,206 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Numérologie du Prénom — Mission de Vie, Karma & Transgénérationnel",
+  "url": "https://mysteres.fr/numerologie/prenom/",
+  "description": "Découvrez les vibrations cachées de votre prénom : calculez votre Nombre Actif (mission d'âme), identifiez vos leçons karmiques (nombres manquants) et explorez vos mémoires transgénérationnelles.",
+  "inLanguage": "fr",
+  "about": {
+    "@type": "Thing",
+    "name": "Numérologie du Prénom"
+  }
+};
+---
+
+<Layout
+  title="Numérologie du Prénom — Mission, Karma & Transgénérationnel"
+  description="Découvrez les vibrations cachées de votre prénom : calculez votre Nombre Actif (mission d'âme), identifiez vos leçons karmiques (nombres manquants) et explorez vos mémoires transgénérationnelles."
+  keywords="numérologie prénom, prénom mission de vie, karma prénom, leçons karmiques prénom, pierre angulaire, clé spirituelle, transgénérationnel, Raúl Durán"
+  canonicalPath="numerologie/prenom/"
+  jsonLd={jsonLd}
+  scripts={["/assets/js/prenom.js"]}
+  breadcrumb={[
+    { name: "Accueil", item: "https://mysteres.fr/" },
+    { name: "Numérologie", item: "https://mysteres.fr/numerologie/" },
+    { name: "Numérologie du Prénom", item: "https://mysteres.fr/numerologie/prenom/" }
+  ]}
+  section="numerologie"
+>
+
+<!-- ═══════════ FIL D'ARIANE ═══════════ -->
+<nav class="breadcrumb" aria-label="Fil d'Ariane" style="padding:0.8rem 1.5rem;font-family:var(--font-mono);font-size:0.8rem;color:var(--text-muted);max-width:1200px;margin:0 auto;">
+  <a href="/" style="color:var(--cyan);">Accueil</a> &rsaquo;
+  <a href="/numerologie/" style="color:var(--cyan);">Numérologie</a> &rsaquo;
+  <span style="color:var(--text);">Numérologie du Prénom</span>
+</nav>
+
+<!-- ═══════════ HERO ═══════════ -->
+<section id="hero">
+  <h1>
+    <span class="pulse"></span>
+    Le <span class="gold">prénom</span> est le filtre<br>de notre <span class="emerald">incarnation</span>
+  </h1>
+  <p class="subtitle">
+    Votre prénom n'a pas été choisi par hasard. En numérologie vibratoire, il représente votre <strong>Nombre Actif</strong> (la mission d'évolution de votre âme), contient vos <strong>Leçons Karmiques</strong> (les vibrations manquantes) et porte l'empreinte de vos <strong>mémoires transgénérationnelles</strong>.
+  </p>
+  <a href="#calculateur" class="cta">✦ Analyser mon Prénom</a>
+</section>
+
+<!-- ═══════════ [01] CALCULATEUR ═══════════ -->
+<section id="calculateur">
+  <div class="section-title">
+    <div class="num">[ 01 ]</div>
+    <h2>✦ Analyse Vibratoire du Prénom</h2>
+    <p class="slate">Entrez votre prénom usuel (ou votre premier prénom à l'état civil) pour révéler son message énergétique caché.</p>
+  </div>
+
+  <form class="pyth-form" id="prenom-form" onsubmit="return false;">
+    <div class="pyth-form-group">
+      <label class="pyth-label" for="input-prenom">Votre Prénom</label>
+      <input type="text" id="input-prenom" class="pyth-input pyth-input--full" placeholder="ex. Alexandre ou Marie" aria-label="Prénom à analyser" autocomplete="given-name" required>
+      <p style="font-size:0.75rem; color:var(--text-muted); margin-top:0.4rem; font-style:italic;">
+        Pour les prénoms composés, vous pouvez les saisir en entier (ex. Jean-Pierre).
+      </p>
+    </div>
+    <div class="pyth-form-actions">
+      <button type="button" id="prenom-exemple" class="pyth-btn-example">Essayer Alexandre</button>
+      <button type="submit" class="pyth-btn-calc">Calculer les vibrations ✦</button>
+    </div>
+  </form>
+
+  <!-- ─── RÉSULTATS OPTIMISÉS ─── -->
+  <div id="prenom-resultats" hidden>
+    <div class="pyth-section-sep"></div>
+
+    <!-- 1. Formule de calcul -->
+    <div class="pyth-result-block" style="margin-bottom: 2rem;">
+      <h3 class="pyth-result-title"><span class="cf-gold">◈</span> Signature Vibratoire du Prénom</h3>
+      <div id="prenom-formule-block"></div>
+    </div>
+
+    <!-- 2. Bloc Principal : Mission & Énergies Globales (2 col) -->
+    <div class="prenom-grid-2col" style="margin-bottom: 2.5rem;">
+      <!-- Mission / Nombre Actif -->
+      <div class="pyth-result-block" style="margin:0;">
+        <h3 class="pyth-result-title"><span class="cf-gold">◈</span> Le Nombre Actif & Mission de Vie</h3>
+        <div id="prenom-actif-block"></div>
+      </div>
+      <!-- Polarités & Rythme -->
+      <div class="pyth-result-block" style="margin:0; display: flex; flex-direction: column;">
+        <h3 class="pyth-result-title"><span class="cf-cyan">◈</span> Structure & Rythme Évolutif</h3>
+        <div id="prenom-structure-block" style="display: flex; flex-direction: column; gap: 1.25rem; flex: 1;"></div>
+      </div>
+    </div>
+
+    <!-- 3. Leçons Karmiques (Karma) - Pleine Largeur -->
+    <div class="pyth-result-block" style="margin-bottom: 2.5rem;">
+      <h3 class="pyth-result-title"><span class="cf-rose">◈</span> Leçons Karmiques (Défis d'incarnation)</h3>
+      <div id="prenom-karma-block" class="result-card"></div>
+    </div>
+
+    <!-- 4. Héritage Transgénérationnel (Les 3 Clés) - 3 col -->
+    <div class="pyth-result-block" style="margin-bottom: 2rem;">
+      <h3 class="pyth-result-title"><span class="cf-violet">◈</span> Héritage Transgénérationnel & Clés Comportementales</h3>
+      <div id="prenom-transgen-block"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ [02] EXPLICATIONS DE LA MÉTHODE ═══════════ -->
+<section id="methodologie" style="border-top: 1px solid var(--border); padding-top: 3rem; margin-top: 4rem;">
+  <div class="section-title">
+    <div class="num">[ 02 ]</div>
+    <h2>✦ Comprendre la Numérologie du Prénom</h2>
+    <p class="slate">Qu'analyse-t-on exactement dans les lettres de notre prénom ?</p>
+  </div>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <h3>Le Nombre Actif</h3>
+      <p>C'est la somme réduite de toutes les lettres du prénom. Contrairement au nom de famille qui représente l'hérédité collective, le prénom est votre signature individuelle de cette vie. Il indique les talents et le comportement naturel que vous devez déployer pour accomplir votre destinée.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <h3>Les Nombres Manquants (Karma)</h3>
+      <p>Si certaines vibrations (nombres de 1 à 9) n'apparaissent dans aucune lettre de votre prénom, ce sont des « leçons karmiques ». Ce ne sont pas des punitions, mais des domaines d'expérience que votre âme a choisi de venir travailler spécifiquement, car ils n'ont pas été maîtrisés dans le passé.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <h3>La Pierre Angulaire</h3>
+      <p>C'est la première lettre du prénom. Sur le plan transgénérationnel, elle révèle comment vos ancêtres et vos parents ont projeté votre entrée dans le monde. Elle traduit votre attitude de base face au démarrage de projets et votre première réaction instinctive en cas de crise.</p>
+    </div>
+  </div>
+</section>
+
+<p slot="sources" style="color:#64748b;font-size:0.75rem;margin-bottom:0.8rem;">
+  Sources : Jean-Daniel Fermier, <em>ABC de la Numérologie</em> · François Vincensini, <em>Dictionnaire de Numérologie</em> · Raúl Durán, <em>Lo Grande</em> (Approches karmiques)
+</p>
+
+</Layout>
+
+<style is:global>
+  /* Grilles responsives */
+  .prenom-grid-2col {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 1.5rem;
+  }
+  .prenom-grid-3col {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  /* Styles spécifiques pour l'analyse du prénom */
+  .letter-box {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    background: linear-gradient(150deg, rgba(20, 27, 45, 0.8) 0%, rgba(10, 15, 25, 0.9) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    padding: 0.4rem 0.8rem;
+    min-width: 44px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  }
+  .letter-box strong {
+    font-size: 1.3rem;
+    color: var(--gold);
+    line-height: 1.2;
+  }
+  .letter-val {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    margin-top: 0.15rem;
+  }
+  .letter-plus {
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    font-size: 0.95rem;
+    padding: 0 0.2rem;
+    user-select: none;
+  }
+
+  /* Version responsive pour tablettes et mobiles */
+  @media (max-width: 992px) {
+    .prenom-grid-2col {
+      grid-template-columns: 1fr !important;
+    }
+    .prenom-grid-3col {
+      grid-template-columns: 1fr !important;
+      gap: 1.5rem !important;
+    }
+  }
+  
+  [data-theme="light"] .letter-box {
+    background: #ffffff;
+    border-color: rgba(0, 0, 0, 0.08);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  }
+</style>

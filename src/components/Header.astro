@@ -9,11 +9,11 @@ interface Props {
 const {
   logo = "Plateforme des Mystères",
   navLinks = [
-    { href: "/blog/index.html", text: "Blog" },
-    { href: "/index.html#portails", text: "Disciplines" },
+    { href: "/blog/", text: "Blog" },
+    { href: "/#portails", text: "Disciplines" },
   ],
   rightNavLinks = [
-    { href: "/a-propos.html", text: "À propos" }
+    { href: "/a-propos/", text: "À propos" }
   ],
   currentPath = ""
 } = Astro.props;
@@ -22,17 +22,17 @@ function isActive(linkHref: string, path: string): boolean {
   if (!path) return false;
   const clean = path.replace(/^\/|\/$/g, '').split('#')[0];
   const linkClean = linkHref.replace(/^\/|\/$/g, '').split('#')[0];
-  if (linkClean === 'index.html' && clean === 'index.html') return true;
-  if (linkClean === 'blog/index.html' && clean.startsWith('blog')) return true;
-  if (linkClean === 'a-propos.html' && clean === 'a-propos.html') return true;
-  if (linkClean === 'index.html#portails' && (clean.startsWith('numerologie') || clean.startsWith('tarologie') || clean.startsWith('astrologie') || clean.startsWith('oracles'))) return true;
+  if (linkClean === '' && clean === '') return true;
+  if (linkClean === 'blog' && clean.startsWith('blog')) return true;
+  if (linkClean === 'a-propos' && clean === 'a-propos') return true;
+  if (linkClean === '#portails' && (clean.startsWith('numerologie') || clean.startsWith('tarologie') || clean.startsWith('astrologie') || clean.startsWith('oracles'))) return true;
   return false;
 }
 ---
 <header>
   <div class="header-container">
     <div class="header-left">
-      <a href="/index.html" class="logo">
+      <a href="/" class="logo">
         <span class="symbol">◈</span>
         <span class="text">{logo}</span>
       </a>
