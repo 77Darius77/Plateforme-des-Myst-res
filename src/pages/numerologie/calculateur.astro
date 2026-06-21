@@ -21,8 +21,25 @@ const jsonLd = {
   keywords="calculateur numérologie, calcul numérologie, écoles de numérologie, cabalistique, pythagoricienne, chaldéenne, chinoise, chemin de vie"
   canonicalPath="numerologie/calculateur/"
   jsonLd={jsonLd}
+  breadcrumb={[
+    { name: "Accueil", item: "https://mysteres.fr/" },
+    { name: "Numérologie", item: "https://mysteres.fr/numerologie/" },
+    { name: "Calculateur", item: "https://mysteres.fr/numerologie/calculateur/" }
+  ]}
   section="numerologie"
 >
+
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "Comment calculer votre chemin de vie numérologique",
+  "description": "Entrez votre date de naissance pour obtenir votre nombre de chemin de vie et son interprétation.",
+  "step": [
+    { "@type": "HowToStep", "name": "Entrer la date", "text": "Saisissez votre date de naissance complète (jour, mois, année)." },
+    { "@type": "HowToStep", "name": "Calculer", "text": "Cliquez sur Calculer pour obtenir votre nombre de chemin de vie." },
+    { "@type": "HowToStep", "name": "Lire l'interprétation", "text": "Découvrez la signification de votre nombre selon les traditions numérologique." }
+  ]
+})} />
 
 <!-- ═══════════ BANNIÈRE ═══════════ -->
 <!-- ═══════════ FIL D'ARIANE ═══════════ -->
