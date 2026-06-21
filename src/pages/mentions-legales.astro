@@ -1,0 +1,196 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Mentions légales — Plateforme des Mystères",
+  "url": "https://mysteres.fr/mentions-legales/",
+  "inLanguage": "fr"
+};
+---
+
+<Layout
+  title="Mentions légales — Plateforme des Mystères"
+  description="Mentions légales de la Plateforme des Mystères : éditeur, hébergeur, propriété intellectuelle et données personnelles."
+  keywords="mentions légales, plateforme des mystères"
+  canonicalPath="mentions-legales/"
+  jsonLd={jsonLd}
+  breadcrumb={[
+    { name: "Accueil", item: "https://mysteres.fr/" },
+    { name: "Mentions légales", item: "https://mysteres.fr/mentions-legales/" }
+  ]}
+>
+
+<section id="hero">
+  <h1>
+    <span class="pulse"></span>
+    <span class="gold">Mentions</span> légales
+  </h1>
+  <p class="subtitle">
+    Conformément à la loi n° 2004-575 du 21 juin 2004 pour la confiance dans l'économie numérique (LCEN).
+  </p>
+</section>
+
+<div class="mentions-container">
+
+  <!-- 1. Éditeur -->
+  <section class="mentions-section">
+    <div class="section-title">
+      <div class="num">[ 01 ]</div>
+      <h2>✦ Éditeur du site</h2>
+    </div>
+    <div class="mentions-card">
+      <p><strong>Nom :</strong> Blaise Ganhao</p>
+      <p><strong>Statut :</strong> Particulier</p>
+      <p><strong>Ville :</strong> La Flèche, France</p>
+      <p><strong>Email :</strong> <a href="mailto:plateformedesmysteres@gmail.com">plateformedesmysteres@gmail.com</a></p>
+      <p><strong>Site web :</strong> <a href="https://mysteres.fr">mysteres.fr</a></p>
+    </div>
+  </section>
+
+  <!-- 2. Hébergeur -->
+  <section class="mentions-section">
+    <div class="section-title">
+      <div class="num">[ 02 ]</div>
+      <h2>✦ Hébergeur</h2>
+    </div>
+    <div class="mentions-card">
+      <p><strong>Société :</strong> Netlify, Inc.</p>
+      <p><strong>Adresse :</strong> 512 2nd Street, Suite 200, San Francisco, CA 94107, États-Unis</p>
+      <p><strong>Site web :</strong> <a href="https://www.netlify.com" target="_blank" rel="noopener">netlify.com</a></p>
+    </div>
+  </section>
+
+  <!-- 3. Propriété intellectuelle -->
+  <section class="mentions-section">
+    <div class="section-title">
+      <div class="num">[ 03 ]</div>
+      <h2>✦ Propriété intellectuelle</h2>
+    </div>
+    <div class="mentions-card">
+      <p>
+        L'ensemble du contenu de ce site — textes, articles, calculateurs, mises en page et code source —
+        est la propriété de Blaise Ganhao, sauf mention contraire explicite.
+      </p>
+      <p>
+        Toute reproduction, distribution ou modification, même partielle, est interdite sans autorisation
+        écrite préalable de l'éditeur.
+      </p>
+      <p>
+        Les traditions ésotériques (numérologie, tarologie, astrologie, oracles) appartiennent au domaine
+        public. Les sources et auteurs de référence sont cités dans chaque article concerné.
+      </p>
+    </div>
+  </section>
+
+  <!-- 4. Données personnelles -->
+  <section class="mentions-section">
+    <div class="section-title">
+      <div class="num">[ 04 ]</div>
+      <h2>✦ Données personnelles</h2>
+    </div>
+    <div class="mentions-card">
+      <p>
+        Ce site <strong>ne collecte aucune donnée personnelle</strong>. Aucun cookie de tracking,
+        aucun outil d'analyse d'audience, aucune inscription requise.
+      </p>
+      <p>
+        Tous les calculs (numérologie, tirages) sont effectués <strong>localement dans votre navigateur</strong>.
+        Aucune donnée saisie n'est transmise à un serveur.
+      </p>
+      <p>
+        Conformément au Règlement Général sur la Protection des Données (RGPD), vous disposez d'un droit
+        d'accès, de rectification et de suppression de vos données. Pour toute demande :
+        <a href="mailto:plateformedesmysteres@gmail.com">plateformedesmysteres@gmail.com</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- 5. Responsabilité -->
+  <section class="mentions-section">
+    <div class="section-title">
+      <div class="num">[ 05 ]</div>
+      <h2>✦ Limitation de responsabilité</h2>
+    </div>
+    <div class="mentions-card">
+      <p>
+        Le contenu de ce site est fourni <strong>à titre informatif et culturel uniquement</strong>.
+        Il ne constitue en aucun cas un avis médical, psychologique, financier ou juridique.
+      </p>
+      <p>
+        L'éditeur ne saurait être tenu responsable des décisions prises par les utilisateurs sur la
+        base des informations présentes sur ce site.
+      </p>
+      <p>
+        L'éditeur s'efforce d'assurer l'exactitude des informations publiées mais ne peut garantir
+        leur exhaustivité ni leur mise à jour permanente.
+      </p>
+    </div>
+  </section>
+
+  <!-- 6. Contact -->
+  <section class="mentions-section">
+    <div class="section-title">
+      <div class="num">[ 06 ]</div>
+      <h2>✦ Contact</h2>
+    </div>
+    <div class="mentions-card">
+      <p>
+        Pour toute question relative au site ou à ces mentions légales :
+      </p>
+      <p>
+        <a href="mailto:plateformedesmysteres@gmail.com" class="contact-link">
+          ✉ plateformedesmysteres@gmail.com
+        </a>
+      </p>
+    </div>
+  </section>
+
+</div>
+
+</Layout>
+
+<style is:global>
+  .mentions-container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 1.5rem 3rem;
+  }
+  .mentions-section {
+    margin-bottom: 0.5rem;
+  }
+  .mentions-section h2 {
+    font-family: var(--font-mono);
+    font-size: 1.15rem;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+  }
+  .mentions-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem 2rem;
+    margin-bottom: 1.5rem;
+  }
+  .mentions-card p {
+    color: var(--slate);
+    font-size: 0.9rem;
+    line-height: 1.8;
+    margin-bottom: 0.75rem;
+  }
+  .mentions-card p:last-child {
+    margin-bottom: 0;
+  }
+  .mentions-card a {
+    color: var(--gold);
+    text-decoration: none;
+  }
+  .mentions-card a:hover {
+    text-decoration: underline;
+  }
+  .contact-link {
+    font-family: var(--font-mono);
+    font-size: 0.95rem;
+  }
+</style>
