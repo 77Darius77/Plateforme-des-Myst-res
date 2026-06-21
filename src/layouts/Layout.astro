@@ -34,7 +34,13 @@ const {
   section
 } = Astro.props;
 
-const canonicalUrl = `https://mysteres.fr/${canonicalPath}`;
+function normalizeCanonicalPath(p: string): string {
+  if (p === '' || p === 'index.html') return '';
+  if (p.endsWith('/index.html')) return p.slice(0, -'index.html'.length);
+  if (p.endsWith('.html')) return p.slice(0, -5) + '/';
+  return p.endsWith('/') ? p : p + '/';
+}
+const canonicalUrl = `https://mysteres.fr/${normalizeCanonicalPath(canonicalPath)}`;
 const finalOgTitle = ogTitle || title;
 const finalOgDescription = ogDescription || description;
 ---
@@ -68,7 +74,7 @@ const finalOgDescription = ogDescription || description;
   )}
 
   <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg">
-  <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+  <link rel="sitemap" type="application/xml" href="/sitemap-index.xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
