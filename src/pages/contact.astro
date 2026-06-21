@@ -1,0 +1,360 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  "name": "Contact — Plateforme des Mystères",
+  "url": "https://mysteres.fr/contact/",
+  "inLanguage": "fr"
+};
+---
+
+<Layout
+  title="Contact — Plateforme des Mystères"
+  description="Contactez la Plateforme des Mystères : questions, suggestions, signalement d'erreur ou demande d'analyse personnalisée."
+  keywords="contact, plateforme des mystères, message, question"
+  canonicalPath="contact/"
+  jsonLd={jsonLd}
+  breadcrumb={[
+    { name: "Accueil", item: "https://mysteres.fr/" },
+    { name: "Contact", item: "https://mysteres.fr/contact/" }
+  ]}
+>
+
+<section id="hero">
+  <h1>
+    <span class="pulse-dot"></span>
+    <span class="gold">Contact</span>
+  </h1>
+  <p class="contact-sub">
+    Une question, une suggestion, une erreur à signaler — ou une demande d'analyse personnalisée ?<br>
+    Réponse sous 48h.
+  </p>
+</section>
+
+<div class="contact-container">
+
+  <!-- Formulaire -->
+  <div class="contact-form-wrap">
+
+    <!-- État succès (affiché après envoi) -->
+    <div id="contact-success" class="contact-success" hidden>
+      <div class="success-icon">✦</div>
+      <h3>Message envoyé</h3>
+      <p>Merci, je vous réponds sous 48h à l'adresse indiquée.</p>
+      <a href="/" class="back-home">← Retour à l'accueil</a>
+    </div>
+
+    <!-- Formulaire Netlify -->
+    <form
+      name="contact"
+      method="POST"
+      data-netlify="true"
+      netlify-honeypot="bot-field"
+      id="contact-form"
+      class="contact-form"
+    >
+      <!-- Champ caché obligatoire Netlify -->
+      <input type="hidden" name="form-name" value="contact" />
+      <!-- Honeypot anti-spam -->
+      <p style="display:none"><label>Ne pas remplir : <input name="bot-field" /></label></p>
+
+      <div class="form-group">
+        <label for="contact-sujet">Sujet</label>
+        <select id="contact-sujet" name="sujet" required>
+          <option value="" disabled selected>— Choisir un sujet —</option>
+          <option value="question">Question sur une discipline</option>
+          <option value="analyse">Demande d'analyse personnalisée</option>
+          <option value="erreur">Signaler une erreur</option>
+          <option value="suggestion">Suggestion d'amélioration</option>
+          <option value="autre">Autre</option>
+        </select>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="contact-nom">Prénom</label>
+          <input type="text" id="contact-nom" name="prenom" placeholder="Votre prénom" required />
+        </div>
+        <div class="form-group">
+          <label for="contact-email">Email</label>
+          <input type="email" id="contact-email" name="email" placeholder="votre@email.com" required />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="contact-message">Message</label>
+        <textarea id="contact-message" name="message" rows="6" placeholder="Décrivez votre question ou demande..." required></textarea>
+      </div>
+
+      <button type="submit" class="contact-submit">
+        ✦ Envoyer le message
+      </button>
+
+      <p class="contact-notice">
+        Vos données ne sont utilisées que pour répondre à votre message — aucun stockage, aucun tracking.
+      </p>
+    </form>
+  </div>
+
+  <!-- Infos latérales -->
+  <aside class="contact-aside">
+
+    <div class="aside-card">
+      <h4>✉ Email direct</h4>
+      <a href="mailto:plateformedesmysteres@gmail.com">plateformedesmysteres@gmail.com</a>
+    </div>
+
+    <div class="aside-card">
+      <h4>🔮 Analyse personnalisée</h4>
+      <p>Vous souhaitez une lecture approfondie de votre thème numérologique, tarotique ou astrologique ? Précisez-le dans le formulaire.</p>
+    </div>
+
+    <div class="aside-card">
+      <h4>⏱ Délai de réponse</h4>
+      <p>48h en semaine. Ce site est géré bénévolement — merci de votre patience.</p>
+    </div>
+
+  </aside>
+
+</div>
+
+</Layout>
+
+<style is:global>
+
+.contact-sub {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 1rem;
+  line-height: 1.8;
+  max-width: 540px;
+  margin: 0 auto;
+}
+
+.pulse-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  background: var(--gold);
+  border-radius: 50%;
+  margin-right: 0.75rem;
+  animation: pulseDot 2s ease-in-out infinite;
+}
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.8); }
+}
+
+.contact-container {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 2.5rem;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 1.5rem 4rem;
+}
+
+.contact-form-wrap {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2.5rem;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.form-group label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--gold);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.7rem 1rem;
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  transition: border-color 0.2s ease;
+  width: 100%;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--gold);
+}
+
+.form-group select option {
+  background: var(--bg-deep);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.contact-submit {
+  padding: 0.9rem 2rem;
+  background: var(--gold);
+  color: var(--bg-deep);
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 0.95rem;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  align-self: flex-start;
+}
+
+.contact-submit:hover {
+  filter: brightness(1.1);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(223,178,108,0.3);
+}
+
+.contact-notice {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-style: italic;
+  margin: 0;
+}
+
+/* Succès */
+.contact-success {
+  text-align: center;
+  padding: 3rem 2rem;
+}
+.contact-success .success-icon {
+  font-size: 2.5rem;
+  color: var(--gold);
+  margin-bottom: 1rem;
+}
+.contact-success h3 {
+  color: var(--gold);
+  font-size: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+.contact-success p {
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+}
+.back-home {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--cyan);
+  text-decoration: none;
+}
+.back-home:hover { text-decoration: underline; }
+
+/* Aside */
+.contact-aside {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.aside-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.25rem;
+}
+.aside-card h4 {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--gold);
+  margin-bottom: 0.6rem;
+}
+.aside-card p, .aside-card a {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+.aside-card a {
+  color: var(--cyan);
+  text-decoration: none;
+  word-break: break-all;
+}
+.aside-card a:hover { text-decoration: underline; }
+
+/* Light mode */
+[data-theme="light"] .form-group input,
+[data-theme="light"] .form-group select,
+[data-theme="light"] .form-group textarea {
+  background: #ffffff;
+  border-color: rgba(0,0,0,0.12);
+  color: #0f172a;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .contact-container {
+    grid-template-columns: 1fr;
+  }
+  .contact-aside {
+    order: -1;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .aside-card { flex: 1; min-width: 200px; }
+  .form-row { grid-template-columns: 1fr; }
+}
+
+</style>
+
+<script>
+  // Gestion de la soumission avec feedback visuel
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  const success = document.getElementById('contact-success') as HTMLElement;
+
+  if (form) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+      btn.textContent = 'Envoi en cours...';
+      btn.disabled = true;
+
+      const data = new FormData(form);
+      const res = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(data as any).toString(),
+      });
+
+      if (res.ok) {
+        form.hidden = true;
+        success.hidden = false;
+      } else {
+        btn.textContent = '✦ Envoyer le message';
+        btn.disabled = false;
+        alert('Erreur lors de l\'envoi. Écrivez directement à plateformedesmysteres@gmail.com');
+      }
+    });
+  }
+</script>

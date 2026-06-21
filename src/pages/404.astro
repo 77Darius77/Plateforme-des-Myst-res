@@ -1,0 +1,166 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const arcanes = [
+  { num: "XII", nom: "Le Pendu", msg: "Entre deux mondes, suspendu — parfois, le chemin se trouve en faisant une pause." },
+  { num: "0", nom: "Le Mat", msg: "Le Mat marche vers l'inconnu sans carte. Peut-être êtes-vous au bon endroit." },
+  { num: "XVIII", nom: "La Lune", msg: "La Lune révèle ce qui se cache dans l'ombre. Ce chemin n'existe pas... ou peut-être si." },
+  { num: "X", nom: "La Roue de Fortune", msg: "La roue tourne. Ce chemin perdu est peut-être le début d'un nouveau cycle." },
+  { num: "XVII", nom: "L'Étoile", msg: "L'Étoile guide même dans les chemins inconnus. Votre destination est ailleurs." },
+];
+
+const arcane = arcanes[Math.floor(Math.random() * arcanes.length)];
+---
+
+<Layout
+  title="Page introuvable — Plateforme des Mystères"
+  description="La page que vous cherchez n'existe pas ou a été déplacée."
+  canonicalPath="404/"
+>
+
+<section id="hero-404">
+  <div class="arcane-404">
+    <span class="arcane-num">{arcane.num}</span>
+    <span class="arcane-sep">·</span>
+    <span class="arcane-nom">{arcane.nom}</span>
+  </div>
+
+  <h1>Ce chemin n'existe pas</h1>
+  <p class="msg-404">{arcane.msg}</p>
+
+  <div class="cta-404">
+    <a href="/" class="btn-404-primary">← Retour à l'accueil</a>
+    <a href="/numerologie/cabalistique/" class="btn-404-secondary">✦ Calculer mon Chemin de Vie</a>
+    <a href="/tarologie/marseille/trois-cartes/" class="btn-404-secondary">🃏 Tirer le Tarot</a>
+  </div>
+
+  <div class="links-404">
+    <p>Ou explorez directement :</p>
+    <div class="links-grid">
+      <a href="/numerologie/">Numérologie</a>
+      <a href="/tarologie/">Tarologie</a>
+      <a href="/astrologie/">Astrologie</a>
+      <a href="/oracles/">Oracles</a>
+      <a href="/blog/">Blog</a>
+      <a href="/contact/">Contact</a>
+    </div>
+  </div>
+</section>
+
+</Layout>
+
+<style is:global>
+#hero-404 {
+  text-align: center;
+  padding: 6rem 1.5rem 4rem;
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.arcane-404 {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  color: var(--gold);
+  text-transform: uppercase;
+  border: 1px solid rgba(223,178,108,0.25);
+  border-radius: 999px;
+  padding: 0.35rem 1.25rem;
+  margin-bottom: 2rem;
+}
+.arcane-sep { opacity: 0.4; }
+
+#hero-404 h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin-bottom: 1.25rem;
+  color: var(--text);
+}
+
+.msg-404 {
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  line-height: 1.8;
+  max-width: 480px;
+  margin: 0 auto 3rem;
+  font-style: italic;
+}
+
+.cta-404 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.85rem;
+  margin-bottom: 3rem;
+}
+
+.btn-404-primary {
+  display: inline-block;
+  padding: 0.8rem 1.75rem;
+  background: var(--gold);
+  color: var(--bg-deep);
+  font-weight: 700;
+  font-size: 0.9rem;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+.btn-404-primary:hover {
+  filter: brightness(1.1);
+  transform: translateY(-2px);
+}
+
+.btn-404-secondary {
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  background: transparent;
+  color: var(--text);
+  font-size: 0.88rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+.btn-404-secondary:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.links-404 p {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  margin-bottom: 0.85rem;
+}
+.links-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem;
+}
+.links-grid a {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--cyan);
+  text-decoration: none;
+  padding: 0.3rem 0.85rem;
+  border: 1px solid rgba(34,211,238,0.2);
+  border-radius: 999px;
+  transition: all 0.2s ease;
+}
+.links-grid a:hover {
+  background: rgba(34,211,238,0.08);
+  border-color: rgba(34,211,238,0.5);
+}
+
+@media (max-width: 480px) {
+  .cta-404 { flex-direction: column; align-items: center; }
+  .btn-404-primary, .btn-404-secondary { width: 100%; text-align: center; }
+}
+</style>
