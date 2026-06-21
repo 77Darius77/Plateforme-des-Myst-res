@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import AffiliateBooks from '../../components/AffiliateBooks.astro';
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -214,6 +215,12 @@ const jsonLd = {
   <p>C'est peut-être pour cette raison que le Tarot de Marseille reste, pour de nombreux praticiens, le jeu le plus profond. Il ne donne pas de réponses toutes faites. Il offre des <strong>portes</strong> — et c'est à chacun de les ouvrir.</p>
 
   <hr>
+
+  <AffiliateBooks books={[
+    { title: "La Voie du Tarot", author: "Alejandro Jodorowsky & Marianne Costa", description: "L'œuvre de référence sur le Tarot de Marseille. Symbolisme profond et méthode d'interprétation complète.", searchTerm: "La voie du tarot Jodorowsky Marianne Costa" },
+    { title: "Le Tarot de Marseille — Les 22 Arcanes Majeurs", author: "Kris Hadar", description: "Interprétation ésotérique des arcanes majeurs par un maître tarolologue reconnu.", searchTerm: "Kris Hadar tarot de Marseille arcanes majeurs" },
+    { title: "Tarot et Kabbale", author: "Samael Aun Weor", description: "Les correspondances entre les 22 arcanes du tarot et les 22 lettres hébraïques.", searchTerm: "tarot kabbale arcanes hébraïque symbolisme" },
+  ]} />
 
   <div class="article-footer">
     <p>🃏 Découvrez nos tirages interactifs : <a href="/tarologie/marseille/" style="color:var(--gold);">Tirage Tarot de Marseille</a></p>

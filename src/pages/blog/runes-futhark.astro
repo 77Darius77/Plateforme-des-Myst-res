@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import AffiliateBooks from '../../components/AffiliateBooks.astro';
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -329,6 +330,12 @@ const jsonLd = {
     <li><strong>La gravité.</strong> Les anciens ne consultaient pas les runes pour des futilités. Approchez-les avec une question sincère, dans un état d'esprit réceptif.</li>
     <li><strong>L'ancestralité.</strong> Tirer les runes, c'est se relier à une chaîne humaine millénaire. Ce n'est pas un jeu, mais un héritage.</li>
   </ul>
+
+  <AffiliateBooks books={[
+    { title: "Le Livre des Runes", author: "Ralph Blum", description: "Le classique mondial de la divination runique. Méditations et oracle pour les 24 runes du Futhark.", searchTerm: "Ralph Blum livre des runes oracle futhark" },
+    { title: "Futhark — Manuel de magie runique", author: "Edred Thorsson", description: "Étude approfondie des 24 runes : histoire, magie et pratique runique selon la tradition nordique.", searchTerm: "Edred Thorsson Futhark manuel magie runique" },
+    { title: "Les Runes Nordiques", author: "Paul Rhys Mountfort", description: "Histoire, symbolisme et pratique divinatoire des runes de l'Edda à nos jours.", searchTerm: "runes nordiques symbolisme divination futhark livre" },
+  ]} />
 
   <div class="article-footer">
     <p>ᚠ Consultez les runes avec notre <a href="/numerologie/runes/" style="color:var(--gold);">outil de tirage runique interactif</a> — 3 méthodes inspirées des traditions nordiques.</p>

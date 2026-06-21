@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import AffiliateBooks from '../../components/AffiliateBooks.astro';
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -154,6 +155,12 @@ const jsonLd = {
   <blockquote>
     <strong>« Le véritable gagner, c'est d'avoir exprimé l'Amour sous sa forme la plus exquise. »</strong> — Raúl Durán
   </blockquote>
+
+  <AffiliateBooks books={[
+    { title: "ABC de la Numérologie", author: "Jean-Daniel Fermier", description: "La référence francophone sur la numérologie traditionnelle. Calculs, archétypes et interprétations.", searchTerm: "ABC numérologie Jean-Daniel Fermier" },
+    { title: "Le Livre de Votre Destin", author: "Dan Millman", description: "La numérologie du chemin de vie selon la méthode pythagoricienne. Un classique mondial.", searchTerm: "Dan Millman livre destin numérologie chemin de vie" },
+    { title: "La Kabbale — Le Livre de la Création", author: "Annick de Souzenelle", description: "Plongée dans la symbolique hébraïque à la source de la numérologie cabalistique.", searchTerm: "Annick de Souzenelle kabbale hébraïque" },
+  ]} />
 
   <div class="article-footer">
     <p>🔮 Essayez le <a href="/numerologie/cabalistique/" style="color:var(--gold);">calculateur en ligne</a> pour découvrir vos nombres personnels.</p>

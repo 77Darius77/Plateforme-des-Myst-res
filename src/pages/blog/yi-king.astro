@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import AffiliateBooks from '../../components/AffiliateBooks.astro';
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -270,6 +271,12 @@ const jsonLd = {
   </ul>
 
   <p>Le Yi King est un <strong>conseiller</strong>, pas un devin. Il vous aide à trouver la posture juste, l'action opportune, la compréhension nécessaire. Sa sagesse est profondément éthique : il vous rappelle vos responsabilités plutôt que de vous dicter une conduite.</p>
+
+  <AffiliateBooks books={[
+    { title: "Yi Jing — Le Classique des Mutations", author: "Traduction Cyrille J.-D. Javary", description: "La traduction française de référence du Yi King, avec commentaires et méthode de consultation complète.", searchTerm: "Yi Jing classique mutations Javary traduction française" },
+    { title: "Yi King", author: "Richard Wilhelm", description: "La traduction académique classique du Yi King, préfacée par Carl Gustav Jung. La plus citée au monde.", searchTerm: "Yi King Richard Wilhelm traduction classique" },
+    { title: "Le Yi King pas à pas", author: "Chantal Boudet", description: "Guide pratique pour apprendre à consulter le Yi King en partant de zéro, avec exercices.", searchTerm: "Yi King pas à pas pratique débutant consultation" },
+  ]} />
 
   <div class="article-footer">
     <p>☯️ Consultez le Yi King avec notre <a href="/numerologie/yi-king/" style="color:var(--gold);">outil de tirage interactif</a> — 3 méthodes disponibles.</p>

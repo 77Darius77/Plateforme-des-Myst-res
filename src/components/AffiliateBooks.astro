@@ -1,0 +1,123 @@
+---
+interface Book {
+  title: string;
+  author: string;
+  description: string;
+  searchTerm: string;
+}
+
+interface Props {
+  books: Book[];
+}
+
+const { books } = Astro.props;
+const TAG = "plateformedes-21";
+
+function amazonUrl(searchTerm: string): string {
+  return `https://www.amazon.fr/s?k=${encodeURIComponent(searchTerm)}&tag=${TAG}`;
+}
+---
+
+<div class="affiliate-books">
+  <h3 class="affiliate-title">📚 Pour aller plus loin</h3>
+  <div class="affiliate-grid">
+    {books.map((book) => (
+      <a
+        href={amazonUrl(book.searchTerm)}
+        target="_blank"
+        rel="noopener sponsored"
+        class="affiliate-card"
+      >
+        <div class="book-icon">📖</div>
+        <div class="book-info">
+          <p class="book-title">{book.title}</p>
+          <p class="book-author">{book.author}</p>
+          <p class="book-desc">{book.description}</p>
+        </div>
+        <span class="book-cta">Voir sur Amazon ↗</span>
+      </a>
+    ))}
+  </div>
+  <p class="affiliate-notice">🔗 Liens partenaires Amazon — commission sans surcoût pour vous, et qui soutient ce site gratuit.</p>
+</div>
+
+<style>
+  .affiliate-books {
+    margin: 2.5rem 0 1.5rem;
+    padding: 1.75rem;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+  }
+  .affiliate-title {
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    color: var(--gold);
+    margin: 0 0 1.25rem;
+    letter-spacing: 0.04em;
+  }
+  .affiliate-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .affiliate-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.9rem 1rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+  .affiliate-card:hover {
+    border-color: var(--gold);
+    background: rgba(212, 175, 55, 0.04);
+    transform: translateX(3px);
+  }
+  .book-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+  }
+  .book-info {
+    flex: 1;
+    min-width: 0;
+  }
+  .book-title {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--text);
+    margin: 0 0 0.1rem;
+  }
+  .book-author {
+    font-size: 0.78rem;
+    color: var(--gold);
+    margin: 0 0 0.2rem;
+    font-family: var(--font-mono);
+  }
+  .book-desc {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    margin: 0;
+    line-height: 1.5;
+  }
+  .book-cta {
+    font-size: 0.75rem;
+    color: var(--cyan);
+    font-family: var(--font-mono);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .affiliate-notice {
+    margin: 1rem 0 0;
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    font-style: italic;
+  }
+
+  @media (max-width: 600px) {
+    .book-cta { display: none; }
+  }
+</style>
