@@ -3,32 +3,95 @@ import Layout from '../../layouts/Layout.astro';
 
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "Article",
-  "name": "Yi King — Le Livre des Mutations",
+  "@type": "CollectionPage",
+  "name": "Yi King — Méthodes de Tirage",
   "url": "https://mysteres.fr/oracles/yi-king.html",
-  "description": "Découvrez le Yi King, le Livre des Mutations. 64 hexagrammes pour naviguer le changement avec sagesse.",
+  "description": "Découvrez les 3 méthodes de tirage du Yi King : Tirage à 3 Hexagrammes, Tirage par Mutation et Tirage Simple. 64 hexagrammes du Livre des Mutations.",
   "inLanguage": "fr"
 };
 ---
 
 <Layout
-  title="Yi King — Oracles"
-  description="Découvrez le Yi King (I Ching), le Livre des Mutations. 64 hexagrammes pour naviguer le changement avec sagesse."
-  keywords="yi king, i ching, livre des mutations, hexagrammes, divination chinoise, oracles"
+  title="Yi King (I Ching) — Méthodes de tirage"
+  description="Découvrez 3 méthodes de tirage du Yi King (Livre des Mutations) : Tirage à 3 Hexagrammes, Tirage par Mutation et Tirage Simple. Le plus ancien oracle chinois."
+  keywords="yi king, i ching, livre des mutations, hexagrammes, divination chinoise, tirage yi king, oracles"
   canonicalPath="oracles/yi-king.html"
   jsonLd={jsonLd}
+  section="oracles"
 >
 
-<!-- ═══════════ BANNIÈRE "BIENTÔT" ═══════════ -->
-<section id="hero" style="text-align:center;padding:6rem 1.5rem 4rem;max-width:700px;margin:0 auto;">
-  <h1>
-    <span class="pulse"></span>
-    ☯ <span class="gold">Yi King</span><br>Le Livre des <span class="emerald">Mutations</span>
-  </h1>
-  <p class="subtitle">
-    Cette section est en cours de création. Le Yi King (I Ching), ou Livre des Mutations, est la plus ancienne méthode divinatoire chinoise. Ses 64 hexagrammes offrent une sagesse intemporelle pour naviguer le changement et prendre des décisions éclairées. Revenez bientôt !
+<!-- FIL D'ARIANE -->
+<nav class="breadcrumb" aria-label="Fil d'Ariane" style="padding:0.8rem 1.5rem;font-family:var(--font-mono);font-size:0.8rem;color:var(--text-muted);max-width:1200px;margin:0 auto;">
+  <a href="../index.html" style="color:var(--cyan);">Accueil</a> &rsaquo;
+  <a href="index.html" style="color:var(--cyan);">Oracles</a> &rsaquo;
+  <span style="color:var(--text);">Yi King</span>
+</nav>
+
+<div class="hub-container">
+  <aside class="hub-sidebar">
+    <h1>
+      <span class="pulse"></span>
+      ☯ <span class="gold">Yi King</span><br>Le Livre des <span class="emerald">Mutations</span>
+    </h1>
+    <p class="subtitle">
+      Vieux de plus de 3000 ans, le Yi King (ou I Ching) est le plus ancien oracle chinois et l'un des textes fondateurs de la civilisation chinoise. Composé de 64 hexagrammes — figures de six traits yin (brisés) ou yang (pleins) — il offre une sagesse intemporelle pour naviguer le changement et prendre des décisions éclairées. Chaque hexagramme est un miroir du moment présent et de ses potentialités.
+    </p>
+    <div class="quote">
+      « Le Yi King ne prédit pas l'avenir — il éclaire le moment présent. »
+      <br><span class="gold">— Sagesse ancestrale</span>
+    </div>
+  </aside>
+
+  <main class="hub-main">
+    <div class="section-title">
+      <div class="num">[ 01 ]</div>
+      <h2>☯ Les 3 Tirages du Yi King</h2>
+      <p class="slate">De la consultation rapide à l'analyse complète par mutation, choisissez la méthode qui correspond à votre question.</p>
+    </div>
+
+    <div class="mystere-grid">
+
+      <!-- Carte 1 : Tirage à 3 Hexagrammes -->
+      <div class="mystere-card" style="--card-accent-color: var(--gold); --hover-accent-color: var(--gold);">
+        <div class="card-icon">☰☷☵</div>
+        <h3>TIRAGE À 3 HEXAGRAMMES</h3>
+        <p>
+          Passé, Présent, Futur. Trois hexagrammes pour éclairer l'évolution temporelle de votre situation avec la sagesse du Livre des Mutations.
+        </p>
+        <a href="yi-king/trois-hexagrammes.html" class="btn-explore">Tirer les hexagrammes ☯</a>
+      </div>
+
+      <!-- Carte 2 : Tirage par Mutation -->
+      <div class="mystere-card" style="--card-accent-color: var(--emerald); --hover-accent-color: var(--emerald);">
+        <div class="card-icon">☯→☯</div>
+        <h3>TIRAGE PAR MUTATION</h3>
+        <p>
+          La méthode traditionnelle du Yi King. Un hexagramme de départ, un trait en mutation, et l'hexagramme d'arrivée révèlent la transformation en cours.
+        </p>
+        <a href="yi-king/mutation.html" class="btn-explore">Tirer les hexagrammes ☯</a>
+      </div>
+
+      <!-- Carte 3 : Tirage Simple -->
+      <div class="mystere-card" style="--card-accent-color: var(--violet); --hover-accent-color: var(--violet);">
+        <div class="card-icon">☯</div>
+        <h3>TIRAGE SIMPLE</h3>
+        <p>
+          Un seul hexagramme pour une réponse concentrée et directe. L'essence même du Yi King pour éclairer votre question en un éclair de sagesse.
+        </p>
+        <a href="yi-king/simple.html" class="btn-explore">Tirer un hexagramme ☯</a>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<nav class="sub-nav" style="display:flex;justify-content:space-between;max-width:600px;margin:2rem auto;padding:1rem;">
+  <a href="runes.html" style="color:var(--cyan);font-family:var(--font-mono);">← Runes</a>
+  <a href="belline.html" style="color:var(--cyan);font-family:var(--font-mono);">Oracle de Belline →</a>
+</nav>
+
+  <p slot="sources" style="color:#64748b;font-size:0.75rem;margin-bottom:0.8rem;">
+    Sources : Yi King (Livre des Mutations), texte traditionnel chinois (Zhouyi), encyclopédie Wen (wen.fr), traductions de Richard Wilhelm
   </p>
-  <a href="../oracles/index.html" class="cta">← Retour aux Oracles</a>
-</section>
 
 </Layout>

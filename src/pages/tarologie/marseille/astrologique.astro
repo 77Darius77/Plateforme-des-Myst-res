@@ -1,0 +1,259 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Tirage Astrologique — Tarot de Marseille"
+  description="Découvrez les 12 domaines de votre vie avec le tirage astrologique du Tarot de Marseille."
+  keywords="tarot, astrologique, 12 maisons, tirage gratuit, tarot de marseille"
+  canonicalPath="tarologie/marseille/astrologique.html"
+  section="tarologie"
+>
+
+<nav class="breadcrumb" aria-label="Fil d'Ariane" style="padding:0.8rem 1.5rem;font-family:var(--font-mono);font-size:0.8rem;color:var(--text-muted);max-width:1200px;margin:0 auto;">
+  <a href="../../index.html" style="color:var(--cyan);">Accueil</a> &rsaquo;
+  <a href="../index.html" style="color:var(--cyan);">Tarologie</a> &rsaquo;
+  <a href="../marseille.html" style="color:var(--cyan);">Tarot de Marseille</a> &rsaquo;
+  <span style="color:var(--text);">Tirage Astrologique</span>
+</nav>
+
+<main style="max-width:1200px;margin:0 auto;padding:2rem 1.5rem;text-align:center;">
+  <h1>Tirage <span class="gold">Astrologique</span></h1>
+  <p class="subtitle">Étalez les cartes, puis choisissez-en 12 pour explorer chaque domaine de votre vie (les 12 maisons).</p>
+
+  <div id="deck-area" style="margin-top:2rem;position:relative;height:250px;display:flex;justify-content:center;align-items:center;">
+    <button id="btn-spread" class="btn-explore" style="font-size:1.2rem;padding:1rem 2rem;cursor:pointer;z-index:10;">Étaler les cartes ✦</button>
+    <div id="spread-container" style="display:none;position:relative;width:100%;height:100%;max-width:800px;margin:0 auto;">
+      <p id="instruction-text" style="position:absolute;top:-40px;width:100%;color:var(--gold);font-weight:bold;font-size:1.1rem;">Sélectionnez 12 cartes (0/12)</p>
+    </div>
+  </div>
+
+  <div id="resultats" style="margin-top:3rem;">
+    <div class="astro-layout">
+      <!-- Maisons 1 à 12 -->
+      <div class="tarot-card-container"><div class="tarot-pos">I. Personnalité</div><div class="tarot-card" id="slot-1"><div class="card-inner"><div class="card-front empty-slot"></div><div class="card-back"><img id="img-1" src="" class="card-img"><h3 id="name-1"></h3></div></div></div></div>
+      <div class="tarot-card-container"><div class="tarot-pos">II. Finances</div><div class="tarot-card" id="slot-2"><div class="card-inner"><div class="card-front empty-slot"></div><div class="card-back"><img id="img-2" src="" class="card-img"><h3 id="name-2"></h3></div></div></div></div>
+      <div class="tarot-card-container"><div class="tarot-pos">III. Entourage</div><div class="tarot-card" id="slot-3"><div class="card-inner"><div class="card-front empty-slot"></div><div class="card-back"><img id="img-3" src="" class="card-img"><h3 id="name-3"></h3></div></div></div></div>
+      <div class="tarot-card-container"><div class="tarot-pos">IV. Foyer</div><div class="tarot-card" id="slot-4"><div class="card-inner"><div class="card-front empty-slot"></div><div class="card-back"><img id="img-4" src="" class="card-img"><h3 id="name-4"></h3></div></div></div></div>
+      <div class="tarot-card-container"><div class="tarot-pos">V. Créativité</div><div class="tarot-card" id="slot-5"><div class="card-inner"><div class="card-front empty-slot"></div><div class="card-back"><img id="img-5" src="" class="card-img"><h3 id="name-5"></h3></div></div></div></div>
+      <div class="tarot-card-container"><div class="tarot-pos">VI. Quotidien</div><div class="tarot-card" id="slot-6"><div class="card-inner"><div class="card-front empty-slot"></div><div class="card-back"><img id="img-6" src="" class="card-img"><h3 id="name-6"></h3></div></div></div></div>
+      <div class="tarot-card-container"><div class="tarot-pos">VII. Partenariats</div><div class="tarot-card" id="slot-7"><div class="card-inner"><div class="card-front empty-slot"></div><div class="card-back"><img id="img-7" src="" class="card-img"><h3 id="name-7"></h3></div></div></div></div>
+      <div class="tarot-card-container"><div class="tarot-pos">VIII. Transformation</div><div class="tarot-card" id="slot-8"><div class="card-inner"><div class="card-front empty-slot"></div><div class="card-back"><img id="img-8" src="" class="card-img"><h3 id="name-8"></h3></div></div></div></div>
+      <div class="tarot-card-container"><div class="tarot-pos">IX. Idéal</div><div class="tarot-card" id="slot-9"><div class="card-inner"><div class="card-front empty-slot"></div><div class="card-back"><img id="img-9" src="" class="card-img"><h3 id="name-9"></h3></div></div></div></div>
+      <div class="tarot-card-container"><div class="tarot-pos">X. Carrière</div><div class="tarot-card" id="slot-10"><div class="card-inner"><div class="card-front empty-slot"></div><div class="card-back"><img id="img-10" src="" class="card-img"><h3 id="name-10"></h3></div></div></div></div>
+      <div class="tarot-card-container"><div class="tarot-pos">XI. Projets</div><div class="tarot-card" id="slot-11"><div class="card-inner"><div class="card-front empty-slot"></div><div class="card-back"><img id="img-11" src="" class="card-img"><h3 id="name-11"></h3></div></div></div></div>
+      <div class="tarot-card-container"><div class="tarot-pos">XII. Secret</div><div class="tarot-card" id="slot-12"><div class="card-inner"><div class="card-front empty-slot"></div><div class="card-back"><img id="img-12" src="" class="card-img"><h3 id="name-12"></h3></div></div></div></div>
+    </div>
+    <div id="reveal-area" style="display:none;margin-top:2rem;">
+      <button id="btn-reveal" class="btn-explore" style="font-size:1.2rem;padding:1rem 2rem;cursor:pointer;">Révéler le tirage ✦</button>
+    </div>
+    <div id="reading-section" class="tr-outer" style="display:none;margin-top:2.5rem;"></div>
+
+    <p style="margin-top:2rem;font-style:italic;color:var(--text-muted);">Ce tirage vous offre des pistes de réflexion. Le libre arbitre reste votre meilleur guide.</p>
+  </div>
+</main>
+
+<style>
+  .astro-layout { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+  .tarot-card-container { width: 100%; max-width: 180px; justify-self: center; }
+  .tarot-pos { font-family: var(--font-mono); font-size: 0.75rem; color: var(--gold); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 1px; }
+  .tarot-card { width: 100%; height: 280px; perspective: 1000px; }
+  .card-inner { position: relative; width: 100%; height: 100%; text-align: center; transition: transform 0.8s; transform-style: preserve-3d; }
+  .tarot-card.flipped .card-inner { transform: rotateY(180deg); }
+  .card-front, .card-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 8px; border: 2px solid var(--gold); display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 0.5rem; }
+  
+  .card-front { 
+    background-image: url('/images/tarot/card-back.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  
+  .empty-slot {
+    background: rgba(255,255,255,0.05);
+    background-image: none;
+    border: 2px dashed rgba(212, 175, 55, 0.5);
+  }
+  .filled-slot {
+    background-image: url('/images/tarot/card-back.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 2px solid var(--gold);
+    box-shadow: 0 0 8px rgba(212, 175, 55, 0.3);
+  }
+  
+  .card-back { background: var(--bg-card); transform: rotateY(180deg); box-shadow: 0 5px 15px rgba(0,0,0,0.5); overflow: hidden; }
+  .card-img { width: 100%; height: 100%; object-fit: contain; border-radius: 4px; }
+  .card-back h3 { color: var(--gold); font-size: 0.8rem; margin-top: 0.2rem; position: absolute; bottom: 0; background: rgba(0,0,0,0.8); width: 100%; padding: 0.2rem 0; }
+  
+  @media (max-width: 800px) {
+    .astro-layout { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (max-width: 500px) {
+    .astro-layout { grid-template-columns: repeat(2, 1fr); }
+  }
+
+</style>
+
+<style is:global>
+  /* Cartes étalées — styles globaux car éléments créés dynamiquement par JS */
+  .spread-card {
+    position: absolute;
+    width: 60px;
+    height: 110px;
+    background-image: url('/images/tarot/card-back.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 1px solid #d4af37;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    top: 50px;
+    box-shadow: -2px 0px 6px rgba(0,0,0,0.9), 0 0 4px rgba(212, 175, 55, 0.15);
+  }
+  .spread-card:hover {
+    transform: translateY(-18px) !important;
+    z-index: 100 !important;
+    box-shadow: 0px 12px 20px rgba(0,0,0,0.7), 0 0 12px rgba(212, 175, 55, 0.5);
+  }
+  .spread-card.selected {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+</style>
+
+<script is:inline src="/js/tarot-data.js"></script>
+<script is:inline src="/js/tarot-positions.js"></script>
+<script is:inline src="/js/tarot-cardtypes.js"></script>
+<script is:inline src="/js/tarot-planes.js"></script>
+<script is:inline src="/js/tarot-interp.js"></script>
+<script is:inline>
+  function initTarotSpread() {
+    const btnSpread = document.getElementById('btn-spread');
+    if (!btnSpread || btnSpread.dataset.initialized) return;
+    btnSpread.dataset.initialized = "true";
+
+    const MAX_CARDS = 12;
+    let selectedCards = [];
+    let deckIndices = [];
+
+    const newBtnSpread = btnSpread.cloneNode(true);
+    btnSpread.parentNode.replaceChild(newBtnSpread, btnSpread);
+
+    newBtnSpread.addEventListener('click', () => {
+      newBtnSpread.style.display = 'none';
+      const container = document.getElementById('spread-container');
+      container.style.display = 'block';
+      
+      container.querySelectorAll('.spread-card').forEach(c => c.remove());
+      
+      deckIndices = Array.from({length: 22}, (_, i) => i).sort(() => 0.5 - Math.random());
+      
+      void container.offsetWidth;
+      const containerWidth = container.offsetWidth > 0 ? container.offsetWidth : Math.min(window.innerWidth - 40, 800);
+      const cardWidth = 60;
+      const step = (containerWidth - cardWidth) / 21;
+      
+      for(let i=0; i<22; i++) {
+        const card = document.createElement('div');
+        card.className = 'spread-card';
+        card.style.left = `${i * step}px`;
+        card.style.zIndex = i;
+        
+        const middle = 10.5;
+        const distanceFromCenter = Math.abs(i - middle);
+        const yOffset = (distanceFromCenter * distanceFromCenter) * 0.5;
+        const rotation = (i - middle) * 2;
+        
+        card.style.transform = `translateY(${yOffset}px) rotate(${rotation}deg)`;
+        card.dataset.index = deckIndices[i];
+        card.dataset.id = i;
+        
+        card.addEventListener('click', () => selectCard(card));
+        container.appendChild(card);
+      }
+    });
+
+    function selectCard(cardEl) {
+      if(selectedCards.length >= MAX_CARDS) return;
+      
+      cardEl.classList.add('selected');
+      const actualCardData = window.tarotData[cardEl.dataset.index];
+      selectedCards.push(actualCardData);
+      
+      const slotIdx = selectedCards.length;
+      const slotFront = document.querySelector(`#slot-${slotIdx} .card-front`);
+      if(slotFront) {
+        slotFront.classList.remove('empty-slot');
+        slotFront.classList.add('filled-slot');
+      }
+      
+      const instr = document.getElementById('instruction-text');
+      if(instr) instr.innerText = `Sélectionnez ${MAX_CARDS} cartes (${selectedCards.length}/${MAX_CARDS})`;
+      
+      if(selectedCards.length === MAX_CARDS) {
+        if(instr) instr.innerText = "Tirage complet.";
+        setTimeout(() => {
+          document.getElementById('deck-area').style.display = 'none';
+          document.getElementById('reveal-area').style.display = 'block';
+        }, 800);
+      }
+    }
+
+    const btnReveal = document.getElementById('btn-reveal');
+    if (btnReveal) {
+      const newBtnReveal = btnReveal.cloneNode(true);
+      btnReveal.parentNode.replaceChild(newBtnReveal, btnReveal);
+      newBtnReveal.addEventListener('click', () => {
+        newBtnReveal.style.display = 'none';
+
+        setTimeout(() => {
+          for(let i=1; i<=MAX_CARDS; i++) {
+            const cardData = selectedCards[i-1];
+            document.getElementById(`img-${i}`).src = cardData.img;
+            document.getElementById(`name-${i}`).innerText = cardData.name;
+            setTimeout(() => {
+              document.getElementById(`slot-${i}`).classList.add('flipped');
+            }, i * 200);
+          }
+        }, 100);
+
+        setTimeout(() => {
+          const rs = document.getElementById('reading-section');
+          if (rs && window.tarotInterp) {
+            rs.innerHTML = window.tarotInterp.generateReading('astrologique', selectedCards)
+              + window.tarotInterp.generateAllPlaneReadings('astrologique', selectedCards);
+            rs.style.display = 'block';
+            rs.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            initPlaneTabs(rs);
+          }
+        }, 3500);
+      });
+    }
+
+    function initPlaneTabs(root) {
+      const tabs = root.querySelectorAll('.tr-plane-tab');
+      const panes = root.querySelectorAll('.tr-plane-pane');
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          const plane = tab.dataset.plane;
+          tabs.forEach(t => t.classList.toggle('active', t === tab));
+          panes.forEach(p => p.classList.toggle('active', p.dataset.plane === plane));
+        });
+      });
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initTarotSpread);
+  } else {
+    initTarotSpread();
+  }
+  document.addEventListener('astro:page-load', initTarotSpread);
+</script>
+
+</Layout>

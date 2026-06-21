@@ -6,7 +6,7 @@ const jsonLd = {
   "@type": "CollectionPage",
   "name": "Oracles — Plateforme des Mystères",
   "url": "https://mysteres.fr/oracles/",
-  "description": "Découvrez les différents arts divinatoires : Oracle de Belline, Géomancie, Runes nordiques et Yi King.",
+  "description": "Découvrez les différents arts divinatoires : Oracle de Belline, Oracle Gé, Oracle de la Triade, Oracle des Miroirs, Runes nordiques et Yi King.",
   "inLanguage": "fr",
   "about": {
     "@type": "Thing",
@@ -17,10 +17,11 @@ const jsonLd = {
 
 <Layout
   title="Oracles — Plateforme des Mystères"
-  description="Découvrez les 4 arts divinatoires : Oracle de Belline, Géomancie, Runes nordiques et Yi King. Gratuit, sans tracking."
-  keywords="oracles, belline, géomancie, runes, yi king, divination, arts divinatoires"
+  description="Découvrez les 6 arts divinatoires : Oracle de Belline, Oracle Gé, Oracle de la Triade, Oracle des Miroirs, Runes nordiques et Yi King. Gratuit, sans tracking."
+  keywords="oracles, belline, géomancie, triade, runes, yi king, divination, arts divinatoires"
   canonicalPath="oracles/index.html"
   jsonLd={jsonLd}
+  section="oracles"
 >
 
 
@@ -38,8 +39,8 @@ const jsonLd = {
       🔮 <span class="gold">Oracles</span><br>Les arts <span class="emerald">divinatoires</span>
     </h1>
     <p class="subtitle">
-      Quatre traditions pour éclairer votre chemin.
-      De l'Oracle de Belline au Yi King, chaque art offre une voie unique
+      Six traditions pour éclairer votre chemin.
+      De l'Oracle de Belline à l'Oracle des Miroirs, chaque art offre une voie unique
       pour recevoir guidance et inspiration au quotidien.
     </p>
     <div class="quote">
@@ -51,8 +52,8 @@ const jsonLd = {
   <!-- Grille des Oracles -->
   <main class="hub-main">
     <div class="section-title">
-      <div class="num">[ 01 ]</div>
-      <h2>✦ Les 4 Oracles</h2>
+        <div class="num">[ 01 ]</div>
+        <h2>✦ Les 6 Oracles</h2>
       <p class="slate">Choisis l'art divinatoire qui résonne avec ton cheminement intérieur.</p>
     </div>
 
@@ -66,7 +67,7 @@ const jsonLd = {
           53 cartes d'une grande précision divinatoire. Créé par le voyant Edmond
           dans les années 1960, c'est l'oracle de prédilection des cartomanciens.
         </p>
-        <span class="badge-disabled">Bientôt</span>
+        <a href="belline.html" class="btn-explore">Découvrir l'Oracle ✦</a>
       </div>
 
       <!-- Carte 2 : Oracle Gé (Géomancie) -->
@@ -77,21 +78,43 @@ const jsonLd = {
           La géomancie, art millénaire des figures. Interprétation des 16 figures
           géomantiques issues de la terre, pratiquée depuis le Moyen Âge.
         </p>
-        <span class="badge-disabled">Bientôt</span>
+        <a href="ge.html" class="btn-explore">Découvrir l'Oracle ✦</a>
       </div>
 
-      <!-- Carte 3 : Runes nordiques -->
+      <!-- Carte 4 : Oracle de la Triade -->
+      <div class="mystere-card" style="--card-accent-color: var(--cyan); --hover-accent-color: var(--cyan);">
+        <div class="card-icon">🔺</div>
+        <h3>ORACLE DE LA TRIADE</h3>
+        <p>
+          57 cartes inspirées de l'ésotérisme égyptien et universel. Créé par Dominique Duplaa,
+          cet oracle puissant guide de la matière vers l'esprit, d'Alpha à Oméga.
+        </p>
+        <a href="triade.html" class="btn-explore">Découvrir l'Oracle ✦</a>
+      </div>
+
+      <!-- Carte 5 : Oracle des Miroirs -->
+      <div class="mystere-card" style="--card-accent-color: var(--violet); --hover-accent-color: var(--violet);">
+        <div class="card-icon">🪞</div>
+        <h3>ORACLE DES MIROIRS</h3>
+        <p>
+          53 cartes psychanalytiques et intuitives créées par Dimitri d'Alfange d'Uvril.
+          Chaque carte est un miroir de l'âme pour une introspection profonde et bienveillante.
+        </p>
+        <a href="miroirs.html" class="btn-explore">Découvrir l'Oracle ✦</a>
+      </div>
+
+      <!-- Carte 6 : Runes nordiques -->
       <div class="mystere-card" style="--card-accent-color: var(--violet); --hover-accent-color: var(--violet);">
         <div class="card-icon">ᚱ</div>
         <h3>RUNES NORDIQUES</h3>
         <p>
-          L'alphabet sacré des anciens peuples germaniques. Chaque rune est un symbole
-          de pouvoir et de connaissance, utilisé pour la divination et la magie.
+          L'alphabet sacré Futhark découvert par Odin. 24 runes mêlant psychanalyse
+          et intuition pour une divination puissante inspirée des traditions nordiques.
         </p>
-        <span class="badge-disabled">Bientôt</span>
+        <a href="runes.html" class="btn-explore">Découvrir l'Oracle ✦</a>
       </div>
 
-      <!-- Carte 4 : Yi King -->
+      <!-- Carte 7 : Yi King -->
       <div class="mystere-card" style="--card-accent-color: var(--rose); --hover-accent-color: var(--rose);">
         <div class="card-icon">☯</div>
         <h3>YI KING</h3>
@@ -99,7 +122,7 @@ const jsonLd = {
           Le Livre des Mutations, 64 hexagrammes. La plus ancienne méthode divinatoire
           chinoise, offrant une sagesse intemporelle pour naviguer le changement.
         </p>
-        <span class="badge-disabled">Bientôt</span>
+        <a href="yi-king.html" class="btn-explore">Découvrir l'Oracle ✦</a>
       </div>
 
     </div>
@@ -107,7 +130,7 @@ const jsonLd = {
 </div>
 
   <p slot="sources" style="color:#64748b;font-size:0.75rem;margin-bottom:0.8rem;">
-    Sources : Oracle de Belline (Edmond), Géomancie (tradition médiévale), Runes (Futhark ancien), Yi King (Livre des Mutations)
+    Sources : Oracle de Belline (Edmond), Oracle Gé, Oracle de la Triade (Dominique Duplaa), Oracle des Miroirs (Dimitri d'Alfange d'Uvril / Aurore Schmitt), Runes (Futhark ancien), Yi King (Livre des Mutations)
   </p>
 
 </Layout>

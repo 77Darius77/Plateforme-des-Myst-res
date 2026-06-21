@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 420" width="300" height="420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1a1a2e"/>
+      <stop offset="50%" stop-color="#16213e"/>
+      <stop offset="100%" stop-color="#0f3460"/>
+    </linearGradient>
+    <linearGradient id="mirror" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e2a9e5"/>
+      <stop offset="30%" stop-color="#c471ed"/>
+      <stop offset="60%" stop-color="#7b68ee"/>
+      <stop offset="100%" stop-color="#4169e1"/>
+    </linearGradient>
+    <linearGradient id="orbit" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7b68ee"/>
+      <stop offset="100%" stop-color="#e2a9e5"/>
+    </linearGradient>
+  </defs>
+  <!-- Background -->
+  <rect width="300" height="420" rx="12" ry="12" fill="url(#bg)"/>
+  <!-- Border frame -->
+  <rect x="8" y="8" width="284" height="404" rx="8" ry="8" fill="none" stroke="url(#mirror)" stroke-width="1.5" opacity="0.6"/>
+  <rect x="14" y="14" width="272" height="392" rx="5" ry="5" fill="none" stroke="url(#mirror)" stroke-width="0.8" opacity="0.3"/>
+  <!-- Title -->
+  <text x="150" y="55" text-anchor="middle" font-family="serif" font-size="14" font-weight="bold" fill="url(#mirror)" letter-spacing="3">ORACLE</text>
+  <text x="150" y="75" text-anchor="middle" font-family="serif" font-size="16" font-weight="bold" fill="url(#mirror)" letter-spacing="5">DES</text>
+  <text x="150" y="95" text-anchor="middle" font-family="serif" font-size="18" font-weight="bold" fill="url(#mirror)" letter-spacing="4">MIROIRS</text>
+  <!-- Central Mirror design -->
+  <circle cx="150" cy="210" r="90" fill="none" stroke="url(#orbit)" stroke-width="0.8" opacity="0.4"/>
+  <circle cx="150" cy="210" r="75" fill="none" stroke="url(#mirror)" stroke-width="1.2" opacity="0.5"/>
+  <ellipse cx="150" cy="210" rx="60" ry="80" fill="url(#mirror)" opacity="0.08" stroke="url(#mirror)" stroke-width="1.5"/>
+  <ellipse cx="150" cy="210" rx="45" ry="60" fill="url(#mirror)" opacity="0.12" stroke="url(#mirror)" stroke-width="1"/>
+  <circle cx="150" cy="210" r="20" fill="none" stroke="url(#mirror)" stroke-width="0.8" opacity="0.6"/>
+  <!-- Orbital rings around mirror -->
+  <ellipse cx="150" cy="210" rx="95" ry="35" fill="none" stroke="url(#orbit)" stroke-width="0.6" opacity="0.25" transform="rotate(-20 150 210)"/>
+  <ellipse cx="150" cy="210" rx="95" ry="35" fill="none" stroke="url(#orbit)" stroke-width="0.4" opacity="0.15" transform="rotate(70 150 210)"/>
+  <!-- Stars / Sparkles -->
+  <circle cx="85" cy="135" r="2" fill="#e2a9e5" opacity="0.7"/>
+  <circle cx="215" cy="145" r="1.5" fill="#c471ed" opacity="0.6"/>
+  <circle cx="95" cy="290" r="1.5" fill="#7b68ee" opacity="0.5"/>
+  <circle cx="210" cy="280" r="2" fill="#e2a9e5" opacity="0.6"/>
+  <circle cx="130" cy="120" r="1" fill="#4169e1" opacity="0.4"/>
+  <circle cx="175" cy="305" r="1" fill="#c471ed" opacity="0.4"/>
+  <circle cx="60" cy="200" r="1.5" fill="#7b68ee" opacity="0.5"/>
+  <circle cx="240" cy="220" r="1" fill="#e2a9e5" opacity="0.5"/>
+  <circle cx="110" cy="340" r="1.5" fill="#c471ed" opacity="0.3"/>
+  <circle cx="190" cy="90" r="1" fill="#4169e1" opacity="0.4"/>
+  <!-- Bottom text -->
+  <text x="150" y="370" text-anchor="middle" font-family="serif" font-size="9" fill="url(#mirror)" letter-spacing="4" opacity="0.6">DIMITRI D'ALFANGE D'UVRIL</text>
+  <text x="150" y="388" text-anchor="middle" font-family="serif" font-size="8" fill="url(#mirror)" letter-spacing="2" opacity="0.4">AURO&#x308;RE SCHMITT</text>
+</svg>

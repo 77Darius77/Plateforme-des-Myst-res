@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="810" height="990">
+<!-- Fond -->
+<rect width="100%" height="100%" fill="none" />
+<!-- Trait 6 -->
+<rect x="0" y="0" width="270" height="90" fill="#E8E3E1" />
+<rect x="540" y="0" width="270" height="90" fill="#E8E3E1" />
+<!-- Trait 5 -->
+<rect x="0" y="180" width="810" height="90" fill="#E8E3E1" />
+<!-- Trait 4 -->
+<rect x="0" y="360" width="810" height="90" fill="#E8E3E1" />
+<!-- Trait 3 -->
+<rect x="0" y="540" width="810" height="90" fill="#E8E3E1" />
+<!-- Trait 2 -->
+<rect x="0" y="720" width="270" height="90" fill="#E8E3E1" />
+<rect x="540" y="720" width="270" height="90" fill="#E8E3E1" />
+<!-- Trait 1 -->
+<rect x="0" y="900" width="810" height="90" fill="#E8E3E1" />
+</svg>

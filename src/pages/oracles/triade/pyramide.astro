@@ -1,0 +1,362 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Tirage Pyramide (Tétraktys) — Oracle de la Triade | Plateforme des Mystères"
+  description="Tirage gratuit en Pyramide (10 cartes) de l'Oracle de la Triade. La Tétraktys sacrée : Spirituel, Idées, Action, Concret. Vision complète."
+  keywords="oracle triade pyramide, tétraktys triade, tirage 10 cartes triade"
+  canonicalPath="oracles/triade/pyramide.html"
+  section="oracles"
+>
+
+<nav class="breadcrumb" aria-label="Fil d'Ariane" style="padding:0.8rem 1.5rem;font-family:var(--font-mono);font-size:0.8rem;color:var(--text-muted);max-width:1200px;margin:0 auto;">
+  <a href="../../../index.html" style="color:var(--cyan);">Accueil</a> &rsaquo;
+  <a href="../../index.html" style="color:var(--cyan);">Oracles</a> &rsaquo;
+  <a href="../triade.html" style="color:var(--cyan);">Oracle de la Triade</a> &rsaquo;
+  <span style="color:var(--text);">Tirage Pyramide</span>
+</nav>
+
+<main style="max-width:1100px;margin:0 auto;padding:1.5rem;">
+  <header style="text-align:center;margin-bottom:2rem;">
+    <h1 style="font-family:var(--font-display);font-size:2rem;margin:0;">
+      <span class="gold">Tirage Pyramide</span> <span style="color:var(--cyan);font-size:1.2rem;">— Tétraktys</span>
+    </h1>
+    <p style="color:var(--cyan);font-family:var(--font-mono);font-size:0.85rem;">10 cartes · 4 niveaux · Spirituel → Idées → Action → Concret</p>
+  </header>
+
+  <div style="text-align:center;margin-bottom:1.5rem;">
+    <button id="btn-spread" style="padding:0.8rem 2rem;background:transparent;border:2px solid var(--cyan);color:var(--cyan);border-radius:8px;cursor:pointer;font-family:var(--font-mono);font-size:0.95rem;transition:all 0.3s;"
+      onmouseover="this.style.background='var(--cyan)';this.style.color='#0a0a1a';"
+      onmouseout="this.style.background='transparent';this.style.color='var(--cyan)';">
+      🔺 BRASSER ET TIRER
+    </button>
+  </div>
+
+  <div id="spread-container" style="display:none;margin-bottom:2rem;">
+    <p style="text-align:center;color:var(--text-muted);font-size:0.8rem;margin-bottom:0.5rem;">Sélectionnez 10 cartes dans l'éventail</p>
+    <div id="card-counter" style="text-align:center;color:var(--cyan);font-family:var(--font-mono);font-size:1.1rem;font-weight:bold;margin-bottom:0.5rem;">0 / 10</div>
+    <div id="spread-row" style="position:relative;height:160px;overflow:visible;"></div>
+  </div>
+
+  <div id="selected-container" style="margin-bottom:2rem;">
+    <div class="pyramid-grid">
+      <div class="pyramid-row">
+        <div class="tarot-card-container">
+          <div class="tarot-pos">Spirituel</div>
+          <div class="tarot-card" id="slot-0"><div class="card-inner">
+            <div class="card-front empty-slot"></div>
+            <div class="card-back" style="border-color:var(--cyan);">
+              <img id="img-0" src="" alt="" class="card-img">
+            </div>
+          </div></div>
+        </div>
+      </div>
+      <div class="pyramid-row">
+        <div class="tarot-card-container">
+          <div class="tarot-pos">Idée 1</div>
+          <div class="tarot-card" id="slot-1"><div class="card-inner">
+            <div class="card-front empty-slot"></div>
+            <div class="card-back" style="border-color:var(--cyan);">
+              <img id="img-1" src="" alt="" class="card-img">
+            </div>
+          </div></div>
+        </div>
+        <div class="tarot-card-container">
+          <div class="tarot-pos">Idée 2</div>
+          <div class="tarot-card" id="slot-2"><div class="card-inner">
+            <div class="card-front empty-slot"></div>
+            <div class="card-back" style="border-color:var(--cyan);">
+              <img id="img-2" src="" alt="" class="card-img">
+            </div>
+          </div></div>
+        </div>
+      </div>
+      <div class="pyramid-row">
+        <div class="tarot-card-container">
+          <div class="tarot-pos">Action 1</div>
+          <div class="tarot-card" id="slot-3"><div class="card-inner">
+            <div class="card-front empty-slot"></div>
+            <div class="card-back" style="border-color:var(--cyan);">
+              <img id="img-3" src="" alt="" class="card-img">
+            </div>
+          </div></div>
+        </div>
+        <div class="tarot-card-container">
+          <div class="tarot-pos">Action 2</div>
+          <div class="tarot-card" id="slot-4"><div class="card-inner">
+            <div class="card-front empty-slot"></div>
+            <div class="card-back" style="border-color:var(--cyan);">
+              <img id="img-4" src="" alt="" class="card-img">
+            </div>
+          </div></div>
+        </div>
+        <div class="tarot-card-container">
+          <div class="tarot-pos">Action 3</div>
+          <div class="tarot-card" id="slot-5"><div class="card-inner">
+            <div class="card-front empty-slot"></div>
+            <div class="card-back" style="border-color:var(--cyan);">
+              <img id="img-5" src="" alt="" class="card-img">
+            </div>
+          </div></div>
+        </div>
+      </div>
+      <div class="pyramid-row">
+        <div class="tarot-card-container">
+          <div class="tarot-pos">Concret 1</div>
+          <div class="tarot-card" id="slot-6"><div class="card-inner">
+            <div class="card-front empty-slot"></div>
+            <div class="card-back" style="border-color:var(--cyan);">
+              <img id="img-6" src="" alt="" class="card-img">
+            </div>
+          </div></div>
+        </div>
+        <div class="tarot-card-container">
+          <div class="tarot-pos">Concret 2</div>
+          <div class="tarot-card" id="slot-7"><div class="card-inner">
+            <div class="card-front empty-slot"></div>
+            <div class="card-back" style="border-color:var(--cyan);">
+              <img id="img-7" src="" alt="" class="card-img">
+            </div>
+          </div></div>
+        </div>
+        <div class="tarot-card-container">
+          <div class="tarot-pos">Concret 3</div>
+          <div class="tarot-card" id="slot-8"><div class="card-inner">
+            <div class="card-front empty-slot"></div>
+            <div class="card-back" style="border-color:var(--cyan);">
+              <img id="img-8" src="" alt="" class="card-img">
+            </div>
+          </div></div>
+        </div>
+        <div class="tarot-card-container">
+          <div class="tarot-pos">Concret 4</div>
+          <div class="tarot-card" id="slot-9"><div class="card-inner">
+            <div class="card-front empty-slot"></div>
+            <div class="card-back" style="border-color:var(--cyan);">
+              <img id="img-9" src="" alt="" class="card-img">
+            </div>
+          </div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="reveal-container" style="display:none;text-align:center;margin-bottom:2rem;">
+    <button id="btn-reveal" style="padding:0.8rem 2rem;background:transparent;border:2px solid var(--gold);color:var(--gold);border-radius:8px;cursor:pointer;font-family:var(--font-mono);font-size:0.95rem;transition:all 0.3s;"
+      onmouseover="this.style.background='var(--gold)';this.style.color='#0a0a1a';"
+      onmouseout="this.style.background='transparent';this.style.color='var(--gold)';">
+      ✦ RÉVÉLER LES CARTES
+    </button>
+  </div>
+
+  <div id="reading-section" class="tr-outer" style="display:none;margin-top:2.5rem;"></div>
+
+  <p style="margin-top:2rem;font-style:italic;color:var(--text-muted);text-align:center;">
+    La Tétraktys est une figure sacrée de la tradition pythagoricienne. Ce tirage offre une vision complète de votre cheminement.
+  </p>
+</main>
+
+<style is:global>
+  .pyramid-grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
+  }
+  .pyramid-row {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+  }
+  .tarot-card-container { width: 135px; }
+  .tarot-pos { font-family: var(--font-mono); font-size: 0.65rem; color: var(--gold); margin-bottom: 0.25rem; text-transform: uppercase; letter-spacing: 0.5px; text-align: center; }
+  .tarot-card { width: 100%; height: 225px; perspective: 1000px; }
+  .card-inner { position: relative; width: 100%; height: 100%; text-align: center; transition: transform 0.8s; transform-style: preserve-3d; }
+  .tarot-card.flipped .card-inner { transform: rotateY(180deg); }
+
+  .card-front, .card-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 8px; border: 2px solid var(--cyan); display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 0.4rem; }
+
+  .card-front {
+    background-image: url('/images/oracles/triade-card-back.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    justify-content: center; align-items: center;
+  }
+
+  .empty-slot {
+    background: rgba(var(--cyan-rgb), 0.03);
+    background-image: none;
+    border: 2px dashed rgba(var(--cyan-rgb), 0.4);
+  }
+  .filled-slot {
+    background-image: url('/images/oracles/triade-card-back.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 2px solid var(--cyan);
+    box-shadow: 0 0 8px rgba(var(--cyan-rgb), 0.3);
+  }
+
+  .card-back { background: var(--bg-card); transform: rotateY(180deg); box-shadow: 0 6px 12px rgba(0,0,0,0.6); overflow: hidden; justify-content: center; align-items: center; padding: 0; }
+  .card-back h3 { font-size: 0.7rem; margin-bottom: 0.1rem; padding-bottom: 0.1rem; width: 100%; color: var(--gold); }
+  .card-img { width: 102%; height: auto; max-height: 92%; border-radius: 4px; object-fit: contain; margin: 0 0 0.1rem; }
+
+  @media (max-width: 900px) {
+    .tarot-card-container { width: 100px; }
+    .tarot-card { height: 180px; }
+    .pyramid-row { gap: 0.5rem; }
+  }
+</style>
+
+<style is:global>
+  .spread-card {
+    position: absolute;
+    width: 56px;
+    height: 100px;
+    background-image: url('/images/oracles/triade-card-back.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 1px solid var(--cyan);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    top: 60px;
+    box-shadow: -2px 0px 6px rgba(0,0,0,0.9), 0 0 4px rgba(var(--cyan-rgb), 0.15);
+  }
+  .spread-card:hover {
+    transform: translateY(-18px) !important;
+    z-index: 100 !important;
+    box-shadow: 0px 12px 20px rgba(0,0,0,0.7), 0 0 12px rgba(var(--cyan-rgb), 0.5);
+  }
+  .spread-card.selected {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+</style>
+
+<script is:inline src="/js/triade-data.js"></script>
+<script is:inline src="/js/triade-interp.js"></script>
+<script is:inline src="/js/triade-planes.js"></script>
+<script is:inline>
+  function initBellineSpread() {
+    const btnSpread = document.getElementById('btn-spread');
+    if (!btnSpread || btnSpread.dataset.initialized) return;
+    btnSpread.dataset.initialized = "true";
+
+    const MAX_CARDS = 10;
+    let selectedCards = [];
+    let deckIndices = [];
+
+    const newBtnSpread = btnSpread.cloneNode(true);
+    btnSpread.parentNode.replaceChild(newBtnSpread, btnSpread);
+
+    newBtnSpread.addEventListener('click', () => {
+      newBtnSpread.style.display = 'none';
+      const container = document.getElementById('spread-row');
+      document.getElementById('spread-container').style.display = 'block';
+      container.innerHTML = '';
+
+      const deckSize = 57;
+      deckIndices = Array.from({length: deckSize}, (_, i) => i).sort(() => 0.5 - Math.random());
+      
+      void container.offsetWidth;
+      const containerWidth = container.offsetWidth > 0 ? container.offsetWidth : Math.min(window.innerWidth - 40, 1100);
+      const cardWidth = 56;
+      const step = (containerWidth - cardWidth) / (deckSize - 1);
+
+      deckIndices.forEach((cardIdx, i) => {
+        const card = document.createElement('div');
+        card.className = 'spread-card';
+        card.style.left = `${i * step}px`;
+        card.style.zIndex = i;
+        const middle = (deckSize - 1) / 2;
+        const distanceFromCenter = Math.abs(i - middle);
+        const yOffset = (distanceFromCenter * distanceFromCenter) * 0.03;
+        const rotation = (i - middle) * (40 / deckSize);
+        card.style.transform = `translateY(${yOffset}px) rotate(${rotation}deg)`;
+        card.dataset.index = cardIdx;
+        card.dataset.id = i;
+        card.addEventListener('click', () => selectCard(card));
+        container.appendChild(card);
+      });
+    });
+
+    const posNames = ['Spirituel','Idée 1','Idée 2','Action 1','Action 2','Action 3','Concret 1','Concret 2','Concret 3','Concret 4'];
+    const rowLayout = [1,2,3,4];
+
+    function selectCard(cardEl) {
+      if(selectedCards.length >= MAX_CARDS) return;
+      cardEl.classList.add('selected');
+      const cardData = window.triadeData[cardEl.dataset.index];
+      selectedCards.push(cardData);
+      document.getElementById('card-counter').innerText = `${selectedCards.length} / ${MAX_CARDS}`;
+      const posKey = selectedCards.length - 1;
+
+      const slot = document.getElementById(`slot-${posKey}`);
+      const frontEl = slot.querySelector('.card-front');
+      frontEl.classList.remove('empty-slot');
+      frontEl.classList.add('filled-slot');
+
+      const imgEl = document.getElementById(`img-${posKey}`);
+      imgEl.src = `/images/oracles/triade/card_${cardData.id}.webp`;
+      imgEl.onerror = function() { this.style.display = 'none'; };
+
+      if (selectedCards.length === MAX_CARDS) {
+        document.getElementById('reveal-container').style.display = 'block';
+      }
+    }
+
+    document.getElementById('btn-reveal').addEventListener('click', () => {
+      document.getElementById('reveal-container').style.display = 'none';
+      for (let i = 0; i < MAX_CARDS; i++) {
+        document.getElementById(`slot-${i}`).classList.add('flipped');
+      }
+      setTimeout(() => {
+        const reading = window.triadeInterp.generateReadingHtml(selectedCards, 'PYRAMIDE');
+        const planesHTML = buildPlanesHTML(selectedCards);
+        document.getElementById('reading-section').innerHTML = reading + planesHTML;
+        document.getElementById('reading-section').style.display = 'block';
+      }, 600);
+    });
+
+    function buildPlanesHTML(cards) {
+      window._lastSelectedCards = cards;
+      const planes = ['personnel', 'professionnel', 'argent', 'relationnel'];
+      let html = '<div style="margin-top:2rem;"><div style="display:flex;gap:0.5rem;margin-bottom:1rem;flex-wrap:wrap;">';
+      planes.forEach(p => {
+        const proj = window.triadePlanes.projectSpread(cards, p);
+        html += `<button onclick="switchPlane('${p}')" id="tab-${p}" class="plane-tab" style="padding:0.4rem 1rem;border:1px solid var(--cyan);border-radius:6px;background:${p==='personnel'?'rgba(var(--cyan-rgb),0.15)':'transparent'};color:var(--cyan);cursor:pointer;font-family:var(--font-mono);font-size:0.78rem;">${proj.planeLabel}</button>`;
+      });
+      html += '</div><div id="plane-content"></div></div>';
+      setTimeout(() => { switchPlane('personnel'); }, 100);
+      return html;
+    }
+  }
+
+  function switchPlane(plane) {
+    const cards = window._lastSelectedCards || [];
+    if (!cards.length) return;
+    const proj = window.triadePlanes.projectSpread(cards, plane);
+    let html = `<p style="color:var(--text-muted);font-style:italic;margin-bottom:1rem;">${proj.intro}</p>`;
+    proj.entries.forEach(e => {
+      html += `<div style="margin-bottom:1rem;padding:0.8rem;background:rgba(var(--cyan-rgb),0.04);border-radius:8px;border-left:3px solid var(--cyan);">
+        <strong style="color:var(--gold);">${e.cardName}</strong> <span style="color:var(--cyan);font-size:0.8rem;">· ${e.kw}</span>
+        <p style="color:var(--text-muted);font-size:0.85rem;margin:0.3rem 0 0;">${e.text}</p>
+      </div>`;
+    });
+    html += `<p style="color:var(--text-muted);font-style:italic;margin-top:1rem;font-size:0.85rem;">${proj.synth}</p>`;
+    document.getElementById('plane-content').innerHTML = html;
+    ['personnel','professionnel','argent','relationnel'].forEach(p => {
+      const tab = document.getElementById(`tab-${p}`);
+      if (tab) tab.style.background = p === plane ? 'rgba(var(--cyan-rgb),0.15)' : 'transparent';
+    });
+  }
+
+  window.addEventListener('DOMContentLoaded', initBellineSpread);
+</script>
+
+</Layout>

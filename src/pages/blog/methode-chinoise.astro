@@ -1,0 +1,184 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "La numérologie chinoise expliquée — Kua, Lo Shu et Nombre de Vie",
+  "description": "Guide complet de la numérologie chinoise : origines du Lo Shu, les 5 éléments Wu Xing, calcul du Kua, grille Lo Shu personnelle et Nombre de Vie. Comprendre les trois lectures fondamentales.",
+  "author": { "@type": "Organization", "name": "Plateforme des Mystères" },
+  "inLanguage": "fr",
+  "datePublished": "2026-06-17"
+};
+---
+
+<Layout
+  title="La numérologie chinoise expliquée — Kua, Lo Shu et Nombre de Vie — Blog"
+  description="Guide complet de la numérologie chinoise : origines du Lo Shu, les 5 éléments Wu Xing, calcul du Kua, grille Lo Shu personnelle et Nombre de Vie. Comprendre les trois lectures fondamentales."
+  keywords="numérologie chinoise, Kua, Lo Shu, nombre de vie, Wu Xing, cinq éléments, Ba Gua, Ba Zhai, Feng Shui, trigramme, directions cardinales, numérologie orientale"
+  canonicalPath="blog/methode-chinoise.html"
+  jsonLd={jsonLd}
+  useBlogStyles={true}
+  scripts={["/assets/js/blog.js"]}
+  section="blog"
+>
+
+<!-- ═══════════ ARTICLE ═══════════ -->
+<article id="article" class="blog-article">
+
+  <h1>La numérologie chinoise expliquée</h1>
+  <p class="article-subtitle">Kua, Lo Shu et Nombre de Vie : le guide complet pour comprendre les trois lectures fondamentales de la tradition numérologique chinoise — et en quoi elle diffère radicalement des méthodes occidentales.</p>
+
+  <div class="article-meta-bar">
+    <span>📅 Juin 2026</span>
+    <span>📖 11 min de lecture</span>
+    <span>🏷️ Méthode · Numérologie Chinoise</span>
+  </div>
+
+  <h2>Origines et fondements : la tortue du fleuve Lo</h2>
+
+  <p>Tout commence par un mythe fondateur vieux de quatre mille ans. Vers <strong>2200 av. J.-C.</strong>, sous le règne légendaire de l'Empereur Yu le Grand — le dompteur des crues du fleuve Jaune —, une tortue sacrée aurait émergé du fleuve Lo. Sur sa carapace était inscrit un motif remarquable : un carré de neuf cases où chaque chiffre de 1 à 9 apparaissait une seule fois, et où la somme de chaque ligne, de chaque colonne et des deux diagonales était invariablement égale à <strong>15</strong>. Ce carré magique, le <em>Lo Shu</em> (洛書, « Écrit du Lo »), allait devenir le fondement de l'une des traditions numériques les plus riches de l'histoire de l'humanité.</p>
+
+  <table class="archetype-table">
+    <thead>
+      <tr><th colspan="3">Le carré magique Lo Shu</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>4</td><td>9</td><td>2</td></tr>
+      <tr><td>3</td><td>5</td><td>7</td></tr>
+      <tr><td>8</td><td>1</td><td>6</td></tr>
+    </tbody>
+  </table>
+
+  <p>De ce carré naquit une vision du monde : l'univers est structuré par des relations numériques invisibles qui gouvernent l'espace, le temps et le destin. Les huit cases périphériques correspondent aux <strong>huit trigrammes du Ba Gua</strong> (八卦), les huit configurations yin/yang de l'<em>I Ching</em> (Livre des Mutations). Le chiffre central — le 5 — représente l'équilibre, le pivot autour duquel toute énergie tourne.</p>
+
+  <p>La tradition taoïste sous-tend l'ensemble du système. Yin et Yang ne sont pas des opposés figés mais des forces en perpétuelle transformation, entre lesquelles circule le <em>Qi</em> (氣), le souffle vital. La numérologie chinoise n'est donc pas une simple arithmétique du destin — c'est une cartographie du flux d'énergie à travers lequel une personne navigue.</p>
+
+  <p>C'est ici que réside la <strong>différence fondamentale</strong> avec les méthodes occidentales : la numérologie pythagoricienne ou chaldéenne analyse l'individu comme une entité autonome. La numérologie chinoise, elle, intègre trois dimensions simultanées — <strong>l'espace</strong> (les directions cardinales et leurs influences), <strong>le temps</strong> (les cycles de neuf ans, neuf mois, neuf jours) et <strong>les cinq éléments</strong> du Wu Xing — pour révéler comment un être s'inscrit dans le cosmos.</p>
+
+  <h2>Le Wu Xing — les cinq éléments</h2>
+
+  <p>Le <em>Wu Xing</em> (五行, « cinq mouvements ») est la clé de voûte de toute la cosmologie chinoise. Contrairement aux quatre éléments grecs (Terre, Eau, Feu, Air), les cinq éléments chinois ne sont pas des substances statiques mais des phases d'un cycle perpétuel.</p>
+
+  <table class="archetype-table">
+    <thead>
+      <tr><th>Élément</th><th>Caractère</th><th>Direction</th><th>Saison</th><th>Chiffres Lo Shu</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Eau</td><td>水</td><td>Nord</td><td>Hiver</td><td>1</td></tr>
+      <tr><td>Bois</td><td>木</td><td>Est</td><td>Printemps</td><td>3, 4</td></tr>
+      <tr><td>Feu</td><td>火</td><td>Sud</td><td>Été</td><td>9</td></tr>
+      <tr><td>Terre</td><td>土</td><td>Centre / Inter-saisons</td><td>Transitions</td><td>2, 5, 8</td></tr>
+      <tr><td>Métal</td><td>金</td><td>Ouest</td><td>Automne</td><td>6, 7</td></tr>
+    </tbody>
+  </table>
+
+  <p>Ces cinq éléments interagissent selon deux cycles fondamentaux :</p>
+
+  <ul>
+    <li><strong>Cycle de génération Sheng (相生)</strong> — chaque élément nourrit le suivant : Eau nourrit le Bois, Bois alimente le Feu, Feu produit la Terre (cendres), Terre engendre le Métal (minéraux), Métal enrichit l'Eau (condensation). C'est le cycle de l'harmonie et de la croissance.</li>
+    <li><strong>Cycle de contrôle Ke (相克)</strong> — chaque élément en maîtrise un autre : Eau éteint le Feu, Feu fond le Métal, Métal coupe le Bois, Bois puise dans la Terre, Terre absorbe l'Eau. C'est le cycle de l'équilibre et de la régulation.</li>
+  </ul>
+
+  <p>La connaissance de votre élément natal — déterminé par votre Nombre de Vie ou votre Kua — vous indique quels éléments vous soutiennent (Sheng) et lesquels vous épuisent (Ke). C'est sur cette dynamique que repose une grande partie de la pratique numérologique et feng-shui.</p>
+
+  <h2>Les trois lectures : Kua, Lo Shu et Nombre de Vie</h2>
+
+  <p>La numérologie chinoise ne se résume pas à un seul calcul. Elle repose sur <strong>trois lectures complémentaires</strong> qui, ensemble, dressent un portrait à la fois personnel, spatial et vibratoire.</p>
+
+  <h3>1. Le Nombre Kua — la boussole personnelle</h3>
+
+  <p>Le <em>Kua</em> (卦) est calculé uniquement à partir de l'<strong>année de naissance</strong> et du <strong>genre</strong>. Il constitue la clé d'entrée dans le système du <em>Ba Zhai</em> (八宅, « Huit Demeures ») — l'une des grandes écoles du Feng Shui traditionnel.</p>
+
+  <p>Le Kua révèle :</p>
+  <ul>
+    <li>Votre <strong>élément natal</strong> et votre trigrame personnel parmi les huit du Ba Gua</li>
+    <li>Votre appartenance au <strong>groupe Est</strong> (Kua 1, 3, 4, 9) ou au <strong>groupe Ouest</strong> (Kua 2, 5, 6, 7, 8)</li>
+    <li>Vos <strong>quatre directions favorables</strong> : Sheng Qi (la plus bénéfique), Tian Yi (santé), Yan Nian (relations), Fu Wei (développement personnel)</li>
+    <li>Vos <strong>quatre directions défavorables</strong> à éviter pour dormir, travailler, méditer</li>
+  </ul>
+
+  <p><strong>Calcul pour une femme née en 1990 :</strong></p>
+  <ul>
+    <li>Réduire l'année : 1+9+9+0 = 19 → 1+9 = 10 → 1+0 = <strong>1</strong></li>
+    <li>Pour une femme : ajouter 5 → 1 + 5 = <strong>6</strong></li>
+    <li>Kua = <strong>6</strong> (Métal, groupe Ouest)</li>
+  </ul>
+
+  <blockquote>
+    Pour un homme né la même année : réduire 1990 à 1, puis soustraire de 10 → 10 − 1 = 9. Kua = <strong>9</strong> (Feu, groupe Est). Un même foyer peut donc réunir deux personnes de groupes opposés — ce qui explique pourquoi le Feng Shui de compromis est un art en soi.
+  </blockquote>
+
+  <h3>2. La Grille Lo Shu personnelle — la carte des forces et des leçons</h3>
+
+  <p>Là où le Kua est minimal (deux données), la grille Lo Shu personnelle est <em>exhaustive</em> : on extrait <strong>tous les chiffres</strong> de la date de naissance complète (jour + mois + année) et on compte le nombre d'occurrences de chaque chiffre de 1 à 9. Le chiffre 0 est ignoré — il représente le vide, le potentiel non manifesté.</p>
+
+  <p><strong>Exemple : née le 15/11/1990</strong><br/>
+  Chiffres extraits : 1, 5, 1, 1, 1, 9, 9, 0 → on ignore le 0<br/>
+  Comptage : <strong>1×4</strong>, 2×0, 3×0, 4×0, <strong>5×1</strong>, 6×0, 7×0, 8×0, <strong>9×2</strong></p>
+
+  <p>La grille se lit selon trois principes :</p>
+  <ul>
+    <li><strong>Chiffres présents</strong> = forces naturelles, talents et ressources disponibles dans cette incarnation</li>
+    <li><strong>Chiffres absents</strong> = leçons karmiques, zones à développer, défis de croissance</li>
+    <li><strong>Chiffres répétés trois fois ou plus</strong> = énergie surinvestie, tendance à l'excès dans cette qualité</li>
+  </ul>
+
+  <p>La grille 3×3 forme également <strong>huit axes</strong> — trois lignes horizontales, trois colonnes verticales et deux diagonales — appelés les <em>Flèches du Lo Shu</em>. Quand les trois chiffres d'un axe sont tous présents, cela forme une <strong>Flèche de Force</strong> (talent naturel). Quand les trois sont tous absents, cela forme une <strong>Flèche d'Absence</strong> (défi majeur). Dans notre exemple, les chiffres 2, 3, 4, 6, 7, 8 sont tous absents — une vie marquée par de nombreuses leçons à intégrer.</p>
+
+  <h3>3. Le Nombre de Vie — la vibration fondamentale</h3>
+
+  <p>Le Nombre de Vie est le calcul le plus simple et le plus universel : on additionne <strong>tous les chiffres</strong> de la date de naissance jusqu'à obtenir un chiffre de 1 à 9.</p>
+
+  <p><strong>Exemple : 15/11/1990</strong><br/>
+  1 + 5 + 1 + 1 + 1 + 9 + 9 + 0 = 27 → 2 + 7 = <strong>9</strong></p>
+
+  <p>Le 9 correspond au Feu dans le Wu Xing : c'est la vibration de l'accomplissement, du rayonnement et du don de soi. Chaque Nombre de Vie s'inscrit dans son élément :</p>
+
+  <table class="archetype-table">
+    <thead>
+      <tr><th>Nombre</th><th>Élément</th><th>Archétype</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>1</td><td>Eau</td><td>Le Pionnier, l'indépendance</td></tr>
+      <tr><td>2</td><td>Terre</td><td>La Réceptivité, la coopération</td></tr>
+      <tr><td>3</td><td>Bois</td><td>La Croissance, la créativité</td></tr>
+      <tr><td>4</td><td>Bois</td><td>La Structure, l'enracinement</td></tr>
+      <tr><td>5</td><td>Terre</td><td>Le Centre, la transformation</td></tr>
+      <tr><td>6</td><td>Métal</td><td>L'Harmonie, la responsabilité</td></tr>
+      <tr><td>7</td><td>Métal</td><td>L'Intériorité, la sagesse</td></tr>
+      <tr><td>8</td><td>Terre</td><td>L'Abondance, le pouvoir</td></tr>
+      <tr><td>9</td><td>Feu</td><td>L'Accomplissement, l'universel</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Ce qui distingue vraiment la numérologie chinoise</h2>
+
+  <blockquote>
+    « Le Tao engendre l'Un, l'Un engendre le Deux, le Deux engendre le Trois, le Trois engendre les dix mille êtres. » — <em>Tao Te Ching</em>, chapitre 42
+  </blockquote>
+
+  <p>Cette citation de Laozi résume l'essence même de la vision chinoise du nombre : les chiffres ne sont pas des étiquettes statiques de personnalité — ils sont des <em>mouvements</em>, des phases d'un déploiement continu du Tao dans la réalité manifestée. Quatre éléments distinguent fondamentalement cette approche des méthodes occidentales :</p>
+
+  <ul>
+    <li><strong>L'espace est sacré.</strong> Les directions cardinales ne sont pas neutres : selon votre Kua, dormir la tête vers le Nord ou vers le Sud change littéralement la qualité de l'énergie que vous recevez. La numérologie chinoise est inséparable de la géographie personnelle.</li>
+    <li><strong>Le temps est cyclique.</strong> Tout se déroule en cycles de 9 — 9 ans, 9 mois, 9 jours. Votre Nombre de Vie traverse ces cycles à sa propre vitesse, créant des fenêtres d'opportunité et des périodes de repli prévisibles.</li>
+    <li><strong>Le corps est inclus.</strong> Chaque élément gouverne des organes : Eau (Reins et Vessie), Bois (Foie et Vésicule biliaire), Feu (Cœur et Intestin grêle), Terre (Rate, Estomac et Pancréas), Métal (Poumons et Gros intestin). Un déséquilibre numérique peut se lire dans la santé physique — et inversement.</li>
+    <li><strong>Pas de « bon » ou de « mauvais » nombre.</strong> La numérologie chinoise ne hiérarchise pas les chiffres : il n'existe que des équilibres et des déséquilibres. Un excès de 1 (Eau) est aussi problématique qu'une absence de 9 (Feu). L'objectif n'est pas d'avoir le « meilleur » profil mais de comprendre son propre équilibre pour mieux le nourrir.</li>
+  </ul>
+
+  <p>C'est cette vision systémique et holistique qui fait de la numérologie chinoise non pas un simple outil de connaissance de soi, mais une véritable <em>philosophie de l'harmonie</em> — un guide pour s'aligner avec les flux naturels plutôt que de les combattre.</p>
+
+  <div class="article-footer">
+    <p>🔮 Essayez le <a href="../numerologie/chinoise.html" style="color:var(--gold);">calculateur de numérologie chinoise</a> pour découvrir vos 3 nombres.</p>
+    <p>📚 Lire aussi : <a href="kua-ba-zhai.html" style="color:var(--gold);">Le Kua et le Ba Zhai</a> · <a href="lo-shu-fleches.html" style="color:var(--gold);">La Grille Lo Shu et ses flèches</a></p>
+    <a href="index.html" class="back-link">← Retour au blog</a>
+  </div>
+
+</article>
+
+  <p slot="sources" style="color:#64748b;font-size:0.75rem;margin-bottom:0.8rem;">
+    Sources : Chao-Hsiu Chen, <em>Feng Shui — Le carré magique</em> · Stephen Skinner, <em>Guide to the Feng Shui Compass</em> · Lillian Too, <em>The Fundamentals of Feng Shui</em> · Derek Walters, <em>Chinese Astrology</em> · Wu Xing (5 éléments, tradition taoïste)
+  </p>
+
+</Layout>

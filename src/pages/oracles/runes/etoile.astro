@@ -1,0 +1,332 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Tirage en Étoile (7 Runes) — Runes Nordiques"
+  description="Effectuez un tirage gratuit en Constellation Runique avec les Runes Nordiques. 7 runes pour un éclairage complet : centre, finances, sentiments, santé, travail, spiritualité et résultat."
+  keywords="runes, tirage étoile, constellation runique, 7 runes, divination nordique, futhark"
+  canonicalPath="oracles/runes/etoile.html"
+  section="oracles"
+>
+
+<nav class="breadcrumb" aria-label="Fil d'Ariane" style="padding:0.8rem 1.5rem;font-family:var(--font-mono);font-size:0.8rem;color:var(--text-muted);max-width:1200px;margin:0 auto;">
+  <a href="../../index.html" style="color:var(--cyan);">Accueil</a> &rsaquo;
+  <a href="../index.html" style="color:var(--cyan);">Oracles</a> &rsaquo;
+  <a href="../runes.html" style="color:var(--cyan);">Runes Nordiques</a> &rsaquo;
+  <span style="color:var(--text);">Constellation Runique</span>
+</nav>
+
+<main style="max-width:1200px;margin:0 auto;padding:2rem 1.5rem;text-align:center;">
+  <h1>Constellation <span class="gold">Runique</span> <span style="font-size:1.5rem;">ᛟ</span></h1>
+  <p class="subtitle">Sept runes pour cartographier votre ciel intérieur. Une constellation complète qui éclaire chaque sphère de votre existence. Choisissez 7 runes.</p>
+
+  <div id="deck-area" style="margin-top:2rem;position:relative;height:250px;display:flex;justify-content:center;align-items:center;">
+    <button id="btn-spread" class="btn-explore" style="font-size:1.2rem;padding:1rem 2rem;cursor:pointer;z-index:10;">Étaler les runes ᚱ</button>
+    
+    <div id="spread-container" style="display:none;position:relative;width:100%;height:100%;max-width:800px;margin:0 auto;">
+      <p id="instruction-text" style="position:absolute;top:-40px;width:100%;color:var(--gold);font-weight:bold;font-size:1.1rem;">Sélectionnez 7 runes (0/7)</p>
+    </div>
+  </div>
+
+  <div id="resultats" style="margin-top:3rem;">
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.5rem;justify-items:center;align-items:start;max-width:900px;margin:0 auto;">
+      <!-- Center -->
+      <div style="grid-column:1/span 3;grid-row:1;">
+        <div class="tarot-card-container">
+          <div class="tarot-pos">1. Le Centre — Cœur</div>
+          <div class="tarot-card" id="slot-1">
+            <div class="card-inner">
+              <div class="card-front empty-slot"></div>
+              <div class="card-back"><img id="img-1" src="" alt="" class="card-img"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ring: Finances, Sentiments -->
+      <div class="tarot-card-container">
+        <div class="tarot-pos">2. Finances</div>
+        <div class="tarot-card" id="slot-2">
+          <div class="card-inner">
+            <div class="card-front empty-slot"></div>
+            <div class="card-back"><img id="img-2" src="" alt="" class="card-img"></div>
+          </div>
+        </div>
+      </div>
+      <div class="tarot-card-container">
+        <div class="tarot-pos">3. Sentiments</div>
+        <div class="tarot-card" id="slot-3">
+          <div class="card-inner">
+            <div class="card-front empty-slot"></div>
+            <div class="card-back"><img id="img-3" src="" alt="" class="card-img"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ring: Santé, Travail -->
+      <div class="tarot-card-container">
+        <div class="tarot-pos">4. Santé</div>
+        <div class="tarot-card" id="slot-4">
+          <div class="card-inner">
+            <div class="card-front empty-slot"></div>
+            <div class="card-back"><img id="img-4" src="" alt="" class="card-img"></div>
+          </div>
+        </div>
+      </div>
+      <div class="tarot-card-container">
+        <div class="tarot-pos">5. Travail</div>
+        <div class="tarot-card" id="slot-5">
+          <div class="card-inner">
+            <div class="card-front empty-slot"></div>
+            <div class="card-back"><img id="img-5" src="" alt="" class="card-img"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ring: Spiritualité, Résultat -->
+      <div class="tarot-card-container">
+        <div class="tarot-pos">6. Spiritualité</div>
+        <div class="tarot-card" id="slot-6">
+          <div class="card-inner">
+            <div class="card-front empty-slot"></div>
+            <div class="card-back"><img id="img-6" src="" alt="" class="card-img"></div>
+          </div>
+        </div>
+      </div>
+      <div class="tarot-card-container">
+        <div class="tarot-pos">7. Résultat</div>
+        <div class="tarot-card" id="slot-7">
+          <div class="card-inner">
+            <div class="card-front empty-slot"></div>
+            <div class="card-back"><img id="img-7" src="" alt="" class="card-img"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div id="reveal-area" style="display:none;margin-top:2rem;">
+      <button id="btn-reveal" class="btn-explore" style="font-size:1.2rem;padding:1rem 2rem;cursor:pointer;">Révéler la constellation ᚱ</button>
+    </div>
+
+    <div id="reading-section" class="tr-outer" style="display:none;margin-top:2.5rem;"></div>
+
+    <p style="margin-top:2rem;font-style:italic;color:var(--text-muted);">Comme les étoiles, les runes guident sans contraindre. Votre ciel intérieur est vaste — explorez-le.</p>
+  </div>
+</main>
+
+<style>
+  .tarot-card-container { width: 180px; }
+  .tarot-pos { font-family: var(--font-mono); font-size: 0.78rem; color: var(--gold); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 1px; }
+  .tarot-card { width: 100%; height: 330px; perspective: 1000px; }
+  .card-inner { position: relative; width: 100%; height: 100%; text-align: center; transition: transform 0.8s; transform-style: preserve-3d; }
+  .tarot-card.flipped .card-inner { transform: rotateY(180deg); }
+  
+  .card-front, .card-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 8px; border: 2px solid var(--gold); display: flex; flex-direction: column; justify-content: flex-start; align-items: center; padding: 0.6rem; }
+  
+  .card-front { 
+    background-image: url('/images/oracles/runes-card-back.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    justify-content: center; align-items: center;
+  }
+  
+  .empty-slot {
+    background: rgba(218, 165, 32, 0.03);
+    background-image: none;
+    border: 2px dashed rgba(218, 165, 32, 0.4);
+  }
+  .filled-slot {
+    background-image: url('/images/oracles/runes-card-back.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 2px solid var(--gold);
+    box-shadow: 0 0 8px rgba(218, 165, 32, 0.3);
+  }
+  
+  .card-back { background: var(--bg-card); transform: rotateY(180deg); box-shadow: 0 8px 16px rgba(0,0,0,0.6); overflow: hidden; justify-content: center; align-items: center; padding: 0; }
+  .card-img { width: 100%; height: auto; max-height: 100%; border-radius: 4px; object-fit: contain; margin: 0; }
+
+  @media (max-width: 768px) {
+    .tarot-card-container { width: 140px; }
+    .tarot-card { height: 260px; }
+  }
+</style>
+
+<style is:global>
+  .spread-card {
+    position: absolute;
+    width: 56px;
+    height: 100px;
+    background-image: url('/images/oracles/runes-card-back.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 1px solid var(--gold);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    top: 60px;
+    box-shadow: -2px 0px 6px rgba(0,0,0,0.9), 0 0 4px rgba(218, 165, 32, 0.15);
+  }
+  .spread-card:hover {
+    transform: translateY(-18px) !important;
+    z-index: 100 !important;
+    box-shadow: 0px 12px 20px rgba(0,0,0,0.7), 0 0 12px rgba(218, 165, 32, 0.5);
+  }
+  .spread-card.selected {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  .tr-rev {
+    color: #f59e0b;
+    font-style: italic;
+    font-size: 0.8em;
+    margin-left: 0.3em;
+  }
+</style>
+
+<script is:inline src="/js/runes-data.js"></script>
+<script is:inline src="/js/runes-interp.js"></script>
+<script is:inline src="/js/runes-planes.js"></script>
+<script is:inline>
+  function initRuneSpread() {
+    var btnSpread = document.getElementById('btn-spread');
+    if (!btnSpread || btnSpread.dataset.initialized) return;
+    btnSpread.dataset.initialized = "true";
+
+    var MAX_CARDS = 7;
+    var selectedCards = [];
+    var deckIndices = [];
+
+    var newBtnSpread = btnSpread.cloneNode(true);
+    btnSpread.parentNode.replaceChild(newBtnSpread, btnSpread);
+
+    newBtnSpread.addEventListener('click', function() {
+      newBtnSpread.style.display = 'none';
+      var container = document.getElementById('spread-container');
+      container.style.display = 'block';
+      
+      container.querySelectorAll('.spread-card').forEach(function(c) { c.remove(); });
+      
+      var deckSize = window.runesData.length;
+      deckIndices = Array.from({length: deckSize}, function(_, i) { return i; }).sort(function() { return 0.5 - Math.random(); });
+      
+      void container.offsetWidth;
+      var containerWidth = container.offsetWidth > 0 ? container.offsetWidth : Math.min(window.innerWidth - 40, 800);
+      var cardWidth = 56;
+      var step = (containerWidth - cardWidth) / (deckSize - 1);
+      
+      for (var i = 0; i < deckSize; i++) {
+        var card = document.createElement('div');
+        card.className = 'spread-card';
+        card.style.left = (i * step) + 'px';
+        card.style.zIndex = i;
+        
+        var middle = (deckSize - 1) / 2;
+        var distanceFromCenter = Math.abs(i - middle);
+        var yOffset = (distanceFromCenter * distanceFromCenter) * 0.03;
+        var rotation = (i - middle) * (40 / deckSize);
+        
+        card.style.transform = 'translateY(' + yOffset + 'px) rotate(' + rotation + 'deg)';
+        card.dataset.index = deckIndices[i];
+        card.dataset.id = i;
+        
+        card.addEventListener('click', function() { selectCard(this); });
+        container.appendChild(card);
+      }
+    });
+
+    function selectCard(cardEl) {
+      if (selectedCards.length >= MAX_CARDS) return;
+      
+      cardEl.classList.add('selected');
+      var actualCardData = window.runesData[cardEl.dataset.index];
+      var cardCopy = Object.assign({}, actualCardData);
+      cardCopy.isReversed = cardCopy.canReverse && Math.random() < 0.25;
+      selectedCards.push(cardCopy);
+      
+      var slotIdx = selectedCards.length;
+      var slotFront = document.querySelector('#slot-' + slotIdx + ' .card-front');
+      if (slotFront) {
+        slotFront.classList.remove('empty-slot');
+        slotFront.classList.add('filled-slot');
+      }
+      
+      var instr = document.getElementById('instruction-text');
+      if (instr) instr.innerText = 'Sélectionnez ' + MAX_CARDS + ' runes (' + selectedCards.length + '/' + MAX_CARDS + ')';
+      
+      if (selectedCards.length === MAX_CARDS) {
+        if (instr) instr.innerText = "Constellation complète — les runes ont dessiné votre ciel.";
+        setTimeout(function() {
+          document.getElementById('deck-area').style.display = 'none';
+          document.getElementById('reveal-area').style.display = 'block';
+        }, 800);
+      }
+    }
+
+    var btnReveal = document.getElementById('btn-reveal');
+    if (btnReveal) {
+      var newBtnReveal = btnReveal.cloneNode(true);
+      btnReveal.parentNode.replaceChild(newBtnReveal, btnReveal);
+      newBtnReveal.addEventListener('click', function() {
+        newBtnReveal.style.display = 'none';
+
+        setTimeout(function() {
+          for (var i = 1; i <= MAX_CARDS; i++) {
+            (function(idx) {
+              var cardData = selectedCards[idx - 1];
+              var imgEl = document.getElementById('img-' + idx);
+              var cardNum = cardData.id;
+              imgEl.src = '/images/oracles/runes/rune_' + String(cardNum).padStart(2, '0') + '.svg';
+              imgEl.onerror = function() { this.style.display = 'none'; };
+              setTimeout(function() {
+                var slot = document.getElementById('slot-' + idx);
+                if (cardData.isReversed && cardData.canReverse) {
+                  slot.style.transform = 'rotate(180deg)';
+                }
+                slot.classList.add('flipped');
+              }, idx * 200);
+            })(i);
+          }
+        }, 100);
+
+        setTimeout(function() {
+          var rs = document.getElementById('reading-section');
+          if (rs && window.runesInterp) {
+            rs.innerHTML = window.runesInterp.generateReadingWithPlanes('etoile', selectedCards);
+            setTimeout(function() { initPlaneTabs(); }, 100);
+            rs.style.display = 'block';
+            rs.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }, 3000);
+      });
+    }
+  }
+
+  function initPlaneTabs() {
+    document.querySelectorAll('.tr-plane-tab').forEach(function(tab) {
+      tab.addEventListener('click', function() {
+        var plane = this.dataset.plane;
+        document.querySelectorAll('.tr-plane-tab').forEach(function(t) { t.classList.remove('active'); t.style.color = 'var(--text-muted)'; });
+        this.classList.add('active');
+        this.style.color = 'var(--gold)';
+        document.querySelectorAll('.tr-plane-pane').forEach(function(p) { p.classList.remove('active'); p.style.display = 'none'; });
+        var pane = document.querySelector('.tr-plane-pane[data-plane="' + plane + '"]');
+        if (pane) { pane.classList.add('active'); pane.style.display = 'block'; }
+      });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initRuneSpread);
+  } else {
+    initRuneSpread();
+  }
+  document.addEventListener('astro:page-load', initRuneSpread);
+</script>
+
+</Layout>

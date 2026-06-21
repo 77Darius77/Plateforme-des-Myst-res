@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 210" width="120" height="210">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="50%">
+      <stop offset="0%" stop-color="#1a1a2e"/>
+      <stop offset="100%" stop-color="#040408"/>
+    </radialGradient>
+    <pattern id="dots" x="0" y="0" width="12" height="12" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="0.6" fill="#dfb26c" opacity="0.12"/>
+    </pattern>
+  </defs>
+  <!-- Fond -->
+  <rect width="120" height="210" fill="url(#bg)"/>
+  <rect width="120" height="210" fill="url(#dots)"/>
+  <!-- Cadre or -->
+  <rect x="4" y="4" width="112" height="202" fill="none" stroke="#c59750" stroke-width="1.2" rx="2"/>
+  <rect x="7" y="7" width="106" height="196" fill="none" stroke="#c59750" stroke-width="0.5" rx="1" opacity="0.6"/>
+  <!-- Cadre émeraude intérieur -->
+  <rect x="9" y="9" width="102" height="192" fill="none" stroke="#3dd399" stroke-width="0.4" rx="1" opacity="0.3"/>
+
+  <!-- Titre centré -->
+  <text x="60" y="103" text-anchor="middle" font-family="Georgia,serif" font-size="9" font-weight="bold" fill="#dfb26c" letter-spacing="3">ORACLE</text>
+  <text x="60" y="118" text-anchor="middle" font-family="Georgia,serif" font-size="7" fill="#3dd399" letter-spacing="4" opacity="0.8">GÉ</text>
+
+  <!-- Ligne géomantique décorative centrée -->
+  <g transform="translate(30,140)" stroke="#3dd399" stroke-width="0.4" opacity="0.3">
+    <line x1="0" y1="0" x2="60" y2="0"/>
+    <circle cx="5" cy="0" r="1.2" fill="#3dd399"/>
+    <circle cx="15" cy="0" r="0.8" fill="none"/>
+    <circle cx="15" cy="0" r="1.2" fill="none"/>
+    <circle cx="25" cy="0" r="1.2" fill="#3dd399"/>
+    <circle cx="35" cy="0" r="1.2" fill="#3dd399"/>
+    <circle cx="45" cy="0" r="0.8" fill="none"/>
+    <circle cx="45" cy="0" r="1.2" fill="none"/>
+    <circle cx="55" cy="0" r="1.2" fill="#3dd399"/>
+  </g>
+
+  <!-- Étoiles décoratives -->
+  <g fill="#dfb26c" opacity="0.25">
+    <polygon points="60,0 61.5,4 66,4 62.5,6.5 63.8,11 60,8 56.2,11 57.5,6.5 54,4 58.5,4" transform="scale(0.5) translate(60,336)"/>
+    <polygon points="60,0 61.5,4 66,4 62.5,6.5 63.8,11 60,8 56.2,11 57.5,6.5 54,4 58.5,4" transform="scale(0.4) translate(90,420)"/>
+    <polygon points="60,0 61.5,4 66,4 62.5,6.5 63.8,11 60,8 56.2,11 57.5,6.5 54,4 58.5,4" transform="scale(0.4) translate(-90,420)"/>
+  </g>
+</svg>

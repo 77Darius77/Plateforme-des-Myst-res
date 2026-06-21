@@ -3,45 +3,91 @@ import Layout from '../../layouts/Layout.astro';
 
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "Article",
-  "name": "Runes — L'alphabet sacré des anciens",
+  "@type": "CollectionPage",
+  "name": "Runes Nordiques — Méthodes de Tirage",
   "url": "https://mysteres.fr/oracles/runes.html",
-  "description": "Découvrez les runes, l'alphabet sacré des peuples germaniques et nordiques.",
+  "description": "Découvrez les 3 méthodes de tirage des Runes Nordiques : Tirage des Nornes à 3 runes, Croix d'Yggdrasil et Constellation Runique. 24 runes du Futhark Ancien.",
   "inLanguage": "fr"
 };
 ---
 
 <Layout
-  title="Runes Nordiques — Oracles"
-  description="Découvrez les runes, l'alphabet sacré des peuples germaniques et nordiques. Chaque rune est un symbole de pouvoir pour la divination et la magie depuis plus de 2000 ans."
-  keywords="runes, runes nordiques, futhark, divination runique, alphabet sacré, vikings"
+  title="Runes Nordiques (Futhark Ancien) — Méthodes de tirage"
+  description="Découvrez 3 méthodes de tirage des Runes Nordiques : le Tirage des Nornes, la Croix d'Yggdrasil et la Constellation Runique. 24 runes du Futhark Ancien pour la divination."
+  keywords="runes nordiques, futhark, tirage runes, divination, nornes, yggdrasil, odin, mythologie nordique"
   canonicalPath="oracles/runes.html"
   jsonLd={jsonLd}
+  section="oracles"
 >
 
-<!-- ═══════════ FIL D'ARIANE ═══════════ -->
-<nav class="breadcrumb" aria-label="Fil d'Ariane" style="padding:0.8rem 1.5rem;font-family:var(--font-mono);font-size:0.8rem;color:var(--text-muted);">
+<nav class="breadcrumb" aria-label="Fil d'Ariane" style="padding:0.8rem 1.5rem;font-family:var(--font-mono);font-size:0.8rem;color:var(--text-muted);max-width:1200px;margin:0 auto;">
   <a href="../index.html" style="color:var(--cyan);">Accueil</a> &rsaquo;
   <a href="index.html" style="color:var(--cyan);">Oracles</a> &rsaquo;
-  <span style="color:var(--text-primary);">Runes</span>
+  <span style="color:var(--text);">Runes Nordiques</span>
 </nav>
 
-<!-- ═══════════ BANNIÈRE "BIENTÔT" ═══════════ -->
-<section id="hero" style="text-align:center;padding:6rem 1.5rem 4rem;max-width:700px;margin:0 auto;">
-  <h1>
-    <span class="pulse"></span>
-    🔮 <span class="gold">Runes</span><br>L'alphabet sacré des <span class="emerald">anciens</span>
-  </h1>
-  <p class="subtitle">
-    Cette section est en cours de création. Les runes sont l'alphabet sacré des peuples germaniques et nordiques. Chaque rune est un symbole de pouvoir, utilisé pour la divination et la magie depuis plus de 2000 ans. Revenez bientôt !
-  </p>
-  <a href="../oracles/index.html" class="cta">← Retour aux Oracles</a>
-</section>
+<div class="hub-container">
+  <aside class="hub-sidebar">
+    <h1>
+      <span class="pulse"></span>
+      ᚱ <span class="gold">Runes Nordiques</span><br>Méthodes de <span class="emerald">tirage</span>
+    </h1>
+    <p class="subtitle">
+      L'alphabet sacré des anciens peuples germaniques et scandinaves, découvert par Odin lui-même après neuf jours et neuf nuits suspendu à l'Arbre-Monde Yggdrasil. Les 24 runes du Futhark Ancien sont bien plus que des lettres — chaque symbole est une clé vibratoire, une porte vers les forces primordiales qui tissent la trame du destin. Mêlant psychanalyse des profondeurs et intuition bohème, cet oracle vous connecte à la sagesse millénaire des Nornes.
+    </p>
+    <div class="quote">
+      « Celui qui sait lire les runes entend la voix d'Odin dans le vent. »
+      <br><span class="gold">— Sagesse nordique</span>
+    </div>
+  </aside>
 
-<!-- ═══════════ NAVIGATION PRÉCÉDENT / SUIVANT ═══════════ -->
+  <main class="hub-main">
+    <div class="section-title">
+      <div class="num">[ 01 ]</div>
+      <h2>✦ Les 3 Tirages Runiques</h2>
+      <p class="slate">Du murmure des Nornes à la constellation d'Yggdrasil, choisissez la méthode qui résonne avec votre question.</p>
+    </div>
+
+    <div class="mystere-grid">
+
+      <div class="mystere-card" style="--card-accent-color: var(--gold); --hover-accent-color: var(--gold);">
+        <div class="card-icon">ᚱ</div>
+        <h3>TIRAGE DES NORNES</h3>
+        <p>
+          Passé, Présent, Futur. Les trois Nornes — Urðr, Verðandi et Skuld — tissent le fil de votre destinée en 3 runes. La méthode sacrée pour une guidance claire et profonde.
+        </p>
+        <a href="runes/trois-runes.html" class="btn-explore">Tirer les runes ✦</a>
+      </div>
+
+      <div class="mystere-card" style="--card-accent-color: var(--emerald); --hover-accent-color: var(--emerald);">
+        <div class="card-icon">ᛇ</div>
+        <h3>CROIX D'YGGDRASIL</h3>
+        <p>
+          Cinq runes disposées selon les branches de l'Arbre-Monde. Analyse complète d'une question : le consultant, le passé, le futur, l'obstacle et la synthèse.
+        </p>
+        <a href="runes/croix.html" class="btn-explore">Tirer les runes ✦</a>
+      </div>
+
+      <div class="mystere-card" style="--card-accent-color: var(--violet); --hover-accent-color: var(--violet);">
+        <div class="card-icon">ᛟ</div>
+        <h3>CONSTELLATION RUNIQUE</h3>
+        <p>
+          7 runes en étoile pour explorer tous les aspects de votre vie : cœur, finances, sentiments, santé, travail, spiritualité et résultat. La carte complète de votre ciel intérieur.
+        </p>
+        <a href="runes/etoile.html" class="btn-explore">Tirer les runes ✦</a>
+      </div>
+
+    </div>
+  </main>
+</div>
+
 <nav class="sub-nav" style="display:flex;justify-content:space-between;max-width:600px;margin:2rem auto;padding:1rem;">
   <a href="ge.html" style="color:var(--cyan);font-family:var(--font-mono);">← Oracle Gé</a>
-  <span></span>
+  <a href="miroirs.html" style="color:var(--cyan);font-family:var(--font-mono);">Oracle des Miroirs →</a>
 </nav>
+
+  <p slot="sources" style="color:#64748b;font-size:0.75rem;margin-bottom:0.8rem;">
+    Sources : Futhark Ancien (Elder Futhark), Edda poétique (Hávamál), traditions runiques nordiques, La Muci Design (Deep Forest Rune Deck), Sophie Vitali (Guide complet des runes), Garaulion, TiragedesRunes.com
+  </p>
 
 </Layout>

@@ -3,45 +3,96 @@ import Layout from '../../layouts/Layout.astro';
 
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "Article",
-  "name": "Oracle Gé — La géomancie divinatoire",
+  "@type": "CollectionPage",
+  "name": "Oracle Gé — Méthodes de Tirage",
   "url": "https://mysteres.fr/oracles/ge.html",
-  "description": "Découvrez l'Oracle Gé, ou Géomancie, un art divinatoire millénaire basé sur l'interprétation de figures.",
+  "description": "Découvrez les 3 méthodes de tirage de l'Oracle Gé : Tirage à 3 Cartes, Tirage en Croix et Tirage en Étoile. 61 cartes de géomancie divinatoire.",
   "inLanguage": "fr"
 };
 ---
 
 <Layout
-  title="Oracle Gé (Géomancie) — Oracles"
-  description="Découvrez l'Oracle Gé, ou Géomancie, un art divinatoire millénaire basé sur l'interprétation de figures tracées dans le sable ou sur papier."
-  keywords="oracle gé, géomancie, divination, figures géomantiques, art divinatoire"
+  title="Oracle Gé (Géomancie) — Méthodes de tirage"
+  description="Découvrez 3 méthodes de tirage de l'Oracle Gé : le Tirage à 3 Cartes, le Tirage en Croix et le Tirage en Étoile. Un oracle de 61 cartes créé par Gérard Barbier."
+  keywords="oracle gé, géomancie, tirage gé, cartomancie, voyance, tirage en croix, gérard barbier"
   canonicalPath="oracles/ge.html"
   jsonLd={jsonLd}
+  section="oracles"
 >
 
-<!-- ═══════════ FIL D'ARIANE ═══════════ -->
-<nav class="breadcrumb" aria-label="Fil d'Ariane" style="padding:0.8rem 1.5rem;font-family:var(--font-mono);font-size:0.8rem;color:var(--text-muted);">
+<!-- FIL D'ARIANE -->
+<nav class="breadcrumb" aria-label="Fil d'Ariane" style="padding:0.8rem 1.5rem;font-family:var(--font-mono);font-size:0.8rem;color:var(--text-muted);max-width:1200px;margin:0 auto;">
   <a href="../index.html" style="color:var(--cyan);">Accueil</a> &rsaquo;
   <a href="index.html" style="color:var(--cyan);">Oracles</a> &rsaquo;
-  <span style="color:var(--text-primary);">Oracle Gé</span>
+  <span style="color:var(--text);">Oracle Gé</span>
 </nav>
 
-<!-- ═══════════ BANNIÈRE "BIENTÔT" ═══════════ -->
-<section id="hero" style="text-align:center;padding:6rem 1.5rem 4rem;max-width:700px;margin:0 auto;">
-  <h1>
-    <span class="pulse"></span>
-    🔮 <span class="gold">Oracle Gé</span><br>La géomancie <span class="emerald">divinatoire</span>
-  </h1>
-  <p class="subtitle">
-    Cette section est en cours de création. L'Oracle Gé, ou Géomancie, est un art divinatoire millénaire basé sur l'interprétation de figures tracées dans le sable ou sur papier. Revenez bientôt !
-  </p>
-  <a href="../oracles/index.html" class="cta">← Retour aux Oracles</a>
-</section>
+<div class="hub-container">
+  <aside class="hub-sidebar">
+    <h1>
+      <span class="pulse"></span>
+      🔮 <span class="gold">Oracle Gé</span><br>Méthodes de <span class="emerald">tirage</span>
+    </h1>
+    <p class="subtitle">
+      Créé en 1991 par le géomancien Gérard Barbier, l'Oracle Gé (ou Géomancie) se compose de 61 cartes réparties en 5 catégories : les Éléments, les Planètes, les Signes du Zodiaque, les Nombres et les Figures géomantiques. Chaque carte porte une symbolique riche puisée dans la tradition géomantique occidentale.
+    </p>
+    <div class="quote">
+      « La géomancie est le miroir de la terre où se reflètent les vérités du ciel. »
+      <br><span class="gold">— Gérard Barbier</span>
+    </div>
+  </aside>
 
-<!-- ═══════════ NAVIGATION PRÉCÉDENT / SUIVANT ═══════════ -->
+  <main class="hub-main">
+    <div class="section-title">
+      <div class="num">[ 01 ]</div>
+      <h2>✦ Les 3 Tirages de l'Oracle Gé</h2>
+      <p class="slate">Du tirage rapide à l'analyse complète en étoile, choisissez la méthode qui correspond à votre question.</p>
+    </div>
+
+    <div class="mystere-grid">
+
+      <!-- Carte 1 : Tirage à 3 Cartes -->
+      <div class="mystere-card" style="--card-accent-color: var(--gold); --hover-accent-color: var(--gold);">
+        <div class="card-icon">🂠</div>
+        <h3>TIRAGE À 3 CARTES</h3>
+        <p>
+          Passé, Présent, Futur. La méthode classique pour une guidance rapide et éclairante sur l'évolution naturelle de votre situation.
+        </p>
+        <a href="ge/trois-cartes.html" class="btn-explore">Tirer les cartes ✦</a>
+      </div>
+
+      <!-- Carte 2 : Tirage en Croix -->
+      <div class="mystere-card" style="--card-accent-color: var(--emerald); --hover-accent-color: var(--emerald);">
+        <div class="card-icon">✚</div>
+        <h3>TIRAGE EN CROIX</h3>
+        <p>
+          Le tirage de référence en 5 cartes. Analyse complète d'une question précise : le consultant, le passé, le futur, l'obstacle et la synthèse.
+        </p>
+        <a href="ge/croix.html" class="btn-explore">Tirer les cartes ✦</a>
+      </div>
+
+      <!-- Carte 3 : Tirage en Étoile -->
+      <div class="mystere-card" style="--card-accent-color: var(--violet); --hover-accent-color: var(--violet);">
+        <div class="card-icon">✦</div>
+        <h3>TIRAGE EN ÉTOILE</h3>
+        <p>
+          7 cartes disposées en étoile pour explorer tous les aspects de votre vie : cœur, finances, sentiments, santé, travail, spiritualité et résultat.
+        </p>
+        <a href="ge/etoile.html" class="btn-explore">Tirer les cartes ✦</a>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<!-- NAVIGATION PRÉCÉDENT / SUIVANT -->
 <nav class="sub-nav" style="display:flex;justify-content:space-between;max-width:600px;margin:2rem auto;padding:1rem;">
   <a href="belline.html" style="color:var(--cyan);font-family:var(--font-mono);">← Oracle de Belline</a>
   <a href="runes.html" style="color:var(--cyan);font-family:var(--font-mono);">Runes →</a>
 </nav>
+
+  <p slot="sources" style="color:#64748b;font-size:0.75rem;margin-bottom:0.8rem;">
+    Sources : Oracle Gé (Gérard Barbier, 1991), traditions géomantiques occidentales
+  </p>
 
 </Layout>

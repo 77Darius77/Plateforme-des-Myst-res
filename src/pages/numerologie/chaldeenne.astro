@@ -4,9 +4,9 @@ import Layout from '../../layouts/Layout.astro';
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "WebPage",
-  "name": "Numérologie Chaldéenne — La sagesse babylonienne",
+  "name": "Numérologie Chaldéenne — Calculateur et interprétation",
   "url": "https://mysteres.fr/numerologie/chaldeenne.html",
-  "description": "Découvrez la numérologie chaldéenne, héritée des anciens Babyloniens. Valeurs vibratoires de 1 à 52, nombres maîtres, alphabet mystique.",
+  "description": "Découvre tes 4 nombres chaldéens : Actif, Destin, Naissance, Vie. Héritage des anciens Babyloniens, table 1–8, 9 sacré, nombres composés. Calculateur gratuit.",
   "inLanguage": "fr",
   "about": {
     "@type": "Thing",
@@ -16,51 +16,400 @@ const jsonLd = {
 ---
 
 <Layout
-  title="Numérologie Chaldéenne — La sagesse babylonienne"
-  description="Découvrez la numérologie chaldéenne, héritée des anciens Babyloniens. Valeurs vibratoires de 1 à 52, nombres maîtres, alphabet mystique. Gratuit, sans tracking."
-  keywords="numérologie, chaldéenne, babylonienne, nombres maîtres, vibrations, alphabet mystique, ancienne tradition"
+  title="Numérologie Chaldéenne — Calcul et interprétation"
+  description="Découvre tes 4 nombres chaldéens — Actif, Destin, Naissance, Vie. Table 1–8 (le 9 est sacré), vibrations planétaires, nombres composés. Héritage des anciens Babyloniens. Gratuit."
+  keywords="numérologie chaldéenne, babylonienne, Cheiro, nombres composés, 9 sacré, table chaldéenne, vibrations planétaires, destin, naissance, calculateur"
   canonicalPath="numerologie/chaldeenne.html"
   jsonLd={jsonLd}
+  scripts={["/assets/js/chaldeenne.js"]}
+  section="numerologie"
 >
 
-<!-- ═══════════ BANNIÈRE ═══════════ -->
+<!-- ═══════════ FIL D'ARIANE ═══════════ -->
+<nav class="breadcrumb" aria-label="Fil d'Ariane" style="padding:0.8rem 1.5rem;font-family:var(--font-mono);font-size:0.8rem;color:var(--text-muted);max-width:1200px;margin:0 auto;">
+  <a href="../index.html" style="color:var(--cyan);">Accueil</a> &rsaquo;
+  <a href="index.html" style="color:var(--cyan);">Numérologie</a> &rsaquo;
+  <span style="color:var(--text);">Chaldéenne</span>
+</nav>
+
+<!-- ═══════════ HERO ═══════════ -->
 <section id="hero">
   <h1>
     <span class="pulse"></span>
-    🔢 <span class="gold">Numérologie Chaldéenne</span><br>La sagesse <span class="emerald">babylonienne</span>
+    Les vibrations <span class="gold">babyloniennes</span><br>de ton <span class="emerald">destin</span>
   </h1>
   <p class="subtitle">
-    Héritée des anciens Babyloniens, la numérologie chaldéenne utilise des valeurs vibratoires de 1 à 52.
-    Contrairement au système pythagoricien, elle ne réduit pas les nombres maîtres.
+    Héritée des astrologues-prêtres de l'ancienne Babylone, la numérologie chaldéenne assigne des valeurs vibratoires de 1 à 8 — le 9 étant sacré, il n'appartient à aucune lettre. Chaque nombre résonne avec une planète et une énergie cosmique distincte.
   </p>
+  <a href="#calculateur" class="cta">✦ Révéler mes 4 nombres chaldéens</a>
   <p class="quote">
-    « Chaque lettre est une vibration, chaque nombre une porte vers l'invisible. »
-    <br><span class="gold">— Tradition chaldéenne</span>
+    « Le nombre 9 est divin — trop sacré pour appartenir à l'homme. »
+    <br><span class="gold">— Tradition chaldéenne, popularisée par Cheiro</span>
   </p>
 </section>
 
-<!-- ═══════════ CONTENU ═══════════ -->
-<section id="contenu">
+<!-- ═══════════ [01] CALCULATEUR ═══════════ -->
+<section id="calculateur">
   <div class="section-title">
     <div class="num">[ 01 ]</div>
-    <h2>✦ En cours de création</h2>
-    <p class="slate">Cette section est en cours de création.</p>
+    <h2>✦ Calculateur Chaldéen</h2>
+    <p class="slate">Entre ton prénom usuel (celui que tu utilises au quotidien, pas nécessairement ton prénom officiel), ton nom de famille et ta date de naissance.</p>
   </div>
 
-  <div style="max-width:700px;margin:2rem auto;background:#1e293b;border:1px solid #334155;border-radius:12px;padding:2.5rem;text-align:center;">
-    <div style="font-size:3rem;margin-bottom:1rem;">✧</div>
-    <p style="color:#cbd5e1;font-size:1.1rem;line-height:1.8;">
-      La numérologie chaldéenne, héritée des anciens Babyloniens, utilise des valeurs vibratoires de 1 à 52. Contrairement au système pythagoricien, elle ne réduit pas les nombres maîtres.
+  <div style="max-width:640px;margin:0 auto 1.5rem;text-align:center;">
+    <p class="chald-intro-text">
+      La méthode chaldéenne utilise ton
+      <strong class="chald-label-emerald">prénom usuel</strong> — le nom par lequel tu es vraiment connu —,
+      pas forcément ton prénom légal. Elle est la seule tradition à faire cette distinction.
     </p>
-    <p style="color:#94a3b8;font-size:1rem;margin-top:1.5rem;">
-      Revenez bientôt pour explorer cette tradition antique !
+    <p class="chald-intro-sub">
+      Si tu te fais appeler "Marc" mais t'appelles "Jean-Marc" à l'état civil, entre "Marc".
     </p>
-    <a href="index.html" style="display:inline-block;background:#a78bfa;color:#0f172a;font-family:var(--font-mono);font-size:0.9rem;padding:0.7rem 1.6rem;border-radius:8px;text-decoration:none;font-weight:700;margin-top:2rem;transition:all 0.3s;" onmouseover="this.style.background='#8b5cf6'" onmouseout="this.style.background='#a78bfa'">← Retour à la numérologie</a>
+  </div>
+
+  <form class="pyth-form" id="chald-form" onsubmit="return false;">
+    <div class="pyth-form-group">
+      <label class="pyth-label">Date de naissance</label>
+      <div class="pyth-date-row">
+        <div class="pyth-field">
+          <input type="number" id="chald-jour" class="pyth-input" min="1" max="31" placeholder="JJ" aria-label="Jour de naissance" inputmode="numeric">
+          <span class="pyth-field-label">Jour</span>
+        </div>
+        <div class="pyth-field">
+          <input type="number" id="chald-mois" class="pyth-input" min="1" max="12" placeholder="MM" aria-label="Mois de naissance" inputmode="numeric">
+          <span class="pyth-field-label">Mois</span>
+        </div>
+        <div class="pyth-field pyth-field--wide">
+          <input type="number" id="chald-annee" class="pyth-input" min="1900" max="2100" placeholder="AAAA" aria-label="Année de naissance" inputmode="numeric">
+          <span class="pyth-field-label">Année</span>
+        </div>
+      </div>
+    </div>
+    <div class="pyth-form-group">
+      <label class="pyth-label">Prénom usuel (comment tu te fais appeler)</label>
+      <input type="text" id="chald-prenom" class="pyth-input pyth-input--full" placeholder="ex. Marie" aria-label="Prénom usuel" autocomplete="given-name">
+    </div>
+    <div class="pyth-form-group">
+      <label class="pyth-label">Nom de famille</label>
+      <input type="text" id="chald-nom" class="pyth-input pyth-input--full" placeholder="ex. Dupont" aria-label="Nom de famille" autocomplete="family-name">
+    </div>
+    <div class="pyth-form-actions">
+      <button type="button" id="chald-exemple" class="pyth-btn-example">Essayer avec un exemple</button>
+      <button type="submit" class="pyth-btn-calc">Révéler mes 4 nombres ✦</button>
+    </div>
+  </form>
+
+  <!-- ─── RÉSULTATS ─── -->
+  <div id="chaldResultats" hidden>
+    <div class="pyth-section-sep"></div>
+
+    <!-- Formule de calcul -->
+    <div class="pyth-result-block">
+      <h3 class="pyth-result-title"><span class="cf-gold">◈</span> La formule de tes nombres</h3>
+      <div id="chaldFormule"></div>
+    </div>
+
+    <!-- Grille des 4 nombres fondamentaux -->
+    <div class="pyth-result-block">
+      <h3 class="pyth-result-title"><span class="cf-gold">◈</span> Tes 4 nombres chaldéens</h3>
+      <div class="pyth-core-grid" id="chaldCoreGrid"></div>
+    </div>
+
+    <!-- Détails étendus -->
+    <div class="pyth-result-block">
+      <h3 class="pyth-result-title"><span class="cf-gold">◈</span> Interprétation détaillée</h3>
+      <div class="pyth-details" id="chaldDetails"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ [02] LES 9 VIBRATIONS ═══════════ -->
+<section id="chaldVibrations">
+  <div class="section-title">
+    <div class="num">[ 02 ]</div>
+    <h2>✦ Les 9 Vibrations Chaldéennes</h2>
+    <p class="slate">De 1 à 8, les énergies planétaires attribuées aux lettres — et le 9, sacré et inattribué. Clique pour retourner la carte.</p>
+  </div>
+  <div class="grid" id="chaldVibrationsGrid"></div>
+  <p style="text-align:center;font-size:0.8rem;color:var(--text-muted);margin-top:1rem;">
+    ✦ Survoler une carte retournée affiche l'interprétation complète
+  </p>
+</section>
+
+<!-- ═══════════ [03] LA MÉTHODE ═══════════ -->
+<section id="methode">
+  <div class="section-title">
+    <div class="num">[ 03 ]</div>
+    <h2>✦ La Méthode Chaldéenne</h2>
+    <p class="slate">Comment sont calculés tes 4 nombres — et en quoi cette tradition diffère fondamentalement de la méthode pythagoricienne.</p>
+  </div>
+
+  <!-- Table chaldéenne -->
+  <div class="pyth-table-wrapper">
+    <h3 class="pyth-table-title">Table chaldéenne des vibrations (9 est sacré — non attribué)</h3>
+    <div class="pyth-table">
+      <div class="pyth-table-row pyth-table-header">
+        <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span class="ch-nine">9✦</span>
+      </div>
+      <div class="pyth-table-row">
+        <span>A</span><span>B</span><span>C</span><span>D</span><span>E</span><span>U</span><span>O</span><span>F</span><span class="ch-nine">—</span>
+      </div>
+      <div class="pyth-table-row">
+        <span>I</span><span>K</span><span>G</span><span>M</span><span>H</span><span>V</span><span>Z</span><span>P</span><span class="ch-nine">—</span>
+      </div>
+      <div class="pyth-table-row">
+        <span>J</span><span>R</span><span>L</span><span>T</span><span>N</span><span>W</span><span></span><span></span><span class="ch-nine">—</span>
+      </div>
+      <div class="pyth-table-row">
+        <span>Q</span><span></span><span>S</span><span></span><span>X</span><span></span><span></span><span></span><span class="ch-nine">—</span>
+      </div>
+      <div class="pyth-table-row">
+        <span>Y</span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span class="ch-nine">—</span>
+      </div>
+    </div>
+    <p class="pyth-table-note">Distribution basée sur la <em>résonance vibratoire</em> des sons — et non sur l'ordre alphabétique comme en pythagoricien.</p>
+  </div>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <h3>Nombre Actif (prénom usuel)</h3>
+      <p>Chaque lettre du prénom que tu utilises au quotidien est convertie selon la table chaldéenne. La somme est réduite à un chiffre unique. C'est la vibration que tu incarnes dans ta vie active et sociale.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <h3>Nombre de Destin (nom complet)</h3>
+      <p>La somme de toutes les lettres de ton prénom et nom de famille, réduite à un chiffre. Si la somme totale (avant réduction) tombe entre 10 et 52, elle constitue un <strong>nombre composé</strong> porteur d'une signification propre.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <h3>Nombre de Naissance (jour seul)</h3>
+      <p>Le jour de naissance conservé comme nombre composé s'il est entre 10 et 52, ou réduit autrement. La tradition chaldéenne attache une importance particulière au <em>jour nu</em>, porteur du don inné apporté à la naissance.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <h3>Nombre de Vie (date complète)</h3>
+      <p>La somme vibratoire de ta date complète (jour + mois + année). C'est le fil directeur de ton existence — la grande orientation que Cheiro appelait le "nombre karmique de la destinée".</p>
+    </div>
+  </div>
+
+  <!-- Encart nombres composés -->
+  <div class="chald-composes-box">
+    <h4 class="pyth-diff-title">Les nombres composés — la double lecture chaldéenne</h4>
+    <p style="font-size:0.87rem;color:var(--text-dim);line-height:1.75;margin-bottom:1.25rem;">
+      L'une des spécificités les plus profondes de la tradition chaldéenne est sa lecture des <strong>nombres composés</strong> (entre 10 et 52) avant réduction finale. Là où le pythagoricien réduit directement 17 en 8, le chaldéen s'arrête sur le 17 — <em>L'Étoile du Berger</em> — avant de noter que sa vibration fondamentale est 8.
+    </p>
+    <div class="ch-compose-mini-grid">
+      <div class="ch-compose-mini">
+        <span class="ch-cm-n cf-emerald">10</span>
+        <span>Roue du Destin — cycles ascendants/descendants</span>
+      </div>
+      <div class="ch-compose-mini">
+        <span class="ch-cm-n cf-rose">13</span>
+        <span>Le Phénix — transformation par les épreuves</span>
+      </div>
+      <div class="ch-compose-mini">
+        <span class="ch-cm-n cf-emerald">17</span>
+        <span>L'Étoile — espoir, renommée, amour durable</span>
+      </div>
+      <div class="ch-compose-mini">
+        <span class="ch-cm-n cf-rose">22</span>
+        <span>L'Imprudent — pouvoir risqué, erreurs de jugement</span>
+      </div>
+      <div class="ch-compose-mini">
+        <span class="ch-cm-n cf-emerald">19</span>
+        <span>Le Prince du Ciel — succès, rayonnement</span>
+      </div>
+      <div class="ch-compose-mini">
+        <span class="ch-cm-n cf-rose">16</span>
+        <span>La Tour brisée — choc libérateur, renaissance</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Différences avec d'autres méthodes -->
+  <div class="pyth-diff-box" style="margin-top:1.5rem;">
+    <h4 class="pyth-diff-title">Chaldéenne vs autres traditions</h4>
+    <div class="pyth-diff-grid">
+      <div class="pyth-diff-item">
+        <span class="pyth-diff-lbl cf-gold">Chaldéenne</span>
+        <span>Table 1–8 selon la résonance sonore, 9 sacré non attribué, prénom usuel (pas légal), nombres composés 10–52 significatifs</span>
+      </div>
+      <div class="pyth-diff-item">
+        <span class="pyth-diff-lbl cf-emerald">Pythagoricienne</span>
+        <span>Table A=1 → Z=8 séquentielle, 5 nombres fondamentaux, Y = voyelle conditionnelle, nombres maîtres 11/22/33</span>
+      </div>
+      <div class="pyth-diff-item">
+        <span class="pyth-diff-lbl cf-violet">Cabalistique</span>
+        <span>Table hébraïque (Raúl Durán), 22 archétypes, chemin de vie + ticún, calcul sur la date seulement</span>
+      </div>
+    </div>
   </div>
 </section>
 
   <p slot="sources" style="color:#64748b;font-size:0.75rem;margin-bottom:0.8rem;">
-    Sources : Tradition babylonienne, numérologie chaldéenne
+    Sources : Cheiro (Count Louis Hamon), <em>Cheiro's Book of Numbers</em> (1926) ·
+    Joanna Martine Woolfolk, <em>The Only Astrology Book You'll Ever Need</em> ·
+    Michael McClain, ChaldeanNumerology.com ·
+    Numerologist.com — Chaldean System ·
+    Astrology.com — Chaldean Numerology Guide
   </p>
 
 </Layout>
+
+<style is:global>
+  /* ═══════════ CHALDÉENNE — styles spécifiques ═══════════ */
+
+  /* ─── Intro sous le titre ─── */
+  .chald-intro-text {
+    color: var(--text-dim);
+    font-size: 0.92rem;
+    line-height: 1.7;
+  }
+  .chald-intro-sub {
+    color: var(--text-muted);
+    font-size: 0.82rem;
+    margin-top: 0.5rem;
+  }
+  .chald-label-emerald { color: var(--emerald); }
+
+  [data-theme="light"] .chald-intro-text { color: #334155; }
+  [data-theme="light"] .chald-intro-sub  { color: #475569; }
+  [data-theme="light"] .chald-label-emerald { color: #047857; }
+
+  /* ─── Couleurs utilitaires Chaldean ─── */
+  .cf-gold    { color: var(--gold) !important; }
+  .cf-bg-gold { background: rgba(223,178,108,0.12) !important; }
+  .ch-nine    { color: var(--gold) !important; opacity: 0.6; font-style: italic; }
+
+  /* ─── Grille des 9 vibrations ─── */
+  #chaldVibrations .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    max-width: 100%;
+  }
+
+  /* ─── Badge astral sur les cartes ─── */
+  .ch-astre-badge {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    color: var(--gold);
+    opacity: 0.75;
+    margin-top: 0.3rem;
+  }
+
+  /* ─── Core grid — couleurs Chaldean ─── */
+  .cp-actif     { border-top: 2px solid var(--emerald); }
+  .cp-destin    { border-top: 2px solid var(--violet); }
+  .cp-naissance { border-top: 2px solid var(--rose); }
+  .cp-vie       { border-top: 2px solid var(--cyan); }
+  .cp-actif:hover     { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(0,0,0,0.40), 0 0 20px -8px var(--emerald); }
+  .cp-destin:hover    { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(0,0,0,0.40), 0 0 20px -8px var(--violet); }
+  .cp-naissance:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(0,0,0,0.40), 0 0 20px -8px var(--rose); }
+  .cp-vie:hover       { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(0,0,0,0.40), 0 0 20px -8px var(--cyan); }
+
+  /* ─── Badge nombre composé (core grid) ─── */
+  .core-compose-badge {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    padding: 0.1rem 0.5rem;
+    border-radius: 5px;
+    background: rgba(223,178,108,0.1);
+    border: 1px solid rgba(223,178,108,0.2);
+    margin-top: 0.3rem;
+    text-align: center;
+    line-height: 1.5;
+  }
+
+  /* ─── Detail cards — couleurs Chaldean ─── */
+  .pd-actif     { border-top: 2px solid var(--emerald); }
+  .pd-destin    { border-top: 2px solid var(--violet); }
+  .pd-naissance { border-top: 2px solid var(--rose); }
+  .pd-vie       { border-top: 2px solid var(--cyan); }
+
+  /* ─── Badge astral dans les détails ─── */
+  .pd-astre {
+    background: rgba(223,178,108,0.1);
+    color: var(--gold);
+    border: 1px solid rgba(223,178,108,0.2);
+  }
+
+  /* ─── Hint de nombre composé dans la formule ─── */
+  .pf-compose-hint {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: var(--gold);
+    opacity: 0.7;
+    margin-left: 0.25rem;
+  }
+
+  /* ─── Encart nombre composé dans le détail ─── */
+  .ch-compose {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    border-radius: 10px;
+    padding: 0.85rem 1rem;
+    margin-top: 1rem;
+    border-left: 3px solid currentColor;
+  }
+  .ch-compose-num {
+    font-family: var(--font-mono);
+    font-size: 1.8rem;
+    font-weight: 700;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+  .ch-compose-info strong { display: block; font-size: 0.85rem; margin-bottom: 0.3rem; }
+  .ch-compose-info p { font-size: 0.82rem; color: var(--text-dim); line-height: 1.65; margin: 0; }
+
+  /* Polarités des encarts composés */
+  .cf-bg-emerald .ch-compose-num,
+  .cf-bg-emerald strong { color: var(--emerald); }
+  .cf-bg-rose .ch-compose-num,
+  .cf-bg-rose strong { color: var(--rose); }
+  .cf-bg-gold .ch-compose-num,
+  .cf-bg-gold strong { color: var(--gold); }
+
+  .cf-bg-emerald { background: rgba(61,211,153,0.08); border-color: var(--emerald); }
+  .cf-bg-rose    { background: rgba(251,129,149,0.08); border-color: var(--rose); }
+  .cf-bg-gold    { background: rgba(223,178,108,0.08); border-color: var(--gold); }
+
+  /* ─── Encart nombres composés (section méthode) ─── */
+  .chald-composes-box {
+    max-width: 760px;
+    margin: 2.5rem auto 0;
+    background: linear-gradient(150deg, rgba(18,25,42,0.85) 0%, rgba(10,13,23,0.92) 100%);
+    border: 1px solid rgba(223,178,108,0.15);
+    border-radius: 14px;
+    padding: 1.5rem 2rem;
+  }
+  .ch-compose-mini-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 0.75rem;
+  }
+  .ch-compose-mini {
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+    font-size: 0.83rem;
+    color: var(--text-dim);
+    line-height: 1.5;
+  }
+  .ch-cm-n {
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    font-weight: 700;
+    flex-shrink: 0;
+    min-width: 30px;
+  }
+
+  /* ─── Responsive ─── */
+  @media (max-width: 768px) {
+    #chaldVibrations .grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+    .ch-compose { flex-direction: column; gap: 0.5rem; }
+    .ch-compose-mini-grid { grid-template-columns: 1fr; }
+  }
+</style>

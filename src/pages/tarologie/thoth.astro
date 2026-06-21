@@ -3,45 +3,98 @@ import Layout from '../../layouts/Layout.astro';
 
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "Article",
-  "name": "Tarot de Thoth — L'œuvre d'Aleister Crowley",
+  "@type": "CollectionPage",
+  "name": "Tarot de Thoth — Méthodes de Tirage Ésotériques",
   "url": "https://mysteres.fr/tarologie/thoth.html",
-  "description": "Découvrez le Tarot de Thoth, peint par Lady Frieda Harris sous la direction d'Aleister Crowley.",
+  "description": "Découvrez les 4 méthodes de tirage ésotériques du Tarot de Thoth d'Aleister Crowley : Arbre de Vie, Étoile de David, Angle Mort et Alignement Alchimique.",
   "inLanguage": "fr"
 };
 ---
 
 <Layout
-  title="Tarot de Thoth — Tarologie"
-  description="Découvrez le Tarot de Thoth, peint par Lady Frieda Harris sous la direction d'Aleister Crowley. Intègre l'astrologie, la kabbale et l'alchimie dans ses 78 lames."
-  keywords="tarot de thoth, crowley, aleister crowley, friedah harris, kabbale, alchimie, tarologie"
+  title="Tarot de Thoth — Méthodes de tirage ésotériques"
+  description="Découvrez 4 méthodes de tirage du Tarot de Thoth d'Aleister Crowley : l'Arbre de Vie, l'Étoile de David, l'Angle Mort et l'Alignement Alchimique."
+  keywords="tarot de thoth, aleister crowley, kabbale, astrologie, alchimie, arbre de vie, etoile de david, angle mort, tarologie"
   canonicalPath="tarologie/thoth.html"
   jsonLd={jsonLd}
+  section="tarologie"
 >
 
 <!-- ═══════════ FIL D'ARIANE ═══════════ -->
-<nav class="breadcrumb" aria-label="Fil d'Ariane" style="padding:0.8rem 1.5rem;font-family:var(--font-mono);font-size:0.8rem;color:var(--text-muted);">
+<nav class="breadcrumb" aria-label="Fil d'Ariane" style="padding:0.8rem 1.5rem;font-family:var(--font-mono);font-size:0.8rem;color:var(--text-muted);max-width:1200px;margin:0 auto;">
   <a href="../index.html" style="color:var(--cyan);">Accueil</a> &rsaquo;
   <a href="index.html" style="color:var(--cyan);">Tarologie</a> &rsaquo;
-  <span style="color:var(--text-primary);">Tarot de Thoth</span>
+  <span style="color:var(--text);">Tarot de Thoth</span>
 </nav>
 
-<!-- ═══════════ BANNIÈRE "BIENTÔT" ═══════════ -->
-<section id="hero" style="text-align:center;padding:6rem 1.5rem 4rem;max-width:700px;margin:0 auto;">
-  <h1>
-    <span class="pulse"></span>
-    🃏 <span class="gold">Tarot de Thoth</span><br>L'œuvre d'<span class="emerald">Aleister Crowley</span>
-  </h1>
-  <p class="subtitle">
-    Cette section est en cours de création. Le Tarot de Thoth, peint par Lady Frieda Harris sous la direction d'Aleister Crowley, intègre l'astrologie, la kabbale et l'alchimie dans ses 78 lames. Revenez bientôt !
-  </p>
-  <a href="../tarologie/index.html" class="cta">← Retour à la Tarologie</a>
-</section>
+<div class="hub-container">
+  <aside class="hub-sidebar">
+    <h1>
+      <span class="pulse"></span>
+      🃏 <span class="gold">Tarot de Thoth</span><br>Lectures <span class="cyan">Ésotériques</span>
+    </h1>
+    <p class="subtitle">
+      Peint par Lady Frieda Harris sous la direction d'Aleister Crowley entre 1938 et 1943, le Tarot de Thoth est un chef-d'œuvre de l'occultisme moderne. Il intègre une synthèse monumentale de la Kabbale hermétique, de l'astrologie chaldéenne et de l'alchimie médiévale.
+    </p>
+  </aside>
+
+  <main class="hub-main">
+    <div class="section-title">
+      <div class="num">[ 01 ]</div>
+      <h2>✦ Les 4 Tirages Hermétiques</h2>
+      <p class="slate">Déployez les arcanes de Thoth à travers des structures de lecture uniques adaptées à sa complexité symbolique.</p>
+    </div>
+
+    <div class="mystere-grid">
+
+      <!-- Carte 1 : Arbre de Vie -->
+      <div class="mystere-card" style="--card-accent-color: var(--gold); --hover-accent-color: var(--gold);">
+         <div class="card-icon">✡</div>
+        <h3>L'ARBRE DE VIE</h3>
+        <p>
+          Le tirage qabalistique suprême en 10 cartes. Chaque arcane est projeté sur l'une des 10 Sephiroth de la Kabbale, révélant le cheminement de votre idée depuis le Divin jusqu'à la matière.
+        </p>
+        <a href="thoth/arbre-de-vie.html" class="btn-explore">Tirer les cartes ✦</a>
+      </div>
+
+      <!-- Carte 2 : Étoile de David -->
+      <div class="mystere-card" style="--card-accent-color: var(--cyan); --hover-accent-color: var(--cyan);">
+        <div class="card-icon">☉</div>
+        <h3>L'ÉTOILE DE DAVID</h3>
+        <p>
+          Tirage astrologique en 7 cartes structuré autour des 7 planètes traditionnelles (Soleil, Lune, Mercure, Vénus, Mars, Jupiter, Saturne) pour comprendre les influences astrales de votre destin.
+        </p>
+        <a href="thoth/etoile-de-david.html" class="btn-explore">Tirer les cartes ✦</a>
+      </div>
+
+      <!-- Carte 3 : Angle Mort -->
+      <div class="mystere-card" style="--card-accent-color: var(--violet); --hover-accent-color: var(--violet);">
+        <div class="card-icon">👁</div>
+        <h3>L'ANGLE MORT</h3>
+        <p>
+          Une lecture psychologique en 4 cartes basée sur la fenêtre de Johari. Explorez ce que vous projetez consciemment, ce que les autres perçoivent et vos vérités enfouies.
+        </p>
+        <a href="thoth/angle-mort.html" class="btn-explore">Tirer les cartes ✦</a>
+      </div>
+
+      <!-- Carte 4 : Alignement Alchimique -->
+      <div class="mystere-card" style="--card-accent-color: var(--emerald); --hover-accent-color: var(--emerald);">
+        <div class="card-icon">🜔</div>
+        <h3>ALIGNEMENT ALCHIMIQUE</h3>
+        <p>
+          Un tirage en 4 cartes pour harmoniser vos quatre éléments : le Feu de la Volonté, l'Eau de l'Émotion, l'Air du Mental et la Terre de l'Ancrage corporel.
+        </p>
+        <a href="thoth/spirituel.html" class="btn-explore">Tirer les cartes ✦</a>
+      </div>
+
+    </div>
+  </main>
+</div>
 
 <!-- ═══════════ NAVIGATION PRÉCÉDENT / SUIVANT ═══════════ -->
 <nav class="sub-nav" style="display:flex;justify-content:space-between;max-width:600px;margin:2rem auto;padding:1rem;">
-  <a href="rider-waite.html" style="color:var(--cyan);font-family:var(--font-mono);">← Rider-Waite-Smith</a>
-  <span></span>
+  <a href="rider-waite.html" style="color:var(--cyan);font-family:var(--font-mono);">← Tarot Rider-Waite-Smith</a>
+  <a href="index.html" style="color:var(--cyan);font-family:var(--font-mono);">Retour à l'accueil Tarologie</a>
 </nav>
 
 </Layout>

@@ -3,45 +3,547 @@ import Layout from '../../layouts/Layout.astro';
 
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "Article",
-  "name": "Astrologie Védique (Jyotish) — La science de la lumière",
+  "@type": "WebPage",
+  "name": "Astrologie Védique (Jyotish) — Calculateur de Nakshatras & Thème Védique",
   "url": "https://mysteres.fr/astrologie/vedique.html",
-  "description": "Découvrez l'astrologie védique ou Jyotish, pilier de la tradition hindoue.",
-  "inLanguage": "fr"
+  "description": "Découvrez l'astrologie védique (Jyotish) : calculez votre Lagna (Ascendant), votre Nakshatra de naissance, vos 12 Bhavas (maisons), et dressez votre ligne temporelle Vimshottari Dasha.",
+  "inLanguage": "fr",
+  "about": { "@type": "Thing", "name": "Astrologie Védique" }
 };
 ---
 
 <Layout
-  title="Astrologie Védique (Jyotish) — Astrologie"
-  description="Découvrez l'astrologie védique ou Jyotish, pilier de la tradition hindoue. Zodiaque sidéral, nakshatras et dashas pour une compréhension profonde de votre destin."
-  keywords="astrologie védique, jyotish, nakshatras, dashas, zodiaque sidéral, tradition hindoue"
+  title="Astrologie Védique (Jyotish) — Nakshatras, Bhavas & Vimshottari Dasha"
+  description="Calculez votre thème astrologique védique traditionnel (Jyotish). Découvrez votre Lagna (Ascendant), votre Nakshatra lunaire de naissance, vos 12 Bhavas, et dressez votre calendrier de cycles de vie Vimshottari Dasha."
+  keywords="astrologie védique, jyotish, nakshatras, dashas, zodiaque sidéral, bhavas, thême védique, karma, ascendant védique"
   canonicalPath="astrologie/vedique.html"
   jsonLd={jsonLd}
+  section="astrologie"
 >
 
 <!-- ═══════════ FIL D'ARIANE ═══════════ -->
-<nav class="breadcrumb" aria-label="Fil d'Ariane" style="padding:0.8rem 1.5rem;font-family:var(--font-mono);font-size:0.8rem;color:var(--text-muted);">
+<nav class="breadcrumb" aria-label="Fil d'Ariane" style="padding:0.8rem 1.5rem;font-family:var(--font-mono);font-size:0.8rem;color:var(--text-muted);max-width:1200px;margin:0 auto;">
   <a href="../index.html" style="color:var(--cyan);">Accueil</a> &rsaquo;
   <a href="index.html" style="color:var(--cyan);">Astrologie</a> &rsaquo;
-  <span style="color:var(--text-primary);">Astrologie Védique</span>
+  <span style="color:var(--text);">Astrologie Védique (Jyotish)</span>
 </nav>
 
-<!-- ═══════════ BANNIÈRE "BIENTÔT" ═══════════ -->
-<section id="hero" style="text-align:center;padding:6rem 1.5rem 4rem;max-width:700px;margin:0 auto;">
+<!-- ═══════════ HERO ═══════════ -->
+<section id="hero" style="background: linear-gradient(180deg, rgba(183, 139, 250, 0.05) 0%, rgba(15, 23, 42, 0) 100%);">
   <h1>
-    <span class="pulse"></span>
-    ⭐ <span class="gold">Astrologie Védique</span><br>La science de la <span class="emerald">lumière</span>
+    <span class="pulse" style="background: var(--violet); box-shadow: 0 0 12px var(--violet);"></span>
+    L'Astrologie Védique<br><span class="gold">Jyotish, la science de la lumière</span>
   </h1>
   <p class="subtitle">
-    Cette section est en cours de création. L'astrologie védique, ou Jyotish, est un pilier de la tradition hindoue. Elle utilise le zodiaque sidéral, les nakshatras (demeures lunaires), et les dashas (périodes planétaires). Revenez bientôt !
+    Issue des textes sacrés des Vedas de l'Inde antique, l'astrologie védique, ou <strong>Jyotish</strong> ("Science de la Lumière"), est conçue comme un outil d'éveil spirituel et d'analyse karmique. Fondée sur le <strong>zodiaque sidéral physique</strong> (corrigé par l'Ayanamsa de Lahiri), elle délaisse la façade psychologique de l'ego pour examiner la trame profonde de votre destin à travers les <strong>27 Nakshatras</strong> (demeures lunaires), les <strong>12 Bhavas</strong> (maisons de vie), et les cycles temporels précis du <strong>Vimshottari Dasha</strong>.
   </p>
-  <a href="../astrologie/index.html" class="cta">← Retour à l'Astrologie</a>
+  <a href="#calculateur" class="cta" style="background:var(--violet);color:var(--text);box-shadow:0 0 20px rgba(183,139,250,0.35);">✦ Dresser mon thème védique</a>
+  <p class="quote">
+    « Le Jyotish est l'œil des Vedas. Il illumine la trajectoire de l'âme à travers les cycles du temps et du karma. »
+    <br><span class="gold">— Sagesse védique traditionnelle</span>
+  </p>
 </section>
 
-<!-- ═══════════ NAVIGATION PRÉCÉDENT / SUIVANT ═══════════ -->
+<!-- ═══════════ [01] CALCULATEUR ═══════════ -->
+<section id="calculateur">
+  <div class="section-title">
+    <div class="num" style="color:var(--violet);border-color:rgba(183,139,250,0.3);">[ 01 ]</div>
+    <h2>✦ Calculateur Thème Védique</h2>
+    <p class="slate">Renseignez vos coordonnées de naissance pour générer votre profil védique : Lagna, Nakshatras, Bhavas et ligne de vie Dasha.</p>
+  </div>
+
+  <form class="pyth-form" id="at-form" onsubmit="return false;">
+    <div class="pyth-form-group">
+      <label class="pyth-label">Date de naissance</label>
+      <div class="pyth-date-row">
+        <div class="pyth-field">
+          <input type="number" id="at-jour" class="pyth-input" min="1" max="31" placeholder="JJ" aria-label="Jour" inputmode="numeric">
+          <span class="pyth-field-label">Jour</span>
+        </div>
+        <div class="pyth-field">
+          <input type="number" id="at-mois" class="pyth-input" min="1" max="12" placeholder="MM" aria-label="Mois" inputmode="numeric">
+          <span class="pyth-field-label">Mois</span>
+        </div>
+        <div class="pyth-field pyth-field--wide">
+          <input type="number" id="at-annee" class="pyth-input" min="1900" max="2100" placeholder="AAAA" aria-label="Année" inputmode="numeric">
+          <span class="pyth-field-label">Année</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="pyth-form-group">
+      <label class="pyth-label">Heure de naissance <span style="color:var(--text-muted);font-size:0.8rem;">(nécessaire pour le calcul du Lagna et des Maisons)</span></label>
+      <div class="pyth-date-row">
+        <div class="pyth-field">
+          <input type="number" id="at-heure" class="pyth-input" min="0" max="23" placeholder="HH" aria-label="Heure" inputmode="numeric">
+          <span class="pyth-field-label">Heure</span>
+        </div>
+        <div class="pyth-field">
+          <input type="number" id="at-minute" class="pyth-input" min="0" max="59" placeholder="MM" aria-label="Minute" inputmode="numeric">
+          <span class="pyth-field-label">Minute</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="pyth-form-group">
+      <label class="pyth-label">Lieu de naissance</label>
+      <div class="at-select-wrap">
+        <select id="at-ville" class="at-select-native" aria-label="Ville de naissance" style="border-color:rgba(183,139,250,0.3);">
+          <option value="">-- Choisir une ville --</option>
+          <optgroup label="🇫🇷 France">
+            <option value="48.8566|2.3522|eu|1">Paris</option>
+            <option value="45.7640|4.8357|eu|1">Lyon</option>
+            <option value="43.2965|5.3698|eu|1">Marseille</option>
+            <option value="43.6047|1.4442|eu|1">Toulouse</option>
+            <option value="44.8378|-0.5792|eu|1">Bordeaux</option>
+            <option value="47.2184|-1.5536|eu|1">Nantes</option>
+            <option value="48.5734|7.7521|eu|1">Strasbourg</option>
+            <option value="50.6292|3.0573|eu|1">Lille</option>
+            <option value="43.7102|7.2620|eu|1">Nice</option>
+            <option value="48.1173|-1.6778|eu|1">Rennes</option>
+            <option value="45.1885|5.7245|eu|1">Grenoble</option>
+            <option value="43.6119|3.8772|eu|1">Montpellier</option>
+          </optgroup>
+          <optgroup label="🇧🇪🇨🇭 Belgique · Suisse · Luxembourg">
+            <option value="50.8503|4.3517|eu|1">Bruxelles</option>
+            <option value="46.2044|6.1432|eu|1">Genève</option>
+            <option value="46.5197|6.6323|eu|1">Lausanne</option>
+            <option value="47.3769|8.5417|eu|1">Zürich</option>
+            <option value="49.6117|6.1319|eu|1">Luxembourg</option>
+          </optgroup>
+          <optgroup label="🇬🇧🇵🇹 Royaume-Uni · Portugal">
+            <option value="51.5074|-0.1278|uk|0">Londres</option>
+            <option value="38.7223|-9.1393|uk|0">Lisbonne</option>
+          </optgroup>
+          <optgroup label="🇪🇸🇮🇹🇩🇪 Europe Sud · Est">
+            <option value="40.4168|-3.7038|eu|1">Madrid</option>
+            <option value="41.3851|2.1734|eu|1">Barcelone</option>
+            <option value="41.9028|12.4964|eu|1">Rome</option>
+            <option value="52.5200|13.4050|eu|1">Berlin</option>
+          </optgroup>
+          <optgroup label="🌍 Maghreb">
+            <option value="33.5731|-7.5898|none|1">Casablanca</option>
+            <option value="34.0209|-6.8416|none|1">Rabat</option>
+            <option value="36.7372|3.0865|none|1">Alger</option>
+            <option value="36.8065|10.1815|none|1">Tunis</option>
+          </optgroup>
+          <optgroup label="🌍 Afrique subsaharienne">
+            <option value="14.7167|-17.4677|none|0">Dakar</option>
+            <option value="5.3600|-4.0083|none|0">Abidjan</option>
+            <option value="3.8480|11.5021|none|1">Yaoundé</option>
+          </optgroup>
+          <optgroup label="🌊 DOM-TOM">
+            <option value="14.6415|-61.0242|none|-4">Martinique</option>
+            <option value="16.2650|-61.5510|none|-4">Guadeloupe</option>
+            <option value="-20.8789|55.4481|none|4">La Réunion</option>
+            <option value="-22.2758|166.4580|none|11">Nouvelle-Calédonie</option>
+            <option value="-17.5516|-149.5585|none|-10">Polynésie française</option>
+          </optgroup>
+          <optgroup label="🌎 Amérique du Nord">
+            <option value="45.5017|-73.5673|us|-5">Montréal</option>
+            <option value="46.8139|-71.2080|us|-5">Québec</option>
+            <option value="40.7128|-74.0060|us|-5">New York</option>
+          </optgroup>
+          <option value="custom">✎ Autre (lat/lon manuels)</option>
+        </select>
+        <span class="at-select-chevron" aria-hidden="true" style="color:var(--violet);">▾</span>
+      </div>
+      <div id="at-custom-coords" style="display:none;margin-top:0.6rem;">
+        <div class="pyth-date-row">
+          <div class="pyth-field pyth-field--wide">
+            <input type="number" id="at-lat" class="pyth-input" min="-90" max="90" step="0.0001" placeholder="48.8566" aria-label="Latitude">
+            <span class="pyth-field-label">Latitude (N+, S−)</span>
+          </div>
+          <div class="pyth-field pyth-field--wide">
+            <input type="number" id="at-lon" class="pyth-input" min="-180" max="180" step="0.0001" placeholder="2.3522" aria-label="Longitude">
+            <span class="pyth-field-label">Longitude (E+, O−)</span>
+          </div>
+          <div class="pyth-field">
+            <input type="number" id="at-tz-offset" class="pyth-input" min="-12" max="14" step="0.5" placeholder="1" aria-label="Décalage UTC">
+            <span class="pyth-field-label">Fuseau UTC</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pyth-form-actions">
+      <button type="button" id="at-exemple" class="pyth-btn-example">Essayer avec l'exemple (15/07/1990)</button>
+      <button type="submit" class="pyth-btn-calc" style="background:var(--violet);color:var(--text);box-shadow:0 4px 12px rgba(183,139,250,0.25);">Calculer mon thème védique ✦</button>
+    </div>
+  </form>
+
+  <!-- ── RÉSULTATS ── -->
+  <div id="atResultats" hidden>
+    <div class="pyth-section-sep"></div>
+    <div class="at-results-grid">
+      <!-- Lagna (Ascendant Védique) -->
+      <div class="pyth-result-block">
+        <h3 class="pyth-result-title at-highlight-title">
+          <span class="at-title-left">
+            <span class="at-dot at-dot-violet" style="background:var(--violet); box-shadow:0 0 10px var(--violet);"></span>
+            Lagna (Ascendant Védique)
+          </span>
+          <span class="at-hint">Le point physique d'incarnation à l'Est</span>
+        </h3>
+        <div id="atLagnaCard"></div>
+      </div>
+      <!-- Nakshatra de Naissance -->
+      <div class="pyth-result-block">
+        <h3 class="pyth-result-title at-highlight-title">
+          <span class="at-title-left">
+            <span class="at-dot at-dot-gold" style="background:var(--gold); box-shadow:0 0 10px var(--gold);"></span>
+            Nakshatra Natal (Chandra)
+          </span>
+          <span class="at-hint">La demeure lunaire guidant le subconscient</span>
+        </h3>
+        <div id="atNakshatraCard"></div>
+      </div>
+    </div>
+
+    <!-- Les 12 Bhavas -->
+    <div id="atBhavasSection" class="pyth-result-block" style="margin-top:2.5rem;">
+      <h3 class="pyth-result-title at-highlight-title" style="margin-bottom:1.5rem;">
+        <span class="at-title-left">
+          <span class="at-dot at-dot-violet" style="background:var(--violet); box-shadow:0 0 10px var(--violet);"></span>
+          ✦ Les 12 Bhavas (Maisons Védiques) &amp; Répartition Planétaire
+        </span>
+      </h3>
+      <p class="at-method-p" style="margin-bottom:1.25rem;">
+        Le système de maisons védiques utilisé ci-dessous est le <strong>Equal House System</strong> calculé à partir du degré exact du Lagna. La première maison commence au Lagna, chaque maison s'étendant sur exactement 30 degrés.
+      </p>
+      <div id="atBhavasSummary" class="at-summary-container"></div>
+      <div class="at-toggle-wrap">
+        <button id="atToggleBhavasBtn" class="at-toggle-detail-btn at-toggle-detail-btn--violet" type="button">
+          <span>Développer le détail des 12 Bhavas</span>
+          <span class="at-toggle-icon">▼</span>
+        </button>
+      </div>
+      <div id="atBhavasDetails" class="at-details-container" style="display:none;">
+        <div id="atBhavasBlock"></div>
+      </div>
+    </div>
+
+    <!-- Vimshottari Dasha -->
+    <div id="atDashaSection" class="pyth-result-block" style="margin-top:2.5rem;">
+      <h3 class="pyth-result-title at-highlight-title" style="margin-bottom:1.5rem;">
+        <span class="at-title-left">
+          <span class="at-dot at-dot-gold" style="background:var(--gold); box-shadow:0 0 10px var(--gold);"></span>
+          ✦ Vimshottari Dasha (Votre Ligne Temporelle Karmique)
+        </span>
+      </h3>
+      <p class="at-method-p" style="margin-bottom:1.5rem;">
+        La Vimshottari Dasha est le système de datation védique par excellence, s'étendant sur un cycle complet de 120 ans réparti entre les 9 régents planétaires. Déterminé par le degré précis de la Lune à votre naissance, ce calendrier révèle la planète active qui guide vos apprentissages à chaque étape de votre vie.
+      </p>
+      <div id="atDashaTimeline"></div>
+    </div>
+
+    <!-- Tableau de Synthèse -->
+    <div id="atSummaryTableSection" class="pyth-result-block" style="margin-top:2.5rem;">
+      <h3 class="pyth-result-title at-highlight-title" style="margin-bottom:1.5rem;">
+        <span class="at-title-left">
+          <span class="at-dot at-dot-gold" style="background:var(--gold); box-shadow:0 0 10px var(--gold);"></span>
+          ✦ Coordonnées Védiques Récapitulatives (Sidéral)
+        </span>
+      </h3>
+      <div id="atSummaryTableBlock"></div>
+    </div>
+
+    <p class="at-disclaimer">
+      ⚠ Les coordonnées et les dashas sont calculés en temps universel (UT) avec soustraction automatique de l'Ayanamsa de Lahiri —
+      fuseau appliqué : <span id="atTzNote" style="color:var(--violet);font-weight:600;"></span>.
+      Les positions planétaires et le Lagna reposent sur les algorithmes képlériens corrigés pour l'époque J2000.
+      Pour une analyse spirituelle et médicale certifiée de votre thème védique, consultez un astrologue Jyotish qualifié.
+    </p>
+  </div>
+</section>
+
+<!-- ═══════════ [02] FONDEMENTS ═══════════ -->
+<section id="comprendre-jyotish">
+  <div class="section-title">
+    <div class="num" style="color:var(--violet);border-color:rgba(183,139,250,0.3);">[ 02 ]</div>
+    <h2>✦ Fondements du Jyotish</h2>
+    <p class="slate">La science védique de la lumière repose sur quatre piliers mathématiques et métaphysiques.</p>
+  </div>
+
+  <!-- Bloc personnalisé post-calcul (caché par défaut) -->
+  <div id="atFondementsPersonnalise" style="display:none;"></div>
+
+  <!-- Contenu éducatif statique (masqué après calcul) -->
+  <div id="atFondementsStatic" class="at-method-block">
+    <h3 class="at-method-h3" style="color:var(--violet);">La Cartographie Karmique de l'Âme</h3>
+    <p class="at-method-p">
+      Contrairement à l'astrologie occidentale, axée sur la psychologie de l'ego de la personnalité présente, le Jyotish examine la destinée et les structures spirituelles héritées de vos incarnations précédentes. Le ciel de naissance n'est pas une fatalité, mais une photographie des forces karmiques mûres pour cette existence.
+    </p>
+
+    <div class="pyth-diff-box" style="margin-top:1.5rem;border-color:rgba(183,139,250,0.3);">
+      <div class="pyth-diff-title" style="color:var(--violet);">🕉️ Les Composantes Sacrées du Thème</div>
+      <div class="pyth-diff-grid">
+        <div class="pyth-diff-item">
+          <span class="pyth-diff-lbl" style="color:var(--violet);">Grahas (Forces Actives)</span>
+          <span>Les 9 planètes (incluant Rahu et Ketu, les nœuds lunaires) ne sont pas des corps inertes mais des divinités ou énergies spirituelles actives qui distribuent les fruits de nos actions passées.</span>
+        </div>
+        <div class="pyth-diff-item">
+          <span class="pyth-diff-lbl" style="color:var(--gold);">Rashis (Signes Védiques)</span>
+          <span>Les 12 constellations physiques du zodiaque sidéral. Elles agissent comme les environnements ou les réceptacles à travers lesquels les Grahas déploient leur énergie.</span>
+        </div>
+        <div class="pyth-diff-item">
+          <span class="pyth-diff-lbl" style="color:var(--cyan);">Bhavas (Maison de Vie)</span>
+          <span>Les 12 secteurs du thème représentant les domaines d'expérience concrète : la santé (1), la famille (2), le foyer (4), le couple (7), ou la carrière (10).</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="pyth-diff-box" style="margin-top:1.5rem;border-color:rgba(183,139,250,0.3);">
+      <div class="pyth-diff-title" style="color:var(--gold);">🌿 Destinée &amp; Purusharthas (Buts de la Vie)</div>
+      <div class="pyth-diff-grid">
+        <div class="pyth-diff-item">
+          <span class="pyth-diff-lbl" style="color:var(--rose);">Sanchita vs. Prarabdha Karma</span>
+          <span>Le <strong>Sanchita Karma</strong> est la totalité des actions accumulées au fil des vies. Le Jyotish s'intéresse principalement au <strong>Prarabdha Karma</strong>, la fraction spécifique qui a mûri et que l'âme a choisi de vivre dans cette incarnation présente.</span>
+        </div>
+        <div class="pyth-diff-item">
+          <span class="pyth-diff-lbl" style="color:var(--emerald);">Les 4 Buts de l'Âme</span>
+          <span>Chaque Bhava est aligné avec l'un des quatre objectifs de l'être humain : <strong>Dharma</strong> (vocation/devoir éthique), <strong>Artha</strong> (prospérité/ressources), <strong>Kama</strong> (désirs/plaisirs émotionnels), et <strong>Moksha</strong> (libération spirituelle).</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ [03] LES NAKSHATRAS ═══════════ -->
+<section id="importance-nakshatras">
+  <div class="section-title">
+    <div class="num" style="color:var(--violet);border-color:rgba(183,139,250,0.3);">[ 03 ]</div>
+    <h2>✦ Les Nakshatras : Demeures Divines</h2>
+    <p class="slate">Subdivisant le zodiaque sidéral en 27 segments de 13° 20', ils révèlent la trame émotionnelle et karmique du thème.</p>
+  </div>
+
+  <!-- Bloc personnalisé post-calcul (caché par défaut) -->
+  <div id="atNakshatrasPersonnalise" style="display:none;"></div>
+
+  <!-- Contenu éducatif statique (masqué après calcul) -->
+  <div id="atNakshatrasStatic" class="at-method-block">
+    <h3 class="at-method-h3" style="color:var(--violet);">La Demeure de la Lune (Chandra)</h3>
+    <p class="at-method-p">
+      Dans l'Inde ancienne, la Lune est considérée comme le récepteur et le traducteur de notre conscience mentale (Manas). C'est pourquoi son placement dans l'un des 27 Nakshatras est la clé de lecture absolue du thème védique, devançant en importance le signe solaire. Le Nakshatra lunaire régit nos instincts de protection, notre mémoire karmique subconsciente, et détermine le point de départ de nos périodes planétaires.
+    </p>
+
+    <div class="pyth-diff-box" style="margin-top:1.5rem;border-color:rgba(183,139,250,0.3);">
+      <div class="pyth-diff-title" style="color:var(--violet);">🔬 Structure d'un Nakshatra</div>
+      <div class="pyth-diff-grid">
+        <div class="pyth-diff-item">
+          <span class="pyth-diff-lbl" style="color:var(--gold);">Régent Divin (Devata)</span>
+          <span>Chaque Nakshatra est sous la tutelle d'une force de la nature ou divinité védique (ex: Yama pour Bharani, Brahma pour Rohini) qui indique la nature spirituelle de ses dons.</span>
+        </div>
+        <div class="pyth-diff-item">
+          <span class="pyth-diff-lbl" style="color:var(--violet);">Régent Planétaire (Graha)</span>
+          <span>La planète régente insuffle la dynamique psychologique et structurelle du segment, modulant l'expression de la Lune.</span>
+        </div>
+        <div class="pyth-diff-item">
+          <span class="pyth-diff-lbl" style="color:var(--cyan);">Les Padas (Quarts)</span>
+          <span>Chaque segment de 13° 20' est divisé en 4 Padas de 3° 20', correspondant à des sous-éléments d'alignement spirituel reliant les demeures lunaires aux signes sidéraux classiques.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<p slot="sources" style="color:#64748b;font-size:0.75rem;margin-bottom:0.8rem;">
+  Sources : BV Raman, <em>A Manual of Hindu Astrology</em> · KN Rao, <em>Astrology, Destiny and Wheel of Time</em> · <em>Brihat Parashara Hora Shastra</em> · Varahamihira, <em>Brihat Jataka</em> · Sanjay Rath, <em>Crux of Vedic Astrology</em>
+</p>
+
+<!-- ═══════════ NAVIGATION ═══════════ -->
 <nav class="sub-nav" style="display:flex;justify-content:space-between;max-width:600px;margin:2rem auto;padding:1rem;">
   <a href="siderale.html" style="color:var(--cyan);font-family:var(--font-mono);">← Astrologie Sidérale</a>
   <span></span>
 </nav>
 
 </Layout>
+
+<style is:global>
+/* ─── Dots résultat ─── */
+.at-dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; margin-right: 0.5rem; vertical-align: middle; flex-shrink: 0; }
+.at-dot-gold { background: var(--gold); }
+.at-dot-violet { background: var(--violet); }
+.at-hint { font-size: 0.78rem; color: var(--text-muted); font-family: var(--font-mono); font-weight: 400; margin-left: 0.6rem; vertical-align: middle; }
+
+/* ─── Sélecteur de ville ─── */
+.at-select-wrap { position: relative; max-width: 420px; }
+.at-select-native { width: 100%; appearance: none; cursor: pointer; background: rgba(255,255,255,0.04); border: 1px solid #334155; border-radius: 8px; color: var(--text); padding: 0.65rem 2.6rem 0.65rem 0.9rem; font-size: 0.9rem; font-family: inherit; transition: border-color 0.2s; }
+.at-select-native:hover { border-color: #64748b; }
+.at-select-native:focus { border-color: var(--violet); outline: 2px solid rgba(183,139,250,0.18); outline-offset: 2px; }
+.at-select-native option, .at-select-native optgroup { background: #1e293b; color: var(--text); }
+.at-select-chevron { position: absolute; right: 0.75rem; top: 50%; transform: translateY(-50%); color: var(--violet); pointer-events: none; font-size: 0.95rem; }
+
+/* ─── Résultats grille ─── */
+.at-results-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+
+/* ─── Cards résultat ─── */
+.at-result-card { background: rgba(255,255,255,0.03); border: 1px solid #1e293b; border-radius: 12px; padding: 1.5rem; }
+.at-rc-header { display: flex; gap: 1rem; align-items: flex-start; margin-bottom: 1rem; }
+.at-rc-sym { font-size: 2.8rem; line-height: 1; flex-shrink: 0; }
+.at-rc-name { font-size: 1.3rem; font-weight: 700; }
+.at-rc-dates { font-size: 0.8rem; color: var(--text-muted); font-family: var(--font-mono); margin-top: 0.2rem; }
+.at-rc-badges { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-top: 0.6rem; }
+.at-rc-badge { font-family: var(--font-mono); font-size: 0.72rem; padding: 0.2rem 0.55rem; border-radius: 4px; border: 1px solid #334155; background: rgba(255,255,255,0.04); color: var(--slate); }
+.at-rc-kw { font-size: 0.88rem; color: var(--slate); font-style: italic; margin: 0.8rem 0; line-height: 1.6; }
+.at-rc-interp { font-size: 0.87rem; line-height: 1.75; color: #d0d6e0; }
+.at-rc-footer { display: flex; gap: 0.6rem; align-items: center; flex-wrap: wrap; margin-top: 0.8rem; }
+.at-rc-deg { font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-muted); }
+
+/* ─── Disclaimer ─── */
+.at-disclaimer { font-size: 0.79rem; color: var(--text-muted); margin-top: 1.2rem; padding: 0.7rem 1rem; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px; line-height: 1.6; }
+
+/* ─── Méthode blocks ─── */
+.at-method-block { max-width: 860px; margin: 1.5rem auto; padding: 1.5rem; background: rgba(255,255,255,0.02); border: 1px solid #1e293b; border-radius: 12px; }
+.at-method-h3 { font-size: 1rem; font-family: var(--font-mono); color: var(--text); margin-bottom: 0.8rem; }
+.at-method-p { font-size: 0.9rem; line-height: 1.75; color: var(--slate); margin-bottom: 0.7rem; }
+
+/* ─── Plans continus ─── */
+.at-plans-section { display: flex; flex-direction: column; gap: 1.25rem; margin-top: 0.6rem; }
+.at-plan-item { padding: 0.9rem 1rem; background: rgba(255,255,255,0.02); border-left: 2px solid rgba(183,139,250,0.25); border-radius: 0 8px 8px 0; }
+.at-plan-item--gold { border-left-color: rgba(223,178,108,0.35); }
+.at-plan-title { font-family: var(--font-mono); font-size: 0.78rem; font-weight: 700; color: var(--violet); text-transform: uppercase; letter-spacing: 0.06em; margin: 0 0 0.55rem 0; }
+.at-plan-item--gold .at-plan-title { color: var(--gold); }
+
+/* ─── Dasha Timeline ─── */
+.at-dasha-timeline { position: relative; margin: 2rem 0; padding-left: 2rem; border-left: 2px solid rgba(183,139,250,0.15); }
+.at-dasha-item { position: relative; margin-bottom: 2rem; transition: all 0.3s ease; }
+.at-dasha-item:last-child { margin-bottom: 0; }
+.at-dasha-marker { position: absolute; left: -2.85rem; top: 0.35rem; width: 28px; height: 28px; border-radius: 50%; background: #0f172a; border: 2px solid rgba(183,139,250,0.3); color: var(--text-muted); display: flex; align-items: center; justify-content: center; font-size: 0.9rem; font-family: var(--font-mono); z-index: 2; transition: all 0.3s ease; }
+.at-dasha-item.active .at-dasha-marker { border-color: var(--gold); background: var(--gold); color: #0f172a; box-shadow: 0 0 15px rgba(223,178,108,0.4); }
+.at-dasha-item.past .at-dasha-marker { border-color: rgba(255,255,255,0.1); background: rgba(255,255,255,0.05); color: var(--text-muted); }
+.at-dasha-content { background: rgba(255,255,255,0.015); border: 1px solid rgba(255,255,255,0.04); border-radius: 12px; padding: 1.25rem; transition: all 0.3s ease; }
+.at-dasha-item.active .at-dasha-content { background: rgba(223,178,108,0.02); border-color: rgba(223,178,108,0.25); box-shadow: 0 4px 25px rgba(223,178,108,0.05); }
+.at-dasha-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.6rem; flex-wrap: wrap; gap: 0.4rem; }
+.at-dasha-title { font-size: 1.05rem; font-weight: 700; margin: 0; color: var(--text); }
+.at-dasha-item.active .at-dasha-title { color: var(--gold); }
+.at-dasha-dates { font-size: 0.78rem; color: var(--text-muted); font-family: var(--font-mono); }
+.at-dasha-desc { font-size: 0.86rem; line-height: 1.6; color: #cbd5e1; margin: 0; }
+.at-dasha-status-badge { font-family: var(--font-sans); font-size: 0.65rem; font-weight: 600; padding: 0.12rem 0.45rem; border-radius: 4px; margin-left: 0.5rem; vertical-align: middle; }
+.active-dasha { background: rgba(223,178,108,0.1); border: 1px solid rgba(223,178,108,0.25); color: var(--gold); }
+.past-dasha { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); color: var(--text-muted); }
+.future-dasha { background: rgba(183,139,250,0.05); border: 1px solid rgba(183,139,250,0.15); color: var(--violet); }
+
+/* ─── Bhavas ─── */
+.at-bhavas-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.25rem; margin-top: 1.5rem; }
+.at-bhava-card { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: 12px; padding: 1.25rem; transition: all 0.2s ease; display: flex; flex-direction: column; }
+.at-bhava-card:hover { border-color: rgba(183,139,250,0.2); transform: translateY(-2px); }
+.at-bhava-header { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.75rem; }
+.at-bhava-num { font-family: var(--font-mono); font-size: 1.15rem; font-weight: 700; width: 32px; height: 32px; border-radius: 50%; background: rgba(183,139,250,0.08); border: 1px solid rgba(183,139,250,0.2); color: var(--violet); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.at-bhava-meta { display: flex; flex-direction: column; }
+.at-bhava-name { font-size: 0.95rem; font-weight: 700; margin: 0; color: var(--text); }
+.at-bhava-kw { font-size: 0.74rem; color: var(--text-muted); font-style: italic; }
+.at-bhava-desc { font-size: 0.82rem; line-height: 1.55; color: #cbd5e1; margin-bottom: 1rem; flex-grow: 1; }
+.at-bhava-occupants { border-top: 1px solid rgba(255,255,255,0.05); padding-top: 0.75rem; }
+.at-bo-label { font-size: 0.72rem; color: var(--text-muted); font-family: var(--font-mono); display: block; margin-bottom: 0.4rem; }
+.at-bhava-no-planets { font-size: 0.76rem; color: var(--text-muted); font-style: italic; margin: 0; }
+.at-bhava-planets-list { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+.at-bhava-planet-tag { font-size: 0.74rem; font-family: var(--font-mono); padding: 0.15rem 0.45rem; border-radius: 4px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); color: #e2e8f0; }
+.at-pt-sym { color: var(--gold); }
+
+/* ─── Tableau récapitulatif ─── */
+.at-summary-table-wrap { margin: 2rem 0; background: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.05); border-radius: 10px; overflow-x: auto; }
+.at-summary-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+.at-summary-table th { background: rgba(183,139,250,0.06); padding: 0.75rem 1rem; font-family: var(--font-mono); color: var(--violet); text-align: left; border-bottom: 1px solid rgba(183,139,250,0.15); font-weight: 600; }
+.at-summary-table td { padding: 0.7rem 1rem; border-bottom: 1px solid rgba(255,255,255,0.04); color: #d0d6e0; }
+.at-summary-table tr:last-child td { border-bottom: none; }
+
+/* ─── Toggle déroulant ─── */
+.at-toggle-wrap { margin: 1rem 0 0; }
+.at-toggle-detail-btn--violet { background: rgba(183,139,250,0.05); border: 1px solid rgba(183,139,250,0.25); color: var(--violet); padding: 0.75rem 1.5rem; border-radius: 8px; font-family: var(--font-mono); font-size: 0.85rem; cursor: pointer; transition: all 0.3s ease; display: flex; align-items: center; gap: 0.75rem; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+.at-toggle-detail-btn--violet:hover { background: rgba(183,139,250,0.12); border-color: rgba(183,139,250,0.4); box-shadow: 0 4px 20px rgba(183,139,250,0.15); transform: translateY(-1px); }
+.at-toggle-detail-btn--violet .at-toggle-icon { font-size: 0.7rem; transition: transform 0.3s ease; }
+.at-toggle-detail-btn--violet.active .at-toggle-icon { transform: rotate(180deg); }
+.at-details-container { animation: fadeIn 0.3s ease; }
+.at-summary-container { margin-bottom: 0.5rem; }
+
+/* ─── Résumé Bhavas ─── */
+.at-bhavas-summary { background: rgba(15,23,42,0.4); border: 1px solid rgba(183,139,250,0.1); border-radius: 12px; padding: 1.5rem; backdrop-filter: blur(10px); }
+
+/* ─── Séparateur ─── */
+.pyth-section-sep { height: 1px; background: linear-gradient(90deg, rgba(183,139,250,0) 0%, rgba(183,139,250,0.15) 50%, rgba(183,139,250,0) 100%); margin: 2.5rem 0; }
+
+/* ─── Titres résultats ─── */
+.pyth-result-block .at-highlight-title { font-family: var(--font-mono); font-size: 1.15rem; text-transform: uppercase; letter-spacing: 0.08em; color: #f8fafc; font-weight: 700; margin-top: 1.8rem; margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: space-between; width: 100%; flex-wrap: wrap; gap: 0.5rem 1.2rem; border-bottom: 1px solid rgba(255,255,255,0.09); padding-bottom: 0.8rem; text-shadow: 0 2px 10px rgba(0,0,0,0.4); }
+.at-title-left { display: inline-flex; align-items: center; gap: 0.6rem; }
+.at-highlight-title .at-hint { font-family: var(--font-sans); font-size: 0.82rem; color: var(--text-muted); font-weight: 400; text-transform: none; letter-spacing: normal; margin-left: auto; opacity: 0.95; }
+.at-highlight-title .at-dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; vertical-align: middle; flex-shrink: 0; }
+.at-highlight-title .at-dot-gold { background: var(--gold); box-shadow: 0 0 10px var(--gold); }
+.at-highlight-title .at-dot-violet { background: var(--violet); box-shadow: 0 0 10px var(--violet); }
+
+/* ─── strong inline fix ─── */
+.pyth-diff-item strong { display: inline; }
+
+@media (max-width: 768px) {
+  .pyth-result-block .at-highlight-title { flex-direction: column; align-items: flex-start; gap: 0.4rem; }
+  .at-highlight-title .at-hint { margin-left: 0; text-align: left; font-size: 0.78rem; }
+}
+
+/* ─── Light Mode ─── */
+[data-theme="light"] .at-select-native {
+  background: #f8fafc;
+  border-color: rgba(0,0,0,0.15);
+}
+[data-theme="light"] .at-select-native option,
+[data-theme="light"] .at-select-native optgroup {
+  background: #ffffff;
+  color: #0f172a;
+}
+[data-theme="light"] .at-disclaimer {
+  background: rgba(0,0,0,0.02);
+  border-color: rgba(0,0,0,0.06);
+}
+[data-theme="light"] .at-result-card {
+  background: #ffffff;
+  border-color: rgba(0,0,0,0.09);
+}
+[data-theme="light"] .at-rc-badge {
+  border-color: rgba(0,0,0,0.12);
+  background: rgba(0,0,0,0.04);
+}
+[data-theme="light"] .at-rc-interp { color: #334155; }
+[data-theme="light"] .at-method-block {
+  background: #f8fafc;
+  border-color: rgba(0,0,0,0.08);
+}
+[data-theme="light"] .at-plan-item {
+  background: rgba(0,0,0,0.02);
+  border-left-color: rgba(124,58,237,0.25);
+}
+[data-theme="light"] .at-dasha-content {
+  background: rgba(0,0,0,0.02);
+  border-color: rgba(0,0,0,0.06);
+}
+[data-theme="light"] .past-dasha {
+  background: rgba(0,0,0,0.04);
+  border-color: rgba(0,0,0,0.08);
+}
+[data-theme="light"] .at-bhava-card {
+  background: #ffffff;
+  border-color: rgba(0,0,0,0.08);
+}
+[data-theme="light"] .at-bhava-planet-tag {
+  background: rgba(0,0,0,0.04);
+  border-color: rgba(0,0,0,0.1);
+  color: #334155;
+}
+[data-theme="light"] .at-summary-table-wrap {
+  background: #ffffff;
+  border-color: rgba(0,0,0,0.08);
+}
+[data-theme="light"] .at-summary-table td {
+  color: #334155;
+  border-bottom-color: rgba(0,0,0,0.06);
+}
+[data-theme="light"] .at-bhavas-summary {
+  background: rgba(124,58,237,0.04);
+  border-color: rgba(124,58,237,0.15);
+}
+[data-theme="light"] .pyth-result-block .at-highlight-title {
+  color: #0f172a;
+  border-bottom-color: rgba(0,0,0,0.1);
+  text-shadow: none;
+}
+</style>
+
+<script is:inline src="/js/vedique.js"></script>

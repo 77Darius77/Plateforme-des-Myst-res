@@ -108,6 +108,90 @@ function revealSection(el, delay = 0) {
   }, delay);
 }
 
+function showToast(msg) {
+  let toast = document.querySelector('.toast');
+  if (!toast) {
+    toast = document.createElement('div');
+    toast.className = 'toast';
+    document.body.appendChild(toast);
+  }
+  toast.textContent = msg;
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 3000);
+}
+
+function buildArchetypesGrid() {
+  const grid = document.getElementById('archetypesGrid');
+  if (!grid) return;
+  const html = Object.entries(ARCHETYPES).map(([num, arch]) => `
+    <div class="archetype-card c-${num}" role="button" tabindex="0"
+         aria-label="Archétype ${num} — ${arch.force}"
+         data-interp="${arch.interpretation.replace(/"/g, '&quot;')}">
+      <div class="card-inner">
+        <div class="card-front">
+          <div class="num-circle">${num}</div>
+          <div class="force">${arch.force}</div>
+          <div class="faiblesse">${arch.faiblesse}</div>
+          <div class="flip-hint">↻ Voir l'ombre</div>
+        </div>
+        <div class="card-back">
+          <p>${arch.interpretation.slice(0, 240)}…</p>
+        </div>
+      </div>
+    </div>
+  `).join('');
+  grid.innerHTML = html;
+
+  let activeTooltip = null;
+
+  grid.querySelectorAll('.archetype-card').forEach(card => {
+    card.addEventListener('click', () => card.classList.toggle('flipped'));
+    card.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); card.classList.toggle('flipped'); }
+    });
+
+    card.addEventListener('mouseenter', () => {
+      if (!card.classList.contains('flipped')) return;
+      if (activeTooltip) { activeTooltip.remove(); activeTooltip = null; }
+
+      const text = card.dataset.interp;
+      if (!text) return;
+
+      const tooltip = document.createElement('div');
+      tooltip.className = 'arch-tooltip';
+      tooltip.textContent = text;
+      document.body.appendChild(tooltip);
+      activeTooltip = tooltip;
+
+      const rect = card.getBoundingClientRect();
+      const tw = 460;
+      let left = rect.left + rect.width / 2 - tw / 2;
+
+      if (left < 10) left = 10;
+      if (left + tw > window.innerWidth - 10) left = window.innerWidth - tw - 10;
+
+      // Positionner provisoirement pour mesurer la hauteur réelle
+      tooltip.style.position = 'fixed';
+      tooltip.style.left = left + 'px';
+      tooltip.style.top = '-9999px';
+
+      requestAnimationFrame(() => {
+        const th = tooltip.offsetHeight;
+        let top = rect.bottom + 10;
+        if (top + th > window.innerHeight - 10) {
+          top = rect.top - th - 10;
+        }
+        if (top < 10) top = 10;
+        tooltip.style.top = top + 'px';
+      });
+    });
+
+    card.addEventListener('mouseleave', () => {
+      if (activeTooltip) { activeTooltip.remove(); activeTooltip = null; }
+    });
+  });
+}
+
 function buildRepartitionSVG(r) {
   const defi = r.repartition.defi;
   const ambi = r.repartition.ambivalence;
@@ -165,9 +249,31 @@ function reveal() {
     setTimeout(() => {
       // Détail du calcul
       const sorted = [r.jour, r.mois, r.annee].sort((a, b) => b - a);
-      document.getElementById('calcDetail').innerHTML =
-        `Jour ${r.jour} + Mois ${r.mois} + Année ${r.annee} = <span>${r.jour + r.mois + r.annee}</span> → <span>Chemin de vie ${r.chemin}</span><br>` +
-        `max(${r.jour}, ${r.mois}, ${r.annee}) − mid − min &nbsp;➔&nbsp; ${sorted[0]} − ${sorted[1]} − ${sorted[2]} = <span>${r.ticun}</span> → <span>Ticún ${r.ticun}</span>`;
+      document.getElementById('calcDetail').innerHTML = `
+        <div class="calc-formula">
+          <div class="cf-row">
+            <span class="cf-item"><span class="cf-lbl">Jour</span><span class="cf-num cf-cyan">${r.jour}</span></span>
+            <span class="cf-sep">+</span>
+            <span class="cf-item"><span class="cf-lbl">Mois</span><span class="cf-num cf-violet">${r.mois}</span></span>
+            <span class="cf-sep">+</span>
+            <span class="cf-item"><span class="cf-lbl">Année</span><span class="cf-num cf-emerald">${r.annee}</span></span>
+            <span class="cf-eq">=</span>
+            <span class="cf-total">${r.jour + r.mois + r.annee}</span>
+            <span class="cf-arrow">→</span>
+            <span class="cf-result cf-emerald">Chemin de vie <strong>${r.chemin}</strong></span>
+          </div>
+          <div class="cf-row">
+            <span class="cf-item"><span class="cf-lbl">max</span><span class="cf-num">${sorted[0]}</span></span>
+            <span class="cf-sep">−</span>
+            <span class="cf-item"><span class="cf-lbl">mid</span><span class="cf-num">${sorted[1]}</span></span>
+            <span class="cf-sep">−</span>
+            <span class="cf-item"><span class="cf-lbl">min</span><span class="cf-num">${sorted[2]}</span></span>
+            <span class="cf-eq">=</span>
+            <span class="cf-total">${r.ticun}</span>
+            <span class="cf-arrow">→</span>
+            <span class="cf-result cf-gold">Ticún <strong>${r.ticun}</strong></span>
+          </div>
+        </div>`;
 
       // Cartes résultat — innerHTML pour la structure fixe, textContent pour les valeurs dynamiques
       const cv = ARCHETYPES[r.chemin];
@@ -194,45 +300,71 @@ function reveal() {
       // Interprétation — cartes riches Jour/Mois/Année + Répartition + Portrait
       const interpContainer = document.getElementById('resultInterpretation');
       interpContainer.innerHTML = `
-        <p style="color:#fbbf24;font-weight:600;margin-bottom:0.5rem;">🔮 Lecture croisée — ${r.chemin} + ${r.ticun}</p>
-        <p>${cv.interpretation}</p>
-        <p style="margin-top:0.8rem;">${tc.interpretation}</p>
-
-        <div class="raw-numbers">
-          <div class="raw-card">
-            <span class="raw-num">${r.jour}</span>
-            <span class="raw-label">Jour</span>
-            <p class="raw-desc">Ton outil inné</p>
+        <div class="lc-section">
+          <div class="lc-header">
+            <span class="lc-sym">✦</span>
+            <span class="lc-title">Lecture croisée</span>
+            <span class="lc-badge">${r.chemin} × ${r.ticun}</span>
           </div>
-          <div class="raw-card">
-            <span class="raw-num">${r.mois}</span>
-            <span class="raw-label">Mois</span>
-            <p class="raw-desc">Ton influence</p>
-          </div>
-          <div class="raw-card">
-            <span class="raw-num">${r.annee}</span>
-            <span class="raw-label">Année</span>
-            <p class="raw-desc">Ta mission</p>
+          <div class="lc-cards">
+            <div class="lc-card lc-chemin">
+              <div class="lc-num cf-emerald">${r.chemin}</div>
+              <div class="lc-role">Chemin de vie — Don</div>
+              <strong class="lc-force cf-emerald">${cv.force}</strong>
+              <p class="lc-interp">${cv.interpretation}</p>
+            </div>
+            <div class="lc-card lc-ticun">
+              <div class="lc-num cf-gold">${r.ticun}</div>
+              <div class="lc-role">Ticún — Défi d'âme</div>
+              <strong class="lc-force cf-gold">${tc.force}</strong>
+              <p class="lc-interp">${tc.interpretation}</p>
+            </div>
           </div>
         </div>
 
-        <div class="detail-interpretations">
-          <div class="interp-card">
-            <h4>🌅 Ton Jour — ${r.jour}</h4>
-            <p>${ARCHETYPES[r.jour].interpretation_jour}</p>
+        <div class="composantes-section">
+          <div class="composantes-header">
+            <span class="comp-sym">◈</span>
+            <h3 class="comp-title">Tes composantes numériques</h3>
           </div>
-          <div class="interp-card">
-            <h4>🌊 Ton Mois — ${r.mois}</h4>
-            <p>${ARCHETYPES[r.mois].interpretation_mois}</p>
+          <div class="raw-numbers">
+            <div class="raw-card raw-jour">
+              <span class="raw-num">${r.jour}</span>
+              <span class="raw-label">Jour</span>
+              <p class="raw-desc">Ton outil inné</p>
+            </div>
+            <div class="raw-card raw-mois">
+              <span class="raw-num">${r.mois}</span>
+              <span class="raw-label">Mois</span>
+              <p class="raw-desc">Ton influence</p>
+            </div>
+            <div class="raw-card raw-annee">
+              <span class="raw-num">${r.annee}</span>
+              <span class="raw-label">Année</span>
+              <p class="raw-desc">Ta mission</p>
+            </div>
           </div>
-          <div class="interp-card">
-            <h4>🌍 Ton Année — ${r.annee}</h4>
-            <p>${ARCHETYPES[r.annee].interpretation_annee}</p>
+          <div class="detail-interpretations">
+            <div class="interp-card interp-jour">
+              <h4>🌅 Ton Jour — ${r.jour}</h4>
+              <p>${ARCHETYPES[r.jour].interpretation_jour}</p>
+            </div>
+            <div class="interp-card interp-mois">
+              <h4>🌊 Ton Mois — ${r.mois}</h4>
+              <p>${ARCHETYPES[r.mois].interpretation_mois}</p>
+            </div>
+            <div class="interp-card interp-annee">
+              <h4>🌍 Ton Année — ${r.annee}</h4>
+              <p>${ARCHETYPES[r.annee].interpretation_annee}</p>
+            </div>
           </div>
         </div>
 
         <div class="portrait">
-          <h4>📜 Ton Portrait d'Âme</h4>
+          <div class="portrait-header">
+            <span class="portrait-sym">📜</span>
+            <h3 class="portrait-title">Ton Portrait d'Âme</h3>
+          </div>
           <p class="portrait-text">${r.portrait}</p>
         </div>
       `;
@@ -308,6 +440,7 @@ function initFromURL() {
 
 document.addEventListener('DOMContentLoaded', function() {
   initFromURL();
+  buildArchetypesGrid();
 
   /* ─── Feedback visuel on-input ─── */
   const dateInput = document.getElementById('dateInput');

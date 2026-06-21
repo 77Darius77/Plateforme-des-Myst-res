@@ -3,45 +3,893 @@ import Layout from '../../layouts/Layout.astro';
 
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "Article",
-  "name": "Astrologie Tropicale — Le zodiaque des saisons",
+  "@type": "WebPage",
+  "name": "Astrologie Tropicale — Signe Solaire, Ascendant & Thème Natal",
   "url": "https://mysteres.fr/astrologie/tropicale.html",
-  "description": "Découvrez l'astrologie tropicale, basée sur les saisons et le point vernal.",
-  "inLanguage": "fr"
+  "description": "Découvrez l'astrologie tropicale : calculez votre signe solaire et votre ascendant approximatif. Explorez les 12 signes, les 10 planètes, les 12 maisons et les aspects majeurs.",
+  "inLanguage": "fr",
+  "about": { "@type": "Thing", "name": "Astrologie Tropicale" }
 };
 ---
 
 <Layout
-  title="Astrologie Tropicale — Astrologie"
-  description="Découvrez l'astrologie tropicale, basée sur les saisons et le point vernal. La plus pratiquée en Occident pour le signe solaire, l'ascendant et le thème natal."
-  keywords="astrologie tropicale, zodiaque, signe solaire, ascendant, thème natal, point vernal"
+  title="Astrologie Tropicale — Signe Solaire · Ascendant · Thème Natal"
+  description="Calculez votre signe solaire et votre ascendant (approximatif). Fondements de l'astrologie tropicale : 12 signes, 10 planètes, 12 maisons, aspects majeurs."
+  keywords="astrologie tropicale, signe solaire, ascendant, thème natal, zodiaque, planètes, maisons astrologiques, aspects"
   canonicalPath="astrologie/tropicale.html"
   jsonLd={jsonLd}
+  section="astrologie"
 >
 
 <!-- ═══════════ FIL D'ARIANE ═══════════ -->
-<nav class="breadcrumb" aria-label="Fil d'Ariane" style="padding:0.8rem 1.5rem;font-family:var(--font-mono);font-size:0.8rem;color:var(--text-muted);">
+<nav class="breadcrumb" aria-label="Fil d'Ariane" style="padding:0.8rem 1.5rem;font-family:var(--font-mono);font-size:0.8rem;color:var(--text-muted);max-width:1200px;margin:0 auto;">
   <a href="../index.html" style="color:var(--cyan);">Accueil</a> &rsaquo;
   <a href="index.html" style="color:var(--cyan);">Astrologie</a> &rsaquo;
-  <span style="color:var(--text-primary);">Astrologie Tropicale</span>
+  <span style="color:var(--text);">Astrologie Tropicale</span>
 </nav>
 
-<!-- ═══════════ BANNIÈRE "BIENTÔT" ═══════════ -->
-<section id="hero" style="text-align:center;padding:6rem 1.5rem 4rem;max-width:700px;margin:0 auto;">
+<!-- ═══════════ HERO ═══════════ -->
+<section id="hero">
   <h1>
     <span class="pulse"></span>
-    ⭐ <span class="gold">Astrologie Tropicale</span><br>Le zodiaque des <span class="emerald">saisons</span>
+    Le ciel au moment<br>de votre <span class="gold">naissance</span>
   </h1>
   <p class="subtitle">
-    Cette section est en cours de création. L'astrologie tropicale, basée sur les saisons et le point vernal, est la plus pratiquée en Occident. Découvrez votre signe solaire, votre ascendant, et votre thème natal complet. Revenez bientôt !
+    L'astrologie tropicale ancre le zodiaque dans les <strong>saisons</strong> : le Bélier débute à l'équinoxe de printemps, indépendamment des constellations réelles. C'est la tradition la plus pratiquée en Occident depuis Ptolémée — elle révèle votre <strong>signe solaire</strong> (l'énergie essentielle), votre <strong>ascendant</strong> (le masque social, la façon d'entrer dans le monde) et, au-delà, les douze domaines de vie décrits par votre <strong>thème natal</strong>.
   </p>
-  <a href="../astrologie/index.html" class="cta">← Retour à l'Astrologie</a>
+  <a href="#calculateur" class="cta">✦ Calculer mon signe &amp; mon ascendant</a>
+  <p class="quote">
+    « L'astrologie représente la synthèse de l'astronomie et de la psychologie — elle relie le cosmos à l'intérieur de l'homme. »
+    <br><span class="gold">— Carl Gustav Jung</span>
+  </p>
 </section>
 
-<!-- ═══════════ NAVIGATION PRÉCÉDENT / SUIVANT ═══════════ -->
-<nav class="sub-nav" style="display:flex;justify-content:space-between;max-width:600px;margin:2rem auto;padding:1rem;">
-  <span></span>
-  <a href="siderale.html" style="color:var(--cyan);font-family:var(--font-mono);">Astrologie Sidérale →</a>
-</nav>
+<!-- ═══════════ [01] CALCULATEUR ═══════════ -->
+<section id="calculateur">
+  <div class="section-title">
+    <div class="num">[ 01 ]</div>
+    <h2>✦ Calculateur Tropical</h2>
+    <p class="slate">Entrez votre date de naissance, l'heure et le lieu pour obtenir votre signe solaire et votre ascendant approximatif.</p>
+  </div>
+
+  <form class="pyth-form" id="at-form" onsubmit="return false;">
+    <div class="pyth-form-group">
+      <label class="pyth-label">Date de naissance</label>
+      <div class="pyth-date-row">
+        <div class="pyth-field">
+          <input type="number" id="at-jour" class="pyth-input" min="1" max="31" placeholder="JJ" aria-label="Jour" inputmode="numeric">
+          <span class="pyth-field-label">Jour</span>
+        </div>
+        <div class="pyth-field">
+          <input type="number" id="at-mois" class="pyth-input" min="1" max="12" placeholder="MM" aria-label="Mois" inputmode="numeric">
+          <span class="pyth-field-label">Mois</span>
+        </div>
+        <div class="pyth-field pyth-field--wide">
+          <input type="number" id="at-annee" class="pyth-input" min="1900" max="2100" placeholder="AAAA" aria-label="Année" inputmode="numeric">
+          <span class="pyth-field-label">Année</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="pyth-form-group">
+      <label class="pyth-label">Heure de naissance <span style="color:var(--text-muted);font-size:0.8rem;">(nécessaire pour l'ascendant)</span></label>
+      <div class="pyth-date-row">
+        <div class="pyth-field">
+          <input type="number" id="at-heure" class="pyth-input" min="0" max="23" placeholder="HH" aria-label="Heure" inputmode="numeric">
+          <span class="pyth-field-label">Heure</span>
+        </div>
+        <div class="pyth-field">
+          <input type="number" id="at-minute" class="pyth-input" min="0" max="59" placeholder="MM" aria-label="Minute" inputmode="numeric">
+          <span class="pyth-field-label">Minute</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="pyth-form-group">
+      <label class="pyth-label">Lieu de naissance</label>
+      <div class="at-select-wrap">
+        <select id="at-ville" class="at-select-native" aria-label="Ville de naissance">
+          <option value="">-- Choisir une ville --</option>
+          <optgroup label="🇫🇷 France">
+            <option value="48.8566|2.3522|eu|1">Paris</option>
+            <option value="45.7640|4.8357|eu|1">Lyon</option>
+            <option value="43.2965|5.3698|eu|1">Marseille</option>
+            <option value="43.6047|1.4442|eu|1">Toulouse</option>
+            <option value="44.8378|-0.5792|eu|1">Bordeaux</option>
+            <option value="47.2184|-1.5536|eu|1">Nantes</option>
+            <option value="48.5734|7.7521|eu|1">Strasbourg</option>
+            <option value="50.6292|3.0573|eu|1">Lille</option>
+            <option value="43.7102|7.2620|eu|1">Nice</option>
+            <option value="48.1173|-1.6778|eu|1">Rennes</option>
+            <option value="45.1885|5.7245|eu|1">Grenoble</option>
+            <option value="43.6119|3.8772|eu|1">Montpellier</option>
+          </optgroup>
+          <optgroup label="🇧🇪🇨🇭 Belgique · Suisse · Luxembourg">
+            <option value="50.8503|4.3517|eu|1">Bruxelles</option>
+            <option value="46.2044|6.1432|eu|1">Genève</option>
+            <option value="46.5197|6.6323|eu|1">Lausanne</option>
+            <option value="47.3769|8.5417|eu|1">Zürich</option>
+            <option value="49.6117|6.1319|eu|1">Luxembourg</option>
+          </optgroup>
+          <optgroup label="🇬🇧🇵🇹 Royaume-Uni · Portugal">
+            <option value="51.5074|-0.1278|uk|0">Londres</option>
+            <option value="38.7223|-9.1393|uk|0">Lisbonne</option>
+          </optgroup>
+          <optgroup label="🇪🇸🇮🇹🇩🇪 Europe Sud · Est">
+            <option value="40.4168|-3.7038|eu|1">Madrid</option>
+            <option value="41.3851|2.1734|eu|1">Barcelone</option>
+            <option value="41.9028|12.4964|eu|1">Rome</option>
+            <option value="52.5200|13.4050|eu|1">Berlin</option>
+          </optgroup>
+          <optgroup label="🌍 Maghreb">
+            <option value="33.5731|-7.5898|none|1">Casablanca</option>
+            <option value="34.0209|-6.8416|none|1">Rabat</option>
+            <option value="36.7372|3.0865|none|1">Alger</option>
+            <option value="36.8065|10.1815|none|1">Tunis</option>
+          </optgroup>
+          <optgroup label="🌍 Afrique subsaharienne">
+            <option value="14.7167|-17.4677|none|0">Dakar</option>
+            <option value="5.3600|-4.0083|none|0">Abidjan</option>
+            <option value="3.8480|11.5021|none|1">Yaoundé</option>
+          </optgroup>
+          <optgroup label="🌊 DOM-TOM">
+            <option value="14.6415|-61.0242|none|-4">Martinique</option>
+            <option value="16.2650|-61.5510|none|-4">Guadeloupe</option>
+            <option value="-20.8789|55.4481|none|4">La Réunion</option>
+            <option value="-22.2758|166.4580|none|11">Nouvelle-Calédonie</option>
+            <option value="-17.5516|-149.5585|none|-10">Polynésie française</option>
+          </optgroup>
+          <optgroup label="🌎 Amérique du Nord">
+            <option value="45.5017|-73.5673|us|-5">Montréal</option>
+            <option value="46.8139|-71.2080|us|-5">Québec</option>
+            <option value="40.7128|-74.0060|us|-5">New York</option>
+          </optgroup>
+          <option value="custom">✎ Autre (lat/lon manuels)</option>
+        </select>
+        <span class="at-select-chevron" aria-hidden="true">▾</span>
+      </div>
+      <div id="at-custom-coords" style="display:none;margin-top:0.6rem;">
+        <div class="pyth-date-row">
+          <div class="pyth-field pyth-field--wide">
+            <input type="number" id="at-lat" class="pyth-input" min="-90" max="90" step="0.0001" placeholder="48.8566" aria-label="Latitude">
+            <span class="pyth-field-label">Latitude (N+, S−)</span>
+          </div>
+          <div class="pyth-field pyth-field--wide">
+            <input type="number" id="at-lon" class="pyth-input" min="-180" max="180" step="0.0001" placeholder="2.3522" aria-label="Longitude">
+            <span class="pyth-field-label">Longitude (E+, O−)</span>
+          </div>
+          <div class="pyth-field">
+            <input type="number" id="at-tz-offset" class="pyth-input" min="-12" max="14" step="0.5" placeholder="1" aria-label="Décalage UTC">
+            <span class="pyth-field-label">Fuseau UTC</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pyth-form-actions">
+      <button type="button" id="at-exemple" class="pyth-btn-example">Essayer avec un exemple</button>
+      <button type="submit" class="pyth-btn-calc">Révéler mon signe &amp; ascendant ✦</button>
+    </div>
+  </form>
+
+  <!-- ── RÉSULTATS ── -->
+  <div id="atResultats" hidden>
+    <div class="pyth-section-sep"></div>
+    <div class="at-results-grid">
+      <!-- Signe Solaire -->
+      <div class="pyth-result-block">
+        <h3 class="pyth-result-title at-highlight-title at-ht-gold">
+          <span class="at-title-left">
+            <span class="at-dot at-dot-gold"></span>
+            Signe Solaire
+          </span>
+          <span class="at-hint">L'énergie essentielle, le moteur intérieur</span>
+        </h3>
+        <div id="atSoleilCard"></div>
+      </div>
+      <!-- Ascendant -->
+      <div class="pyth-result-block">
+        <h3 class="pyth-result-title at-highlight-title at-ht-violet">
+          <span class="at-title-left">
+            <span class="at-dot at-dot-violet"></span>
+            Ascendant <span style="font-size:0.7rem;font-weight:400;opacity:0.65;">≈ approximatif</span>
+          </span>
+          <span class="at-hint">Le masque social, la façon d'entrer dans le monde</span>
+        </h3>
+        <div id="atAscendantCard"></div>
+      </div>
+    </div>
+    <!-- Synthèse combinée -->
+    <div id="atComboBlock"></div>
+    <p class="at-disclaimer">
+      ⚠ L'ascendant est calculé en temps universel (UT) avec correction automatique du fuseau horaire et de l'heure d'été/hiver —
+      fuseau appliqué : <span id="atTzNote" style="color:var(--gold);font-weight:600;"></span>.
+      Approximation : ±5 à 10° selon l'heure exacte et le système de maisons.
+      Pour un thème natal certifié, utilisez un logiciel astral dédié.
+    </p>
+  </div>
+</section>
+
+<!-- ═══════════ [02] LES 12 SIGNES ═══════════ -->
+<section id="les-12-signes">
+  <div class="section-title">
+    <div class="num">[ 02 ]</div>
+    <h2>✦ Les 12 Signes du Zodiaque</h2>
+    <p class="slate">Le zodiaque tropical découpe l'écliptique en 12 secteurs de 30° chacun, ancrés dans le cycle des saisons. Chaque signe exprime une combinaison unique d'élément et de modalité.</p>
+  </div>
+
+  <!-- Tableau récapitulatif -->
+  <div class="at-table-wrap">
+    <table class="at-table">
+      <thead>
+        <tr><th>Signe</th><th>Symbole</th><th>Dates</th><th>Élément</th><th>Modalité</th><th>Planète</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="cf-rose"><strong>Bélier</strong></td><td class="at-sym">♈</td><td>21 mars – 19 avr.</td><td class="cf-rose">Feu</td><td>Cardinal</td><td>Mars</td></tr>
+        <tr><td class="cf-emerald"><strong>Taureau</strong></td><td class="at-sym">♉</td><td>20 avr. – 20 mai</td><td class="cf-emerald">Terre</td><td>Fixe</td><td>Vénus</td></tr>
+        <tr><td class="cf-cyan"><strong>Gémeaux</strong></td><td class="at-sym">♊</td><td>21 mai – 21 juin</td><td class="cf-cyan">Air</td><td>Mutable</td><td>Mercure</td></tr>
+        <tr><td class="cf-cyan"><strong>Cancer</strong></td><td class="at-sym">♋</td><td>22 juin – 22 juil.</td><td class="cf-cyan">Eau</td><td>Cardinal</td><td>Lune</td></tr>
+        <tr><td class="cf-gold"><strong>Lion</strong></td><td class="at-sym">♌</td><td>23 juil. – 22 août</td><td class="cf-rose">Feu</td><td>Fixe</td><td>Soleil</td></tr>
+        <tr><td class="cf-emerald"><strong>Vierge</strong></td><td class="at-sym">♍</td><td>23 août – 22 sept.</td><td class="cf-emerald">Terre</td><td>Mutable</td><td>Mercure</td></tr>
+        <tr><td class="cf-rose"><strong>Balance</strong></td><td class="at-sym">♎</td><td>23 sept. – 22 oct.</td><td class="cf-cyan">Air</td><td>Cardinal</td><td>Vénus</td></tr>
+        <tr><td class="cf-violet"><strong>Scorpion</strong></td><td class="at-sym">♏</td><td>23 oct. – 21 nov.</td><td class="cf-cyan">Eau</td><td>Fixe</td><td>Pluton / Mars</td></tr>
+        <tr><td class="cf-gold"><strong>Sagittaire</strong></td><td class="at-sym">♐</td><td>22 nov. – 21 déc.</td><td class="cf-rose">Feu</td><td>Mutable</td><td>Jupiter</td></tr>
+        <tr><td><strong>Capricorne</strong></td><td class="at-sym">♑</td><td>22 déc. – 19 janv.</td><td class="cf-emerald">Terre</td><td>Cardinal</td><td>Saturne</td></tr>
+        <tr><td class="cf-cyan"><strong>Verseau</strong></td><td class="at-sym">♒</td><td>20 janv. – 18 févr.</td><td class="cf-cyan">Air</td><td>Fixe</td><td>Uranus / Saturne</td></tr>
+        <tr><td class="cf-violet"><strong>Poissons</strong></td><td class="at-sym">♓</td><td>19 févr. – 20 mars</td><td class="cf-cyan">Eau</td><td>Mutable</td><td>Neptune / Jupiter</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Grille des signes -->
+  <div class="at-signs-grid">
+    <div class="at-sign-card at-feu"><div class="at-sym-lg">♈</div><div class="at-sign-name">Bélier</div><div class="at-sign-dates">21 mars – 19 avr.</div><div class="at-sign-kw">Initiative · Courage · Action</div><div class="at-el-badge at-feu-badge">Feu Cardinal</div></div>
+    <div class="at-sign-card at-terre"><div class="at-sym-lg">♉</div><div class="at-sign-name">Taureau</div><div class="at-sign-dates">20 avr. – 20 mai</div><div class="at-sign-kw">Stabilité · Sensualité · Patience</div><div class="at-el-badge at-terre-badge">Terre Fixe</div></div>
+    <div class="at-sign-card at-air"><div class="at-sym-lg">♊</div><div class="at-sign-name">Gémeaux</div><div class="at-sign-dates">21 mai – 21 juin</div><div class="at-sign-kw">Communication · Curiosité · Dualité</div><div class="at-el-badge at-air-badge">Air Mutable</div></div>
+    <div class="at-sign-card at-eau"><div class="at-sym-lg">♋</div><div class="at-sign-name">Cancer</div><div class="at-sign-dates">22 juin – 22 juil.</div><div class="at-sign-kw">Intuition · Protection · Mémoire</div><div class="at-el-badge at-eau-badge">Eau Cardinal</div></div>
+    <div class="at-sign-card at-feu"><div class="at-sym-lg">♌</div><div class="at-sign-name">Lion</div><div class="at-sign-dates">23 juil. – 22 août</div><div class="at-sign-kw">Rayonnement · Créativité · Générosité</div><div class="at-el-badge at-feu-badge">Feu Fixe</div></div>
+    <div class="at-sign-card at-terre"><div class="at-sym-lg">♍</div><div class="at-sign-name">Vierge</div><div class="at-sign-dates">23 août – 22 sept.</div><div class="at-sign-kw">Analyse · Service · Perfectionnisme</div><div class="at-el-badge at-terre-badge">Terre Mutable</div></div>
+    <div class="at-sign-card at-air"><div class="at-sym-lg">♎</div><div class="at-sign-name">Balance</div><div class="at-sign-dates">23 sept. – 22 oct.</div><div class="at-sign-kw">Harmonie · Justice · Diplomatie</div><div class="at-el-badge at-air-badge">Air Cardinal</div></div>
+    <div class="at-sign-card at-eau"><div class="at-sym-lg">♏</div><div class="at-sign-name">Scorpion</div><div class="at-sign-dates">23 oct. – 21 nov.</div><div class="at-sign-kw">Profondeur · Transformation · Désir</div><div class="at-el-badge at-eau-badge">Eau Fixe</div></div>
+    <div class="at-sign-card at-feu"><div class="at-sym-lg">♐</div><div class="at-sign-name">Sagittaire</div><div class="at-sign-dates">22 nov. – 21 déc.</div><div class="at-sign-kw">Liberté · Philosophie · Aventure</div><div class="at-el-badge at-feu-badge">Feu Mutable</div></div>
+    <div class="at-sign-card at-terre"><div class="at-sym-lg">♑</div><div class="at-sign-name">Capricorne</div><div class="at-sign-dates">22 déc. – 19 janv.</div><div class="at-sign-kw">Ambition · Discipline · Persévérance</div><div class="at-el-badge at-terre-badge">Terre Cardinal</div></div>
+    <div class="at-sign-card at-air"><div class="at-sym-lg">♒</div><div class="at-sign-name">Verseau</div><div class="at-sign-dates">20 janv. – 18 févr.</div><div class="at-sign-kw">Originalité · Humanisme · Idéaux</div><div class="at-el-badge at-air-badge">Air Fixe</div></div>
+    <div class="at-sign-card at-eau"><div class="at-sym-lg">♓</div><div class="at-sign-name">Poissons</div><div class="at-sign-dates">19 févr. – 20 mars</div><div class="at-sign-kw">Compassion · Imagination · Universalité</div><div class="at-el-badge at-eau-badge">Eau Mutable</div></div>
+  </div>
+
+  <!-- Éléments & Modalités -->
+  <div class="at-method-block">
+    <h3 class="at-method-h3">Éléments et Modalités</h3>
+    <div class="at-el-grid">
+      <div class="at-el-card at-feu"><div class="at-el-title cf-rose">🔥 Feu</div><div class="at-el-signs">Bélier · Lion · Sagittaire</div><div class="at-el-desc">Élan, inspiration, enthousiasme, besoin de rayonner et de créer. Tempérament ardent et spontané.</div></div>
+      <div class="at-el-card at-terre"><div class="at-el-title cf-emerald">🌍 Terre</div><div class="at-el-signs">Taureau · Vierge · Capricorne</div><div class="at-el-desc">Ancrage, matière, pragmatisme, patience. Besoin de sécurité concrète et de résultats tangibles.</div></div>
+      <div class="at-el-card at-air"><div class="at-el-title cf-cyan">💨 Air</div><div class="at-el-signs">Gémeaux · Balance · Verseau</div><div class="at-el-desc">Intellect, échange, socialisation, idées. Besoin de liens, de communication et de renouveau.</div></div>
+      <div class="at-el-card at-eau"><div class="at-el-title cf-violet">💧 Eau</div><div class="at-el-signs">Cancer · Scorpion · Poissons</div><div class="at-el-desc">Sensibilité, intuition, profondeur émotionnelle. Besoin de fusion, d'empathie et de sens.</div></div>
+    </div>
+    <div class="at-mod-grid">
+      <div class="at-mod-card"><strong class="cf-gold">Cardinal</strong> — Bélier, Cancer, Balance, Capricorne<br><span style="font-size:0.83rem;color:var(--slate);">Initiation, action, lancement — ce sont les moteurs du zodiaque.</span></div>
+      <div class="at-mod-card"><strong class="cf-gold">Fixe</strong> — Taureau, Lion, Scorpion, Verseau<br><span style="font-size:0.83rem;color:var(--slate);">Consolidation, persévérance, résistance — ils ancrent et maintiennent.</span></div>
+      <div class="at-mod-card"><strong class="cf-gold">Mutable</strong> — Gémeaux, Vierge, Sagittaire, Poissons<br><span style="font-size:0.83rem;color:var(--slate);">Adaptation, transition, synthèse — ils relient et transforment.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ [03] LES PLANÈTES ═══════════ -->
+<section id="les-planetes">
+  <div class="section-title">
+    <div class="num">[ 03 ]</div>
+    <h2>✦ Les 10 Planètes et Luminaires</h2>
+    <p class="slate">En astrologie tropicale, chaque planète (plus le Soleil et la Lune, appelés « luminaires ») gouverne un ou deux signes, est exaltée dans un autre, et exprime son énergie à travers un domaine précis de la vie.</p>
+  </div>
+
+  <div class="at-method-block">
+    <table class="at-table">
+      <thead>
+        <tr><th>Astre</th><th>Symbole</th><th>Domaine</th><th>Domicile</th><th>Exaltation</th><th>Cycle</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="cf-gold"><strong>Soleil</strong></td><td class="at-sym">☉</td><td>Identité, vitalité, volonté</td><td>Lion</td><td>Bélier</td><td>1 an</td></tr>
+        <tr><td><strong>Lune</strong></td><td class="at-sym">☽</td><td>Émotions, instinct, mémoire</td><td>Cancer</td><td>Taureau</td><td>28 jours</td></tr>
+        <tr><td class="cf-cyan"><strong>Mercure</strong></td><td class="at-sym">☿</td><td>Intellect, communication, déplacements</td><td>Gémeaux · Vierge</td><td>Vierge</td><td>88 jours</td></tr>
+        <tr><td class="cf-rose"><strong>Vénus</strong></td><td class="at-sym">♀</td><td>Amour, beauté, valeurs, argent</td><td>Taureau · Balance</td><td>Poissons</td><td>225 jours</td></tr>
+        <tr><td class="cf-rose"><strong>Mars</strong></td><td class="at-sym">♂</td><td>Action, désir, courage, conflits</td><td>Bélier · Scorpion</td><td>Capricorne</td><td>2 ans</td></tr>
+        <tr><td class="cf-gold"><strong>Jupiter</strong></td><td class="at-sym">♃</td><td>Expansion, chance, sagesse, voyage</td><td>Sagittaire · Poissons</td><td>Cancer</td><td>12 ans</td></tr>
+        <tr><td><strong>Saturne</strong></td><td class="at-sym">♄</td><td>Structure, discipline, karma, limites</td><td>Capricorne · Verseau</td><td>Balance</td><td>29 ans</td></tr>
+        <tr><td class="cf-cyan"><strong>Uranus</strong></td><td class="at-sym">♅</td><td>Révolution, originalité, rupture</td><td>Verseau</td><td>Scorpion</td><td>84 ans</td></tr>
+        <tr><td class="cf-violet"><strong>Neptune</strong></td><td class="at-sym">♆</td><td>Idéal, illusion, spiritualité, rêve</td><td>Poissons</td><td>Cancer</td><td>165 ans</td></tr>
+        <tr><td class="cf-violet"><strong>Pluton</strong></td><td class="at-sym">♇</td><td>Transformation profonde, pouvoir, mort-renaissance</td><td>Scorpion</td><td>Lion</td><td>248 ans</td></tr>
+      </tbody>
+    </table>
+
+    <div class="pyth-diff-box" style="margin-top:1.5rem;">
+      <div class="pyth-diff-title">☿ Planètes personnelles vs. transpersonnelles</div>
+      <div class="pyth-diff-grid">
+        <div class="pyth-diff-item">
+          <span class="pyth-diff-lbl cf-gold">Personnelles</span>
+          Soleil, Lune, Mercure, Vénus, Mars — cycles courts, influence directe et individuelle sur la personnalité et les actions quotidiennes.
+        </div>
+        <div class="pyth-diff-item">
+          <span class="pyth-diff-lbl cf-cyan">Sociales</span>
+          Jupiter et Saturne — cycles de 12 à 29 ans, influencent des générations entières et structurent les grandes phases de vie.
+        </div>
+        <div class="pyth-diff-item">
+          <span class="pyth-diff-lbl cf-violet">Transpersonnelles</span>
+          Uranus, Neptune, Pluton — cycles de 84 à 248 ans, marquent des générations entières et opèrent à un niveau collectif et évolutif.
+        </div>
+        <div class="pyth-diff-item">
+          <span class="pyth-diff-lbl cf-rose">Rétrogradation</span>
+          Quand une planète semble reculer dans le ciel (rétrograde), son énergie se tourne vers l'intérieur : révision, ralentissement, retour sur le passé.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ [04] LES MAISONS ═══════════ -->
+<section id="les-maisons">
+  <div class="section-title">
+    <div class="num">[ 04 ]</div>
+    <h2>✦ Les 12 Maisons Astrologiques</h2>
+    <p class="slate">Les maisons divisent le cercle du thème natal en 12 secteurs qui représentent les domaines de la vie. Elles sont déterminées par l'heure et le lieu de naissance — contrairement aux signes, qui dépendent uniquement de la date.</p>
+  </div>
+
+  <div class="at-method-block">
+    <table class="at-table">
+      <thead>
+        <tr><th>Maison</th><th>Axe</th><th>Domaine de vie</th><th>Signe naturel</th><th>Mot-clé</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="cf-rose"><strong>I</strong></td><td>Ascendant</td><td>Personnalité, apparence, façon d'aborder le monde</td><td>Bélier</td><td>Moi</td></tr>
+        <tr><td class="cf-emerald"><strong>II</strong></td><td></td><td>Argent, valeurs, possessions, ressources matérielles</td><td>Taureau</td><td>Avoir</td></tr>
+        <tr><td class="cf-cyan"><strong>III</strong></td><td></td><td>Communication, fratrie, études courtes, déplacements proches</td><td>Gémeaux</td><td>Penser</td></tr>
+        <tr><td class="cf-cyan"><strong>IV</strong></td><td>Fond du Ciel</td><td>Foyer, famille, origines, père/mère, héritage psychique</td><td>Cancer</td><td>Racines</td></tr>
+        <tr><td class="cf-gold"><strong>V</strong></td><td></td><td>Créativité, amours, enfants, plaisirs, jeux</td><td>Lion</td><td>Créer</td></tr>
+        <tr><td class="cf-emerald"><strong>VI</strong></td><td></td><td>Santé, travail quotidien, service, hygiène de vie</td><td>Vierge</td><td>Servir</td></tr>
+        <tr><td class="cf-rose"><strong>VII</strong></td><td>Descendant</td><td>Mariage, partenariats, contrats, l'autre significatif</td><td>Balance</td><td>Partager</td></tr>
+        <tr><td class="cf-violet"><strong>VIII</strong></td><td></td><td>Transformations, héritages, mort, sexualité, ressources partagées</td><td>Scorpion</td><td>Transformer</td></tr>
+        <tr><td class="cf-gold"><strong>IX</strong></td><td></td><td>Voyages lointains, philosophie, religion, études supérieures</td><td>Sagittaire</td><td>Croire</td></tr>
+        <tr><td><strong>X</strong></td><td>Milieu du Ciel</td><td>Carrière, réputation, statut social, ambitions</td><td>Capricorne</td><td>Réussir</td></tr>
+        <tr><td class="cf-cyan"><strong>XI</strong></td><td></td><td>Amis, groupes, projets collectifs, idéaux sociaux</td><td>Verseau</td><td>Appartenir</td></tr>
+        <tr><td class="cf-violet"><strong>XII</strong></td><td></td><td>Épreuves cachées, solitude, karma, inconscient, spiritualité</td><td>Poissons</td><td>Transcender</td></tr>
+      </tbody>
+    </table>
+
+    <p class="at-method-note">Les 4 angles du thème — Ascendant (I), Fond du Ciel (IV), Descendant (VII) et Milieu du Ciel (X) — sont les points les plus puissants du thème natal. Une planète placée dans les 10° qui précèdent un angle (en « appliqué ») est particulièrement accentuée.</p>
+  </div>
+</section>
+
+<!-- ═══════════ [05] LES ASPECTS ═══════════ -->
+<section id="les-aspects">
+  <div class="section-title">
+    <div class="num">[ 05 ]</div>
+    <h2>✦ Les 5 Aspects Majeurs</h2>
+    <p class="slate">Un aspect est l'angle entre deux planètes dans le thème natal. Il indique la qualité de leur dialogue — harmonie, tension ou fusion. On tolère une marge (orbe) de quelques degrés.</p>
+  </div>
+
+  <div class="at-method-block">
+    <div class="at-aspects-grid">
+      <div class="at-aspect-card at-asp-conj">
+        <div class="at-asp-sym">☌</div>
+        <div class="at-asp-name">Conjonction</div>
+        <div class="at-asp-deg">0°</div>
+        <div class="at-asp-orb">Orbe : ±8°</div>
+        <div class="at-asp-desc">Fusion et intensification — les deux planètes amplifient mutuellement leurs énergies. Puissant et concentré, il peut être harmonieux ou conflictuel selon les planètes en jeu.</div>
+      </div>
+      <div class="at-aspect-card at-asp-sex">
+        <div class="at-asp-sym">⚹</div>
+        <div class="at-asp-name">Sextile</div>
+        <div class="at-asp-deg">60°</div>
+        <div class="at-asp-orb">Orbe : ±4°</div>
+        <div class="at-asp-desc">Opportunité et facilité — échange fluide entre les planètes. Aspect harmonique qui crée des talents naturels et des ouvertures, mais qui demande un effort conscient pour être activé.</div>
+      </div>
+      <div class="at-aspect-card at-asp-carre">
+        <div class="at-asp-sym">□</div>
+        <div class="at-asp-name">Carré</div>
+        <div class="at-asp-deg">90°</div>
+        <div class="at-asp-orb">Orbe : ±7°</div>
+        <div class="at-asp-desc">Tension et défi — friction entre les deux planètes qui se bloquent mutuellement. Aspect difficile mais moteur : il pousse à agir, à surmonter, à se dépasser. Source de force brute.</div>
+      </div>
+      <div class="at-aspect-card at-asp-tri">
+        <div class="at-asp-sym">△</div>
+        <div class="at-asp-name">Trigone</div>
+        <div class="at-asp-deg">120°</div>
+        <div class="at-asp-orb">Orbe : ±7°</div>
+        <div class="at-asp-desc">Harmonie et fluidité — les deux planètes sont dans le même élément, en parfaite résonance. Aspect de grâce, de talents innés. Peut engendrer de la passivité si non consciemment utilisé.</div>
+      </div>
+      <div class="at-aspect-card at-asp-opp">
+        <div class="at-asp-sym">☍</div>
+        <div class="at-asp-name">Opposition</div>
+        <div class="at-asp-deg">180°</div>
+        <div class="at-asp-orb">Orbe : ±8°</div>
+        <div class="at-asp-desc">Polarité et projection — les deux planètes sont en face à face. Tension qui invite à l'intégration des contraires : ce qu'on projette sur l'autre, c'est souvent ce qu'on refuse en soi.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ [06] LIRE UN THÈME NATAL ═══════════ -->
+<section id="theme-natal">
+  <div class="section-title">
+    <div class="num">[ 06 ]</div>
+    <h2>✦ Comment lire un Thème Natal</h2>
+    <p class="slate">Le thème natal est une carte du ciel au moment exact de la naissance. Il capture la configuration planétaire unique de cet instant et la projette symboliquement sur la vie de la personne.</p>
+  </div>
+
+  <div class="at-method-block">
+    <h3 class="at-method-h3">Les 3 niveaux de lecture</h3>
+    <div class="cn-calc-steps" style="margin-top:1rem;">
+      <div class="cn-step">
+        <span class="cn-step-num cf-gold">①</span>
+        <div>
+          <strong>Le Signe Solaire</strong> — la première couche. Il révèle l'identité essentielle, le moteur intérieur, la quête fondamentale. C'est l'énergie que l'on doit incarner consciemment pour s'épanouir.
+          <br><span class="cn-step-ex">Ex : Soleil en ♐ Sagittaire → quête de sens, de liberté et d'expansion</span>
+        </div>
+      </div>
+      <div class="cn-step">
+        <span class="cn-step-num cf-violet">②</span>
+        <div>
+          <strong>L'Ascendant (signe montant)</strong> — la façade. Il décrit la façon spontanée d'entrer en contact avec le monde, l'apparence physique, les réactions immédiates. C'est ce que les autres voient en premier.
+          <br><span class="cn-step-ex">Ex : Ascendant ♋ Cancer → approche intuitive, besoin de protéger, sensibilité visible</span>
+        </div>
+      </div>
+      <div class="cn-step">
+        <span class="cn-step-num cf-cyan">③</span>
+        <div>
+          <strong>Le Signe de la Lune</strong> — le monde intérieur. Il décrit les besoins émotionnels profonds, les réflexes inconscients, ce qui nourrit l'âme. La Lune représente aussi la relation à la mère et aux origines.
+          <br><span class="cn-step-ex">Ex : Lune en ♑ Capricorne → besoin de structure, émotions retenues, sécurité par la maîtrise</span>
+        </div>
+      </div>
+    </div>
+
+    <p class="at-method-sub">La synthèse : Soleil · Lune · Ascendant</p>
+    <p class="at-method-p">La trinité Sun-Moon-Rising forme le cœur du thème natal. Le Soleil dit <em>qui vous cherchez à devenir</em>, la Lune dit <em>ce dont vous avez besoin pour vous sentir en sécurité</em>, l'Ascendant dit <em>comment vous approchez la vie</em>. Ces trois dimensions, souvent discordantes, sont la source de la complexité et de la richesse intérieure de chaque individu.</p>
+
+    <p class="at-method-sub">Lecture des planètes dans les maisons</p>
+    <p class="at-method-p">Une planète dans une maison concentre son énergie dans le domaine de vie correspondant. Jupiter en maison II amplifie les ressources financières et les valeurs. Saturne en maison VII impose des épreuves dans les partenariats. Mars en maison I confère une présence physique intense et une énergie pionnière.</p>
+
+    <p class="at-method-sub">Les dominantes</p>
+    <p class="at-method-p">Le signe le plus représenté dans un thème (plusieurs planètes dans ce signe) devient une dominante. La planète ayant le plus d'aspects, ou placée à un angle, est la planète maîtresse du thème. La maison la plus peuplée indique où l'énergie de vie est concentrée cette incarnation.</p>
+  </div>
+
+  <div class="pyth-diff-box">
+    <div class="pyth-diff-title">♎ Ce qui distingue l'astrologie tropicale</div>
+    <div class="pyth-diff-grid">
+      <div class="pyth-diff-item">
+        <span class="pyth-diff-lbl cf-rose">Point vernal</span>
+        Le 0° Bélier est fixé à l'équinoxe de printemps, pas à la constellation. C'est un système de saisons, pas d'étoiles — d'où la différence avec l'astrologie sidérale (environ 23° d'écart).
+      </div>
+      <div class="pyth-diff-item">
+        <span class="pyth-diff-lbl cf-cyan">Psychologie profonde</span>
+        Depuis le XXe siècle, l'astrologie tropicale s'est enrichie de la psychologie jungienne : archétypes, complexes, Anima/Animus. Les planètes sont des forces psychiques autant que cosmiques.
+      </div>
+      <div class="pyth-diff-item">
+        <span class="pyth-diff-lbl cf-emerald">Retours planétaires</span>
+        Chaque planète fait un « retour » en son degré natal : retour solaire (anniversaire, chaque année), retour saturne (28–30 ans, 58–60 ans), retour de Jupiter (12 ans). Ces cycles marquent des portes de transformation.
+      </div>
+      <div class="pyth-diff-item">
+        <span class="pyth-diff-lbl cf-gold">Progressions &amp; transits</span>
+        En plus du thème natal (statique), les astrologues étudient les transits actuels (planètes qui activent le thème natal aujourd'hui) et les progressions (évolution symbolique du thème au fil des ans).
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ [07] LES 12 ASCENDANTS ═══════════ -->
+<section id="les-ascendants">
+  <div class="section-title">
+    <div class="num">[ 07 ]</div>
+    <h2>✦ Les 12 Ascendants — Votre Façade au Monde</h2>
+    <p class="slate">L'Ascendant est le signe qui se levait à l'Est à l'heure exacte de votre naissance. Il détermine votre comportement spontané, votre apparence physique perçue, et la manière dont vous abordez les situations nouvelles. C'est le "masque" que vous portez — non au sens de faux-semblant, mais comme la première couche de contact avec le monde.</p>
+  </div>
+
+  <div class="at-method-block">
+    <div class="at-asc-grid">
+      <div class="at-asc-card at-feu">
+        <div class="at-asc-header"><span class="at-sym">♈</span><strong>Ascendant Bélier</strong></div>
+        <p class="at-asc-text">Vous entrez dans le monde comme une force de la nature — direct, impulsif, avec une énergie qui précède toute réflexion. On vous perçoit d'emblée comme quelqu'un d'actif, de courageux, parfois d'imprudent. Votre réaction instinctive face à l'obstacle : charger. Physiquement, souvent une démarche rapide, un regard franc, une présence qui impose.</p>
+      </div>
+      <div class="at-asc-card at-terre">
+        <div class="at-asc-header"><span class="at-sym">♉</span><strong>Ascendant Taureau</strong></div>
+        <p class="at-asc-text">Vous projetez calme, fiabilité et sensualité. Les autres vous perçoivent comme quelqu'un de posé, de concret, avec un goût manifeste pour le beau et le confortable. Vous prenez votre temps avant d'agir, évaluez les situations avec méthode. Physiquement, une carrure solide, une voix douce, une présence apaisante et rassurante.</p>
+      </div>
+      <div class="at-asc-card at-air">
+        <div class="at-asc-header"><span class="at-sym">♊</span><strong>Ascendant Gémeaux</strong></div>
+        <p class="at-asc-text">Votre premier contact avec le monde est intellectuel et communicatif. Vous sembler toujours en mouvement, avide de connexions et d'informations. On vous perçoit comme curieux, vif, adaptable — parfois agité. Votre don pour la parole est immédiat : vous trouvez les mots, créez le lien, mettez à l'aise par votre légèreté apparente.</p>
+      </div>
+      <div class="at-asc-card at-eau">
+        <div class="at-asc-header"><span class="at-sym">♋</span><strong>Ascendant Cancer</strong></div>
+        <p class="at-asc-text">Vous approchez le monde avec une sensibilité à fleur de peau et un instinct protecteur. Votre réaction première est émotionnelle — vous ressentez avant d'analyser. On vous perçoit comme chaleureux, intuitif, parfois lunatique. Votre aura est douce, maternelle ou paternelle selon le contexte. Vous créez instinctivement un espace de sécurité autour de vous.</p>
+      </div>
+      <div class="at-asc-card at-feu">
+        <div class="at-asc-header"><span class="at-sym">♌</span><strong>Ascendant Lion</strong></div>
+        <p class="at-asc-text">Votre entrée est royale — qu'on le veuille ou non. Vous captez naturellement les regards sans effort apparent. On vous perçoit comme charismatique, généreux, théâtral parfois. Votre comportement spontané a quelque chose de noble : vous donnez, vous protégez, vous illuminez. La timidité vous est étrangère en surface — même si intérieurement vous cherchez la reconnaissance.</p>
+      </div>
+      <div class="at-asc-card at-terre">
+        <div class="at-asc-header"><span class="at-sym">♍</span><strong>Ascendant Vierge</strong></div>
+        <p class="at-asc-text">Vous abordez le monde avec discernement et prudence. On vous voit comme méthodique, attentif aux détails, parfois réservé ou critique. Votre premier réflexe face à une situation nouvelle est d'analyser, de trier, d'évaluer l'utilité. Vous dégagez une impression de compétence et de fiabilité — on vous confie naturellement les tâches qui demandent précision.</p>
+      </div>
+      <div class="at-asc-card at-air">
+        <div class="at-asc-header"><span class="at-sym">♎</span><strong>Ascendant Balance</strong></div>
+        <p class="at-asc-text">Vous entrez dans le monde avec élégance et diplomatie. On vous perçoit immédiatement comme agréable, harmonieux, soucieux de plaire. Votre réaction instinctive face au conflit : chercher le compromis. Physiquement, souvent une belle apparence soignée. Votre aura est conciliante — vous créez naturellement l'harmonie dans un groupe, même si cela vous coûte intérieurement.</p>
+      </div>
+      <div class="at-asc-card at-eau">
+        <div class="at-asc-header"><span class="at-sym">♏</span><strong>Ascendant Scorpion</strong></div>
+        <p class="at-asc-text">Votre présence est magnétique et intense — on ne vous voit pas, on vous <em>sent</em>. Vous dégagez une impression de profondeur, de mystère, parfois de danger latent. Votre regard sonde. On vous perçoit comme quelqu'un qui cache beaucoup, qui observe tout, qui agit dans les coulisses. Vous inspirez soit un respect immédiat, soit une méfiance — rarement l'indifférence.</p>
+      </div>
+      <div class="at-asc-card at-feu">
+        <div class="at-asc-header"><span class="at-sym">♐</span><strong>Ascendant Sagittaire</strong></div>
+        <p class="at-asc-text">Vous arrivez dans le monde avec un optimisme naturel et un besoin d'espace. On vous perçoit comme ouvert, enthousiaste, philosophe, un peu bohème. Votre réaction instinctive : chercher le sens, l'horizon. Vous donnez l'impression d'être toujours prêt à partir, à explorer, à découvrir. Votre rire est souvent communicatif — vous allégez l'atmosphère sans effort.</p>
+      </div>
+      <div class="at-asc-card at-terre">
+        <div class="at-asc-header"><span class="at-sym">♑</span><strong>Ascendant Capricorne</strong></div>
+        <p class="at-asc-text">Vous projetez maturité, sérieux et contrôle. On vous perçoit comme quelqu'un de fiable, d'ambitieux, qui sait exactement où il va. Votre premier réflexe : évaluer la structure, les responsabilités, les enjeux. Vous semblez souvent plus âgé que votre âge — et paradoxalement, vous vous épanouissez et vous décontractez vraiment avec l'avancée en âge.</p>
+      </div>
+      <div class="at-asc-card at-air">
+        <div class="at-asc-header"><span class="at-sym">♒</span><strong>Ascendant Verseau</strong></div>
+        <p class="at-asc-text">Vous entrez dans le monde de façon singulière, décalée — vous semblez toujours légèrement en dehors de la norme. On vous perçoit comme original, indépendant, parfois imprévisible. Votre approche instinctive est intellectuelle et collective : vous pensez en termes de groupe, de futur, d'idéaux. Vous inspirez une curiosité immédiate — on se demande qui vous êtes vraiment.</p>
+      </div>
+      <div class="at-asc-card at-eau">
+        <div class="at-asc-header"><span class="at-sym">♓</span><strong>Ascendant Poissons</strong></div>
+        <p class="at-asc-text">Votre approche du monde est douce, intuitive, empathique. Vous semblez poreux aux atmosphères — vous absorbez les émotions ambiantes avant même de comprendre pourquoi. On vous perçoit comme sensible, rêveur, parfois insaisissable. Votre aura est douce et mystérieuse à la fois. Vous inspirez confiance aux personnes en souffrance — elles sentent que vous les comprenez sans qu'elles aient besoin de tout expliquer.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ [08] CYCLES PLANÉTAIRES ═══════════ -->
+<section id="cycles-planetaires">
+  <div class="section-title">
+    <div class="num">[ 08 ]</div>
+    <h2>✦ Les Grands Cycles Planétaires</h2>
+    <p class="slate">Au-delà du thème natal statique, l'astrologie tropicale s'intéresse aux cycles dynamiques — les moments où les planètes en transit activent votre thème natal, déclenchant des phases de vie spécifiques. Ces cycles sont prévisibles et universels.</p>
+  </div>
+
+  <div class="at-method-block">
+    <div class="at-cycles-grid">
+
+      <div class="at-cycle-card">
+        <div class="at-cycle-sym cf-gold">♄</div>
+        <div class="at-cycle-name">Retour de Saturne</div>
+        <div class="at-cycle-age">28–30 ans · 58–60 ans</div>
+        <p class="at-cycle-desc">Saturne revient à sa position natale tous les 29 ans environ. C'est le grand rite de passage astrologique — une période d'environ 2–3 ans durant laquelle tout ce qui n'est pas solide s'effondre, et tout ce qui est authentique se consolide. Crise de sens à 28 ans, crise d'identité à 58 ans : deux invitations à prendre sa vie en mains. Cette période peut être difficile mais est fondamentalement structurante.</p>
+      </div>
+
+      <div class="at-cycle-card">
+        <div class="at-cycle-sym cf-gold">♃</div>
+        <div class="at-cycle-name">Retour de Jupiter</div>
+        <div class="at-cycle-age">12 ans · 24 ans · 36 ans · 48 ans…</div>
+        <p class="at-cycle-desc">Jupiter revient à sa position natale tous les 12 ans — une fenêtre d'opportunité, d'expansion et de chance. Chaque retour de Jupiter coïncide souvent avec une phase de croissance, de voyage significatif, d'ouverture professionnelle ou philosophique. C'est le moment où le vent souffle en votre faveur — à condition de hisser les voiles.</p>
+      </div>
+
+      <div class="at-cycle-card">
+        <div class="at-cycle-sym cf-rose">♂</div>
+        <div class="at-cycle-name">Cycle de Mars</div>
+        <div class="at-cycle-age">Tous les 2 ans environ</div>
+        <p class="at-cycle-desc">Mars revient à sa position natale tous les 2 ans. C'est un cycle d'activation de l'énergie, du désir et de la volonté. Lorsque Mars transite sur des planètes sensibles de votre thème, il déclenche l'action, parfois le conflit. Les rétrogradations de Mars (environ tous les 26 mois) sont des périodes de révision stratégique — moins pour avancer que pour affiner ses objectifs.</p>
+      </div>
+
+      <div class="at-cycle-card">
+        <div class="at-cycle-sym cf-violet">☊</div>
+        <div class="at-cycle-name">Nœuds Lunaires</div>
+        <div class="at-cycle-age">Cycle de 18,6 ans</div>
+        <p class="at-cycle-desc">Les Nœuds lunaires (Nœud Nord et Nœud Sud) ne sont pas des planètes mais des points mathématiques liés aux éclipses. Le Nœud Sud représente les acquis karmiques — vos facilités naturelles héritées du passé. Le Nœud Nord pointe votre direction d'évolution — ce vers quoi vous devez tendre pour vous épanouir pleinement dans cette incarnation. Le retour des Nœuds (18–19 ans) marque souvent des tournants destin.</p>
+      </div>
+
+      <div class="at-cycle-card">
+        <div class="at-cycle-sym cf-cyan">♅</div>
+        <div class="at-cycle-name">Opposition d'Uranus</div>
+        <div class="at-cycle-age">40–42 ans</div>
+        <p class="at-cycle-desc">Uranus parcourt le zodiaque en 84 ans. À mi-chemin (vers 40–42 ans), il s'oppose à sa position natale — c'est le fameux "midlife crisis" astrologique. Cette période génère un besoin irrépressible de liberté, d'authenticité et de rupture avec tout ce qui étouffe. Ce n'est pas une crise à éviter mais une révolution intérieure nécessaire : l'occasion de redevenir soi-même.</p>
+      </div>
+
+      <div class="at-cycle-card">
+        <div class="at-cycle-sym cf-violet">♆</div>
+        <div class="at-cycle-name">Carré de Neptune</div>
+        <div class="at-cycle-age">40–42 ans · 80–85 ans</div>
+        <p class="at-cycle-desc">Neptune se déplace très lentement (165 ans pour un tour complet). Le carré natal de Neptune (vers 40 ans) coïncide souvent avec une période de désillusion profonde — les rêves de jeunesse se heurtent à la réalité. C'est aussi une invitation à une vie spirituelle plus mature, à lâcher les illusions pour accéder à quelque chose de plus essentiel et de moins ego-centré.</p>
+      </div>
+
+    </div>
+
+    <div class="pyth-diff-box" style="margin-top:1.5rem;">
+      <div class="pyth-diff-title">🌙 Transits vs. Progressions</div>
+      <div class="pyth-diff-grid">
+        <div class="pyth-diff-item">
+          <span class="pyth-diff-lbl cf-cyan">Transits</span>
+          Les planètes actuelles activent votre thème natal en temps réel. Un transit de Jupiter sur votre Soleil natal = période d'expansion. Un transit de Saturne sur votre Vénus natale = mise à l'épreuve des relations. Les transits des planètes lentes (Jupiter à Pluton) sont les plus significatifs.
+        </div>
+        <div class="pyth-diff-item">
+          <span class="pyth-diff-lbl cf-gold">Progressions secondaires</span>
+          Un jour après la naissance = une année de vie (progression "jour pour an"). Les progressions évoluent très lentement — elles montrent l'évolution intérieure graduelle de la personnalité sur des décennies, et non les événements immédiats. La Lune progressée (qui fait un tour en 27–28 ans) est particulièrement utilisée pour identifier les phases émotionnelles majeures.
+        </div>
+        <div class="pyth-diff-item">
+          <span class="pyth-diff-lbl cf-rose">Révolutions solaires</span>
+          Chaque année à votre anniversaire, le Soleil revient exactement à son degré natal — c'est la Révolution Solaire (RS). Le thème de cet instant précis, calculé pour votre lieu de résidence actuel, décrit symboliquement les enjeux et thématiques de l'année qui s'ouvre. Un outil puissant pour la prévision annuelle personnalisée.
+        </div>
+        <div class="pyth-diff-item">
+          <span class="pyth-diff-lbl cf-violet">Éclipses</span>
+          Les éclipses (solaires et lunaires) sont des accélérateurs d'événements. Lorsqu'une éclipse touche un point sensible de votre thème natal (Soleil, Lune, Ascendant, ou une planète importante), elle déclenche un changement majeur dans le domaine de vie concerné — souvent dans les 6 mois qui suivent.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <p slot="sources" style="color:#64748b;font-size:0.75rem;margin-bottom:0.8rem;">
+    Sources : Ptolémée, <em>Tétrabible</em> · Dane Rudhyar, <em>The Astrology of Personality</em> · Liz Greene &amp; Howard Sasportas, <em>The Luminaries</em> · André Barbault, <em>Traité pratique d'astrologie</em> · Robert Hand, <em>Planets in Transit</em> · Stephen Arroyo, <em>Astrology, Psychology and the Four Elements</em>
+  </p>
 
 </Layout>
+
+<style>
+/* ─── Résultat dots ─── */
+.at-dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; margin-right: 0.5rem; vertical-align: middle; flex-shrink: 0; }
+.at-dot-gold { background: var(--gold); }
+.at-dot-violet { background: var(--violet); }
+.at-hint { font-size: 0.78rem; color: var(--text-muted); font-family: var(--font-mono); font-weight: 400; margin-left: 0.6rem; vertical-align: middle; }
+
+/* ─── Sélecteur de ville (wrapper custom) ─── */
+.at-select-wrap { position: relative; max-width: 420px; }
+.at-select-native {
+  width: 100%; appearance: none; cursor: pointer;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid #334155; border-radius: 8px;
+  color: var(--text); padding: 0.65rem 2.6rem 0.65rem 0.9rem;
+  font-size: 0.9rem; font-family: inherit;
+  transition: border-color 0.2s;
+}
+.at-select-native:hover { border-color: #64748b; }
+.at-select-native:focus { border-color: var(--gold); outline: 2px solid rgba(212,175,55,0.18); outline-offset: 2px; }
+.at-select-native option,
+.at-select-native optgroup { background: #1e293b; color: var(--text); }
+.at-select-chevron { position: absolute; right: 0.75rem; top: 50%; transform: translateY(-50%); color: var(--gold); pointer-events: none; font-size: 0.95rem; }
+
+/* ─── Résultats grille ─── */
+.at-results-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+
+/* ─── Disclaimer ─── */
+.at-disclaimer { font-size: 0.79rem; color: var(--text-muted); margin-top: 1.2rem; padding: 0.7rem 1rem; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px; line-height: 1.6; }
+
+/* ─── Cards résultat ─── */
+.at-result-card { background: rgba(255,255,255,0.03); border: 1px solid #1e293b; border-radius: 12px; padding: 1.5rem; }
+.at-rc-header { display: flex; gap: 1rem; align-items: flex-start; margin-bottom: 1rem; }
+.at-rc-sym { font-size: 2.8rem; line-height: 1; flex-shrink: 0; }
+.at-rc-name { font-size: 1.3rem; font-weight: 700; }
+.at-rc-dates { font-size: 0.8rem; color: var(--text-muted); font-family: var(--font-mono); margin-top: 0.2rem; }
+.at-rc-badges { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-top: 0.6rem; }
+.at-rc-badge { font-family: var(--font-mono); font-size: 0.72rem; padding: 0.2rem 0.55rem; border-radius: 4px; border: 1px solid #334155; background: rgba(255,255,255,0.04); color: var(--slate); }
+.at-rc-kw { font-size: 0.88rem; color: var(--slate); font-style: italic; margin: 0.8rem 0; line-height: 1.6; }
+.at-rc-interp { font-size: 0.87rem; line-height: 1.75; color: #d0d6e0; }
+.at-rc-deg { font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); margin-top: 0.5rem; }
+
+/* ─── Tableau ─── */
+.at-table-wrap { overflow-x: auto; margin-bottom: 2rem; }
+.at-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+.at-table th { padding: 0.45rem 0.7rem; border-bottom: 1px solid rgba(255,255,255,0.08); color: var(--gold); font-family: var(--font-mono); font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.05em; text-align: left; font-weight: 600; }
+.at-table td { padding: 0.42rem 0.7rem; border-bottom: 1px solid rgba(255,255,255,0.05); color: var(--slate); line-height: 1.5; }
+.at-table tr:last-child td { border-bottom: none; }
+.at-sym { font-size: 1.1rem; }
+
+/* ─── Grille des 12 signes ─── */
+.at-signs-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.7rem; margin-bottom: 2rem; }
+@media (max-width: 800px) { .at-signs-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 500px) { .at-signs-grid { grid-template-columns: repeat(2, 1fr); } }
+.at-sign-card { border-radius: 10px; border: 1px solid transparent; padding: 0.9rem 0.8rem; display: flex; flex-direction: column; gap: 0.3rem; text-align: center; transition: transform 0.2s; }
+.at-sign-card:hover { transform: translateY(-3px); }
+.at-sym-lg { font-size: 1.8rem; line-height: 1; }
+.at-sign-name { font-weight: 700; font-size: 0.92rem; }
+.at-sign-dates { font-family: var(--font-mono); font-size: 0.68rem; color: var(--text-muted); }
+.at-sign-kw { font-size: 0.73rem; color: var(--slate); line-height: 1.4; }
+.at-el-badge { font-family: var(--font-mono); font-size: 0.65rem; padding: 0.15rem 0.45rem; border-radius: 4px; margin-top: 0.3rem; display: inline-block; }
+.at-feu { background: rgba(251,129,149,0.07); border-color: rgba(251,129,149,0.25); }
+.at-terre { background: rgba(61,211,153,0.07); border-color: rgba(61,211,153,0.25); }
+.at-air { background: rgba(59,211,238,0.07); border-color: rgba(59,211,238,0.25); }
+.at-eau { background: rgba(183,139,250,0.07); border-color: rgba(183,139,250,0.25); }
+.at-feu .at-sign-name { color: var(--rose); }
+.at-terre .at-sign-name { color: var(--emerald); }
+.at-air .at-sign-name { color: var(--cyan); }
+.at-eau .at-sign-name { color: var(--violet); }
+.at-feu-badge { background: rgba(251,129,149,0.1); border: 1px solid rgba(251,129,149,0.2); color: var(--rose); }
+.at-terre-badge { background: rgba(61,211,153,0.1); border: 1px solid rgba(61,211,153,0.2); color: var(--emerald); }
+.at-air-badge { background: rgba(59,211,238,0.1); border: 1px solid rgba(59,211,238,0.2); color: var(--cyan); }
+.at-eau-badge { background: rgba(183,139,250,0.1); border: 1px solid rgba(183,139,250,0.2); color: var(--violet); }
+
+/* ─── Éléments & Modalités ─── */
+.at-el-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.7rem; margin-bottom: 1.2rem; }
+@media (max-width: 700px) { .at-el-grid { grid-template-columns: repeat(2, 1fr); } }
+.at-el-card { border-radius: 10px; border: 1px solid transparent; padding: 0.9rem; }
+.at-el-title { font-weight: 700; font-size: 0.95rem; margin-bottom: 0.35rem; }
+.at-el-signs { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); margin-bottom: 0.5rem; }
+.at-el-desc { font-size: 0.81rem; color: var(--slate); line-height: 1.55; }
+.at-mod-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.7rem; }
+@media (max-width: 600px) { .at-mod-grid { grid-template-columns: 1fr; } }
+.at-mod-card { background: rgba(255,255,255,0.03); border: 1px solid #1e293b; border-radius: 8px; padding: 0.8rem 1rem; font-size: 0.84rem; line-height: 1.55; }
+
+/* ─── Méthode blocks ─── */
+.at-method-block { max-width: 860px; margin: 1.5rem auto; padding: 1.5rem; background: rgba(255,255,255,0.02); border: 1px solid #1e293b; border-radius: 12px; }
+.at-method-h3 { font-size: 1rem; font-family: var(--font-mono); color: var(--text); margin-bottom: 0.8rem; }
+.at-method-sub { font-size: 0.85rem; font-family: var(--font-mono); color: var(--gold); margin: 1.4rem 0 0.5rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; }
+.at-method-p { font-size: 0.9rem; line-height: 1.75; color: var(--slate); margin-bottom: 0.7rem; }
+.at-method-note { font-size: 0.83rem; color: var(--text-muted); margin-top: 1rem; padding: 0.7rem 1rem; background: rgba(212,175,55,0.04); border-left: 2px solid rgba(212,175,55,0.3); border-radius: 0 6px 6px 0; line-height: 1.65; }
+
+/* ─── Aspects ─── */
+.at-aspects-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.7rem; }
+@media (max-width: 900px) { .at-aspects-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 550px) { .at-aspects-grid { grid-template-columns: 1fr 1fr; } }
+.at-aspect-card { border-radius: 10px; padding: 1rem 0.8rem; display: flex; flex-direction: column; gap: 0.3rem; }
+.at-asp-sym { font-size: 2rem; line-height: 1; }
+.at-asp-name { font-weight: 700; font-size: 0.9rem; }
+.at-asp-deg { font-family: var(--font-mono); font-size: 1rem; font-weight: 800; }
+.at-asp-orb { font-family: var(--font-mono); font-size: 0.68rem; color: var(--text-muted); }
+.at-asp-desc { font-size: 0.78rem; color: var(--slate); line-height: 1.55; margin-top: 0.3rem; }
+.at-asp-conj { background: rgba(212,175,55,0.08); border: 1px solid rgba(212,175,55,0.25); }
+.at-asp-conj .at-asp-name, .at-asp-conj .at-asp-deg { color: var(--gold); }
+.at-asp-sex { background: rgba(61,211,153,0.07); border: 1px solid rgba(61,211,153,0.22); }
+.at-asp-sex .at-asp-name, .at-asp-sex .at-asp-deg { color: var(--emerald); }
+.at-asp-carre { background: rgba(251,129,149,0.07); border: 1px solid rgba(251,129,149,0.22); }
+.at-asp-carre .at-asp-name, .at-asp-carre .at-asp-deg { color: var(--rose); }
+.at-asp-tri { background: rgba(59,211,238,0.07); border: 1px solid rgba(59,211,238,0.22); }
+.at-asp-tri .at-asp-name, .at-asp-tri .at-asp-deg { color: var(--cyan); }
+.at-asp-opp { background: rgba(183,139,250,0.07); border: 1px solid rgba(183,139,250,0.22); }
+.at-asp-opp .at-asp-name, .at-asp-opp .at-asp-deg { color: var(--violet); }
+
+/* ─── Footer carte résultat (décan) ─── */
+.at-rc-footer { display: flex; gap: 0.6rem; align-items: center; flex-wrap: wrap; margin-top: 0.8rem; }
+.at-rc-deg { font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-muted); }
+.at-decan-badge { font-family: var(--font-mono); font-size: 0.7rem; padding: 0.18rem 0.55rem; border-radius: 4px; background: rgba(212,175,55,0.08); border: 1px solid rgba(212,175,55,0.2); color: var(--gold); }
+.at-decan-phrase { font-size: 0.78rem; color: var(--slate); font-style: italic; margin-top: 0.35rem; line-height: 1.5; }
+
+/* ─── Bloc synthèse combinée ─── */
+.at-combo-block { margin: 1.8rem 0 0.5rem; padding: 1.6rem; background: rgba(212,175,55,0.03); border: 1px solid rgba(212,175,55,0.15); border-radius: 12px; }
+.at-combo-title { font-family: var(--font-mono); font-size: 0.95rem; color: var(--gold); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 1.2rem; font-weight: 600; display: flex; align-items: center; gap: 0.5rem; }
+.at-combo-sections { display: flex; flex-direction: column; gap: 1.2rem; }
+.at-combo-section { border-left: 2px solid rgba(212,175,55,0.25); padding-left: 1.2rem; }
+.at-combo-sec-title { font-size: 0.9rem; font-weight: 600; color: var(--gold); margin-bottom: 0.35rem; }
+.at-combo-sec-text { font-size: 0.88rem; color: #d0d6e0; line-height: 1.75; margin: 0; }
+
+/* ─── cf-* color utilities (partagés) ─── */
+.cf-rose   { color: var(--rose); }
+.cf-emerald{ color: var(--emerald); }
+.cf-cyan   { color: var(--cyan); }
+.cf-gold   { color: var(--gold); }
+.cf-violet { color: var(--violet); }
+
+/* ─── Ascendants ─── */
+.at-asc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.8rem; }
+@media (max-width: 800px) { .at-asc-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 500px) { .at-asc-grid { grid-template-columns: 1fr; } }
+.at-asc-card { border-radius: 10px; border: 1px solid transparent; padding: 1rem; transition: transform 0.2s; }
+.at-asc-card:hover { transform: translateY(-2px); }
+.at-asc-header { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem; font-size: 0.92rem; }
+.at-asc-header .at-sym { font-size: 1.3rem; }
+.at-asc-text { font-size: 0.82rem; color: var(--slate); line-height: 1.6; margin: 0; }
+
+/* ─── Cycles planétaires ─── */
+.at-cycles-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.8rem; margin-bottom: 1.5rem; }
+@media (max-width: 900px) { .at-cycles-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 550px) { .at-cycles-grid { grid-template-columns: 1fr; } }
+.at-cycle-card { background: rgba(255,255,255,0.03); border: 1px solid #1e293b; border-radius: 10px; padding: 1.2rem; display: flex; flex-direction: column; gap: 0.25rem; }
+.at-cycle-sym { font-size: 2rem; line-height: 1; margin-bottom: 0.2rem; }
+.at-cycle-name { font-weight: 700; font-size: 0.92rem; color: var(--text); }
+.at-cycle-age { font-family: var(--font-mono); font-size: 0.72rem; color: var(--gold); margin-bottom: 0.4rem; }
+.at-cycle-desc { font-size: 0.82rem; color: var(--slate); line-height: 1.6; margin: 0; }
+</style>
+
+<!-- Classes générées dynamiquement par JS — doivent être globales (pas de data-astro-cid) -->
+<style is:global>
+.at-result-card { background: rgba(255,255,255,0.03); border: 1px solid #1e293b; border-radius: 12px; padding: 1.5rem; }
+.at-rc-header { display: flex; gap: 1rem; align-items: flex-start; margin-bottom: 1rem; }
+.at-rc-sym { font-size: 2.8rem; line-height: 1; flex-shrink: 0; }
+.at-rc-name { font-size: 1.3rem; font-weight: 700; }
+.at-rc-badges { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-top: 0.6rem; }
+.at-rc-badge { font-family: var(--font-mono); font-size: 0.72rem; padding: 0.2rem 0.55rem; border-radius: 4px; border: 1px solid #334155; background: rgba(255,255,255,0.04); color: var(--slate); }
+.at-rc-kw { font-size: 0.88rem; color: var(--slate); font-style: italic; margin: 0.8rem 0; line-height: 1.6; }
+.at-rc-interp { font-size: 0.87rem; line-height: 1.75; color: #d0d6e0; }
+.at-rc-footer { display: flex; gap: 0.6rem; align-items: center; flex-wrap: wrap; margin-top: 0.8rem; }
+.at-rc-deg { font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-muted); }
+.at-decan-badge { font-family: var(--font-mono); font-size: 0.7rem; padding: 0.18rem 0.55rem; border-radius: 4px; background: rgba(212,175,55,0.08); border: 1px solid rgba(212,175,55,0.2); color: var(--gold); }
+.at-decan-phrase { font-size: 0.78rem; color: var(--slate); font-style: italic; margin-top: 0.35rem; line-height: 1.5; }
+.at-combo-block { margin: 1.8rem 0 0.5rem; padding: 1.6rem; background: rgba(212,175,55,0.03); border: 1px solid rgba(212,175,55,0.15); border-radius: 12px; }
+.at-combo-title { font-family: var(--font-mono); font-size: 0.95rem; color: var(--gold); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 1.2rem; font-weight: 600; display: flex; align-items: center; gap: 0.5rem; }
+.at-combo-sections { display: flex; flex-direction: column; gap: 1.2rem; }
+.at-combo-section { border-left: 2px solid rgba(212,175,55,0.25); padding-left: 1.2rem; }
+.at-combo-sec-title { font-size: 0.9rem; font-weight: 600; color: var(--gold); margin-bottom: 0.35rem; }
+.at-combo-sec-text { font-size: 0.88rem; color: #d0d6e0; line-height: 1.75; margin: 0; }
+
+/* ─── Titres sections résultats ─── */
+.at-dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+.at-dot-gold { background: var(--gold); }
+.at-dot-violet { background: var(--violet); }
+.at-title-left { display: inline-flex; align-items: center; gap: 0.7rem; }
+.pyth-result-block .at-highlight-title {
+  font-size: 1.05rem;
+  font-family: var(--font-sans);
+  text-transform: none;
+  letter-spacing: -0.01em;
+  color: #f8fafc;
+  font-weight: 700;
+  margin-bottom: 1.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  flex-wrap: wrap;
+  gap: 0.4rem 1rem;
+  padding-bottom: 0.9rem;
+  border-bottom: 1px solid rgba(255,255,255,0.09);
+}
+.at-highlight-title .at-dot { width: 13px; height: 13px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+.at-highlight-title .at-dot-gold { background: var(--gold); box-shadow: 0 0 10px var(--gold); }
+.at-highlight-title .at-dot-violet { background: var(--violet); box-shadow: 0 0 10px var(--violet); }
+.at-highlight-title .at-hint {
+  font-family: var(--font-mono);
+  font-size: 0.79rem;
+  font-style: italic;
+  color: var(--text-muted);
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+  margin-left: auto;
+  opacity: 0.9;
+}
+.at-ht-gold .at-title-left { color: var(--gold); }
+.at-ht-gold { border-bottom-color: rgba(234,179,8,0.35); }
+.at-ht-violet .at-title-left { color: var(--violet); }
+.at-ht-violet { border-bottom-color: rgba(167,139,250,0.35); }
+@media (max-width:600px) {
+  .pyth-result-block .at-highlight-title { flex-direction: column; align-items: flex-start; gap: 0.3rem; }
+  .at-highlight-title .at-hint { margin-left: 0; }
+}
+
+/* ─── Light Mode (global — classes injectées par JS) ─── */
+[data-theme="light"] .at-result-card {
+  background: #ffffff;
+  border-color: rgba(0,0,0,0.09);
+}
+[data-theme="light"] .at-rc-badge {
+  border-color: rgba(0,0,0,0.12);
+  background: rgba(0,0,0,0.04);
+}
+[data-theme="light"] .at-rc-interp { color: #334155; }
+[data-theme="light"] .at-combo-sec-text { color: #334155; }
+[data-theme="light"] .pyth-result-block .at-highlight-title { color: #0f172a; border-bottom-color: rgba(0,0,0,0.1); }
+[data-theme="light"] .at-ht-gold .at-title-left { color: rgb(133,77,14); }
+[data-theme="light"] .at-ht-gold { border-bottom-color: rgba(161,120,0,0.35); }
+[data-theme="light"] .at-ht-violet .at-title-left { color: rgb(109,40,217); }
+[data-theme="light"] .at-ht-violet { border-bottom-color: rgba(109,40,217,0.35); }
+</style>
+
+<style>
+/* ─── Light Mode (scoped — éléments statiques tropicale) ─── */
+[data-theme="light"] .at-select-native {
+  background: #f8fafc;
+  border-color: rgba(0,0,0,0.15);
+}
+[data-theme="light"] .at-select-native option,
+[data-theme="light"] .at-select-native optgroup {
+  background: #ffffff;
+  color: #0f172a;
+}
+[data-theme="light"] .at-disclaimer {
+  background: rgba(0,0,0,0.02);
+  border-color: rgba(0,0,0,0.06);
+}
+[data-theme="light"] .at-mod-card,
+[data-theme="light"] .at-cycle-card {
+  background: #ffffff;
+  border-color: rgba(0,0,0,0.08);
+}
+[data-theme="light"] .at-method-block {
+  background: #f8fafc;
+  border-color: rgba(0,0,0,0.08);
+}
+[data-theme="light"] .at-table th {
+  border-bottom-color: rgba(0,0,0,0.1);
+}
+[data-theme="light"] .at-table td {
+  border-bottom-color: rgba(0,0,0,0.06);
+}
+[data-theme="light"] .at-combo-sec-text { color: #334155; }
+</style>
+
+<script is:inline src="/js/tropicale.js"></script>

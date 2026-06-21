@@ -1,0 +1,219 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Le Jyotish : introduction à l'astrologie védique",
+  "description": "Science de la lumière en sanskrit, le Jyotish est l'une des six disciplines sacrées du Vedanga. Plus qu'une astrologie, c'est une carte du karma, une boussole du dharma et une horloge de l'âme.",
+  "author": { "@type": "Organization", "name": "Plateforme des Mystères" },
+  "inLanguage": "fr",
+  "datePublished": "2026-06-20"
+};
+---
+
+<Layout
+  title="Le Jyotish : introduction à l'astrologie védique — Blog"
+  description="Science de la lumière en sanskrit, le Jyotish est l'une des six disciplines sacrées du Vedanga. Plus qu'une astrologie, c'est une carte du karma, une boussole du dharma et une horloge de l'âme."
+  keywords="jyotish, astrologie védique, vedanga, karma, dharma, hindouisme, nakshatras, vimshottari dasha"
+  canonicalPath="blog/jyotish-introduction.html"
+  jsonLd={jsonLd}
+  useBlogStyles={true}
+  scripts={["/assets/js/blog.js"]}
+  section="blog"
+>
+
+<!-- ═══════════ ARTICLE ═══════════ -->
+<article id="article" class="blog-article">
+
+  <h1>Le Jyotish : introduction à l'astrologie védique</h1>
+  <p class="article-subtitle">Science de la lumière en sanskrit, le Jyotish est l'une des six disciplines sacrées du Vedanga. Plus qu'une astrologie, c'est une carte du karma, une boussole du dharma et une horloge de l'âme.</p>
+
+  <div class="article-meta-bar">
+    <span>📅 Juin 2026</span>
+    <span>📖 13 min de lecture</span>
+    <span>🏷️ Astrologie · Jyotish · Védique</span>
+  </div>
+
+  <blockquote>
+    « Jyotish est l'œil des Vedas. Sans lui, les Écritures sont aveugles au temps et au destin. »<br>
+    <em>— Adage védique traditionnel</em>
+  </blockquote>
+
+  <hr>
+
+  <h2>Qu'est-ce que le Jyotish ?</h2>
+
+  <p><strong>Jyotish</strong> (ज्योतिष), littéralement « science de la lumière » ou « seigneur de la lumière » en sanskrit, est l'astrologie traditionnelle de l'Inde. Elle n'est pas une croyance populaire détachée de la religion — elle est l'un des <strong>six Vedangas</strong> (वेदाङ्ग), les six disciplines auxiliaires nécessaires à la compréhension des Vedas, les textes sacrés les plus anciens de l'humanité (Rig Veda, ~1500 av. J.-C.).</p>
+
+  <p>Les six Vedangas sont :</p>
+  <ol>
+    <li><strong>Shiksha</strong> — phonétique et prononciation</li>
+    <li><strong>Chandas</strong> — métrique poétique</li>
+    <li><strong>Vyakarana</strong> — grammaire</li>
+    <li><strong>Nirukta</strong> — étymologie</li>
+    <li><strong>Kalpa</strong> — rituels</li>
+    <li><strong>Jyotisha</strong> — astronomie et astrologie</li>
+  </ol>
+
+  <p>Le Jyotish est ainsi la <strong>science du temps sacré</strong>. Il permet de déterminer les moments propices aux rituels (muhurtas), d'établir les calendriers religieux (panchangas), et — dans sa branche phalita (prédictive) — de lire le destin individuel dans le thème natal (kundali).</p>
+
+  <hr>
+
+  <h2>Le cadre philosophique : karma, dharma, moksha</h2>
+
+  <p>Contrairement à l'astrologie occidentale moderne — largement psychologique — le Jyotish repose sur une <strong>métaphysique du karma</strong>. Un thème natal n'est pas un portrait de personnalité (même s'il peut l'être), mais une <strong>carte des samskaras</strong> (impressions karmiques) que l'âme a accumulées à travers ses vies antérieures.</p>
+
+  <p>Le Jyotish distingue trois types de karma :</p>
+  <ul>
+    <li><strong>Sanchita karma</strong> : l'ensemble de tout le karma accumulé sur toutes les vies antérieures — un réservoir immense et en grande partie inaccessible.</li>
+    <li><strong>Prarabdha karma</strong> : la portion de ce karma total qui est « mûre » et doit être expérimentée dans cette vie. Le thème natal est la carte de ce prarabdha.</li>
+    <li><strong>Agami karma</strong> : le karma que nous créons dans cette vie par nos actions présentes, et qui portera fruit dans des vies futures (ou modulera le prarabdha).</li>
+  </ul>
+
+  <p>Cette distinction est cruciale : le Jyotish ne nie pas le libre arbitre. Il dit que <strong>certaines choses sont fixées</strong> (le prarabdha) et que <strong>d'autres sont malléables</strong> (l'agami). La pratique spirituelle (sadhana), les remèdes astrologiques (upayas), et la conscience elle-même peuvent atténuer ou transcender un karma difficile.</p>
+
+  <p>Le but ultime du Jyotish n'est pas la prédiction pour elle-même — c'est le <strong>moksha</strong> (मोक्ष), la libération du cycle des renaissances. Le thème natal montre où l'âme en est sur ce chemin.</p>
+
+  <hr>
+
+  <h2>Les Navagraha : les 9 planètes</h2>
+
+  <p>Le Jyotish utilise neuf planètes (Navagraha), incluant deux corps purement mathématiques — les nœuds lunaires — qui sont totalement absents de l'astrologie occidentale traditionnelle :</p>
+
+  <table class="archetype-table">
+    <thead>
+      <tr><th>Nom sanskrit</th><th>Corps céleste</th><th>Signification védique</th><th>Jour</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Surya</strong> (सूर्य)</td><td>Soleil</td><td>L'âme (atman), le père, l'autorité, le gouvernement, la vue</td><td>Dimanche</td></tr>
+      <tr><td><strong>Chandra</strong> (चन्द्र)</td><td>Lune</td><td>Le mental (manas), la mère, l'émotion, le public, la fertilité</td><td>Lundi</td></tr>
+      <tr><td><strong>Mangala</strong> (मंगल)</td><td>Mars</td><td>L'énergie, le courage, le conflit, la terre, les frères</td><td>Mardi</td></tr>
+      <tr><td><strong>Budha</strong> (बुध)</td><td>Mercure</td><td>L'intellect, la parole, le commerce, la jeunesse, l'humour</td><td>Mercredi</td></tr>
+      <tr><td><strong>Guru</strong> (गुरु)</td><td>Jupiter</td><td>La sagesse, les enfants, la fortune, la religion, l'enseignement</td><td>Jeudi</td></tr>
+      <tr><td><strong>Shukra</strong> (शुक्र)</td><td>Vénus</td><td>L'amour, le luxe, la beauté, l'art, les plaisirs, le conjoint</td><td>Vendredi</td></tr>
+      <tr><td><strong>Shani</strong> (शनि)</td><td>Saturne</td><td>La discipline, la longévité, le malheur, la patience, les serviteurs</td><td>Samedi</td></tr>
+      <tr><td><strong>Rahu</strong> (राहु)</td><td>Nœud nord</td><td>L'obsession, le désir inassouvi, l'étranger, l'illusion, la transgression</td><td>—</td></tr>
+      <tr><td><strong>Ketu</strong> (केतु)</td><td>Nœud sud</td><td>Le détachement, la spiritualité, la libération, le passé karmique, l'isolement</td><td>—</td></tr>
+    </tbody>
+  </table>
+
+  <p><strong>Rahu et Ketu</strong> sont uniques au Jyotish. Ce sont les <strong>nœuds lunaires</strong> — les points d'intersection de l'orbite de la Lune avec l'écliptique. Ce ne sont pas des corps physiques, mais ils sont traités comme des planètes à part entière, avec leurs signes, leurs maisons, leurs aspects et leurs dashas. Rahu est la tête du dragon (désir insatiable, matérialisme, obsession) ; Ketu est la queue (renoncement, spiritualité, détachement).</p>
+
+  <p>Notez que le Jyotish n'utilise <strong>pas</strong> Uranus, Neptune ou Pluton. Dans la tradition classique, le système planétaire se limite aux sept visibles (Soleil à Saturne) plus les deux nœuds. Certains astrologues védiques contemporains intègrent les transsaturniennes, mais cela reste minoritaire.</p>
+
+  <hr>
+
+  <h2>Les 12 Rashis (signes) et 12 Bhavas (maisons)</h2>
+
+  <p>Les signes du Jyotish sont les mêmes 12 que dans le zodiaque occidental — <strong>mais dans le cadre sidéral</strong> (décalés de ~24°). Ils portent leurs noms sanskrits :</p>
+
+  <table class="archetype-table">
+    <thead>
+      <tr><th>Rashi</th><th>Nom sanskrit</th><th>Élément védique (Tattva)</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Bélier</td><td>Mesha (मेष)</td><td>Agni (Feu)</td></tr>
+      <tr><td>Taureau</td><td>Vrishabha (वृषभ)</td><td>Prithvi (Terre)</td></tr>
+      <tr><td>Gémeaux</td><td>Mithuna (मिथुन)</td><td>Vayu (Air)</td></tr>
+      <tr><td>Cancer</td><td>Karka (कर्क)</td><td>Jala (Eau)</td></tr>
+      <tr><td>Lion</td><td>Simha (सिंह)</td><td>Agni (Feu)</td></tr>
+      <tr><td>Vierge</td><td>Kanya (कन्या)</td><td>Prithvi (Terre)</td></tr>
+      <tr><td>Balance</td><td>Tula (तुला)</td><td>Vayu (Air)</td></tr>
+      <tr><td>Scorpion</td><td>Vrishchika (वृश्चिक)</td><td>Jala (Eau)</td></tr>
+      <tr><td>Sagittaire</td><td>Dhanu (धनु)</td><td>Agni (Feu)</td></tr>
+      <tr><td>Capricorne</td><td>Makara (मकर)</td><td>Prithvi (Terre)</td></tr>
+      <tr><td>Verseau</td><td>Kumbha (कुम्भ)</td><td>Vayu (Air)</td></tr>
+      <tr><td>Poissons</td><td>Mina (मीन)</td><td>Jala (Eau)</td></tr>
+    </tbody>
+  </table>
+
+  <p>Les 12 maisons (Bhavas) fonctionnent comme en Occident, mais avec des noms et significations sanskrits. La Maison I est le <strong>Tanur Bhava</strong> (corps et soi), la Maison II le <strong>Dhana Bhava</strong> (richesse), etc. Chaque maison possède également des correspondances très concrètes que l'Occident a parfois perdues : par exemple, la Maison III gouverne les frères et sœurs <em>plus jeunes</em> spécifiquement, la Maison IX le père dans le thème diurne et la mère dans le thème nocturne, etc.</p>
+
+  <hr>
+
+  <h2>Les Nakshatras : le cœur du Jyotish</h2>
+
+  <p>Le trait le plus distinctif du Jyotish est l'utilisation des <strong>27 Nakshatras</strong> (नक्षत्र), ou « mansions lunaires ». Ce sont des divisions du zodiaque de 13°20' chacune (360°/27), chacune associée à une étoile, un mythe, un animal et un pouvoir (shakti) spécifiques. La Lune traverse un Nakshatra par jour.</p>
+
+  <p>Les Nakshatras sont antérieurs au zodiaque à 12 signes — ils remontent au Rig Veda. Chaque Nakshatra est gouverné par l'une des 9 planètes selon un cycle de Vimshottari, ce qui les relie directement au <strong>système des dashas</strong> (voir ci-dessous). Pour une exploration complète, voir notre article dédié <a href="nakshatras.html" style="color:var(--gold);">Les 27 Nakshatras</a>.</p>
+
+  <hr>
+
+  <h2>Le Vimshottari Dasha : l'horloge karmique</h2>
+
+  <p>Le <strong>Vimshottari Dasha</strong> (विम्शोत्तरी दशा) est le système de <strong>périodes planétaires</strong> le plus utilisé en Jyotish. Sur une durée totale de 120 ans, il attribue à chaque planète une période majeure (Mahadasha) dans un ordre fixe : Ketu 7 ans, Vénus 20, Soleil 6, Lune 10, Mars 7, Rahu 18, Jupiter 16, Saturne 19, Mercure 17.</p>
+
+  <p>Le point de départ est déterminé par la <strong>Lune natale</strong> — plus précisément, par le Nakshatra lunaire de naissance. Ce système permet de dater les grands événements d'une vie avec une précision qui a longtemps fasciné (et parfois défié) les chercheurs occidentaux.</p>
+
+  <p>Pour une exploration complète, voir <a href="vimshottari-dasha.html" style="color:var(--gold);">Le Vimshottari Dasha</a>.</p>
+
+  <hr>
+
+  <h2>Les outils du Jyotish : yoga, remèdes et muhurta</h2>
+
+  <p>Contrairement à l'astrologie occidentale qui se contente souvent de décrire, le Jyotish propose des <strong>outils actifs</strong> pour travailler avec son thème :</p>
+
+  <ul>
+    <li><strong>Upayas</strong> (उपाय) : remèdes astrologiques — mantras, yantras (diagrammes sacrés), gemmes, dons charitables, rituels (pujas) destinés à apaiser les planètes difficiles et renforcer les bénéfiques.</li>
+    <li><strong>Muhurta</strong> (मुहूर्त) : élection de moments propices — choisir la meilleure date pour un mariage, un voyage, une opération chirurgicale, un lancement d'entreprise.</li>
+    <li><strong>Yogas planétaires</strong> : combinaisons spécifiques qui produisent des effets particuliers — le Gaja Kesari Yoga (Jupiter et Lune en angle) donne sagesse et prospérité ; le Kemadruma Yoga (Lune isolée sans planètes en maisons adjacentes) donne solitude et pauvreté.</li>
+  </ul>
+
+  <h2>Les maisons védiques en pratique</h2>
+
+  <p>Le Jyotish analyse les maisons avec une rigueur que l'Occident a parfois perdue. Chaque maison possède un <strong>significateur fixe</strong> (karaka) indépendant de la carte individuelle :</p>
+
+  <table class="archetype-table">
+    <thead>
+      <tr><th>Maison</th><th>Karaka (significateur naturel)</th><th>Domaine concret</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>I</td><td>Soleil</td><td>Corps, santé, réputation, caractère</td></tr>
+      <tr><td>II</td><td>Jupiter</td><td>Richesse, parole, famille, nourriture</td></tr>
+      <tr><td>III</td><td>Mars</td><td>Frères cadets, courage, efforts courts</td></tr>
+      <tr><td>IV</td><td>Lune</td><td>Mère, maison, véhicules, bonheur domestique</td></tr>
+      <tr><td>V</td><td>Jupiter</td><td>Enfants, intelligence, créativité, mérites passés</td></tr>
+      <tr><td>VI</td><td>Mars / Saturne</td><td>Maladies, dettes, ennemis, service</td></tr>
+      <tr><td>VII</td><td>Vénus</td><td>Conjoint, partenariat commercial, désirs</td></tr>
+      <tr><td>VIII</td><td>Saturne</td><td>Longévité, mort, héritage, secrets, occultisme</td></tr>
+      <tr><td>IX</td><td>Jupiter</td><td>Père (thème diurne), guru, religion, chance</td></tr>
+      <tr><td>X</td><td>Soleil / Mercure</td><td>Profession, statut, honneur, gouvernement</td></tr>
+      <tr><td>XI</td><td>Jupiter</td><td>Amis aînés, gains, aspirations, projets collectifs</td></tr>
+      <tr><td>XII</td><td>Saturne</td><td>Pertes, dépenses, isolement, moksha (libération)</td></tr>
+    </tbody>
+  </table>
+
+  <p>Un aspect unique du Jyotish est la <strong>double signification des maisons</strong>. Par exemple, la Maison V signifie à la fois les enfants et les bonnes actions des vies passées (purva punya) — implication : vos enfants sont le reflet de votre karma antérieur. La Maison IX signifie le père et le guru — implication : votre relation au père colore votre relation au maître spirituel.</p>
+
+  <h2>Pourquoi le Jyotish aujourd'hui ?</h2>
+
+  <p>Dans un monde occidental saturé d'astrologie psychologique et de « vibes zodiacales » sur les réseaux sociaux, le Jyotish apporte trois choses que l'astrologie moderne a parfois perdues :</p>
+
+  <ol>
+    <li><strong>La précision prédictive</strong> — grâce aux Dashas, un Jyotishi expérimenté peut dater des événements avec une exactitude surprenante.</li>
+    <li><strong>La dimension spirituelle</strong> — le thème natal n'est pas qu'un portrait psychologique, c'est un guide pour l'évolution de l'âme.</li>
+    <li><strong>Les remèdes actifs</strong> — le Jyotish ne se contente pas de décrire un problème, il propose des solutions concrètes (gemmes, mantras, rituels).</li>
+  </ol>
+
+  <p>Le Jyotish n'est pas « meilleur » que l'astrologie occidentale — il est <strong>différent</strong>. La tendance contemporaine est au dialogue entre les deux traditions, chaque praticien puisant dans l'une et l'autre selon les besoins de sa consultation.</p>
+
+  <hr>
+
+  <blockquote>
+    Le Jyotish n'est pas un système de croyance — c'est une <strong>technologie spirituelle</strong>. Il relie l'astronomie observable au karma individuel et à la quête de libération. Pour le pratiquant védique, regarder son thème, c'est regarder le reflet de son âme dans le miroir du temps.
+  </blockquote>
+
+  <div class="article-footer">
+    <p>🙏 Explorez plus en profondeur : <a href="nakshatras.html" style="color:var(--gold);">Les 27 Nakshatras</a> · <a href="vimshottari-dasha.html" style="color:var(--gold);">Le Vimshottari Dasha</a> · <a href="siderale-vs-tropicale.html" style="color:var(--gold);">Sidérale vs Tropicale</a></p>
+    <p>📚 Lire aussi : <a href="astrologie-tropicale.html" style="color:var(--gold);">Astrologie tropicale : fondements</a> · <a href="triade-soleil-lune.html" style="color:var(--gold);">Soleil, Lune, Ascendant</a></p>
+    <a href="index.html" class="back-link">← Retour au blog</a>
+  </div>
+
+</article>
+
+  <p slot="sources" style="color:#64748b;font-size:0.75rem;margin-bottom:0.8rem;">
+    Sources : B.V. Raman — <em>Hindu Predictive Astrology</em> · David Frawley — <em>Ayurvedic Astrology</em> · James Braha — <em>Ancient Hindu Astrology for the Modern Western Astrologer</em> · K.S. Charak — <em>Elements of Vedic Astrology</em> · Sanjay Rath — <em>Brihat Parashara Hora Shastra</em>
+  </p>
+
+</Layout>

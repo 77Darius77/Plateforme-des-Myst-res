@@ -3,40 +3,93 @@ import Layout from '../../layouts/Layout.astro';
 
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "Article",
-  "name": "Tarot Rider-Waite-Smith — Le tarot illustré",
+  "@type": "CollectionPage",
+  "name": "Tarot Rider-Waite-Smith — Méthodes de Tirage",
   "url": "https://mysteres.fr/tarologie/rider-waite.html",
-  "description": "Découvrez le Tarot Rider-Waite-Smith, créé en 1909, le tarot le plus populaire au monde.",
+  "description": "Découvrez les 4 méthodes de tirage principales du Tarot Rider-Waite-Smith : Croix Celtique, Fer à Cheval, Relation et Spirituel.",
   "inLanguage": "fr"
 };
 ---
 
 <Layout
-  title="Tarot Rider-Waite-Smith — Tarologie"
-  description="Découvrez le Tarot Rider-Waite-Smith, créé en 1909, le tarot le plus populaire au monde. Ses illustrations riches en symbolisme en font l'outil idéal pour l'introspection."
-  keywords="rider waite smith, tarot illustré, arcanes, divination, tarologie, symbolisme"
+  title="Tarot Rider-Waite-Smith — Méthodes de tirage"
+  description="Découvrez 4 méthodes de tirage du Tarot Rider-Waite-Smith : la Croix Celtique, le Fer à Cheval, le Tirage de la Relation et le Tirage Spirituel."
+  keywords="rider waite smith, tarot illustré, méthodes de tirage, croix celtique, fer a cheval, tarologie"
   canonicalPath="tarologie/rider-waite.html"
   jsonLd={jsonLd}
+  section="tarologie"
 >
 
 <!-- ═══════════ FIL D'ARIANE ═══════════ -->
-<nav class="breadcrumb" aria-label="Fil d'Ariane" style="padding:0.8rem 1.5rem;font-family:var(--font-mono);font-size:0.8rem;color:var(--text-muted);">
+<nav class="breadcrumb" aria-label="Fil d'Ariane" style="padding:0.8rem 1.5rem;font-family:var(--font-mono);font-size:0.8rem;color:var(--text-muted);max-width:1200px;margin:0 auto;">
   <a href="../index.html" style="color:var(--cyan);">Accueil</a> &rsaquo;
   <a href="index.html" style="color:var(--cyan);">Tarologie</a> &rsaquo;
-  <span style="color:var(--text-primary);">Tarot Rider-Waite-Smith</span>
+  <span style="color:var(--text);">Tarot Rider-Waite-Smith</span>
 </nav>
 
-<!-- ═══════════ BANNIÈRE "BIENTÔT" ═══════════ -->
-<section id="hero" style="text-align:center;padding:6rem 1.5rem 4rem;max-width:700px;margin:0 auto;">
-  <h1>
-    <span class="pulse"></span>
-    🃏 <span class="gold">Tarot Rider-Waite-Smith</span><br>Le tarot <span class="emerald">illustré</span>
-  </h1>
-  <p class="subtitle">
-    Cette section est en cours de création. Le Rider-Waite-Smith, créé en 1909, est le tarot le plus populaire au monde. Ses illustrations riches en symbolisme en font l'outil idéal pour l'introspection. Revenez bientôt !
-  </p>
-  <a href="../tarologie/index.html" class="cta">← Retour à la Tarologie</a>
-</section>
+<div class="hub-container">
+  <aside class="hub-sidebar">
+    <h1>
+      <span class="pulse"></span>
+      🃏 <span class="gold">Rider-Waite-Smith</span><br>Méthodes de <span class="emerald">tirage</span>
+    </h1>
+    <p class="subtitle">
+      Conçu en 1909 par Arthur Edward Waite et illustré par Pamela Colman Smith, ce jeu révolutionnaire intègre des illustrations narratives riches pour chaque arcane, rendant sa lecture particulièrement visuelle et psychologique.
+    </p>
+  </aside>
+
+  <main class="hub-main">
+    <div class="section-title">
+      <div class="num">[ 01 ]</div>
+      <h2>✦ Les 4 Spreads Mythiques</h2>
+      <p class="slate">Explorez vos dynamiques internes à travers ces structures de lecture adaptées.</p>
+    </div>
+
+    <div class="mystere-grid">
+
+      <!-- Carte 1 : Croix Celtique -->
+      <div class="mystere-card" style="--card-accent-color: var(--gold); --hover-accent-color: var(--gold);">
+         <div class="card-icon">🕀</div>
+        <h3>LA CROIX CELTIQUE</h3>
+        <p>
+          Le tirage universel en 10 cartes. Une analyse monumentale reliant conscient, inconscient, obstacles et influences pour décoder tous les aspects d'un problème.
+        </p>
+        <a href="rider-waite/croix-celtique.html" class="btn-explore">Tirer les cartes ✦</a>
+      </div>
+
+      <!-- Carte 2 : Fer à Cheval -->
+      <div class="mystere-card" style="--card-accent-color: var(--emerald); --hover-accent-color: var(--emerald);">
+        <div class="card-icon">🧲</div>
+        <h3>LE FER À CHEVAL</h3>
+        <p>
+          Disposition en 7 cartes pour évaluer précisément l'évolution d'un projet, d'une décision à prendre, en isolant vos doutes profonds de l'influence de votre entourage.
+        </p>
+        <a href="rider-waite/fer-a-cheval.html" class="btn-explore">Tirer les cartes ✦</a>
+      </div>
+
+      <!-- Carte 3 : Relation -->
+      <div class="mystere-card" style="--card-accent-color: var(--violet); --hover-accent-color: var(--violet);">
+        <div class="card-icon">👥</div>
+        <h3>TIRAGE DE LA RELATION</h3>
+        <p>
+          Un pont psychologique en 5 cartes pour décrypter les relations amoureuses ou professionnelles. Comparez vos intentions avec celles de l'autre.
+        </p>
+        <a href="rider-waite/relation.html" class="btn-explore">Tirer les cartes ✦</a>
+      </div>
+
+      <!-- Carte 4 : Spirituel -->
+      <div class="mystere-card" style="--card-accent-color: var(--rose); --hover-accent-color: var(--rose);">
+        <div class="card-icon">🧘</div>
+        <h3>ALIGNEMENT SPIRITUEL</h3>
+        <p>
+          Tirage d'équilibre en 3 cartes reliant votre corps (plan physique), votre mental (pensée rationnelle) et votre esprit (chemin de l'âme).
+        </p>
+        <a href="rider-waite/spirituel.html" class="btn-explore">Tirer les cartes ✦</a>
+      </div>
+
+    </div>
+  </main>
+</div>
 
 <!-- ═══════════ NAVIGATION PRÉCÉDENT / SUIVANT ═══════════ -->
 <nav class="sub-nav" style="display:flex;justify-content:space-between;max-width:600px;margin:2rem auto;padding:1rem;">

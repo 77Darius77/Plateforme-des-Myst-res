@@ -4,9 +4,9 @@ import Layout from '../../layouts/Layout.astro';
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "WebPage",
-  "name": "Numérologie Chinoise — Le Carré Lo Shu",
+  "name": "Numérologie Chinoise — Kua, Lo Shu, Nombre de Vie",
   "url": "https://mysteres.fr/numerologie/chinoise.html",
-  "description": "Découvrez la numérologie chinoise : Carré Lo Shu, 9 palais, Yi King. Chaque nombre résonne avec un élément, une direction et un trigramme.",
+  "description": "Découvrez vos 3 nombres chinois : Kua (élément, direction, groupe), Grille Lo Shu personnelle (9 cases, forces et absences), Nombre de Vie (énergie des 5 éléments).",
   "inLanguage": "fr",
   "about": {
     "@type": "Thing",
@@ -16,51 +16,1212 @@ const jsonLd = {
 ---
 
 <Layout
-  title="Numérologie Chinoise — Le Carré Lo Shu"
-  description="Découvrez la numérologie chinoise : Carré Lo Shu, 9 palais, Yi King. Chaque nombre résonne avec un élément, une direction et un trigramme. Gratuit, sans tracking."
-  keywords="numérologie, chinoise, Carré Lo Shu, 9 palais, Yi King, I Ching, trigrammes, éléments, feng shui"
+  title="Numérologie Chinoise — Kua · Lo Shu · Nombre de Vie"
+  description="Découvrez vos 3 nombres chinois : Nombre Kua (élément, direction, trigramme), Grille Lo Shu personnelle (forces et absences), Nombre de Vie. Calculateur gratuit fondé sur la tradition du Wu Xing."
+  keywords="numérologie chinoise, Kua, Lo Shu, nombre de vie chinois, Wu Xing, 5 éléments, trigrammes, feng shui, direction favorable, groupe Est Ouest"
   canonicalPath="numerologie/chinoise.html"
   jsonLd={jsonLd}
+  scripts={["/assets/js/chinoise.js"]}
+  section="numerologie"
 >
 
-<!-- ═══════════ BANNIÈRE ═══════════ -->
+<!-- ═══════════ FIL D'ARIANE ═══════════ -->
+<nav class="breadcrumb" aria-label="Fil d'Ariane" style="padding:0.8rem 1.5rem;font-family:var(--font-mono);font-size:0.8rem;color:var(--text-muted);max-width:1200px;margin:0 auto;">
+  <a href="../index.html" style="color:var(--cyan);">Accueil</a> &rsaquo;
+  <a href="index.html" style="color:var(--cyan);">Numérologie</a> &rsaquo;
+  <span style="color:var(--text);">Chinoise</span>
+</nav>
+
+<!-- ═══════════ HERO ═══════════ -->
 <section id="hero">
   <h1>
     <span class="pulse"></span>
-    🔢 <span class="gold">Numérologie Chinoise</span><br>Le Carré <span class="emerald">Lo Shu</span>
+    Le langage <span class="gold">des éléments</span><br>et des <span class="rose">9 palais</span>
   </h1>
   <p class="subtitle">
-    La numérologie chinoise s'appuie sur le Carré Lo Shu, les 9 palais, et le Yi King.
-    Chaque nombre résonne avec un élément, une direction et un trigramme.
+    Héritée du mythe de la tortue du fleuve Lo (Lo Shu), la numérologie chinoise décrypte votre destin à travers trois prismes : le <strong>Nombre Kua</strong> (votre élément et vos directions favorables), la <strong>Grille Lo Shu personnelle</strong> (vos forces et lacunes innées), et le <strong>Nombre de Vie</strong> (votre vibration fondamentale selon le Wu Xing).
   </p>
+  <a href="#calculateur" class="cta">✦ Révéler mes 3 nombres chinois</a>
   <p class="quote">
-    « Les nombres sont les piliers du ciel et de la terre. »
-    <br><span class="gold">— Yi King</span>
+    « Le Tao engendre l'Un, l'Un engendre le Deux, le Deux engendre le Trois, le Trois engendre les dix mille êtres. »
+    <br><span class="gold">— Tao Te Ching, chapitre 42</span>
   </p>
 </section>
 
-<!-- ═══════════ CONTENU ═══════════ -->
-<section id="contenu">
+<!-- ═══════════ [01] CALCULATEUR ═══════════ -->
+<section id="calculateur">
   <div class="section-title">
     <div class="num">[ 01 ]</div>
-    <h2>✦ En cours de création</h2>
-    <p class="slate">Cette section est en cours de création.</p>
+    <h2>✦ Calculateur Chinois</h2>
+    <p class="slate">Entrez votre date de naissance et votre genre pour obtenir vos trois nombres : Kua, Lo Shu personnel, et Nombre de Vie.</p>
   </div>
 
-  <div style="max-width:700px;margin:2rem auto;background:#1e293b;border:1px solid #334155;border-radius:12px;padding:2.5rem;text-align:center;">
-    <div style="font-size:3rem;margin-bottom:1rem;">☯</div>
-    <p style="color:#cbd5e1;font-size:1.1rem;line-height:1.8;">
-      La numérologie chinoise s'appuie sur le Carré Lo Shu, les 9 palais, et le Yi King. Chaque nombre résonne avec un élément, une direction, et un trigramme.
+  <form class="pyth-form" id="ch-form" onsubmit="return false;">
+    <div class="pyth-form-group">
+      <label class="pyth-label">Date de naissance</label>
+      <div class="pyth-date-row">
+        <div class="pyth-field">
+          <input type="number" id="ch-jour" class="pyth-input" min="1" max="31" placeholder="JJ" aria-label="Jour de naissance" inputmode="numeric">
+          <span class="pyth-field-label">Jour</span>
+        </div>
+        <div class="pyth-field">
+          <input type="number" id="ch-mois" class="pyth-input" min="1" max="12" placeholder="MM" aria-label="Mois de naissance" inputmode="numeric">
+          <span class="pyth-field-label">Mois</span>
+        </div>
+        <div class="pyth-field pyth-field--wide">
+          <input type="number" id="ch-annee" class="pyth-input" min="1900" max="2100" placeholder="AAAA" aria-label="Année de naissance" inputmode="numeric">
+          <span class="pyth-field-label">Année</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="pyth-form-group">
+      <label class="pyth-label">Genre <span style="color:var(--text-muted);font-size:0.8rem;">(nécessaire pour le calcul du Kua)</span></label>
+      <div class="cn-genre-row">
+        <label class="cn-genre-option">
+          <input type="radio" name="ch-genre" value="homme">
+          <span class="cn-genre-btn">♂ Homme</span>
+        </label>
+        <label class="cn-genre-option">
+          <input type="radio" name="ch-genre" value="femme">
+          <span class="cn-genre-btn">♀ Femme</span>
+        </label>
+      </div>
+    </div>
+
+    <div class="pyth-form-actions">
+      <button type="button" id="ch-exemple" class="pyth-btn-example">Essayer avec un exemple</button>
+      <button type="submit" class="pyth-btn-calc">Révéler mes 3 clés chinoises ✦</button>
+    </div>
+  </form>
+
+  <!-- ── RÉSULTATS ── -->
+  <div id="chResultats" hidden>
+    <div class="pyth-section-sep"></div>
+
+    <!-- Nombre Kua -->
+    <div class="pyth-result-block">
+      <h3 class="pyth-result-title">
+        <span class="cn-result-dot cn-dot-rose"></span>
+        Nombre Kua
+        <span class="cn-result-hint">Élément · Trigram · Directions favorables</span>
+      </h3>
+      <div id="chKuaCard"></div>
+    </div>
+
+    <div class="pyth-section-sep"></div>
+
+    <!-- Grille Lo Shu personnelle -->
+    <div class="pyth-result-block">
+      <h3 class="pyth-result-title">
+        <span class="cn-result-dot cn-dot-cyan"></span>
+        Grille Lo Shu Personnelle
+        <span class="cn-result-hint">9 palais · forces · absences · surplus</span>
+      </h3>
+      <div id="chLoShuResult"></div>
+    </div>
+
+    <div class="pyth-section-sep"></div>
+
+    <!-- Nombre de Vie -->
+    <div class="pyth-result-block">
+      <h3 class="pyth-result-title">
+        <span class="cn-result-dot cn-dot-emerald"></span>
+        Nombre de Vie
+        <span class="cn-result-hint">Vibration fondamentale · Wu Xing</span>
+      </h3>
+      <div id="chNombreVie"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ [02] LES 9 CASES ═══════════ -->
+<section id="les-9-cases">
+  <div class="section-title">
+    <div class="num">[ 02 ]</div>
+    <h2>✦ Les 9 Cases du Lo Shu</h2>
+    <p class="slate">Explorez les 9 palais dans leur arrangement classique — la même disposition que celle de la tortue mythique. Cliquez sur une case pour retourner la carte.</p>
+  </div>
+
+  <div class="cn-loshu-wrapper">
+    <div class="cn-loshu-note">
+      <span class="cn-badge-el cf-gold">土 Terre</span>
+      <span class="cn-badge-el cf-emerald">木 Bois</span>
+      <span class="cn-badge-el cf-rose">火 Feu</span>
+      <span class="cn-badge-el cf-cyan">水 Eau</span>
+      <span class="cn-badge-el cf-violet">金 Métal</span>
+    </div>
+    <div class="grid cn-3x3-grid" id="loShuStatiqueGrid"></div>
+    <p class="cn-grid-caption">Arrangement classique du Carré Lo Shu : chaque rangée, colonne et diagonale totalisent 15.</p>
+  </div>
+</section>
+
+<!-- ═══════════ [03] LA MÉTHODE ═══════════ -->
+<section id="methode">
+  <div class="section-title">
+    <div class="num">[ 03 ]</div>
+    <h2>✦ La Méthode Chinoise</h2>
+    <p class="slate">Trois lectures complémentaires d'une même tradition millénaire.</p>
+  </div>
+
+  <!-- Le Wu Xing — cartes des 5 éléments -->
+  <div class="cn-wuxing-section">
+    <div class="cn-wuxing-title">Le Wu Xing — Les 5 Éléments</div>
+    <div class="cn-wuxing-grid">
+
+      <div class="cn-el-card cn-el-eau">
+        <div class="cn-el-top">
+          <span class="cn-el-zh">水</span>
+          <span class="cn-el-trigrams">☵</span>
+        </div>
+        <div class="cn-el-name">Eau</div>
+        <div class="cn-el-rows">
+          <div class="cn-el-row"><span class="cn-el-lbl">Saison</span><span>Hiver · Nord</span></div>
+          <div class="cn-el-row"><span class="cn-el-lbl">Polarité</span><span>Yin</span></div>
+          <div class="cn-el-row"><span class="cn-el-lbl">Cycle →</span><span>Génère le Bois</span></div>
+          <div class="cn-el-row"><span class="cn-el-lbl">Cases</span><span class="cn-el-cases">1</span></div>
+        </div>
+      </div>
+
+      <div class="cn-el-card cn-el-bois">
+        <div class="cn-el-top">
+          <span class="cn-el-zh">木</span>
+          <span class="cn-el-trigrams">☳ ☴</span>
+        </div>
+        <div class="cn-el-name">Bois</div>
+        <div class="cn-el-rows">
+          <div class="cn-el-row"><span class="cn-el-lbl">Saison</span><span>Printemps · Est</span></div>
+          <div class="cn-el-row"><span class="cn-el-lbl">Polarité</span><span>Yang</span></div>
+          <div class="cn-el-row"><span class="cn-el-lbl">Cycle →</span><span>Génère le Feu</span></div>
+          <div class="cn-el-row"><span class="cn-el-lbl">Cases</span><span class="cn-el-cases">3 · 4</span></div>
+        </div>
+      </div>
+
+      <div class="cn-el-card cn-el-feu">
+        <div class="cn-el-top">
+          <span class="cn-el-zh">火</span>
+          <span class="cn-el-trigrams">☲</span>
+        </div>
+        <div class="cn-el-name">Feu</div>
+        <div class="cn-el-rows">
+          <div class="cn-el-row"><span class="cn-el-lbl">Saison</span><span>Été · Sud</span></div>
+          <div class="cn-el-row"><span class="cn-el-lbl">Polarité</span><span>Yang</span></div>
+          <div class="cn-el-row"><span class="cn-el-lbl">Cycle →</span><span>Génère la Terre</span></div>
+          <div class="cn-el-row"><span class="cn-el-lbl">Cases</span><span class="cn-el-cases">9</span></div>
+        </div>
+      </div>
+
+      <div class="cn-el-card cn-el-terre">
+        <div class="cn-el-top">
+          <span class="cn-el-zh">土</span>
+          <span class="cn-el-trigrams">☷ ◎ ☶</span>
+        </div>
+        <div class="cn-el-name">Terre</div>
+        <div class="cn-el-rows">
+          <div class="cn-el-row"><span class="cn-el-lbl">Saison</span><span>Inter-saisons</span></div>
+          <div class="cn-el-row"><span class="cn-el-lbl">Polarité</span><span>Neutre · Centre</span></div>
+          <div class="cn-el-row"><span class="cn-el-lbl">Cycle →</span><span>Génère le Métal</span></div>
+          <div class="cn-el-row"><span class="cn-el-lbl">Cases</span><span class="cn-el-cases">2 · 5 · 8</span></div>
+        </div>
+      </div>
+
+      <div class="cn-el-card cn-el-metal">
+        <div class="cn-el-top">
+          <span class="cn-el-zh">金</span>
+          <span class="cn-el-trigrams">☰ ☱</span>
+        </div>
+        <div class="cn-el-name">Métal</div>
+        <div class="cn-el-rows">
+          <div class="cn-el-row"><span class="cn-el-lbl">Saison</span><span>Automne · Ouest</span></div>
+          <div class="cn-el-row"><span class="cn-el-lbl">Polarité</span><span>Yin</span></div>
+          <div class="cn-el-row"><span class="cn-el-lbl">Cycle →</span><span>Génère l'Eau</span></div>
+          <div class="cn-el-row"><span class="cn-el-lbl">Cases</span><span class="cn-el-cases">6 · 7</span></div>
+        </div>
+      </div>
+
+    </div>
+    <p class="cn-wuxing-note">
+      Le cycle de génération <em>(Sheng)</em> suit l'ordre : Eau → Bois → Feu → Terre → Métal → Eau.
+      Le cycle de contrôle <em>(Ke)</em> régule les excès : Eau contrôle le Feu, Feu contrôle le Métal, etc.
     </p>
-    <p style="color:#94a3b8;font-size:1rem;margin-top:1.5rem;">
-      Revenez bientôt pour explorer cette sagesse millénaire !
-    </p>
-    <a href="index.html" style="display:inline-block;background:#f472b6;color:#0f172a;font-family:var(--font-mono);font-size:0.9rem;padding:0.7rem 1.6rem;border-radius:8px;text-decoration:none;font-weight:700;margin-top:2rem;transition:all 0.3s;" onmouseover="this.style.background='#ec4899'" onmouseout="this.style.background='#f472b6'">← Retour à la numérologie</a>
+  </div>
+
+  <!-- Calcul du Kua -->
+  <div class="cn-method-block">
+    <h3 class="cn-method-h3">① Calcul du Nombre Kua</h3>
+    <p class="cn-method-p">Le Kua est votre empreinte personnelle dans le système Ba Zhai (八宅 — Huit Demeures) : il révèle votre élément natal, votre trigramme du I Ching, votre groupe énergétique (Est ou Ouest) et vos 8 directions — 4 favorables, 4 défavorables. Ce système est pratiqué sans discontinuité depuis la dynastie Tang (618–907 ap. J.-C.), formalisé dans le <em>Yang Zhai San Yao</em> et le <em>Ba Zhai Ming Jing</em>.</p>
+    <div class="cn-calc-steps">
+      <div class="cn-step">
+        <span class="cn-step-num cf-rose">1</span>
+        <div>
+          <strong>Réduire l'année de naissance</strong> — additionnez les chiffres jusqu'à obtenir un seul chiffre.
+          <br><span class="cn-step-ex">1985 → 1+9+8+5 = 23 → 2+3 = <strong class="cf-rose">5</strong></span>
+          <br><small class="cn-step-note">Si né·e en janvier, utilisez l'année précédente (le calendrier solaire chinois commence en février).</small>
+        </div>
+      </div>
+      <div class="cn-step">
+        <span class="cn-step-num cf-rose">2</span>
+        <div>
+          <strong>Hommes nés avant 2000 :</strong> soustrayez de 10. <span class="cn-step-ex">10−5 = 5 → règle du 5 masculin → Kua <strong class="cf-rose">2</strong></span>
+          <br><strong>Hommes nés en 2000 ou après :</strong> soustrayez de 9.
+          <br><strong>Femmes nées avant 2000 :</strong> ajoutez 5, réduisez si besoin. <span class="cn-step-ex">5+5 = 10 → 1+0 = <strong class="cf-rose">1</strong></span>
+          <br><strong>Femmes nées en 2000 ou après :</strong> ajoutez 6.
+        </div>
+      </div>
+      <div class="cn-step">
+        <span class="cn-step-num cf-rose">3</span>
+        <div>
+          <strong>Règle du 5 :</strong> si le résultat est 5, les <em>hommes</em> utilisent Kua <strong>2</strong>, les <em>femmes</em> utilisent Kua <strong>8</strong>. Le 5 représente le Centre — le Tao lui-même — et n'est attribué à aucune personne.
+        </div>
+      </div>
+    </div>
+
+    <p class="cn-method-sub">Les 8 Kua et leurs attributs</p>
+    <table class="cn-info-table">
+      <thead><tr><th>Kua</th><th>Trigramme</th><th>Élément</th><th>Groupe</th><th>Direction</th></tr></thead>
+      <tbody>
+        <tr><td class="cf-cyan"><strong>1</strong></td><td>☵ Kan</td><td>Eau</td><td class="cf-emerald">Est</td><td>Nord</td></tr>
+        <tr><td class="cf-gold"><strong>2</strong></td><td>☷ Kun</td><td>Terre</td><td class="cf-rose">Ouest</td><td>Sud-Ouest</td></tr>
+        <tr><td class="cf-emerald"><strong>3</strong></td><td>☳ Zhen</td><td>Bois</td><td class="cf-emerald">Est</td><td>Est</td></tr>
+        <tr><td class="cf-emerald"><strong>4</strong></td><td>☴ Xun</td><td>Bois</td><td class="cf-emerald">Est</td><td>Sud-Est</td></tr>
+        <tr><td class="cf-violet"><strong>6</strong></td><td>☰ Qian</td><td>Métal</td><td class="cf-rose">Ouest</td><td>Nord-Ouest</td></tr>
+        <tr><td class="cf-violet"><strong>7</strong></td><td>☱ Dui</td><td>Métal</td><td class="cf-rose">Ouest</td><td>Ouest</td></tr>
+        <tr><td class="cf-gold"><strong>8</strong></td><td>☶ Gen</td><td>Terre</td><td class="cf-rose">Ouest</td><td>Nord-Est</td></tr>
+        <tr><td class="cf-rose"><strong>9</strong></td><td>☲ Li</td><td>Feu</td><td class="cf-emerald">Est</td><td>Sud</td></tr>
+      </tbody>
+    </table>
+
+    <p class="cn-method-sub">Groupes Est et Ouest</p>
+    <div class="cn-groupe-row">
+      <div class="cn-groupe-block cn-groupe-block--est">
+        <strong class="cf-emerald">Groupe Est</strong> — Kua 1, 3, 4, 9<br>
+        Directions harmoniques : <strong>Est · Sud-Est · Sud · Nord</strong><br>
+        <span class="cn-note-small">Yang, expansion, mouvement, leadership naturel</span>
+      </div>
+      <div class="cn-groupe-block cn-groupe-block--ouest">
+        <strong class="cf-gold">Groupe Ouest</strong> — Kua 2, 6, 7, 8<br>
+        Directions harmoniques : <strong>Ouest · Nord-Ouest · Sud-Ouest · Nord-Est</strong><br>
+        <span class="cn-note-small">Yin, consolidation, ancrage, pragmatisme</span>
+      </div>
+    </div>
+
+    <p class="cn-method-sub">Les 4 directions favorables (Ba Zhai)</p>
+    <div class="cn-dir-grid">
+      <div class="cn-dir-block cn-dir-block--fav">
+        <span class="cn-dir-zh cf-emerald">生氣</span>
+        <span class="cn-dir-name">Sheng Qi — Souffle de Vie</span>
+        <span class="cn-dir-desc">Meilleure direction : croissance, vitalité, prospérité. Orienter la tête du lit et le regard au bureau vers cette direction.</span>
+      </div>
+      <div class="cn-dir-block cn-dir-block--fav">
+        <span class="cn-dir-zh cf-emerald">天醫</span>
+        <span class="cn-dir-name">Tian Yi — Médecin Céleste</span>
+        <span class="cn-dir-desc">Direction de la santé et de la guérison. Pour la récupération, la méditation, les soins. Recommandée en période de maladie.</span>
+      </div>
+      <div class="cn-dir-block cn-dir-block--fav">
+        <span class="cn-dir-zh cf-emerald">延年</span>
+        <span class="cn-dir-name">Yan Nian — Longévité</span>
+        <span class="cn-dir-desc">Direction des relations harmonieuses et de la longévité sociale. Idéale pour les conversations importantes, les négociations, la vie de couple.</span>
+      </div>
+      <div class="cn-dir-block cn-dir-block--fav">
+        <span class="cn-dir-zh cf-emerald">伏位</span>
+        <span class="cn-dir-name">Fu Wei — Développement Personnel</span>
+        <span class="cn-dir-desc">Croissance lente mais stable. Pour l'étude, l'apprentissage et le développement de compétences sur le long terme.</span>
+      </div>
+    </div>
+
+    <p class="cn-method-sub">Les 4 directions défavorables (Ba Zhai)</p>
+    <div class="cn-dir-grid">
+      <div class="cn-dir-block cn-dir-block--defav">
+        <span class="cn-dir-zh cf-violet">禍害</span>
+        <span class="cn-dir-name">Huo Hai — Accidents et Déboires</span>
+        <span class="cn-dir-desc">Perturbations mineures répétées, friction constante et accumulation de petits problèmes. La première direction à corriger.</span>
+      </div>
+      <div class="cn-dir-block cn-dir-block--defav">
+        <span class="cn-dir-zh cf-violet">五鬼</span>
+        <span class="cn-dir-name">Wu Gui — Cinq Fantômes</span>
+        <span class="cn-dir-desc">Malchance inattendue, trahisons, sabotages inconscients. Difficultés relationnelles profondes, situations qui se recomplexent.</span>
+      </div>
+      <div class="cn-dir-block cn-dir-block--defav">
+        <span class="cn-dir-zh cf-violet">六煞</span>
+        <span class="cn-dir-name">Liu Sha — Six Troubles</span>
+        <span class="cn-dir-desc">Conflits relationnels, instabilité des engagements. Mine les relations durables : famille, couple, partenariats professionnels.</span>
+      </div>
+      <div class="cn-dir-block cn-dir-block--defav">
+        <span class="cn-dir-zh cf-violet">絕命</span>
+        <span class="cn-dir-name">Jue Ming — Mort Totale</span>
+        <span class="cn-dir-desc">Pire direction : épuisement profond, décisions chroniquement contre-productives, sentiment de travailler à contre-courant de tout.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lo Shu -->
+  <div class="cn-method-block">
+    <h3 class="cn-method-h3">② Lecture de la Grille Lo Shu personnelle</h3>
+    <p class="cn-method-p">Extrayez tous les chiffres de votre date de naissance et comptez les occurrences de 1 à 9 — le zéro est ignoré. Chaque chiffre 1–9 correspond à une case du carré magique : une case présente = une énergie active, une case vide = un programme de vie à conscientiser. Ce carré, découvert sur le dos d'une tortue du fleuve Lo selon la légende, est la base de la numérologie et du feng shui chinois depuis plus de 4 000 ans.</p>
+
+    <div class="cn-loshu-example">
+      <div>
+        <div class="cn-lm-label">Arrangement Lo Shu :</div>
+        <div class="cn-lm-grid">
+          <div class="cn-lm-cell cf-violet">4<br><small>SE</small></div>
+          <div class="cn-lm-cell cf-rose">9<br><small>S</small></div>
+          <div class="cn-lm-cell cf-gold">2<br><small>SO</small></div>
+          <div class="cn-lm-cell cf-emerald">3<br><small>E</small></div>
+          <div class="cn-lm-cell cf-gold">5<br><small>C</small></div>
+          <div class="cn-lm-cell cf-violet">7<br><small>O</small></div>
+          <div class="cn-lm-cell cf-gold">8<br><small>NE</small></div>
+          <div class="cn-lm-cell cf-cyan">1<br><small>N</small></div>
+          <div class="cn-lm-cell cf-violet">6<br><small>NO</small></div>
+        </div>
+      </div>
+      <div class="cn-loshu-ex-text">
+        <strong>Exemple — né le 15/11/1990 :</strong><br>
+        Extraire : 1 · 5 · 1 · 1 · 1 · 9 · 9 · 0<br>
+        Ignorer les zéros → <strong>1, 5, 1, 1, 1, 9, 9</strong><br>
+        Compter : 1 → ×4 &nbsp;·&nbsp; 5 → ×1 &nbsp;·&nbsp; 9 → ×2<br>
+        Cases 2, 3, 4, 6, 7, 8 → <span class="cf-rose">absentes</span><br>
+        <span class="cn-note-small">Chaque ligne, colonne et diagonale totalise 15 — le nombre de jours d'une demi-lune.</span>
+      </div>
+    </div>
+
+    <p class="cn-method-sub">Les 9 cases — domaines et éléments</p>
+    <table class="cn-info-table">
+      <thead><tr><th>Case</th><th>Domaine</th><th>Élément</th><th>Direction</th><th>Thème d'absence</th></tr></thead>
+      <tbody>
+        <tr><td class="cf-cyan"><strong>1</strong></td><td>Carrière &amp; Destinée</td><td>Eau</td><td>Nord</td><td>Identité &amp; Assertivité</td></tr>
+        <tr><td class="cf-gold"><strong>2</strong></td><td>Relations &amp; Réceptivité</td><td>Terre</td><td>Sud-Ouest</td><td>Intuition &amp; Sensibilité</td></tr>
+        <tr><td class="cf-emerald"><strong>3</strong></td><td>Santé &amp; Famille</td><td>Bois</td><td>Est</td><td>Expression &amp; Créativité</td></tr>
+        <tr><td class="cf-emerald"><strong>4</strong></td><td>Fortune &amp; Prospérité</td><td>Bois</td><td>Sud-Est</td><td>Organisation &amp; Ancrage</td></tr>
+        <tr><td class="cf-gold"><strong>5</strong></td><td>Équilibre &amp; Unité</td><td>Terre</td><td>Centre</td><td>Adaptabilité &amp; Liberté</td></tr>
+        <tr><td class="cf-violet"><strong>6</strong></td><td>Bienfaiteurs &amp; Voyages</td><td>Métal</td><td>Nord-Ouest</td><td>Amour &amp; Responsabilité</td></tr>
+        <tr><td class="cf-violet"><strong>7</strong></td><td>Créativité &amp; Plaisir</td><td>Métal</td><td>Ouest</td><td>Introspection &amp; Spiritualité</td></tr>
+        <tr><td class="cf-gold"><strong>8</strong></td><td>Connaissance &amp; Sagesse</td><td>Terre</td><td>Nord-Est</td><td>Réalisation &amp; Autorité</td></tr>
+        <tr><td class="cf-rose"><strong>9</strong></td><td>Renommée &amp; Rayonnement</td><td>Feu</td><td>Sud</td><td>Idéalisme &amp; Vision</td></tr>
+      </tbody>
+    </table>
+
+    <p class="cn-method-sub">Niveaux de surplus</p>
+    <div class="cn-surplus-list">
+      <div class="cn-surplus-row"><span class="cn-surplus-badge cf-emerald">×1</span><span>Énergie équilibrée — force naturelle accessible et harmonieuse</span></div>
+      <div class="cn-surplus-row"><span class="cn-surplus-badge cf-gold">×2</span><span>Trait dominant — bien marqué mais gérable, confère une qualité accentuée dans ce domaine</span></div>
+      <div class="cn-surplus-row"><span class="cn-surplus-badge cf-rose">×3</span><span>Intensification — énergie très présente, à canaliser consciemment plutôt qu'à subir</span></div>
+      <div class="cn-surplus-row"><span class="cn-surplus-badge cf-rose" style="font-weight:800;">×4+</span><span>Excès — risque de rigidité, compulsion ou déséquilibre profond dans ce domaine de vie</span></div>
+    </div>
+
+    <p class="cn-method-sub">Les 8 Flèches du Lo Shu</p>
+    <p class="cn-method-p">Une <strong class="cf-emerald">flèche de force</strong> se forme quand les 3 cases d'un axe sont toutes présentes. Une <strong class="cf-rose">flèche de faiblesse</strong> quand les 3 cases sont toutes absentes. Les flèches révèlent des schémas de comportement puissants — positifs ou à transformer.</p>
+    <table class="cn-info-table">
+      <thead><tr><th>Axe</th><th>Cases</th><th class="cf-emerald">Force</th><th class="cf-rose">Faiblesse</th></tr></thead>
+      <tbody>
+        <tr><td>Ligne haute</td><td class="cn-cases">4–9–2</td><td>Intellect</td><td>Mémoire déficiente</td></tr>
+        <tr><td>Ligne médiane</td><td class="cn-cases">3–5–7</td><td>Compassion</td><td>Hypersensibilité</td></tr>
+        <tr><td>Ligne basse</td><td class="cn-cases">8–1–6</td><td>Praticité</td><td>Rêveur déconnecté</td></tr>
+        <tr><td>Colonne gauche</td><td class="cn-cases">4–3–8</td><td>Détermination</td><td>Résignation</td></tr>
+        <tr><td>Colonne centrale</td><td class="cn-cases">9–5–1</td><td>Sensibilité</td><td>Solitude</td></tr>
+        <tr><td>Colonne droite</td><td class="cn-cases">2–7–6</td><td>Spiritualité</td><td>Scepticisme</td></tr>
+        <tr><td>Diagonale ↘</td><td class="cn-cases">4–5–6</td><td>Persévérance</td><td>Frustration</td></tr>
+        <tr><td>Diagonale ↗</td><td class="cn-cases">2–5–8</td><td>Équilibre</td><td>Hésitation</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Nombre de Vie -->
+  <div class="cn-method-block">
+    <h3 class="cn-method-h3">③ Calcul du Nombre de Vie</h3>
+    <p>Le Nombre de Vie chinois se calcule en additionnant tous les chiffres de la date de naissance jusqu'à obtenir un chiffre de 1 à 9. Il révèle votre vibration fondamentale selon le Wu Xing et colore toutes vos expériences de vie.</p>
+    <div class="cn-calc-steps">
+      <div class="cn-step">
+        <span class="cn-step-num cf-emerald">Ex.</span>
+        <div>
+          Née le <strong>15/11/1990</strong> :
+          <br>1+5+1+1+1+9+9+0 = <strong class="cf-emerald">27</strong> → 2+7 = <strong class="cf-emerald">9</strong>
+          <br>Nombre de Vie : <strong class="cf-rose">9 — Feu — L'Accomplissement</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Différences -->
+  <div class="pyth-diff-box">
+    <div class="pyth-diff-title">☯ Ce qui distingue la numérologie chinoise</div>
+    <div class="pyth-diff-grid">
+      <div class="pyth-diff-item">
+        <span class="pyth-diff-lbl cf-rose">Wu Xing</span>
+        Les nombres ne sont pas seuls — chaque chiffre appartient à un des 5 éléments (Eau, Bois, Feu, Terre, Métal) qui s'influencent mutuellement selon les cycles de génération et de contrôle.
+      </div>
+      <div class="pyth-diff-item">
+        <span class="pyth-diff-lbl cf-cyan">Direction & Espace</span>
+        Contrairement aux autres traditions, la numérologie chinoise intègre l'espace physique : les directions cardinales, l'orientation du lit ou du bureau, le feng shui de la maison.
+      </div>
+      <div class="pyth-diff-item">
+        <span class="pyth-diff-lbl cf-emerald">Absence révélatrice</span>
+        Un chiffre absent de votre grille Lo Shu n'est pas un manque — c'est un programme de vie, un domaine que vous avez choisi de développer dans cette incarnation.
+      </div>
+      <div class="pyth-diff-item">
+        <span class="pyth-diff-lbl cf-gold">Groupe Est / Ouest</span>
+        Chaque Kua appartient à l'un des deux groupes : Est (Kua 1, 3, 4, 9) ou Ouest (Kua 2, 6, 7, 8). Ces groupes déterminent les harmonies profondes entre personnes et espaces de vie.
+      </div>
+    </div>
   </div>
 </section>
 
   <p slot="sources" style="color:#64748b;font-size:0.75rem;margin-bottom:0.8rem;">
-    Sources : Carré Lo Shu, Yi King (I Ching), tradition chinoise
+    Sources : Chao-Hsiu Chen, <em>Feng Shui — Le carré magique</em> · Stephen Skinner, <em>Guide to the Feng Shui Compass</em> · Lillian Too, <em>The Fundamentals of Feng Shui</em> · Wu Xing (5 éléments, tradition taoïste) · Derek Walters, <em>Chinese Astrology</em>
   </p>
 
 </Layout>
+
+<style is:global>
+/* ─── CHINOISE — Genre Radio ─── */
+.cn-genre-row {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.cn-genre-option {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+.cn-genre-option input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.cn-genre-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 1.4rem;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  color: var(--slate);
+  background: rgba(255,255,255,0.03);
+  transition: all 0.2s;
+  cursor: pointer;
+}
+.cn-genre-option input:checked + .cn-genre-btn {
+  border-color: var(--rose);
+  color: var(--rose);
+  background: rgba(251,129,149,0.08);
+}
+.cn-genre-btn:hover {
+  border-color: #64748b;
+  color: var(--text);
+}
+
+/* ─── Résultat dots ─── */
+.cn-result-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 0.5rem;
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+.cn-dot-rose { background: var(--rose); }
+.cn-dot-cyan { background: var(--cyan); }
+.cn-dot-emerald { background: var(--emerald); }
+.cn-result-hint {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-weight: 400;
+  margin-left: 0.6rem;
+  vertical-align: middle;
+}
+
+/* ─── Kua Card ─── */
+.ch-kua-card, .ch-vie-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid #1e293b;
+  border-radius: 12px;
+  padding: 1.5rem;
+  max-width: 700px;
+  margin: 0 auto;
+}
+.ch-kua-header, .ch-vie-header {
+  display: flex;
+  gap: 1.2rem;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+.ch-kua-num, .ch-vie-num {
+  font-size: 3rem;
+  font-weight: 800;
+  font-family: var(--font-mono);
+  line-height: 1;
+  flex-shrink: 0;
+}
+.ch-vie-zh {
+  font-size: 1.2rem;
+  opacity: 0.6;
+  margin-left: 0.3rem;
+}
+.ch-kua-title, .ch-vie-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+}
+.ch-kua-el {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+.ch-badge {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  border: 1px solid #334155;
+  background: rgba(255,255,255,0.04);
+  color: var(--slate);
+}
+.ch-kua-force {
+  font-size: 0.88rem;
+  color: var(--slate);
+  margin-bottom: 0.8rem;
+  font-style: italic;
+}
+.ch-kua-interp {
+  font-size: 0.93rem;
+  line-height: 1.75;
+  color: var(--text-dim);
+  margin-bottom: 1rem;
+}
+[data-theme="light"] .ch-kua-interp {
+  color: #334155;
+}
+.ch-dirs-section {
+  border-top: 1px solid #1e293b;
+  padding-top: 0.8rem;
+}
+.ch-dirs-lbl {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  display: block;
+  margin-bottom: 0.4rem;
+}
+.ch-dirs {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+.ch-dir-badge {
+  font-size: 0.78rem;
+  padding: 0.25rem 0.7rem;
+  border-radius: 6px;
+  background: rgba(251,129,149,0.1);
+  border: 1px solid rgba(251,129,149,0.25);
+  color: var(--rose);
+  font-family: var(--font-mono);
+}
+.ch-vie-keys {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+/* ─── Lo Shu résultat ─── */
+.ch-loshu-result {
+  max-width: 700px;
+  margin: 0 auto;
+}
+.ch-loshu-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.6rem;
+  margin-bottom: 0.8rem;
+  max-width: 420px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.ch-loshu-cell {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid #1e293b;
+  border-radius: 8px;
+  padding: 0.7rem 0.5rem;
+  text-align: center;
+  transition: border-color 0.2s;
+}
+.ch-loshu-cell.ch-loshu-empty {
+  opacity: 0.5;
+  border-style: dashed;
+}
+.ch-loshu-num {
+  font-size: 1.4rem;
+  font-weight: 800;
+  font-family: var(--font-mono);
+  line-height: 1;
+}
+.ch-loshu-trigram {
+  font-size: 1.2rem;
+  margin: 0.2rem 0;
+  opacity: 0.6;
+}
+.ch-loshu-dots {
+  font-size: 0.75rem;
+  letter-spacing: 1px;
+  min-height: 1em;
+}
+.ch-loshu-domaine {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  margin-top: 0.2rem;
+  line-height: 1.2;
+}
+.ch-loshu-cyan  { border-color: rgba(59,211,238,0.25); }
+.ch-loshu-emerald { border-color: rgba(61,211,153,0.25); }
+.ch-loshu-rose  { border-color: rgba(251,129,149,0.25); }
+.ch-loshu-gold  { border-color: rgba(223,178,108,0.25); }
+.ch-loshu-violet{ border-color: rgba(183,139,250,0.25); }
+.ch-loshu-legend {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  margin-bottom: 1.5rem;
+}
+.ch-ls-section {
+  margin-top: 1.2rem;
+}
+.ch-ls-h4 {
+  font-size: 0.85rem;
+  font-family: var(--font-mono);
+  color: var(--slate);
+  margin-bottom: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.ch-ls-row {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  padding: 0.7rem 0;
+  border-bottom: 1px solid #1e293b;
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+.ch-ls-num {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  min-width: 3.5rem;
+  flex-shrink: 0;
+}
+.ch-ls-all-present {
+  color: var(--emerald);
+  font-size: 0.9rem;
+  padding: 0.8rem;
+  background: rgba(61,211,153,0.07);
+  border-radius: 8px;
+  border: 1px solid rgba(61,211,153,0.2);
+}
+.ch-ls-manifestation {
+  font-size: 0.8rem;
+  color: var(--rose);
+  opacity: 0.8;
+  margin-bottom: 0.2rem;
+}
+.ch-ls-surplus-watch {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  font-style: italic;
+  margin-top: 0.25rem;
+}
+.cf-muted { color: var(--text-muted); }
+
+/* ─── Sections éducatives enrichies (①②) ─── */
+.cn-method-p { font-size: 0.9rem; line-height: 1.7; color: var(--slate); margin-bottom: 0.8rem; }
+.cn-method-sub { font-size: 0.85rem; font-family: var(--font-mono); color: var(--gold); margin: 1.4rem 0 0.5rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; }
+.cn-step-note { font-size: 0.78rem; color: var(--text-muted); }
+.cn-note-small { font-size: 0.78rem; color: var(--text-muted); }
+
+.cn-info-table { width: 100%; border-collapse: collapse; margin: 0.6rem 0 1rem; font-size: 0.85rem; }
+.cn-info-table th { padding: 0.45rem 0.6rem; border-bottom: 1px solid rgba(255,255,255,0.08); color: var(--gold); font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; text-align: left; font-weight: 600; }
+.cn-info-table td { padding: 0.42rem 0.6rem; border-bottom: 1px solid rgba(255,255,255,0.05); color: var(--slate); line-height: 1.5; }
+.cn-info-table tr:last-child td { border-bottom: none; }
+.cn-info-table .cn-cases { font-family: var(--font-mono); color: var(--text-muted); font-size: 0.8rem; }
+
+.cn-groupe-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin: 0.6rem 0 1rem; }
+.cn-groupe-block { padding: 0.8rem 1rem; border-radius: 8px; font-size: 0.85rem; line-height: 1.6; }
+.cn-groupe-block--est { background: rgba(61,211,153,0.05); border: 1px solid rgba(61,211,153,0.2); }
+.cn-groupe-block--ouest { background: rgba(251,191,36,0.05); border: 1px solid rgba(251,191,36,0.2); }
+
+.cn-dir-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.7rem; margin: 0.6rem 0 1rem; }
+.cn-dir-block { padding: 0.75rem 0.9rem; border-radius: 8px; display: flex; flex-direction: column; gap: 0.18rem; font-size: 0.84rem; }
+.cn-dir-block--fav { background: rgba(61,211,153,0.05); border: 1px solid rgba(61,211,153,0.18); }
+.cn-dir-block--defav { background: rgba(183,139,250,0.05); border: 1px solid rgba(183,139,250,0.15); }
+.cn-dir-zh { font-size: 1.2rem; font-weight: 700; line-height: 1.2; }
+.cn-dir-name { font-weight: 600; color: var(--text); font-size: 0.82rem; }
+.cn-dir-desc { font-size: 0.79rem; color: var(--text-muted); line-height: 1.5; }
+
+.cn-loshu-example { display: grid; grid-template-columns: auto 1fr; gap: 1.5rem; align-items: start; margin: 0.8rem 0 1rem; }
+.cn-loshu-ex-text { font-size: 0.85rem; line-height: 1.8; color: var(--slate); }
+
+.cn-surplus-list { display: flex; flex-direction: column; gap: 0.35rem; margin-bottom: 1rem; }
+.cn-surplus-row { display: flex; gap: 0.7rem; align-items: baseline; font-size: 0.87rem; line-height: 1.5; color: var(--slate); }
+.cn-surplus-badge { font-family: var(--font-mono); font-weight: 700; min-width: 2.5rem; flex-shrink: 0; font-size: 0.82rem; }
+
+/* ─── Lo Shu statique (section [02]) ─── */
+.cn-loshu-wrapper {
+  max-width: 840px;
+  margin: 0 auto;
+}
+.cn-3x3-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 0.8rem;
+  max-width: 620px;
+  margin: 0 auto 1rem;
+}
+.ch-static-cell {
+  min-height: 190px;
+}
+.ch-nc-cyan   { background: rgba(59,211,238,0.12); border: 2px solid rgba(59,211,238,0.4); color: var(--cyan); }
+.ch-nc-emerald{ background: rgba(61,211,153,0.12); border: 2px solid rgba(61,211,153,0.4); color: var(--emerald); }
+.ch-nc-rose   { background: rgba(251,129,149,0.12); border: 2px solid rgba(251,129,149,0.4); color: var(--rose); }
+.ch-nc-gold   { background: rgba(223,178,108,0.12); border: 2px solid rgba(223,178,108,0.4); color: var(--gold); }
+.ch-nc-violet { background: rgba(183,139,250,0.12); border: 2px solid rgba(183,139,250,0.4); color: var(--violet); }
+.cn-loshu-note {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 1.2rem;
+}
+.cn-badge-el {
+  font-size: 0.8rem;
+  padding: 0.25rem 0.7rem;
+  border-radius: 6px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid #334155;
+  font-family: var(--font-mono);
+}
+.cn-grid-caption {
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-style: italic;
+  margin-top: 0.5rem;
+}
+
+/* ─── Wu Xing cartes ─── */
+.cn-wuxing-section {
+  max-width: 900px;
+  margin: 0 auto 2rem;
+}
+.cn-wuxing-title {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  text-align: center;
+  margin-bottom: 1.2rem;
+}
+.cn-wuxing-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.7rem;
+}
+.cn-el-card {
+  border-radius: 12px;
+  border: 1px solid transparent;
+  padding: 1rem 0.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.cn-el-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+}
+.cn-el-eau   { background: rgba(59,211,238,0.07);  border-color: rgba(59,211,238,0.25); }
+.cn-el-bois  { background: rgba(61,211,153,0.07);  border-color: rgba(61,211,153,0.25); }
+.cn-el-feu   { background: rgba(251,129,149,0.07); border-color: rgba(251,129,149,0.25); }
+.cn-el-terre { background: rgba(223,178,108,0.07); border-color: rgba(223,178,108,0.25); }
+.cn-el-metal { background: rgba(183,139,250,0.07); border-color: rgba(183,139,250,0.25); }
+.cn-el-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.2rem;
+}
+.cn-el-zh {
+  font-size: 2rem;
+  line-height: 1;
+  font-weight: 700;
+}
+.cn-el-eau   .cn-el-zh { color: var(--cyan); }
+.cn-el-bois  .cn-el-zh { color: var(--emerald); }
+.cn-el-feu   .cn-el-zh { color: var(--rose); }
+.cn-el-terre .cn-el-zh { color: var(--gold); }
+.cn-el-metal .cn-el-zh { color: var(--violet); }
+.cn-el-trigrams {
+  font-size: 1rem;
+  letter-spacing: 3px;
+  opacity: 0.55;
+  text-align: right;
+  line-height: 1.3;
+}
+.cn-el-name {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+}
+.cn-el-eau   .cn-el-name { color: var(--cyan); }
+.cn-el-bois  .cn-el-name { color: var(--emerald); }
+.cn-el-feu   .cn-el-name { color: var(--rose); }
+.cn-el-terre .cn-el-name { color: var(--gold); }
+.cn-el-metal .cn-el-name { color: var(--violet); }
+.cn-el-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  padding-top: 0.5rem;
+  margin-top: 0.2rem;
+}
+.cn-el-row {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  color: #d0d6e0;
+}
+.cn-el-lbl {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.cn-el-cases {
+  font-family: var(--font-mono);
+  font-weight: 700;
+}
+.cn-el-eau   .cn-el-cases { color: var(--cyan); }
+.cn-el-bois  .cn-el-cases { color: var(--emerald); }
+.cn-el-feu   .cn-el-cases { color: var(--rose); }
+.cn-el-terre .cn-el-cases { color: var(--gold); }
+.cn-el-metal .cn-el-cases { color: var(--violet); }
+.cn-wuxing-note {
+  font-size: 0.82rem;
+  color: var(--slate);
+  text-align: center;
+  margin-top: 1rem;
+  line-height: 1.65;
+}
+@media (max-width: 700px) {
+  .cn-wuxing-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .cn-el-card:last-child {
+    grid-column: 1 / -1;
+    max-width: 50%;
+    margin: 0 auto;
+  }
+}
+@media (max-width: 400px) {
+  .cn-wuxing-grid { grid-template-columns: 1fr 1fr; }
+  .cn-el-card:last-child { max-width: 100%; }
+}
+
+/* ─── Méthode blocks ─── */
+.cn-method-block {
+  max-width: 760px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid #1e293b;
+  border-radius: 12px;
+}
+.cn-method-h3 {
+  font-size: 1.05rem;
+  font-family: var(--font-mono);
+  color: var(--text);
+  margin-bottom: 0.8rem;
+}
+.cn-calc-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  margin-top: 1rem;
+}
+.cn-step {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  font-size: 0.9rem;
+  line-height: 1.65;
+}
+.cn-step-num {
+  font-family: var(--font-mono);
+  font-weight: 800;
+  font-size: 0.95rem;
+  min-width: 2.2rem;
+  flex-shrink: 0;
+}
+.cn-step-ex {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--slate);
+  display: block;
+  margin-top: 0.2rem;
+}
+.cn-el-sym {
+  font-size: 1.1rem;
+  letter-spacing: 3px;
+}
+
+/* ─── Lo Shu mini (section méthode) ─── */
+.cn-loshu-mini {
+  margin: 1rem 0;
+}
+.cn-lm-label {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  margin-bottom: 0.5rem;
+}
+.cn-lm-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.3rem;
+  max-width: 200px;
+}
+.cn-lm-cell {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid #334155;
+  border-radius: 6px;
+  padding: 0.4rem;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.9rem;
+  line-height: 1.3;
+}
+.cn-lm-cell small {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  font-weight: 400;
+  display: block;
+}
+
+/* ─── Sections enrichies (kua/vie cards) ─── */
+.ch-kua-section-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.8rem;
+  margin-top: 1rem;
+}
+.ch-kua-section { margin-top: 0.9rem; }
+.ch-kua-sec-lbl {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  display: block;
+  margin-bottom: 0.4rem;
+}
+
+/* ─── Direction défavorable ─── */
+.ch-dir-defav {
+  font-size: 0.76rem;
+  padding: 0.22rem 0.65rem;
+  border-radius: 6px;
+  background: rgba(183,139,250,0.07);
+  border: 1px solid rgba(183,139,250,0.18);
+  color: var(--violet);
+  font-family: var(--font-mono);
+}
+.ch-dir-defav em { font-size: 0.66rem; opacity: 0.65; }
+
+/* ─── Color tags ─── */
+.ch-color-tags {
+  display: flex;
+  gap: 0.35rem;
+  flex-wrap: wrap;
+}
+.ch-color-tag {
+  font-size: 0.74rem;
+  padding: 0.18rem 0.55rem;
+  border-radius: 5px;
+  font-family: var(--font-mono);
+}
+.ch-color-tag--ok {
+  background: rgba(61,211,153,0.07);
+  border: 1px solid rgba(61,211,153,0.2);
+  color: var(--emerald);
+}
+.ch-color-tag--no {
+  background: rgba(251,129,149,0.07);
+  border: 1px solid rgba(251,129,149,0.2);
+  color: var(--rose);
+}
+
+/* ─── Prof, pierre, compat tags ─── */
+.ch-prof-tag {
+  font-size: 0.74rem;
+  padding: 0.18rem 0.55rem;
+  border-radius: 5px;
+  background: rgba(223,178,108,0.07);
+  border: 1px solid rgba(223,178,108,0.2);
+  color: var(--gold);
+  font-family: var(--font-mono);
+}
+.ch-pierre-tag {
+  font-size: 0.74rem;
+  padding: 0.18rem 0.55rem;
+  border-radius: 5px;
+  background: rgba(183,139,250,0.07);
+  border: 1px solid rgba(183,139,250,0.18);
+  color: var(--violet);
+  font-family: var(--font-mono);
+}
+.ch-compat-tag {
+  font-size: 0.74rem;
+  padding: 0.22rem 0.65rem;
+  border-radius: 6px;
+  border: 1px solid #334155;
+  background: rgba(255,255,255,0.04);
+  font-family: var(--font-mono);
+}
+.ch-compat-tag--tension {
+  background: rgba(251,129,149,0.05);
+  border-color: rgba(251,129,149,0.18);
+  color: var(--rose);
+  opacity: 0.85;
+}
+
+/* ─── Défi & heure ─── */
+.ch-kua-defi {
+  margin-top: 1rem;
+  padding-top: 0.8rem;
+  border-top: 1px solid #1e293b;
+  font-size: 0.85rem;
+  color: var(--slate);
+  line-height: 1.6;
+}
+.ch-kua-heure {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  color: var(--text-muted);
+  margin-top: 0.35rem;
+}
+
+/* ─── Flèches Lo Shu ─── */
+.ch-fleches-section {
+  margin-top: 1.4rem;
+  padding: 1rem;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid #1e293b;
+  border-radius: 10px;
+}
+.ch-fleche {
+  display: flex;
+  gap: 0.8rem;
+  align-items: flex-start;
+  padding: 0.65rem 0;
+  border-bottom: 1px solid #1e293b;
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+.ch-fleche:last-child { border-bottom: none; }
+.ch-fleche-icon {
+  font-size: 1.1rem;
+  flex-shrink: 0;
+  margin-top: 0.15rem;
+}
+.ch-fleche-axe {
+  font-family: var(--font-mono);
+  font-size: 0.73rem;
+  color: var(--text-muted);
+}
+.ch-fleche-desc {
+  font-size: 0.81rem;
+  color: var(--slate);
+  margin: 0.18rem 0 0;
+  line-height: 1.55;
+}
+
+/* ─── Surplus gradués ─── */
+.ch-surplus { font-style: italic; }
+.ch-surplus--2 { color: var(--gold); }
+.ch-surplus--3 { color: var(--rose); }
+.ch-surplus--4 { color: var(--rose); font-weight: 600; }
+
+/* ─── Devise Nombre de Vie ─── */
+.ch-vie-devise {
+  font-style: italic;
+  font-size: 0.93rem;
+  margin: 0.5rem 0 1rem;
+  padding: 0.65rem 1rem;
+  border-left: 3px solid currentColor;
+  background: rgba(255,255,255,0.03);
+  border-radius: 0 8px 8px 0;
+  line-height: 1.65;
+}
+
+/* ─── cf-bg-* (background éléments) ─── */
+.cf-bg-cyan   { background: rgba(59,211,238,0.1); }
+.cf-bg-emerald{ background: rgba(61,211,153,0.1); }
+.cf-bg-rose   { background: rgba(251,129,149,0.1); }
+.cf-bg-gold   { background: rgba(223,178,108,0.1); }
+.cf-bg-violet { background: rgba(183,139,250,0.1); }
+.ch-badge.cf-bg-cyan   { border-color: rgba(59,211,238,0.3); }
+.ch-badge.cf-bg-emerald{ border-color: rgba(61,211,153,0.3); }
+.ch-badge.cf-bg-rose   { border-color: rgba(251,129,149,0.3); }
+.ch-badge.cf-bg-gold   { border-color: rgba(223,178,108,0.3); }
+.ch-badge.cf-bg-violet { border-color: rgba(183,139,250,0.3); }
+
+/* ─── Badge astre (grille statique) ─── */
+.ch-astre-badge {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  padding: 0.12rem 0.45rem;
+  border-radius: 4px;
+  background: rgba(255,255,255,0.05);
+  display: inline-block;
+  margin-top: 0.3rem;
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 560px) {
+  .ch-kua-section-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 480px) {
+  .cn-3x3-grid { gap: 0.5rem; }
+  .ch-static-cell { min-height: 190px; }
+  .ch-kua-header, .ch-vie-header { flex-direction: column; gap: 0.6rem; }
+  .ch-kua-num, .ch-vie-num { font-size: 2.2rem; }
+  .ch-loshu-grid { gap: 0.4rem; }
+  .cn-genre-row { flex-direction: column; gap: 0.6rem; }
+}
+
+/* ─── Light mode : titres mis en avant ─── */
+[data-theme="light"] .cn-wuxing-title {
+  color: #0f172a;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+[data-theme="light"] .pyth-diff-title {
+  color: #0f172a;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+</style>

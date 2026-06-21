@@ -3,32 +3,627 @@ import Layout from '../../layouts/Layout.astro';
 
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "Article",
-  "name": "Astrologie Chinoise — Les 12 signes animaliers",
+  "@type": "WebPage",
+  "name": "Astrologie Chinoise — Les 12 Signes Animaliers & 5 Éléments",
   "url": "https://mysteres.fr/astrologie/chinoise.html",
-  "description": "Découvrez l'astrologie chinoise, ses 12 signes animaliers et ses 5 éléments.",
-  "inLanguage": "fr"
+  "description": "Découvrez l'astrologie chinoise : calculez votre signe animalier, votre élément et votre polarité Yin/Yang selon le calendrier lunaire. 12 animaux × 5 éléments, cycle de 60 ans.",
+  "inLanguage": "fr",
+  "about": { "@type": "Thing", "name": "Astrologie Chinoise" }
 };
 ---
 
 <Layout
-  title="Astrologie Chinoise — Astrologie"
-  description="Découvrez l'astrologie chinoise, ses 12 signes animaliers et ses 5 éléments. Un système millénaire fondé sur le calendrier lunaire."
-  keywords="astrologie chinoise, signes chinois, zodiaque chinois, rat, buffle, tigre, lapin, dragon, serpent, cheval, chèvre, singe, coq, chien, cochon, 5 éléments"
+  title="Astrologie Chinoise — Les 12 Signes & 5 Éléments"
+  description="Calculez votre signe animalier chinois, votre élément (Bois, Feu, Terre, Métal, Eau) et votre polarité Yin/Yang. Un système millénaire fondé sur le calendrier lunaire."
+  keywords="astrologie chinoise, signe chinois, zodiaque chinois, rat, buffle, tigre, dragon, serpent, cheval, singe, coq, cochon, 5 éléments, yin yang, calendrier lunaire"
   canonicalPath="astrologie/chinoise.html"
   jsonLd={jsonLd}
+  section="astrologie"
 >
 
-<!-- ═══════════ BANNIÈRE "BIENTÔT" ═══════════ -->
-<section id="hero" style="text-align:center;padding:6rem 1.5rem 4rem;max-width:700px;margin:0 auto;">
+<!-- ═══════════ FIL D'ARIANE ═══════════ -->
+<nav class="breadcrumb" aria-label="Fil d'Ariane" style="padding:0.8rem 1.5rem;font-family:var(--font-mono);font-size:0.8rem;color:var(--text-muted);max-width:1200px;margin:0 auto;">
+  <a href="../index.html" style="color:var(--cyan);">Accueil</a> &rsaquo;
+  <a href="index.html" style="color:var(--cyan);">Astrologie</a> &rsaquo;
+  <span style="color:var(--text);">Astrologie Chinoise</span>
+</nav>
+
+<!-- ═══════════ HERO ═══════════ -->
+<section id="hero" style="background: linear-gradient(180deg, rgba(244,114,182,0.06) 0%, rgba(15,23,42,0) 100%);">
   <h1>
-    <span class="pulse"></span>
-    🐉 <span class="gold">Astrologie Chinoise</span><br>Les 12 signes <span class="emerald">animaliers</span>
+    <span class="pulse" style="background: var(--rose); box-shadow: 0 0 12px var(--rose);"></span>
+    L'Astrologie Chinoise<br><span class="gold">12 Animaux · 5 Éléments</span>
   </h1>
   <p class="subtitle">
-    Cette section est en cours de création. L'astrologie chinoise, fondée sur le calendrier lunaire, associe 12 animaux à 5 éléments pour décrire la personnalité et le destin. Chaque année est gouvernée par un animal et un élément, créant un cycle de 60 ans. Revenez bientôt !
+    Fondé sur le <strong>calendrier lunaire</strong>, le zodiaque chinois associe à chaque année un animal tutélaire et un élément naturel, créant un cycle de <strong>60 ans</strong>. Plus ancien que l'astrologie occidentale, ce système décrit non pas la position des astres mais l'<strong>énergie cosmique</strong> de l'année de naissance — la qualité du temps qui a présidé à votre entrée dans ce monde.
   </p>
-  <a href="../astrologie/index.html" class="cta">← Retour à l'Astrologie</a>
+  <a href="#calculateur" class="cta" style="background:var(--rose);color:#fff;box-shadow:0 0 20px rgba(244,114,182,0.35);">🐉 Découvrir mon signe</a>
+  <p class="quote">
+    « Le zodiaque chinois ne dit pas qui tu es — il révèle l'énergie dans laquelle tu as été forgé. »
+    <br><span class="gold">— Sagesse taoïste traditionnelle</span>
+  </p>
 </section>
 
+<!-- ═══════════ [01] CALCULATEUR ═══════════ -->
+<section id="calculateur">
+  <div class="section-title">
+    <div class="num" style="color:var(--rose);border-color:rgba(244,114,182,0.3);">[ 01 ]</div>
+    <h2>✦ Calculateur Astrologie Chinoise</h2>
+    <p class="slate">Entrez votre année de naissance pour découvrir votre animal tutélaire, votre élément et votre polarité Yin/Yang. Le mois et le jour permettent une correction précise du Nouvel An Chinois. Ajoutez l'heure et la ville pour obtenir votre <strong>Ascendant Chinois</strong> (時辰 — l'animal de l'heure solaire locale).</p>
+  </div>
+
+  <form class="pyth-form" id="ch-form" onsubmit="return false;">
+    <div class="pyth-form-group">
+      <label class="pyth-label">Année de naissance <span style="color:var(--rose);font-size:0.8rem;">*</span></label>
+      <div class="pyth-date-row">
+        <div class="pyth-field pyth-field--wide">
+          <input type="number" id="ch-annee" class="pyth-input" min="1900" max="2100" placeholder="AAAA" aria-label="Année de naissance" inputmode="numeric" style="border-color:rgba(244,114,182,0.3);" required>
+          <span class="pyth-field-label">Année</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="pyth-form-group">
+      <label class="pyth-label">
+        Date précise
+        <span style="color:var(--text-muted);font-size:0.8rem;">(facultatif — correction Nouvel An Chinois)</span>
+      </label>
+      <div class="pyth-date-row">
+        <div class="pyth-field">
+          <input type="number" id="ch-jour" class="pyth-input" min="1" max="31" placeholder="JJ" aria-label="Jour de naissance" inputmode="numeric">
+          <span class="pyth-field-label">Jour</span>
+        </div>
+        <div class="pyth-field">
+          <input type="number" id="ch-mois" class="pyth-input" min="1" max="12" placeholder="MM" aria-label="Mois de naissance" inputmode="numeric">
+          <span class="pyth-field-label">Mois</span>
+        </div>
+      </div>
+      <p style="font-size:0.78rem;color:var(--text-muted);margin-top:0.5rem;font-family:var(--font-mono);">
+        ⚠️ Si vous êtes né·e en janvier ou février, votre signe peut appartenir à l'année précédente selon la date exacte du Nouvel An Chinois.
+      </p>
+    </div>
+
+    <div class="pyth-form-group">
+      <label class="pyth-label">Heure de naissance <span style="color:var(--text-muted);font-size:0.8rem;">(facultatif — pour l'ascendant 時辰)</span></label>
+      <div class="pyth-date-row">
+        <div class="pyth-field">
+          <input type="number" id="ch-heure" class="pyth-input" min="0" max="23" placeholder="HH" aria-label="Heure de naissance" inputmode="numeric">
+          <span class="pyth-field-label">Heure</span>
+        </div>
+        <div class="pyth-field">
+          <input type="number" id="ch-minute" class="pyth-input" min="0" max="59" placeholder="MM" aria-label="Minute de naissance" inputmode="numeric">
+          <span class="pyth-field-label">Minute</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="pyth-form-group">
+      <label class="pyth-label">Lieu de naissance <span style="color:var(--text-muted);font-size:0.8rem;">(correction solaire par méridien)</span></label>
+      <div class="at-select-wrap">
+        <select id="ch-ville" class="at-select-native" aria-label="Ville de naissance">
+          <option value="">-- Choisir une ville --</option>
+          <optgroup label="🇫🇷 France">
+            <option value="48.8566|2.3522|eu|1">Paris</option>
+            <option value="45.7640|4.8357|eu|1">Lyon</option>
+            <option value="43.2965|5.3698|eu|1">Marseille</option>
+            <option value="43.6047|1.4442|eu|1">Toulouse</option>
+            <option value="44.8378|-0.5792|eu|1">Bordeaux</option>
+            <option value="47.2184|-1.5536|eu|1">Nantes</option>
+            <option value="48.5734|7.7521|eu|1">Strasbourg</option>
+            <option value="50.6292|3.0573|eu|1">Lille</option>
+            <option value="43.7102|7.2620|eu|1">Nice</option>
+            <option value="48.1173|-1.6778|eu|1">Rennes</option>
+            <option value="45.1885|5.7245|eu|1">Grenoble</option>
+            <option value="43.6119|3.8772|eu|1">Montpellier</option>
+          </optgroup>
+          <optgroup label="🇧🇪🇨🇭 Belgique · Suisse · Luxembourg">
+            <option value="50.8503|4.3517|eu|1">Bruxelles</option>
+            <option value="46.2044|6.1432|eu|1">Genève</option>
+            <option value="46.5197|6.6323|eu|1">Lausanne</option>
+            <option value="47.3769|8.5417|eu|1">Zürich</option>
+            <option value="49.6117|6.1319|eu|1">Luxembourg</option>
+          </optgroup>
+          <optgroup label="🇬🇧🇵🇹 Royaume-Uni · Portugal">
+            <option value="51.5074|-0.1278|uk|0">Londres</option>
+            <option value="38.7223|-9.1393|uk|0">Lisbonne</option>
+          </optgroup>
+          <optgroup label="🇪🇸🇮🇹🇩🇪 Europe Sud · Est">
+            <option value="40.4168|-3.7038|eu|1">Madrid</option>
+            <option value="41.3851|2.1734|eu|1">Barcelone</option>
+            <option value="41.9028|12.4964|eu|1">Rome</option>
+            <option value="52.5200|13.4050|eu|1">Berlin</option>
+          </optgroup>
+          <optgroup label="🌍 Maghreb">
+            <option value="33.5731|-7.5898|none|1">Casablanca</option>
+            <option value="34.0209|-6.8416|none|1">Rabat</option>
+            <option value="36.7372|3.0865|none|1">Alger</option>
+            <option value="36.8065|10.1815|none|1">Tunis</option>
+          </optgroup>
+          <optgroup label="🌍 Afrique subsaharienne">
+            <option value="14.7167|-17.4677|none|0">Dakar</option>
+            <option value="5.3600|-4.0083|none|0">Abidjan</option>
+            <option value="3.8480|11.5021|none|1">Yaoundé</option>
+          </optgroup>
+          <optgroup label="🌊 DOM-TOM">
+            <option value="14.6415|-61.0242|none|-4">Martinique</option>
+            <option value="16.2650|-61.5510|none|-4">Guadeloupe</option>
+            <option value="-20.8789|55.4481|none|4">La Réunion</option>
+            <option value="-22.2758|166.4580|none|11">Nouvelle-Calédonie</option>
+            <option value="-17.5516|-149.5585|none|-10">Polynésie française</option>
+          </optgroup>
+          <optgroup label="🌎 Amérique du Nord">
+            <option value="45.5017|-73.5673|us|-5">Montréal</option>
+            <option value="46.8139|-71.2080|us|-5">Québec</option>
+            <option value="40.7128|-74.0060|us|-5">New York</option>
+          </optgroup>
+          <option value="custom">✎ Autre (lat/lon manuels)</option>
+        </select>
+        <span class="at-select-chevron" aria-hidden="true">▾</span>
+      </div>
+      <div id="ch-custom-coords" style="display:none;margin-top:0.6rem;">
+        <div class="pyth-date-row">
+          <div class="pyth-field pyth-field--wide">
+            <input type="number" id="ch-lat" class="pyth-input" min="-90" max="90" step="0.0001" placeholder="48.8566" aria-label="Latitude">
+            <span class="pyth-field-label">Latitude (N+, S−)</span>
+          </div>
+          <div class="pyth-field pyth-field--wide">
+            <input type="number" id="ch-lon" class="pyth-input" min="-180" max="180" step="0.0001" placeholder="2.3522" aria-label="Longitude">
+            <span class="pyth-field-label">Longitude (E+, O−)</span>
+          </div>
+          <div class="pyth-field">
+            <input type="number" id="ch-tz-offset" class="pyth-input" min="-12" max="14" step="0.5" placeholder="1" aria-label="Décalage UTC">
+            <span class="pyth-field-label">Fuseau UTC</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pyth-form-actions">
+      <button type="button" id="ch-exemple" class="pyth-btn-example">Essayer avec l'exemple (1990, 16h, Paris)</button>
+      <button type="submit" class="pyth-btn-calc" style="background:var(--rose);color:#fff;box-shadow:0 4px 12px rgba(244,114,182,0.3);">Révéler mon thème chinois 🐉</button>
+    </div>
+  </form>
+
+  <!-- ── RÉSULTATS ── -->
+  <div id="chResultats" hidden>
+    <div class="pyth-section-sep"></div>
+
+    <!-- Note Nouvel An Chinois -->
+    <div id="chCnyNote" class="ch-cny-note"></div>
+
+    <div class="at-results-grid ch-results-grid">
+      <!-- Animal tutélaire -->
+      <div class="pyth-result-block">
+        <h3 class="pyth-result-title at-highlight-title ch-ht-rose">
+          <span class="at-title-left">
+            <span class="at-dot" style="background:var(--rose); box-shadow:0 0 10px var(--rose);"></span>
+            Votre Animal Tutélaire
+          </span>
+          <span class="at-hint">L'énergie qui guide votre nature profonde</span>
+        </h3>
+        <div id="chAnimalCard"></div>
+      </div>
+
+      <!-- Élément & Polarité -->
+      <div class="pyth-result-block">
+        <h3 class="pyth-result-title at-highlight-title ch-ht-gold">
+          <span class="at-title-left">
+            <span class="at-dot" style="background:var(--gold); box-shadow:0 0 10px var(--gold);"></span>
+            Votre Élément & Polarité
+          </span>
+          <span class="at-hint">Le souffle cosmique qui module votre signe</span>
+        </h3>
+        <div id="chElementCard"></div>
+      </div>
+    </div>
+
+    <!-- ── Ascendant Chinois (時辰) ── -->
+    <div id="chHourBlock" hidden>
+      <div class="pyth-result-block" style="margin-top:1.5rem;">
+        <h3 class="pyth-result-title at-highlight-title ch-ht-cyan">
+          <span class="at-title-left">
+            <span class="at-dot" style="background:var(--cyan); box-shadow:0 0 10px var(--cyan);"></span>
+            Votre Ascendant Chinois (時辰)
+          </span>
+          <span class="at-hint">L'animal de l'heure solaire — la facette cachée</span>
+        </h3>
+        <div id="chHourCard"></div>
+      </div>
+    </div>
+
+    <div class="at-disclaimer" style="max-width:860px;margin:1.5rem auto 0;">
+      L'astrologie chinoise est un art divinatoire traditionnel. Les interprétations proposées sont fondées sur les textes classiques du Jianzi et du Tong Shu. L'ascendant (時辰) est calculé en heure solaire locale avec correction du méridien et de l'heure d'été. Elles ne constituent pas un conseil psychologique ou médical.
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ [02] LES 12 ANIMAUX ═══════════ -->
+<section id="animaux">
+  <div class="section-title">
+    <div class="num" style="color:var(--rose);border-color:rgba(244,114,182,0.3);">[ 02 ]</div>
+    <h2>✦ Les 12 Animaux Tutélaires</h2>
+    <p class="slate">Chaque animal règne sur une année dans un cycle de 12 ans. Il incarne une constellation d'énergies, de dons naturels et de défis récurrents.</p>
+  </div>
+
+  <div class="ch-animal-grid">
+    <div class="ch-animal-card">
+      <span class="ch-a-sym">🐀</span>
+      <div class="ch-a-body">
+        <div class="ch-a-name">Rat 鼠</div>
+        <div class="ch-a-years">1924 · 1936 · 1948 · 1960 · 1972 · 1984 · 1996 · 2008 · 2020</div>
+        <div class="ch-a-kw">Ingénieux · Adaptable · Stratège</div>
+        <p class="ch-a-desc">Intelligence aiguisée, adaptabilité naturelle, sens aigu des opportunités. Tendance à l'anxiété et à l'accumulation.</p>
+      </div>
+    </div>
+    <div class="ch-animal-card">
+      <span class="ch-a-sym">🐂</span>
+      <div class="ch-a-body">
+        <div class="ch-a-name">Buffle 牛</div>
+        <div class="ch-a-years">1925 · 1937 · 1949 · 1961 · 1973 · 1985 · 1997 · 2009 · 2021</div>
+        <div class="ch-a-kw">Persévérant · Fiable · Patient</div>
+        <p class="ch-a-desc">Force tranquille, endurance remarquable, loyauté absolue. Tendance à la rigidité et à la résistance au changement.</p>
+      </div>
+    </div>
+    <div class="ch-animal-card">
+      <span class="ch-a-sym">🐅</span>
+      <div class="ch-a-body">
+        <div class="ch-a-name">Tigre 虎</div>
+        <div class="ch-a-years">1926 · 1938 · 1950 · 1962 · 1974 · 1986 · 1998 · 2010 · 2022</div>
+        <div class="ch-a-kw">Courageux · Charismatique · Leader</div>
+        <p class="ch-a-desc">Énergie vitale débordante, sens de la justice, charisme naturel. Tendance à l'impulsivité et aux demi-mesures.</p>
+      </div>
+    </div>
+    <div class="ch-animal-card">
+      <span class="ch-a-sym">🐇</span>
+      <div class="ch-a-body">
+        <div class="ch-a-name">Lapin 兔</div>
+        <div class="ch-a-years">1927 · 1939 · 1951 · 1963 · 1975 · 1987 · 1999 · 2011 · 2023</div>
+        <div class="ch-a-kw">Diplomate · Sensible · Raffiné</div>
+        <p class="ch-a-desc">Sensibilité esthétique, talent pour l'harmonie, intuition fine. Tendance à éviter les conflits nécessaires.</p>
+      </div>
+    </div>
+    <div class="ch-animal-card" style="border-color:rgba(244,114,182,0.3);">
+      <span class="ch-a-sym">🐉</span>
+      <div class="ch-a-body">
+        <div class="ch-a-name" style="color:var(--rose);">Dragon 龙</div>
+        <div class="ch-a-years">1928 · 1940 · 1952 · 1964 · 1976 · 1988 · 2000 · 2012 · 2024</div>
+        <div class="ch-a-kw">Visionnaire · Magnétique · Puissant</div>
+        <p class="ch-a-desc">Signe le plus mythique du zodiaque. Énergie visionnaire, magnétisme naturel, ambitions sans limites. Tendance à l'excès d'ego.</p>
+      </div>
+    </div>
+    <div class="ch-animal-card">
+      <span class="ch-a-sym">🐍</span>
+      <div class="ch-a-body">
+        <div class="ch-a-name">Serpent 蛇</div>
+        <div class="ch-a-years">1929 · 1941 · 1953 · 1965 · 1977 · 1989 · 2001 · 2013 · 2025</div>
+        <div class="ch-a-kw">Sage · Intuitif · Mystérieux</div>
+        <p class="ch-a-desc">Sagesse intérieure, intuition profonde, élégance naturelle. Tendance à la méfiance et à la jalousie possessive.</p>
+      </div>
+    </div>
+    <div class="ch-animal-card">
+      <span class="ch-a-sym">🐎</span>
+      <div class="ch-a-body">
+        <div class="ch-a-name">Cheval 马</div>
+        <div class="ch-a-years">1930 · 1942 · 1954 · 1966 · 1978 · 1990 · 2002 · 2014 · 2026</div>
+        <div class="ch-a-kw">Libre · Passionné · Aventurier</div>
+        <p class="ch-a-desc">Besoin vital de liberté, enthousiasme communicatif, don de la persuasion. Tendance à l'inconstance et à la fuite.</p>
+      </div>
+    </div>
+    <div class="ch-animal-card">
+      <span class="ch-a-sym">🐑</span>
+      <div class="ch-a-body">
+        <div class="ch-a-name">Chèvre 羊</div>
+        <div class="ch-a-years">1931 · 1943 · 1955 · 1967 · 1979 · 1991 · 2003 · 2015 · 2027</div>
+        <div class="ch-a-kw">Créatif · Doux · Altruiste</div>
+        <p class="ch-a-desc">Sensibilité artistique, empathie naturelle, goût pour la beauté. Tendance à manquer de confiance en soi.</p>
+      </div>
+    </div>
+    <div class="ch-animal-card">
+      <span class="ch-a-sym">🐒</span>
+      <div class="ch-a-body">
+        <div class="ch-a-name">Singe 猴</div>
+        <div class="ch-a-years">1932 · 1944 · 1956 · 1968 · 1980 · 1992 · 2004 · 2016 · 2028</div>
+        <div class="ch-a-kw">Inventif · Curieux · Polyvalent</div>
+        <p class="ch-a-desc">Intelligence inventive, curiosité insatiable, vivacité d'esprit remarquable. Tendance à papillonner et à manquer de profondeur.</p>
+      </div>
+    </div>
+    <div class="ch-animal-card">
+      <span class="ch-a-sym">🐓</span>
+      <div class="ch-a-body">
+        <div class="ch-a-name">Coq 鸡</div>
+        <div class="ch-a-years">1933 · 1945 · 1957 · 1969 · 1981 · 1993 · 2005 · 2017 · 2029</div>
+        <div class="ch-a-kw">Méthodique · Perfectionniste · Loyal</div>
+        <p class="ch-a-desc">Sens du détail, organisation irréprochable, droiture forcant le respect. Tendance au perfectionnisme anxieux.</p>
+      </div>
+    </div>
+    <div class="ch-animal-card">
+      <span class="ch-a-sym">🐕</span>
+      <div class="ch-a-body">
+        <div class="ch-a-name">Chien 狗</div>
+        <div class="ch-a-years">1934 · 1946 · 1958 · 1970 · 1982 · 1994 · 2006 · 2018 · 2030</div>
+        <div class="ch-a-kw">Fidèle · Honnête · Juste</div>
+        <p class="ch-a-desc">Loyauté absolue, intégrité naturelle, sens aigu de la justice. Tendance à l'inquiétude chronique pour les autres.</p>
+      </div>
+    </div>
+    <div class="ch-animal-card">
+      <span class="ch-a-sym">🐖</span>
+      <div class="ch-a-body">
+        <div class="ch-a-name">Cochon 猪</div>
+        <div class="ch-a-years">1935 · 1947 · 1959 · 1971 · 1983 · 1995 · 2007 · 2019 · 2031</div>
+        <div class="ch-a-kw">Généreux · Sincère · Optimiste</div>
+        <p class="ch-a-desc">Générosité débordante, optimisme sincère, bonhomie naturelle. Tendance à la naïveté et à se laisser exploiter.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ [03] LES 5 ÉLÉMENTS ═══════════ -->
+<section id="elements">
+  <div class="section-title">
+    <div class="num" style="color:var(--rose);border-color:rgba(244,114,182,0.3);">[ 03 ]</div>
+    <h2>✦ Les 5 Éléments & Polarités Yin/Yang</h2>
+    <p class="slate">Les Cinq Éléments (Wu Xing 五行) enrichissent et nuancent l'énergie de l'animal. Chaque élément revient tous les 10 ans et alterne entre une expression Yang (active, expansive) et Yin (réceptive, intérieure), créant le cycle complet de 60 ans.</p>
+  </div>
+
+  <div class="ch-elem-grid">
+    <div class="ch-elem-card" style="border-color:rgba(52,211,153,0.3);">
+      <div class="ch-e-header">
+        <span class="ch-e-sym" style="color:var(--emerald);">🌿</span>
+        <div>
+          <div class="ch-e-name" style="color:var(--emerald);">Bois 木</div>
+          <div class="ch-e-years">Années terminant en 4 (Yang) ou 5 (Yin)</div>
+        </div>
+      </div>
+      <p class="ch-e-desc">Croissance, créativité, générosité, expansion. Le Bois pousse vers la lumière tout en restant ancré dans ses racines. Il favorise la vision à long terme, les vocations humanitaires et créatives.</p>
+    </div>
+    <div class="ch-elem-card" style="border-color:rgba(244,114,182,0.3);">
+      <div class="ch-e-header">
+        <span class="ch-e-sym" style="color:var(--rose);">🔥</span>
+        <div>
+          <div class="ch-e-name" style="color:var(--rose);">Feu 火</div>
+          <div class="ch-e-years">Années terminant en 6 (Yang) ou 7 (Yin)</div>
+        </div>
+      </div>
+      <p class="ch-e-desc">Passion, leadership, éclat, dynamisme. Le Feu illumine et réchauffe, mais peut aussi consumer. Il favorise le charisme naturel, la créativité ardente et les rôles de visionnaire.</p>
+    </div>
+    <div class="ch-elem-card" style="border-color:rgba(223,178,108,0.3);">
+      <div class="ch-e-header">
+        <span class="ch-e-sym" style="color:var(--gold);">🌍</span>
+        <div>
+          <div class="ch-e-name" style="color:var(--gold);">Terre 土</div>
+          <div class="ch-e-years">Années terminant en 8 (Yang) ou 9 (Yin)</div>
+        </div>
+      </div>
+      <p class="ch-e-desc">Stabilité, prudence, fiabilité, ancrage. La Terre nourrit et soutient. Elle favorise le sens des réalités, la gestion patrimoniale, la diplomatie et toute activité nécessitant durée et solidité.</p>
+    </div>
+    <div class="ch-elem-card" style="border-color:rgba(148,163,184,0.3);">
+      <div class="ch-e-header">
+        <span class="ch-e-sym" style="color:#94a3b8;">⚙️</span>
+        <div>
+          <div class="ch-e-name" style="color:#94a3b8;">Métal 金</div>
+          <div class="ch-e-years">Années terminant en 0 (Yang) ou 1 (Yin)</div>
+        </div>
+      </div>
+      <p class="ch-e-desc">Précision, discipline, force, intégrité. Le Métal tranche, affine et dure. Il favorise la rigueur intellectuelle, l'excellence technique, la justice et tout ce qui demande précision absolue.</p>
+    </div>
+    <div class="ch-elem-card" style="border-color:rgba(34,211,238,0.3);">
+      <div class="ch-e-header">
+        <span class="ch-e-sym" style="color:var(--cyan);">💧</span>
+        <div>
+          <div class="ch-e-name" style="color:var(--cyan);">Eau 水</div>
+          <div class="ch-e-years">Années terminant en 2 (Yang) ou 3 (Yin)</div>
+        </div>
+      </div>
+      <p class="ch-e-desc">Intuition, fluidité, profondeur, sagesse. L'Eau contourne les obstacles et pénètre partout. Elle favorise l'intelligence émotionnelle, la psychologie, la philosophie et les arts de l'âme.</p>
+    </div>
+  </div>
+
+  <!-- Tableau polarités -->
+  <div class="ch-polarity-block">
+    <h3 class="ch-polarity-title">☯️ La Polarité Yin / Yang</h3>
+    <div class="ch-polarity-grid">
+      <div class="ch-pol-card ch-pol-yang">
+        <div class="ch-pol-name">Yang 阳</div>
+        <p>Années paires (0, 2, 4, 6, 8). Énergie active, expansive, extravertie. Le Yang cherche à s'exprimer vers l'extérieur, à initier, à construire et à manifester dans le monde.</p>
+      </div>
+      <div class="ch-pol-card ch-pol-yin">
+        <div class="ch-pol-name">Yin 阴</div>
+        <p>Années impaires (1, 3, 5, 7, 9). Énergie réceptive, intérieure, contemplative. Le Yin cherche à intégrer, à approfondir, à ressentir et à créer de l'intérieur vers l'extérieur.</p>
+      </div>
+    </div>
+    <p style="font-size:0.82rem;color:var(--text-muted);text-align:center;margin-top:1rem;font-family:var(--font-mono);">
+      Le dernier chiffre de l'année détermine la polarité — les années paires sont Yang, les années impaires sont Yin.
+    </p>
+  </div>
+</section>
+
+<nav class="sub-nav" style="display:flex;justify-content:space-between;max-width:600px;margin:2rem auto;padding:1rem;">
+  <a href="vedique.html" style="color:var(--cyan);font-family:var(--font-mono);">← Astrologie Védique</a>
+  <span></span>
+</nav>
+
+<script src="/js/chinoise.js" defer></script>
+
 </Layout>
+
+<style is:global>
+
+/* ─── Plans continus (partagé avec vedique) ─── */
+.at-plans-section { display: flex; flex-direction: column; gap: 1.25rem; margin-top: 0.6rem; }
+.at-plan-item { padding: 0.9rem 1rem; background: rgba(255,255,255,0.02); border-left: 2px solid rgba(244,114,182,0.25); border-radius: 0 8px 8px 0; }
+.at-plan-title { font-family: var(--font-mono); font-size: 0.78rem; font-weight: 700; color: var(--rose); text-transform: uppercase; letter-spacing: 0.06em; margin: 0 0 0.55rem 0; }
+.at-rc-interp { font-size: 0.87rem; line-height: 1.75; color: #d0d6e0; }
+
+/* ─── Note Nouvel An Chinois ─── */
+.ch-cny-note { max-width: 860px; margin: 0 auto 1.5rem; padding: 0.65rem 1rem; background: rgba(244,114,182,0.06); border: 1px solid rgba(244,114,182,0.2); border-radius: 8px; font-size: 0.84rem; color: var(--text-muted); font-family: var(--font-mono); line-height: 1.6; }
+.ch-cny-note:empty { display: none; }
+
+/* ─── Grille résultats ─── */
+.ch-results-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+
+/* ─── Cartes résultats ─── */
+.ch-result-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(244,114,182,0.2); border-radius: 12px; padding: 1.5rem; }
+.ch-element-card { background: rgba(255,255,255,0.02); }
+.ch-rc-header { display: flex; gap: 1rem; align-items: flex-start; margin-bottom: 1rem; }
+.ch-rc-sym { font-size: 2.8rem; line-height: 1; flex-shrink: 0; }
+.ch-rc-meta { flex: 1; min-width: 0; }
+.ch-rc-name { font-size: 1.3rem; font-weight: 700; color: var(--rose); margin: 0 0 0.2rem; }
+.ch-rc-pinyin { font-size: 0.8rem; color: var(--text-muted); font-family: var(--font-mono); margin-bottom: 0.5rem; display: block; }
+.ch-rc-badges { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-top: 0.4rem; }
+.ch-badge { font-family: var(--font-mono); font-size: 0.72rem; padding: 0.2rem 0.55rem; border-radius: 4px; border: 1px solid rgba(244,114,182,0.3); background: rgba(244,114,182,0.05); color: var(--slate); }
+
+/* ─── Grille 12 animaux ─── */
+.ch-animal-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem; max-width: 1100px; margin: 0 auto; }
+.ch-animal-card { background: rgba(255,255,255,0.02); border: 1px solid #1e293b; border-radius: 10px; padding: 1rem; display: flex; gap: 0.9rem; align-items: flex-start; transition: border-color 0.25s, background 0.25s; }
+.ch-animal-card:hover { border-color: rgba(244,114,182,0.25); background: rgba(244,114,182,0.03); }
+.ch-a-sym { font-size: 2rem; flex-shrink: 0; line-height: 1.2; }
+.ch-a-body { flex: 1; min-width: 0; }
+.ch-a-name { font-weight: 700; font-size: 0.95rem; color: var(--text); margin-bottom: 0.15rem; }
+.ch-a-years { font-family: var(--font-mono); font-size: 0.68rem; color: var(--text-muted); margin-bottom: 0.3rem; }
+.ch-a-kw { font-family: var(--font-mono); font-size: 0.72rem; color: var(--rose); margin-bottom: 0.4rem; }
+.ch-a-desc { font-size: 0.82rem; line-height: 1.6; color: var(--slate); margin: 0; }
+
+/* ─── Grille 5 éléments ─── */
+.ch-elem-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; max-width: 1100px; margin: 0 auto 2rem; }
+.ch-elem-card { background: rgba(255,255,255,0.02); border: 1px solid #1e293b; border-radius: 10px; padding: 1.1rem; transition: border-color 0.25s; }
+.ch-elem-card:hover { background: rgba(255,255,255,0.04); }
+.ch-e-header { display: flex; gap: 0.7rem; align-items: center; margin-bottom: 0.7rem; }
+.ch-e-sym { font-size: 1.6rem; flex-shrink: 0; }
+.ch-e-name { font-weight: 700; font-size: 0.95rem; margin-bottom: 0.1rem; }
+.ch-e-years { font-family: var(--font-mono); font-size: 0.68rem; color: var(--text-muted); }
+.ch-e-desc { font-size: 0.83rem; line-height: 1.65; color: var(--slate); margin: 0; }
+
+/* ─── Bloc polarités ─── */
+.ch-polarity-block { max-width: 700px; margin: 0 auto; background: rgba(255,255,255,0.02); border: 1px solid #1e293b; border-radius: 12px; padding: 1.5rem; }
+.ch-polarity-title { font-family: var(--font-mono); font-size: 0.9rem; text-align: center; color: var(--text); margin: 0 0 1.2rem; }
+.ch-polarity-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.ch-pol-card { padding: 1rem; border-radius: 8px; }
+.ch-pol-yang { background: rgba(244,114,182,0.07); border: 1px solid rgba(244,114,182,0.2); }
+.ch-pol-yin { background: rgba(34,211,238,0.05); border: 1px solid rgba(34,211,238,0.2); }
+.ch-pol-name { font-family: var(--font-mono); font-size: 0.85rem; font-weight: 700; margin-bottom: 0.5rem; }
+.ch-pol-yang .ch-pol-name { color: var(--rose); }
+.ch-pol-yin .ch-pol-name { color: var(--cyan); }
+.ch-pol-card p { font-size: 0.83rem; line-height: 1.65; color: var(--slate); margin: 0; }
+
+/* ─── Sélecteur de ville ─── */
+.at-select-wrap { position: relative; }
+.at-select-native { width: 100%; appearance: none; background: rgba(255,255,255,0.04); border: 1px solid rgba(244,114,182,0.25); border-radius: 8px; color: var(--text); font-family: var(--font-mono); font-size: 0.85rem; padding: 0.65rem 2.2rem 0.65rem 0.9rem; cursor: pointer; }
+.at-select-native:focus { outline: none; border-color: var(--rose); }
+.at-select-chevron { position: absolute; right: 0.75rem; top: 50%; transform: translateY(-50%); pointer-events: none; color: var(--text-muted); font-size: 0.8rem; }
+
+/* ─── Carte ascendant 時辰 ─── */
+.ch-shichen-card { border-color: rgba(34,211,238,0.25); }
+.ch-shichen-plan { border-left-color: rgba(34,211,238,0.3); }
+
+@media (max-width: 600px) {
+  .ch-polarity-grid { grid-template-columns: 1fr; }
+  .ch-elem-grid { grid-template-columns: 1fr 1fr; }
+  .ch-animal-grid { grid-template-columns: 1fr; }
+}
+
+/* ─── Titres sections résultats ─── */
+.at-dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+.at-title-left { display: inline-flex; align-items: center; gap: 0.7rem; }
+
+.pyth-result-block .at-highlight-title {
+  font-size: 1.1rem;
+  font-family: var(--font-sans);
+  text-transform: none;
+  letter-spacing: -0.01em;
+  color: #f8fafc;
+  font-weight: 700;
+  margin-bottom: 1.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  flex-wrap: wrap;
+  gap: 0.4rem 1rem;
+  padding-bottom: 0.9rem;
+  border-bottom: 1px solid rgba(255,255,255,0.09);
+}
+.at-highlight-title .at-dot { width: 13px; height: 13px; }
+.at-highlight-title .at-hint {
+  font-family: var(--font-mono);
+  font-size: 0.79rem;
+  font-style: italic;
+  color: var(--text-muted);
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+  margin-left: auto;
+  opacity: 0.9;
+}
+.ch-ht-rose .at-title-left { color: var(--rose); }
+.ch-ht-rose { border-bottom-color: rgba(244,114,182,0.35); }
+.ch-ht-gold .at-title-left { color: var(--gold); }
+.ch-ht-gold { border-bottom-color: rgba(234,179,8,0.35); }
+.ch-ht-cyan .at-title-left { color: var(--cyan); }
+.ch-ht-cyan { border-bottom-color: rgba(34,211,238,0.35); }
+
+@media (max-width:600px) {
+  .pyth-result-block .at-highlight-title { flex-direction: column; align-items: flex-start; gap: 0.3rem; }
+  .at-highlight-title .at-hint { margin-left: 0; }
+}
+
+/* ─── Light Mode ─── */
+[data-theme="light"] .ch-result-card,
+[data-theme="light"] .ch-element-card,
+[data-theme="light"] .ch-shichen-card {
+  background: #ffffff;
+  border-color: rgba(0,0,0,0.09);
+}
+[data-theme="light"] .ch-animal-card {
+  background: #ffffff;
+  border-color: rgba(0,0,0,0.08);
+}
+[data-theme="light"] .ch-animal-card:hover {
+  background: rgba(219,39,119,0.03);
+  border-color: rgba(219,39,119,0.2);
+}
+[data-theme="light"] .ch-elem-card {
+  background: #ffffff;
+  border-color: rgba(0,0,0,0.08);
+}
+[data-theme="light"] .ch-polarity-block {
+  background: #ffffff;
+  border-color: rgba(0,0,0,0.08);
+}
+[data-theme="light"] .ch-pol-yang {
+  background: rgba(219,39,119,0.05);
+  border-color: rgba(219,39,119,0.2);
+}
+[data-theme="light"] .ch-pol-yin {
+  background: rgba(8,145,178,0.05);
+  border-color: rgba(8,145,178,0.2);
+}
+[data-theme="light"] .ch-cny-note {
+  background: rgba(219,39,119,0.04);
+  border-color: rgba(219,39,119,0.15);
+}
+[data-theme="light"] .ch-badge {
+  background: rgba(0,0,0,0.04);
+  border-color: rgba(0,0,0,0.12);
+  color: var(--text-muted);
+}
+[data-theme="light"] .at-plan-item {
+  background: rgba(0,0,0,0.02);
+  border-left-color: rgba(219,39,119,0.25);
+}
+[data-theme="light"] .ch-shichen-plan {
+  border-left-color: rgba(8,145,178,0.3);
+}
+[data-theme="light"] .at-rc-interp { color: #334155; }
+[data-theme="light"] .at-select-wrap .at-select-native {
+  background: #f8fafc;
+  border-color: rgba(0,0,0,0.15);
+  color: var(--text);
+}
+[data-theme="light"] .pyth-result-block .at-highlight-title { color: #0f172a; border-bottom-color: rgba(0,0,0,0.1); }
+[data-theme="light"] .ch-ht-rose .at-title-left { color: rgb(190,18,60); }
+[data-theme="light"] .ch-ht-rose { border-bottom-color: rgba(219,39,119,0.35); }
+[data-theme="light"] .ch-ht-gold .at-title-left { color: rgb(133,77,14); }
+[data-theme="light"] .ch-ht-gold { border-bottom-color: rgba(161,120,0,0.35); }
+[data-theme="light"] .ch-ht-cyan .at-title-left { color: rgb(8,145,178); }
+[data-theme="light"] .ch-ht-cyan { border-bottom-color: rgba(8,145,178,0.35); }
+</style>

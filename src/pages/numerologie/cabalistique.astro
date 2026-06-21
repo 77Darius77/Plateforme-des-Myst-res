@@ -22,7 +22,15 @@ const jsonLd = {
   canonicalPath="numerologie/cabalistique.html"
   jsonLd={jsonLd}
   scripts={["/assets/js/calculateur.js"]}
+  section="numerologie"
 >
+
+<!-- ═══════════ FIL D'ARIANE ═══════════ -->
+<nav class="breadcrumb" aria-label="Fil d'Ariane" style="padding:0.8rem 1.5rem;font-family:var(--font-mono);font-size:0.8rem;color:var(--text-muted);max-width:1200px;margin:0 auto;">
+  <a href="../index.html" style="color:var(--cyan);">Accueil</a> &rsaquo;
+  <a href="index.html" style="color:var(--cyan);">Numérologie</a> &rsaquo;
+  <span style="color:var(--text);">Cabalistique</span>
+</nav>
 
 <!-- ═══════════ HERO / BANNIÈRE ═══════════ -->
 <section id="hero">
@@ -49,11 +57,11 @@ const jsonLd = {
   </div>
 
   <div style="max-width:600px;margin:0 auto 1.5rem;text-align:center;">
-    <p style="color:#d0d6e0;font-size:0.95rem;">
-      <strong style="color:#34d399;">Chemin de vie</strong> = ton don, ta mission d'âme.
-      <strong style="color:#fbbf24;">Ticún</strong> = le défi que tu es venu·e rectifier.
+    <p class="cab-intro-text">
+      <strong class="cab-label-emerald">Chemin de vie</strong> = ton don, ta mission d'âme.
+      <strong class="cab-label-gold">Ticún</strong> = le défi que tu es venu·e rectifier.
     </p>
-    <p style="color:#8a8f98;font-size:0.85rem;">
+    <p class="cab-intro-sub">
       Entre ta date de naissance et découvre tes deux nombres sacrés.
     </p>
   </div>
@@ -83,22 +91,10 @@ const jsonLd = {
   <div class="grid" id="archetypesGrid"></div>
 </section>
 
-<!-- ═══════════ INFOGRAPHIE ═══════════ -->
-<section id="infographie">
-  <div class="section-title">
-    <div class="num">[ 03 ]</div>
-    <h2>✦ Infographie</h2>
-    <p class="slate">Les 22 archétypes en un coup d'œil.</p>
-  </div>
-  <object data="../../assets/images/infographie_22_archetypes.svg" type="image/svg+xml" style="max-width:100%;height:auto;border-radius:10px;border:1px solid #334155;" aria-label="Infographie des 22 archétypes de la numérologie cabalistique" role="img">
-    Ton navigateur ne supporte pas le SVG inline.
-  </object>
-</section>
-
 <!-- ═══════════ MÉTHODE ═══════════ -->
 <section id="methode">
   <div class="section-title">
-    <div class="num">[ 04 ]</div>
+    <div class="num">[ 03 ]</div>
     <h2>✦ La Méthode</h2>
     <p class="slate">Comment fonctionne le calcul, selon Raúl Durán.</p>
   </div>
@@ -132,130 +128,394 @@ const jsonLd = {
 
 </Layout>
 
-<style>
-  /* ═══════════ NOUVELLES SECTIONS RÉSULTAT — calculateur cabalistique ═══════════ */
+<style is:global>
+  /* ═══════════ CALCULATEUR RÉSULTATS — styles globaux (éléments injectés via JS) ═══════════ */
 
-  /* ─── Nombres bruts (petites cartes alignées) ─── */
-  .raw-numbers {
-    display: flex;
+  /* Neutralise le fond doré italique hérité */
+  .result-interpretation {
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    margin-top: 2rem;
+    font-style: normal !important;
+  }
+
+  /* Layout des deux cartes principales */
+  #resultCards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 1rem;
-    justify-content: center;
-    margin: 1.5rem 0;
+    margin-bottom: 1.5rem;
+  }
+
+  /* ─── Intro sous le titre ─── */
+  .cab-intro-text {
+    color: var(--text-dim);
+    font-size: 0.95rem;
+  }
+  .cab-intro-sub {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+  }
+  .cab-label-emerald { color: var(--emerald); }
+  .cab-label-gold    { color: var(--gold); }
+
+  /* ─── Formule de calcul ─── */
+  .calc-detail {
+    background: linear-gradient(150deg, rgba(18,25,42,0.85) 0%, rgba(10,13,23,0.92) 100%);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: var(--radius);
+    padding: 1.25rem 1.75rem;
+    backdrop-filter: blur(10px);
+    margin-bottom: 1.5rem;
+    font-family: var(--font-mono);
+  }
+  .calc-formula { display: flex; flex-direction: column; gap: 0.65rem; }
+  .cf-row {
+    display: flex;
+    align-items: flex-end;
+    gap: 0.5rem;
     flex-wrap: wrap;
   }
-  .raw-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 1rem 1.5rem;
-    text-align: center;
-    min-width: 100px;
-  }
-  .raw-num {
-    font-family: var(--font-mono);
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: var(--gold);
-    display: block;
-    line-height: 1.2;
-  }
-  .raw-label {
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
+  .cf-item { display: flex; flex-direction: column; align-items: center; }
+  .cf-lbl {
+    font-size: 0.6rem;
     color: var(--text-muted);
     text-transform: uppercase;
     letter-spacing: 0.1em;
+    margin-bottom: 0.15rem;
   }
-  .raw-desc {
+  .cf-num {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--slate);
+    line-height: 1;
+  }
+  .cf-sep, .cf-eq, .cf-arrow {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    padding-bottom: 0.05rem;
+  }
+  .cf-total {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--slate);
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 6px;
+    padding: 0.15rem 0.45rem;
+    line-height: 1;
+  }
+  .cf-result {
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+  }
+  .cf-result strong { font-size: 1.2rem; }
+
+  /* Utilitaires couleur */
+  .cf-cyan   { color: var(--cyan) !important; }
+  .cf-violet { color: var(--violet) !important; }
+  .cf-emerald { color: var(--emerald) !important; }
+  .cf-gold   { color: var(--gold) !important; }
+
+  /* ─── Lecture croisée ─── */
+  .lc-section { margin-bottom: 2.5rem; }
+  .lc-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .lc-sym { color: var(--gold); font-size: 0.95rem; }
+  .lc-title {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-muted);
+    flex: 1;
+  }
+  .lc-badge {
+    font-family: var(--font-mono);
     font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--gold);
+    background: rgba(223,178,108,0.1);
+    border: 1px solid rgba(223,178,108,0.25);
+    border-radius: 6px;
+    padding: 0.2rem 0.65rem;
+  }
+  .lc-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  .lc-card {
+    background: linear-gradient(150deg, rgba(18,25,42,0.92) 0%, rgba(10,13,23,0.97) 100%);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.35);
+    transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s cubic-bezier(0.16,1,0.3,1);
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+  .lc-chemin { border-top: 2px solid var(--emerald); }
+  .lc-ticun  { border-top: 2px solid var(--gold); }
+  .lc-card:hover { transform: translateY(-2px); }
+  .lc-chemin:hover { box-shadow: 0 12px 35px rgba(0,0,0,0.45), 0 0 25px -8px var(--emerald); }
+  .lc-ticun:hover  { box-shadow: 0 12px 35px rgba(0,0,0,0.45), 0 0 25px -8px var(--gold); }
+  .lc-num {
+    font-family: var(--font-mono);
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1;
+  }
+  .lc-role {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+  }
+  .lc-force {
+    font-size: 0.92rem;
+    font-weight: 700;
+    margin-top: 0.35rem;
+  }
+  .lc-interp {
+    font-size: 0.87rem;
     color: var(--text-dim);
-    margin-top: 0.3rem;
+    line-height: 1.75;
+    margin-top: 0.5rem;
   }
 
-  /* ─── Interprétations Jour/Mois/Année ─── */
+  /* ─── Composantes numériques ─── */
+  .composantes-section {
+    margin: 2.5rem 0;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  .composantes-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+  .comp-sym { color: var(--violet); font-size: 1rem; }
+  .comp-title {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-muted);
+    font-weight: 400;
+    margin: 0;
+  }
+
+  /* Mini-cartes Jour / Mois / Année */
+  .raw-numbers {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  .raw-card {
+    background: linear-gradient(150deg, rgba(18,25,42,0.90) 0%, rgba(10,13,23,0.96) 100%);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 14px;
+    padding: 1.25rem 1rem;
+    text-align: center;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.30);
+    transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s cubic-bezier(0.16,1,0.3,1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem;
+  }
+  .raw-card:hover { transform: translateY(-3px); }
+  .raw-jour  { border-top: 2px solid var(--cyan); }
+  .raw-mois  { border-top: 2px solid var(--violet); }
+  .raw-annee { border-top: 2px solid var(--emerald); }
+  .raw-jour:hover  { box-shadow: 0 10px 28px rgba(0,0,0,0.40), 0 0 20px -8px var(--cyan); }
+  .raw-mois:hover  { box-shadow: 0 10px 28px rgba(0,0,0,0.40), 0 0 20px -8px var(--violet); }
+  .raw-annee:hover { box-shadow: 0 10px 28px rgba(0,0,0,0.40), 0 0 20px -8px var(--emerald); }
+  .raw-num {
+    font-family: var(--font-mono);
+    font-size: 2.2rem;
+    font-weight: 700;
+    line-height: 1.1;
+    display: block;
+  }
+  .raw-jour  .raw-num { color: var(--cyan); }
+  .raw-mois  .raw-num { color: var(--violet); }
+  .raw-annee .raw-num { color: var(--emerald); }
+  .raw-label {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-muted);
+    display: block;
+  }
+  .raw-desc {
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    line-height: 1.4;
+    margin: 0;
+  }
+
+  /* Cartes d'interprétation Jour/Mois/Année */
   .detail-interpretations {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
-    margin: 1.5rem 0;
+    gap: 0.75rem;
   }
   .interp-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 1.2rem 1.5rem;
+    background: linear-gradient(150deg, rgba(18,25,42,0.88) 0%, rgba(10,13,23,0.94) 100%);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-left: 3px solid transparent;
+    border-radius: 14px;
+    padding: 1.25rem 1.5rem;
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s cubic-bezier(0.16,1,0.3,1);
+  }
+  .interp-jour  { border-left-color: var(--cyan); }
+  .interp-mois  { border-left-color: var(--violet); }
+  .interp-annee { border-left-color: var(--emerald); }
+  .interp-card:hover {
+    transform: translateX(4px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.30);
   }
   .interp-card h4 {
     font-family: var(--font-mono);
-    font-size: 1rem;
-    color: var(--gold);
+    font-size: 0.88rem;
+    font-weight: 600;
     margin-bottom: 0.5rem;
   }
+  .interp-jour  h4 { color: var(--cyan); }
+  .interp-mois  h4 { color: var(--violet); }
+  .interp-annee h4 { color: var(--emerald); }
   .interp-card p {
-    font-size: 0.95rem;
+    font-size: 0.87rem;
     color: var(--text-dim);
-    line-height: 1.7;
-  }
-
-  /* ─── Répartition Dons / Défis ─── */
-  .repartition {
-    margin: 1.5rem 0;
-  }
-  .repartition h4 {
-    font-family: var(--font-mono);
-    font-size: 1rem;
-    color: var(--gold);
-    margin-bottom: 1rem;
-    text-align: center;
-  }
-  .repart-spectrum {
-    display: flex;
-    justify-content: space-between;
-    gap: 0.5rem;
-  }
-  .repart-spectrum > div {
-    flex: 1;
-    text-align: center;
-    padding: 1rem;
-    border-radius: 12px;
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-  }
-  .repart-num {
-    font-family: var(--font-mono);
-    font-size: 1.8rem;
-    font-weight: 700;
-    display: block;
-    margin-bottom: 0.3rem;
-  }
-  .repart-don .repart-num { color: var(--gold); }
-  .repart-defi .repart-num { color: var(--text-muted); }
-  .repart-ambiv .repart-num { color: var(--cyan); }
-  .repart-spectrum small {
-    display: block;
-    font-size: 0.75rem;
-    color: var(--text-muted);
-    margin-top: 0.3rem;
+    line-height: 1.75;
+    margin: 0;
   }
 
   /* ─── Portrait d'Âme ─── */
   .portrait {
-    background: rgba(223, 178, 108, 0.05);
-    border: 1px solid rgba(223, 178, 108, 0.2);
-    border-radius: 12px;
-    padding: 1.5rem;
-    margin: 1.5rem 0;
+    background: linear-gradient(150deg, rgba(18,25,42,0.90) 0%, rgba(10,13,23,0.96) 100%);
+    border: 1px solid rgba(223,178,108,0.16);
+    border-left: 3px solid var(--gold);
+    border-radius: var(--radius);
+    padding: 1.75rem 2rem;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 6px 24px rgba(0,0,0,0.35);
+    margin-top: 0;
   }
-  .portrait h4 {
+  .portrait-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid rgba(223,178,108,0.12);
+  }
+  .portrait-sym { font-size: 1.1rem; }
+  .portrait-title {
     font-family: var(--font-mono);
-    font-size: 1rem;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
     color: var(--gold);
-    margin-bottom: 0.8rem;
+    font-weight: 400;
+    margin: 0;
   }
   .portrait-text {
-    font-size: 1.05rem;
-    line-height: 1.8;
+    font-size: 1rem;
+    line-height: 1.85;
     color: var(--text-dim);
     font-style: italic;
+    margin: 0;
+  }
+
+  /* ─── Responsive ─── */
+  @media (max-width: 640px) {
+    #resultCards   { grid-template-columns: 1fr; }
+    .lc-cards      { grid-template-columns: 1fr; }
+    .raw-numbers   { grid-template-columns: repeat(3, 1fr); }
+    .cf-row        { gap: 0.35rem; }
+    .cf-result     { font-size: 0.82rem; }
+  }
+  @media (max-width: 420px) {
+    .raw-numbers   { grid-template-columns: 1fr; }
+  }
+
+  /* ─── Light mode overrides ─── */
+  [data-theme="light"] .lc-header,
+  [data-theme="light"] .composantes-section,
+  [data-theme="light"] .portrait-header {
+    border-color: rgba(0,0,0,0.08);
+  }
+  [data-theme="light"] .lc-card,
+  [data-theme="light"] .raw-card,
+  [data-theme="light"] .interp-card,
+  [data-theme="light"] .portrait {
+    background: #ffffff;
+    border-color: rgba(0,0,0,0.08);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  }
+  [data-theme="light"] .lc-card:hover,
+  [data-theme="light"] .raw-card:hover,
+  [data-theme="light"] .interp-card:hover {
+    box-shadow: 0 12px 35px rgba(0,0,0,0.12);
+  }
+  [data-theme="light"] .lc-title,
+  [data-theme="light"] .comp-title,
+  [data-theme="light"] .lc-role,
+  [data-theme="light"] .raw-label {
+    color: #475569;
+  }
+  [data-theme="light"] .lc-interp,
+  [data-theme="light"] .raw-desc,
+  [data-theme="light"] .interp-card p,
+  [data-theme="light"] .portrait-text {
+    color: #334155;
+  }
+  [data-theme="light"] .portrait {
+    border-color: rgba(180,133,59,0.25);
+    border-left-color: var(--gold);
+  }
+
+  [data-theme="light"] .cab-intro-text { color: #334155; }
+  [data-theme="light"] .cab-intro-sub  { color: #475569; }
+  [data-theme="light"] .cab-label-emerald { color: #047857; }
+  [data-theme="light"] .cab-label-gold    { color: #92400e; }
+
+  [data-theme="light"] .calc-detail {
+    background: #ffffff;
+    border-color: rgba(0,0,0,0.08);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  }
+  [data-theme="light"] .cf-lbl,
+  [data-theme="light"] .cf-sep,
+  [data-theme="light"] .cf-eq,
+  [data-theme="light"] .cf-arrow {
+    color: #475569;
+  }
+  [data-theme="light"] .cf-num,
+  [data-theme="light"] .cf-total {
+    color: #0f172a;
+  }
+  [data-theme="light"] .cf-total {
+    background: rgba(0,0,0,0.04);
+    border-color: rgba(0,0,0,0.08);
   }
 </style>

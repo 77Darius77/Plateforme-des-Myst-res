@@ -1,0 +1,288 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Tirage à 3 Cartes — Oracle de Belline"
+  description="Effectuez un tirage à 3 cartes gratuit avec l'Oracle de Belline. Passé, Présent, Futur."
+  keywords="oracle de belline, tirage 3 cartes, belline, voyance, passé présent futur"
+  canonicalPath="oracles/belline/trois-cartes.html"
+  section="oracles"
+>
+
+<nav class="breadcrumb" aria-label="Fil d'Ariane" style="padding:0.8rem 1.5rem;font-family:var(--font-mono);font-size:0.8rem;color:var(--text-muted);max-width:1200px;margin:0 auto;">
+  <a href="../../index.html" style="color:var(--cyan);">Accueil</a> &rsaquo;
+  <a href="../index.html" style="color:var(--cyan);">Oracles</a> &rsaquo;
+  <a href="../belline.html" style="color:var(--cyan);">Oracle de Belline</a> &rsaquo;
+  <span style="color:var(--text);">Tirage 3 Cartes</span>
+</nav>
+
+<main style="max-width:1200px;margin:0 auto;padding:2rem 1.5rem;text-align:center;">
+  <h1>Tirage à <span class="gold">3 Cartes</span></h1>
+  <p class="subtitle">Concentrez-vous sur votre question. Étalez les cartes, puis choisissez-en 3.</p>
+
+  <div id="deck-area" style="margin-top:2rem;position:relative;height:250px;display:flex;justify-content:center;align-items:center;">
+    <button id="btn-spread" class="btn-explore" style="font-size:1.2rem;padding:1rem 2rem;cursor:pointer;z-index:10;">Étaler les cartes ✦</button>
+    
+    <div id="spread-container" style="display:none;position:relative;width:100%;height:100%;max-width:800px;margin:0 auto;">
+      <p id="instruction-text" style="position:absolute;top:-40px;width:100%;color:var(--gold);font-weight:bold;font-size:1.1rem;">Sélectionnez 3 cartes (0/3)</p>
+    </div>
+  </div>
+
+  <div id="resultats" style="margin-top:3rem;">
+    <div style="display:flex;flex-wrap:wrap;gap:2rem;justify-content:center;">
+      <div class="tarot-card-container">
+        <div class="tarot-pos">1. Le Passé</div>
+        <div class="tarot-card" id="slot-1">
+          <div class="card-inner">
+            <div class="card-front empty-slot"></div>
+            <div class="card-back">
+              <div class="belline-icon" id="icon-1"></div>
+              <img id="img-1" src="" alt="" class="card-img">
+              <div class="belline-label" id="label-1"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tarot-card-container">
+        <div class="tarot-pos">2. Le Présent</div>
+        <div class="tarot-card" id="slot-2">
+          <div class="card-inner">
+            <div class="card-front empty-slot"></div>
+            <div class="card-back">
+              <div class="belline-icon" id="icon-2"></div>
+              <img id="img-2" src="" alt="" class="card-img">
+              <div class="belline-label" id="label-2"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tarot-card-container">
+        <div class="tarot-pos">3. Le Futur</div>
+        <div class="tarot-card" id="slot-3">
+          <div class="card-inner">
+            <div class="card-front empty-slot"></div>
+            <div class="card-back">
+              <div class="belline-icon" id="icon-3"></div>
+              <img id="img-3" src="" alt="" class="card-img">
+              <div class="belline-label" id="label-3"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div id="reveal-area" style="display:none;margin-top:2rem;">
+      <button id="btn-reveal" class="btn-explore" style="font-size:1.2rem;padding:1rem 2rem;cursor:pointer;">Révéler le tirage ✦</button>
+    </div>
+
+    <div id="reading-section" class="tr-outer" style="display:none;margin-top:2.5rem;"></div>
+
+    <p style="margin-top:2rem;font-style:italic;color:var(--text-muted);">Ce tirage vous offre des pistes de réflexion. Le libre arbitre reste votre meilleur guide.</p>
+  </div>
+</main>
+
+<style>
+  .tarot-card-container { width: 260px; }
+  .tarot-pos { font-family: var(--font-mono); font-size: 0.85rem; color: var(--gold); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 1px; }
+  .tarot-card { width: 100%; height: 460px; perspective: 1000px; }
+  .card-inner { position: relative; width: 100%; height: 100%; text-align: center; transition: transform 0.8s; transform-style: preserve-3d; }
+  .tarot-card.flipped .card-inner { transform: rotateY(180deg); }
+  
+  .card-front, .card-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 10px; border: 2px solid var(--gold); display: flex; flex-direction: column; padding: 0.8rem; }
+  
+  .card-front { 
+    background-image: url('/images/oracles/belline-card-back.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    justify-content: center; align-items: center;
+  }
+  
+  .empty-slot {
+    background: rgba(16, 185, 129, 0.03);
+    background-image: none;
+    border: 2px dashed rgba(16, 185, 129, 0.4);
+  }
+  .filled-slot {
+    background-image: url('/images/oracles/belline-card-back.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 2px solid var(--emerald);
+    box-shadow: 0 0 8px rgba(16, 185, 129, 0.3);
+  }
+  
+  .card-back { background: var(--bg-card); transform: rotateY(180deg); box-shadow: 0 10px 20px rgba(0,0,0,0.5); overflow-y: auto; justify-content: flex-start; align-items: center; }
+  .card-back h3 { color: var(--gold); font-size: 1.15rem; margin-bottom: 0.2rem; padding-bottom: 0.2rem; width: 100%; }
+  .card-img { width: 92%; height: auto; max-height: 78%; border-radius: 4px; object-fit: contain; margin: 0.15rem 0 0.2rem; }
+  .meaning { font-size: 0.82rem; line-height: 1.5; color: var(--text); text-align: left; }
+
+  @media (max-width: 768px) {
+    .tarot-card-container { width: 220px; }
+    .tarot-card { height: 400px; }
+  }
+</style>
+
+<style is:global>
+  .spread-card {
+    position: absolute;
+    width: 56px;
+    height: 100px;
+    background-image: url('/images/oracles/belline-card-back.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 1px solid #10b981;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    top: 60px;
+    box-shadow: -2px 0px 6px rgba(0,0,0,0.9), 0 0 4px rgba(16, 185, 129, 0.15);
+  }
+  .spread-card:hover {
+    transform: translateY(-18px) !important;
+    z-index: 100 !important;
+    box-shadow: 0px 12px 20px rgba(0,0,0,0.7), 0 0 12px rgba(16, 185, 129, 0.5);
+  }
+  .spread-card.selected {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+</style>
+
+<script is:inline src="/js/belline-data.js"></script>
+<script is:inline src="/js/belline-interp.js"></script>
+<script is:inline src="/js/belline-planes.js"></script>
+<script is:inline>
+  function initBellineSpread() {
+    const btnSpread = document.getElementById('btn-spread');
+    if (!btnSpread || btnSpread.dataset.initialized) return;
+    btnSpread.dataset.initialized = "true";
+
+    const MAX_CARDS = 3;
+    let selectedCards = [];
+    let deckIndices = [];
+
+    const newBtnSpread = btnSpread.cloneNode(true);
+    btnSpread.parentNode.replaceChild(newBtnSpread, btnSpread);
+
+    newBtnSpread.addEventListener('click', () => {
+      newBtnSpread.style.display = 'none';
+      const container = document.getElementById('spread-container');
+      container.style.display = 'block';
+      
+      container.querySelectorAll('.spread-card').forEach(c => c.remove());
+      
+      const deckSize = window.bellineData.length;
+      deckIndices = Array.from({length: deckSize}, (_, i) => i).sort(() => 0.5 - Math.random());
+      
+      void container.offsetWidth;
+      const containerWidth = container.offsetWidth > 0 ? container.offsetWidth : Math.min(window.innerWidth - 40, 800);
+      const cardWidth = 56;
+      const step = (containerWidth - cardWidth) / (deckSize - 1);
+      
+      for(let i=0; i<deckSize; i++) {
+        const card = document.createElement('div');
+        card.className = 'spread-card';
+        card.style.left = `${i * step}px`;
+        card.style.zIndex = i;
+        
+        const middle = (deckSize - 1) / 2;
+        const distanceFromCenter = Math.abs(i - middle);
+        const yOffset = (distanceFromCenter * distanceFromCenter) * 0.03;
+        const rotation = (i - middle) * (40 / deckSize);
+        
+        card.style.transform = `translateY(${yOffset}px) rotate(${rotation}deg)`;
+        card.dataset.index = deckIndices[i];
+        card.dataset.id = i;
+        
+        card.addEventListener('click', () => selectCard(card));
+        container.appendChild(card);
+      }
+    });
+
+    function selectCard(cardEl) {
+      if(selectedCards.length >= MAX_CARDS) return;
+      
+      cardEl.classList.add('selected');
+      const actualCardData = window.bellineData[cardEl.dataset.index];
+      selectedCards.push(actualCardData);
+      
+      const slotIdx = selectedCards.length;
+      const slotFront = document.querySelector(`#slot-${slotIdx} .card-front`);
+      if(slotFront) {
+        slotFront.classList.remove('empty-slot');
+        slotFront.classList.add('filled-slot');
+      }
+      
+      const instr = document.getElementById('instruction-text');
+      if(instr) instr.innerText = `Sélectionnez ${MAX_CARDS} cartes (${selectedCards.length}/${MAX_CARDS})`;
+      
+      if(selectedCards.length === MAX_CARDS) {
+        if(instr) instr.innerText = "Tirage complet.";
+        setTimeout(() => {
+          document.getElementById('deck-area').style.display = 'none';
+          document.getElementById('reveal-area').style.display = 'block';
+        }, 800);
+      }
+    }
+
+    const btnReveal = document.getElementById('btn-reveal');
+    if (btnReveal) {
+      const newBtnReveal = btnReveal.cloneNode(true);
+      btnReveal.parentNode.replaceChild(newBtnReveal, btnReveal);
+      newBtnReveal.addEventListener('click', () => {
+        newBtnReveal.style.display = 'none';
+
+        setTimeout(() => {
+          for(let i=1; i<=MAX_CARDS; i++) {
+            const cardData = selectedCards[i-1];
+            document.getElementById(`img-${i}`).src = cardData.img;
+            document.getElementById(`icon-${i}`).innerText = cardData.planetEmoji;
+            document.getElementById(`label-${i}`).innerText = cardData.name;
+            setTimeout(() => {
+              document.getElementById(`slot-${i}`).classList.add('flipped');
+            }, i * 350);
+          }
+        }, 100);
+
+        setTimeout(() => {
+          const rs = document.getElementById('reading-section');
+          if (rs && window.bellineInterp) {
+            rs.innerHTML = window.bellineInterp.generateReadingWithPlanes('trois-cartes', selectedCards);
+            setTimeout(function() { initPlaneTabs(); }, 100);
+            rs.style.display = 'block';
+            rs.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }, 2000);
+      });
+    }
+  }
+
+
+  function initPlaneTabs() {
+    document.querySelectorAll('.tr-plane-tab').forEach(function(tab) {
+      tab.addEventListener('click', function() {
+        var plane = this.dataset.plane;
+        document.querySelectorAll('.tr-plane-tab').forEach(function(t) { t.classList.remove('active'); });
+        this.classList.add('active');
+        document.querySelectorAll('.tr-plane-pane').forEach(function(p) { p.classList.remove('active'); });
+        var pane = document.querySelector('.tr-plane-pane[data-plane="' + plane + '"]');
+        if (pane) pane.classList.add('active');
+      });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initBellineSpread);
+  } else {
+    initBellineSpread();
+  }
+  document.addEventListener('astro:page-load', initBellineSpread);
+</script>
+
+</Layout>

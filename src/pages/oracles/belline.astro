@@ -3,45 +3,106 @@ import Layout from '../../layouts/Layout.astro';
 
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "Article",
-  "name": "Oracle de Belline — Le jeu des voyants",
+  "@type": "CollectionPage",
+  "name": "Oracle de Belline — Méthodes de Tirage",
   "url": "https://mysteres.fr/oracles/belline.html",
-  "description": "Découvrez l'Oracle de Belline, créé par le voyant Edmond dans les années 1960.",
+  "description": "Découvrez les 4 méthodes de tirage de l'Oracle de Belline : Tirage en Croix, 3 Cartes, Ligne de Vie et la Coupe. 53 cartes de précision divinatoire.",
   "inLanguage": "fr"
 };
 ---
 
 <Layout
-  title="Oracle de Belline — Oracles"
-  description="Découvrez l'Oracle de Belline, créé par le voyant Edmond dans les années 1960. Un jeu de 53 cartes d'une grande précision divinatoire."
-  keywords="oracle de belline, belline, cartes divinatoires, voyance, edmond"
+  title="Oracle de Belline — Méthodes de tirage"
+  description="Découvrez 4 méthodes de tirage de l'Oracle de Belline : le Tirage en Croix, le Tirage à 3 Cartes, la Ligne de Vie et la Coupe. Un oracle de 53 cartes créé par le voyant Edmond."
+  keywords="oracle de belline, belline, tirage belline, cartomancie, voyance, tirage en croix, edmond"
   canonicalPath="oracles/belline.html"
   jsonLd={jsonLd}
+  section="oracles"
 >
 
-<!-- ═══════════ FIL D'ARIANE ═══════════ -->
-<nav class="breadcrumb" aria-label="Fil d'Ariane" style="padding:0.8rem 1.5rem;font-family:var(--font-mono);font-size:0.8rem;color:var(--text-muted);">
+<!-- FIL D'ARIANE -->
+<nav class="breadcrumb" aria-label="Fil d'Ariane" style="padding:0.8rem 1.5rem;font-family:var(--font-mono);font-size:0.8rem;color:var(--text-muted);max-width:1200px;margin:0 auto;">
   <a href="../index.html" style="color:var(--cyan);">Accueil</a> &rsaquo;
   <a href="index.html" style="color:var(--cyan);">Oracles</a> &rsaquo;
-  <span style="color:var(--text-primary);">Oracle de Belline</span>
+  <span style="color:var(--text);">Oracle de Belline</span>
 </nav>
 
-<!-- ═══════════ BANNIÈRE "BIENTÔT" ═══════════ -->
-<section id="hero" style="text-align:center;padding:6rem 1.5rem 4rem;max-width:700px;margin:0 auto;">
-  <h1>
-    <span class="pulse"></span>
-    🔮 <span class="gold">Oracle de Belline</span><br>Le jeu des <span class="emerald">voyants</span>
-  </h1>
-  <p class="subtitle">
-    Cette section est en cours de création. L'Oracle de Belline, créé par le voyant Edmond dans les années 1960, est un jeu de 53 cartes d'une grande précision divinatoire. Revenez bientôt !
-  </p>
-  <a href="../oracles/index.html" class="cta">← Retour aux Oracles</a>
-</section>
+<div class="hub-container">
+  <aside class="hub-sidebar">
+    <h1>
+      <span class="pulse"></span>
+      🔮 <span class="gold">Oracle de Belline</span><br>Méthodes de <span class="emerald">tirage</span>
+    </h1>
+    <p class="subtitle">
+      Créé au XIX<sup>e</sup> siècle par le célèbre voyant Edmond (Jules Billaudot), redécouvert et publié par Belline en 1960, cet oracle de 53 cartes est organisé selon le septénaire astrologique. Sept séries de sept cartes, associées aux sept planètes traditionnelles, plus quatre cartes maîtresses, en font un outil d'une précision divinatoire remarquable.
+    </p>
+    <div class="quote">
+      « L'oracle ne prédit pas l'avenir, il éclaire le présent. »
+      <br><span class="gold">— Le Mage Edmond</span>
+    </div>
+  </aside>
 
-<!-- ═══════════ NAVIGATION PRÉCÉDENT / SUIVANT ═══════════ -->
+  <main class="hub-main">
+    <div class="section-title">
+      <div class="num">[ 01 ]</div>
+      <h2>✦ Les 4 Tirages de Belline</h2>
+      <p class="slate">Du tirage rapide à l'analyse complète, choisissez la méthode qui correspond à votre question.</p>
+    </div>
+
+    <div class="mystere-grid">
+
+      <!-- Carte 1 : Tirage en Croix -->
+      <div class="mystere-card" style="--card-accent-color: var(--gold); --hover-accent-color: var(--gold);">
+        <div class="card-icon">✚</div>
+        <h3>TIRAGE EN CROIX</h3>
+        <p>
+          Le tirage de référence en 5 cartes. Analyse complète d'une question précise : votre situation, les obstacles, le conseil, la réponse et la synthèse.
+        </p>
+        <a href="belline/croix.html" class="btn-explore">Tirer les cartes ✦</a>
+      </div>
+
+      <!-- Carte 2 : Tirage à 3 Cartes -->
+      <div class="mystere-card" style="--card-accent-color: var(--emerald); --hover-accent-color: var(--emerald);">
+        <div class="card-icon">🂠</div>
+        <h3>TIRAGE À 3 CARTES</h3>
+        <p>
+          Passé, Présent, Futur. La méthode classique pour une guidance rapide et éclairante sur l'évolution naturelle de votre situation.
+        </p>
+        <a href="belline/trois-cartes.html" class="btn-explore">Tirer les cartes ✦</a>
+      </div>
+
+      <!-- Carte 3 : Tirage en Ligne -->
+      <div class="mystere-card" style="--card-accent-color: var(--violet); --hover-accent-color: var(--violet);">
+        <div class="card-icon">📜</div>
+        <h3>LIGNE DE VIE</h3>
+        <p>
+          Une fresque narrative en 7 cartes, du passé lointain jusqu'à l'issue finale. Chaque carte est un chapitre de l'histoire qui se déroule.
+        </p>
+        <a href="belline/ligne.html" class="btn-explore">Tirer les cartes ✦</a>
+      </div>
+
+      <!-- Carte 4 : Tirage en Coupe -->
+      <div class="mystere-card" style="--card-accent-color: var(--rose); --hover-accent-color: var(--rose);">
+        <div class="card-icon">⚖</div>
+        <h3>TIRAGE EN COUPE</h3>
+        <p>
+          Deux cartes en dialogue : la situation et son évolution. La méthode favorite des cartomanciens pour une réponse concise et précise.
+        </p>
+        <a href="belline/coupe.html" class="btn-explore">Tirer les cartes ✦</a>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<!-- NAVIGATION PRÉCÉDENT / SUIVANT -->
 <nav class="sub-nav" style="display:flex;justify-content:space-between;max-width:600px;margin:2rem auto;padding:1rem;">
-  <span></span>
+  <a href="index.html" style="color:var(--cyan);font-family:var(--font-mono);">← Oracles</a>
   <a href="ge.html" style="color:var(--cyan);font-family:var(--font-mono);">Oracle Gé →</a>
 </nav>
+
+  <p slot="sources" style="color:#64748b;font-size:0.75rem;margin-bottom:0.8rem;">
+    Sources : Oracle de Belline (Edmond/Grimaud, 1960), livret original, traditions cartomanciennes françaises
+  </p>
 
 </Layout>

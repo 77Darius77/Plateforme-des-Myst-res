@@ -17,12 +17,15 @@
   --gold-dim: #c59750;
   --emerald: #3dd399;
   --cyan: #3bd3ee;
+  --cyan-rgb: 59, 211, 238;
   --violet: #b78bfa;
   --rose: #fb8195;
   --amber: #fb9e4c;
+  --orange: #f59e0b;
   --slate: #94a3b8;
   --text: #f1f5f9;
   --text-dim: #94a3b8;
+  --text-secondary: #cbd5e1;
   --text-muted: #64748b;
   --font-mono: 'Fira Code', 'Courier New', Courier, monospace;
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
@@ -50,18 +53,157 @@ body {
   overflow-x: hidden;
 }
 
-/* Background system: Cosmic glow radial gradients */
+/* ─── Premium Background System ─── */
+
+/* Positions animables des deux halos dominants via CSS Houdini */
+@property --b1x { syntax: '<percentage>'; inherits: false; initial-value: 12%; }
+@property --b1y { syntax: '<percentage>'; inherits: false; initial-value: 22%; }
+@property --b2x { syntax: '<percentage>'; inherits: false; initial-value: 88%; }
+@property --b2y { syntax: '<percentage>'; inherits: false; initial-value: 75%; }
+
+/* Layer 1 — Nébuleuse ambiante animée */
 body::before {
   content: '';
   position: fixed;
   inset: 0;
-  background:
-    radial-gradient(circle at 10% 20%, rgba(59, 211, 238, 0.03) 0%, transparent 40%),
-    radial-gradient(circle at 90% 80%, rgba(183, 139, 250, 0.035) 0%, transparent 40%),
-    radial-gradient(circle at 50% 50%, rgba(223, 178, 108, 0.02) 0%, transparent 60%),
-    var(--bg-deep);
   z-index: -2;
-  opacity: 1;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 70% 55% at var(--b1x) var(--b1y), rgba(59, 211, 238, 0.11) 0%, transparent 65%),
+    radial-gradient(ellipse 65% 55% at var(--b2x) var(--b2y), rgba(183, 139, 250, 0.11) 0%, transparent 65%),
+    radial-gradient(ellipse 55% 38% at 50% -5%, rgba(223, 178, 108, 0.08) 0%, transparent 55%),
+    radial-gradient(ellipse 55% 38% at 50% 105%, rgba(61, 211, 153, 0.07) 0%, transparent 55%),
+    radial-gradient(ellipse 40% 32% at 83% 17%, rgba(251, 129, 149, 0.05) 0%, transparent 50%),
+    radial-gradient(ellipse 35% 28% at 17% 80%, rgba(223, 178, 108, 0.05) 0%, transparent 50%),
+    radial-gradient(ellipse 140% 120% at 50% 50%, transparent 50%, rgba(0,0,0,0.55) 100%),
+    var(--bg-deep);
+  animation: nebula-default 32s linear infinite;
+}
+
+@keyframes nebula-default {
+  0%   { --b1x: 50%; --b1y:  5%; --b2x: 50%; --b2y: 93%; }
+  12%  { --b1x: 83%; --b1y: 15%; --b2x: 17%; --b2y: 85%; }
+  25%  { --b1x: 93%; --b1y: 50%; --b2x:  7%; --b2y: 50%; }
+  38%  { --b1x: 83%; --b1y: 85%; --b2x: 17%; --b2y: 15%; }
+  50%  { --b1x: 50%; --b1y: 93%; --b2x: 50%; --b2y:  5%; }
+  62%  { --b1x: 17%; --b1y: 85%; --b2x: 83%; --b2y: 15%; }
+  75%  { --b1x:  7%; --b1y: 50%; --b2x: 93%; --b2y: 50%; }
+  88%  { --b1x: 17%; --b1y: 15%; --b2x: 83%; --b2y: 85%; }
+  100% { --b1x: 50%; --b1y:  5%; --b2x: 50%; --b2y: 93%; }
+}
+
+/* Layer 2 — Film grain texture premium */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.038;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.78' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 300px 300px;
+}
+
+/* ─── Thèmes chromatiques par section ─── */
+
+/* Numérologie — Or / Ambre */
+body[data-section="numerologie"]::before {
+  background:
+    radial-gradient(ellipse 72% 58% at var(--b1x) var(--b1y), rgba(223, 178, 108, 0.15) 0%, transparent 65%),
+    radial-gradient(ellipse 60% 50% at var(--b2x) var(--b2y), rgba(251, 158, 76, 0.12) 0%, transparent 62%),
+    radial-gradient(ellipse 50% 38% at 50% -5%, rgba(223, 178, 108, 0.10) 0%, transparent 55%),
+    radial-gradient(ellipse 42% 32% at 80% 12%, rgba(59, 211, 238, 0.05) 0%, transparent 50%),
+    radial-gradient(ellipse 38% 30% at 18% 88%, rgba(251, 129, 149, 0.04) 0%, transparent 50%),
+    radial-gradient(ellipse 55% 38% at 50% 108%, rgba(61, 211, 153, 0.05) 0%, transparent 55%),
+    radial-gradient(ellipse 140% 120% at 50% 50%, transparent 50%, rgba(0,0,0,0.55) 100%),
+    var(--bg-deep);
+  animation: nebula-numerologie 34s linear infinite;
+}
+@keyframes nebula-numerologie {
+  0%   { --b1x: 83%; --b1y: 15%; --b2x: 17%; --b2y: 85%; }
+  12%  { --b1x: 93%; --b1y: 50%; --b2x:  7%; --b2y: 50%; }
+  25%  { --b1x: 83%; --b1y: 85%; --b2x: 17%; --b2y: 15%; }
+  38%  { --b1x: 50%; --b1y: 93%; --b2x: 50%; --b2y:  5%; }
+  50%  { --b1x: 17%; --b1y: 85%; --b2x: 83%; --b2y: 15%; }
+  62%  { --b1x:  7%; --b1y: 50%; --b2x: 93%; --b2y: 50%; }
+  75%  { --b1x: 17%; --b1y: 15%; --b2x: 83%; --b2y: 85%; }
+  88%  { --b1x: 50%; --b1y:  5%; --b2x: 50%; --b2y: 93%; }
+  100% { --b1x: 83%; --b1y: 15%; --b2x: 17%; --b2y: 85%; }
+}
+
+/* Tarologie — Violet / Rose */
+body[data-section="tarologie"]::before {
+  background:
+    radial-gradient(ellipse 72% 58% at var(--b1x) var(--b1y), rgba(183, 139, 250, 0.16) 0%, transparent 65%),
+    radial-gradient(ellipse 62% 52% at var(--b2x) var(--b2y), rgba(251, 129, 149, 0.13) 0%, transparent 62%),
+    radial-gradient(ellipse 50% 38% at 50% -5%, rgba(183, 139, 250, 0.09) 0%, transparent 55%),
+    radial-gradient(ellipse 42% 32% at 12% 12%, rgba(59, 211, 238, 0.04) 0%, transparent 50%),
+    radial-gradient(ellipse 38% 30% at 85% 88%, rgba(223, 178, 108, 0.04) 0%, transparent 50%),
+    radial-gradient(ellipse 55% 38% at 50% 108%, rgba(251, 129, 149, 0.07) 0%, transparent 55%),
+    radial-gradient(ellipse 140% 120% at 50% 50%, transparent 50%, rgba(0,0,0,0.55) 100%),
+    var(--bg-deep);
+  animation: nebula-tarologie 36s linear infinite;
+}
+@keyframes nebula-tarologie {
+  0%   { --b1x: 93%; --b1y: 50%; --b2x:  7%; --b2y: 50%; }
+  12%  { --b1x: 83%; --b1y: 85%; --b2x: 17%; --b2y: 15%; }
+  25%  { --b1x: 50%; --b1y: 93%; --b2x: 50%; --b2y:  5%; }
+  38%  { --b1x: 17%; --b1y: 85%; --b2x: 83%; --b2y: 15%; }
+  50%  { --b1x:  7%; --b1y: 50%; --b2x: 93%; --b2y: 50%; }
+  62%  { --b1x: 17%; --b1y: 15%; --b2x: 83%; --b2y: 85%; }
+  75%  { --b1x: 50%; --b1y:  5%; --b2x: 50%; --b2y: 93%; }
+  88%  { --b1x: 83%; --b1y: 15%; --b2x: 17%; --b2y: 85%; }
+  100% { --b1x: 93%; --b1y: 50%; --b2x:  7%; --b2y: 50%; }
+}
+
+/* Astrologie — Cyan / Émeraude */
+body[data-section="astrologie"]::before {
+  background:
+    radial-gradient(ellipse 72% 58% at var(--b1x) var(--b1y), rgba(59, 211, 238, 0.16) 0%, transparent 65%),
+    radial-gradient(ellipse 62% 52% at var(--b2x) var(--b2y), rgba(61, 211, 153, 0.13) 0%, transparent 62%),
+    radial-gradient(ellipse 50% 38% at 50% -5%, rgba(59, 211, 238, 0.10) 0%, transparent 55%),
+    radial-gradient(ellipse 42% 32% at 82% 12%, rgba(183, 139, 250, 0.05) 0%, transparent 50%),
+    radial-gradient(ellipse 38% 30% at 18% 85%, rgba(223, 178, 108, 0.04) 0%, transparent 50%),
+    radial-gradient(ellipse 55% 38% at 50% 108%, rgba(61, 211, 153, 0.08) 0%, transparent 55%),
+    radial-gradient(ellipse 140% 120% at 50% 50%, transparent 50%, rgba(0,0,0,0.55) 100%),
+    var(--bg-deep);
+  animation: nebula-astrologie 28s linear infinite;
+}
+@keyframes nebula-astrologie {
+  0%   { --b1x: 17%; --b1y: 15%; --b2x: 83%; --b2y: 85%; }
+  12%  { --b1x: 50%; --b1y:  5%; --b2x: 50%; --b2y: 93%; }
+  25%  { --b1x: 83%; --b1y: 15%; --b2x: 17%; --b2y: 85%; }
+  38%  { --b1x: 93%; --b1y: 50%; --b2x:  7%; --b2y: 50%; }
+  50%  { --b1x: 83%; --b1y: 85%; --b2x: 17%; --b2y: 15%; }
+  62%  { --b1x: 50%; --b1y: 93%; --b2x: 50%; --b2y:  5%; }
+  75%  { --b1x: 17%; --b1y: 85%; --b2x: 83%; --b2y: 15%; }
+  88%  { --b1x:  7%; --b1y: 50%; --b2x: 93%; --b2y: 50%; }
+  100% { --b1x: 17%; --b1y: 15%; --b2x: 83%; --b2y: 85%; }
+}
+
+/* Oracles — Émeraude / Teal */
+body[data-section="oracles"]::before {
+  background:
+    radial-gradient(ellipse 70% 58% at var(--b1x) var(--b1y), rgba(61, 211, 153, 0.15) 0%, transparent 65%),
+    radial-gradient(ellipse 60% 50% at var(--b2x) var(--b2y), rgba(59, 211, 238, 0.12) 0%, transparent 62%),
+    radial-gradient(ellipse 50% 38% at 50% 108%, rgba(61, 211, 153, 0.10) 0%, transparent 55%),
+    radial-gradient(ellipse 42% 32% at 15% 12%, rgba(223, 178, 108, 0.05) 0%, transparent 50%),
+    radial-gradient(ellipse 38% 30% at 85% 85%, rgba(183, 139, 250, 0.05) 0%, transparent 50%),
+    radial-gradient(ellipse 55% 38% at 50% -5%, rgba(59, 211, 238, 0.07) 0%, transparent 55%),
+    radial-gradient(ellipse 140% 120% at 50% 50%, transparent 50%, rgba(0,0,0,0.55) 100%),
+    var(--bg-deep);
+  animation: nebula-oracles 40s linear infinite;
+}
+@keyframes nebula-oracles {
+  0%   { --b1x: 83%; --b1y: 85%; --b2x: 17%; --b2y: 15%; }
+  12%  { --b1x: 50%; --b1y: 93%; --b2x: 50%; --b2y:  5%; }
+  25%  { --b1x: 17%; --b1y: 85%; --b2x: 83%; --b2y: 15%; }
+  38%  { --b1x:  7%; --b1y: 50%; --b2x: 93%; --b2y: 50%; }
+  50%  { --b1x: 17%; --b1y: 15%; --b2x: 83%; --b2y: 85%; }
+  62%  { --b1x: 50%; --b1y:  5%; --b2x: 50%; --b2y: 93%; }
+  75%  { --b1x: 83%; --b1y: 15%; --b2x: 17%; --b2y: 85%; }
+  88%  { --b1x: 93%; --b1y: 50%; --b2x:  7%; --b2y: 50%; }
+  100% { --b1x: 83%; --b1y: 85%; --b2x: 17%; --b2y: 15%; }
 }
 
 /* ═══════════ TYPOGRAPHIE ═══════════ */
@@ -92,23 +234,81 @@ h3 {
   --bg-deep: #f6f8fb;
   --bg-card: #ffffff;
   --bg-card-hover: #fcfcfd;
-  --border: rgba(0, 0, 0, 0.08);
-  --text: #0f172a;
-  --text-dim: #475569;
-  --text-muted: #64748b;
+  --border: rgba(0, 0, 0, 0.1);
+  --text: #020617;
+  --text-dim: #1e293b;
+  --text-muted: #475569;
   --gold: #b4853b;
   --gold-dim: #8b6020;
   --emerald: #059669;
   --cyan: #0891b2;
+  --cyan-rgb: 8, 145, 178;
   --violet: #7c3aed;
   --rose: #db2777;
-  --slate: #475569;
+  --amber: #b45309;
+  --orange: #c2410c;
+  --slate: #334155;
+  --text-secondary: #64748b;
 }
+/* ─── Mode Clair — Nébuleuses pastelles animées ─── */
+
+/* Défaut light */
 [data-theme="light"] body::before {
   background:
-    radial-gradient(circle at 10% 20%, rgba(8, 145, 178, 0.03) 0%, transparent 45%),
-    radial-gradient(circle at 90% 80%, rgba(124, 58, 237, 0.03) 0%, transparent 45%),
+    radial-gradient(ellipse 70% 55% at var(--b1x) var(--b1y), rgba(8,145,178,0.07) 0%, transparent 65%),
+    radial-gradient(ellipse 65% 55% at var(--b2x) var(--b2y), rgba(124,58,237,0.06) 0%, transparent 65%),
+    radial-gradient(ellipse 55% 38% at 50% -5%, rgba(180,133,59,0.05) 0%, transparent 55%),
+    radial-gradient(ellipse 55% 38% at 50% 105%, rgba(5,150,105,0.04) 0%, transparent 55%),
     var(--bg-deep);
+  animation: nebula-default 32s linear infinite;
+}
+
+/* Numérologie light — Or / Ambre pastel */
+[data-theme="light"] body[data-section="numerologie"]::before {
+  background:
+    radial-gradient(ellipse 72% 58% at var(--b1x) var(--b1y), rgba(180,133,59,0.11) 0%, transparent 65%),
+    radial-gradient(ellipse 60% 50% at var(--b2x) var(--b2y), rgba(251,158,76,0.08) 0%, transparent 62%),
+    radial-gradient(ellipse 50% 38% at 50% -5%, rgba(180,133,59,0.06) 0%, transparent 55%),
+    radial-gradient(ellipse 42% 32% at 80% 12%, rgba(8,145,178,0.03) 0%, transparent 50%),
+    radial-gradient(ellipse 38% 30% at 18% 88%, rgba(219,39,119,0.03) 0%, transparent 50%),
+    var(--bg-deep);
+  animation: nebula-numerologie 34s linear infinite;
+}
+
+/* Tarologie light — Violet / Rose pastel */
+[data-theme="light"] body[data-section="tarologie"]::before {
+  background:
+    radial-gradient(ellipse 72% 58% at var(--b1x) var(--b1y), rgba(124,58,237,0.09) 0%, transparent 65%),
+    radial-gradient(ellipse 62% 52% at var(--b2x) var(--b2y), rgba(219,39,119,0.07) 0%, transparent 62%),
+    radial-gradient(ellipse 50% 38% at 50% -5%, rgba(124,58,237,0.05) 0%, transparent 55%),
+    radial-gradient(ellipse 42% 32% at 12% 12%, rgba(8,145,178,0.03) 0%, transparent 50%),
+    radial-gradient(ellipse 38% 30% at 85% 88%, rgba(180,133,59,0.03) 0%, transparent 50%),
+    var(--bg-deep);
+  animation: nebula-tarologie 36s linear infinite;
+}
+
+/* Astrologie light — Cyan / Émeraude pastel */
+[data-theme="light"] body[data-section="astrologie"]::before {
+  background:
+    radial-gradient(ellipse 72% 58% at var(--b1x) var(--b1y), rgba(8,145,178,0.10) 0%, transparent 65%),
+    radial-gradient(ellipse 62% 52% at var(--b2x) var(--b2y), rgba(5,150,105,0.08) 0%, transparent 62%),
+    radial-gradient(ellipse 50% 38% at 50% -5%, rgba(8,145,178,0.06) 0%, transparent 55%),
+    radial-gradient(ellipse 42% 32% at 82% 12%, rgba(124,58,237,0.03) 0%, transparent 50%),
+    radial-gradient(ellipse 38% 30% at 18% 85%, rgba(180,133,59,0.03) 0%, transparent 50%),
+    var(--bg-deep);
+  animation: nebula-astrologie 28s linear infinite;
+}
+
+/* Oracles light — Émeraude / Teal pastel */
+[data-theme="light"] body[data-section="oracles"]::before {
+  background:
+    radial-gradient(ellipse 70% 58% at var(--b1x) var(--b1y), rgba(5,150,105,0.09) 0%, transparent 65%),
+    radial-gradient(ellipse 60% 50% at var(--b2x) var(--b2y), rgba(8,145,178,0.07) 0%, transparent 62%),
+    radial-gradient(ellipse 50% 38% at 50% 108%, rgba(5,150,105,0.06) 0%, transparent 55%),
+    radial-gradient(ellipse 42% 32% at 15% 12%, rgba(180,133,59,0.03) 0%, transparent 50%),
+    radial-gradient(ellipse 38% 30% at 85% 85%, rgba(124,58,237,0.03) 0%, transparent 50%),
+    var(--bg-deep);
+  animation: nebula-oracles 40s linear infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -118,5 +318,7 @@ h3 {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+  body::before,
+  body[data-section]::before { animation: none !important; }
   html { scroll-behavior: auto; }
 }

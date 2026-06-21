@@ -15,6 +15,7 @@ interface Props {
   headerLogo?: string;
   headerNavLinks?: Array<{ href: string; text: string }>;
   footerSources?: string;
+  section?: 'numerologie' | 'tarologie' | 'astrologie' | 'oracles' | 'blog';
 }
 
 const {
@@ -29,7 +30,8 @@ const {
   scripts = [],
   headerLogo,
   headerNavLinks,
-  footerSources
+  footerSources,
+  section
 } = Astro.props;
 
 const canonicalUrl = `https://mysteres.fr/${canonicalPath}`;
@@ -85,7 +87,7 @@ const finalOgDescription = ogDescription || description;
     })();
   </script>
 </head>
-<body>
+<body data-section={section}>
 
   <!-- Skip Link (A11y) -->
   <a href="#content" class="skip-link">Aller au contenu principal</a>

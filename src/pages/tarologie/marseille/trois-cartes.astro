@@ -1,0 +1,294 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Tirage à 3 Cartes — Tarot de Marseille"
+  description="Effectuez un tirage à 3 cartes gratuit avec le Tarot de Marseille."
+  keywords="tarot, 3 cartes, tirage gratuit, tarot de marseille, passé présent futur"
+  canonicalPath="tarologie/marseille/trois-cartes.html"
+  section="tarologie"
+>
+
+<nav class="breadcrumb" aria-label="Fil d'Ariane" style="padding:0.8rem 1.5rem;font-family:var(--font-mono);font-size:0.8rem;color:var(--text-muted);max-width:1200px;margin:0 auto;">
+  <a href="../../index.html" style="color:var(--cyan);">Accueil</a> &rsaquo;
+  <a href="../index.html" style="color:var(--cyan);">Tarologie</a> &rsaquo;
+  <a href="../marseille.html" style="color:var(--cyan);">Tarot de Marseille</a> &rsaquo;
+  <span style="color:var(--text);">Tirage 3 Cartes</span>
+</nav>
+
+<main style="max-width:1200px;margin:0 auto;padding:2rem 1.5rem;text-align:center;">
+  <h1>Tirage à <span class="gold">3 Cartes</span></h1>
+  <p class="subtitle">Concentrez-vous sur votre question. Étalez les cartes, puis choisissez-en 3.</p>
+
+  <!-- Etape 1 : Le paquet et l'étalement -->
+  <div id="deck-area" style="margin-top:2rem;position:relative;height:250px;display:flex;justify-content:center;align-items:center;">
+    <button id="btn-spread" class="btn-explore" style="font-size:1.2rem;padding:1rem 2rem;cursor:pointer;z-index:10;">Étaler les cartes ✦</button>
+    
+    <div id="spread-container" style="display:none;position:relative;width:100%;height:100%;max-width:800px;margin:0 auto;">
+      <p id="instruction-text" style="position:absolute;top:-40px;width:100%;color:var(--gold);font-weight:bold;font-size:1.1rem;">Sélectionnez 3 cartes (0/3)</p>
+      <!-- Les cartes étalées seront générées ici -->
+    </div>
+  </div>
+
+  <!-- Etape 2 : Le résultat (Les emplacements) -->
+  <div id="resultats" style="margin-top:3rem;">
+    <div style="display:flex;flex-wrap:wrap;gap:2rem;justify-content:center;">
+      <!-- Carte 1 -->
+      <div class="tarot-card-container">
+        <div class="tarot-pos">1. Le Passé</div>
+        <div class="tarot-card" id="slot-1">
+          <div class="card-inner">
+            <div class="card-front empty-slot"></div>
+            <div class="card-back">
+              <img id="img-1" src="" alt="" style="width:100%;border-radius:6px;margin-bottom:0.5rem;">
+              <h3 id="name-1"></h3>
+              <p id="mean-1" class="meaning"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Carte 2 -->
+      <div class="tarot-card-container">
+        <div class="tarot-pos">2. Le Présent</div>
+        <div class="tarot-card" id="slot-2">
+          <div class="card-inner">
+            <div class="card-front empty-slot"></div>
+            <div class="card-back">
+              <img id="img-2" src="" alt="" style="width:100%;border-radius:6px;margin-bottom:0.5rem;">
+              <h3 id="name-2"></h3>
+              <p id="mean-2" class="meaning"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Carte 3 -->
+      <div class="tarot-card-container">
+        <div class="tarot-pos">3. Le Futur</div>
+        <div class="tarot-card" id="slot-3">
+          <div class="card-inner">
+            <div class="card-front empty-slot"></div>
+            <div class="card-back">
+              <img id="img-3" src="" alt="" style="width:100%;border-radius:6px;margin-bottom:0.5rem;">
+              <h3 id="name-3"></h3>
+              <p id="mean-3" class="meaning"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div id="reveal-area" style="display:none;margin-top:2rem;">
+      <button id="btn-reveal" class="btn-explore" style="font-size:1.2rem;padding:1rem 2rem;cursor:pointer;">Révéler le tirage ✦</button>
+    </div>
+
+    <div id="reading-section" class="tr-outer" style="display:none;margin-top:2.5rem;"></div>
+
+    <p style="margin-top:2rem;font-style:italic;color:var(--text-muted);">Ce tirage vous offre des pistes de réflexion. Le libre arbitre reste votre meilleur guide.</p>
+  </div>
+</main>
+
+<style>
+  .tarot-card-container { width: 280px; }
+  .tarot-pos { font-family: var(--font-mono); font-size: 0.9rem; color: var(--gold); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 1px; }
+  .tarot-card { width: 100%; height: 500px; perspective: 1000px; }
+  .card-inner { position: relative; width: 100%; height: 100%; text-align: center; transition: transform 0.8s; transform-style: preserve-3d; }
+  .tarot-card.flipped .card-inner { transform: rotateY(180deg); }
+  
+  .card-front, .card-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 12px; border: 2px solid var(--gold); display: flex; flex-direction: column; padding: 1rem; }
+  
+  /* Le dos de la carte (quand face cachée) — SVG étoilé */
+  .card-front { 
+    background-image: url('/images/tarot/card-back.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    justify-content: center; align-items: center;
+  }
+  
+  .empty-slot {
+    background: rgba(255,255,255,0.05);
+    background-image: none;
+    border: 2px dashed rgba(212, 175, 55, 0.5);
+  }
+  .filled-slot {
+    background-image: url('/images/tarot/card-back.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 2px solid var(--gold);
+    box-shadow: 0 0 8px rgba(212, 175, 55, 0.3);
+  }
+  
+  /* La face de la carte (quand retournée) */
+  .card-back { background: var(--bg-card); transform: rotateY(180deg); box-shadow: 0 10px 20px rgba(0,0,0,0.5); overflow-y: auto; justify-content: flex-start; align-items: center; }
+  .card-back h3 { color: var(--gold); font-size: 1.2rem; margin-bottom: 0.5rem; border-bottom: 1px solid rgba(212, 175, 55, 0.3); padding-bottom: 0.5rem; }
+  .meaning { font-size: 0.85rem; line-height: 1.5; color: var(--text); text-align: left; }
+  
+</style>
+
+<style is:global>
+  /* Cartes étalées — styles globaux car éléments créés dynamiquement par JS */
+  .spread-card {
+    position: absolute;
+    width: 60px;
+    height: 110px;
+    background-image: url('/images/tarot/card-back.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 1px solid #d4af37;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    top: 50px;
+    box-shadow: -2px 0px 6px rgba(0,0,0,0.9), 0 0 4px rgba(212, 175, 55, 0.15);
+  }
+  .spread-card:hover {
+    transform: translateY(-18px) !important;
+    z-index: 100 !important;
+    box-shadow: 0px 12px 20px rgba(0,0,0,0.7), 0 0 12px rgba(212, 175, 55, 0.5);
+  }
+  .spread-card.selected {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+</style>
+
+<script is:inline src="/js/tarot-data.js"></script>
+<script is:inline src="/js/tarot-positions.js"></script>
+<script is:inline src="/js/tarot-cardtypes.js"></script>
+<script is:inline src="/js/tarot-planes.js"></script>
+<script is:inline src="/js/tarot-interp.js"></script>
+<script is:inline>
+  function initTarotSpread() {
+    const btnSpread = document.getElementById('btn-spread');
+    if (!btnSpread || btnSpread.dataset.initialized) return;
+    btnSpread.dataset.initialized = "true";
+
+    const MAX_CARDS = 3;
+    let selectedCards = [];
+    let deckIndices = [];
+
+    // Remove old listeners by cloning if necessary, or just rely on dataset.initialized
+    const newBtnSpread = btnSpread.cloneNode(true);
+    btnSpread.parentNode.replaceChild(newBtnSpread, btnSpread);
+
+    newBtnSpread.addEventListener('click', () => {
+      newBtnSpread.style.display = 'none';
+      const container = document.getElementById('spread-container');
+      container.style.display = 'block';
+      
+      container.querySelectorAll('.spread-card').forEach(c => c.remove());
+      
+      deckIndices = Array.from({length: 22}, (_, i) => i).sort(() => 0.5 - Math.random());
+      
+      // Force reflow to get true offsetWidth, otherwise fallback
+      void container.offsetWidth;
+      const containerWidth = container.offsetWidth > 0 ? container.offsetWidth : Math.min(window.innerWidth - 40, 800);
+      const cardWidth = 60;
+      const step = (containerWidth - cardWidth) / 21;
+      
+      for(let i=0; i<22; i++) {
+        const card = document.createElement('div');
+        card.className = 'spread-card';
+        card.style.left = `${i * step}px`;
+        card.style.zIndex = i;
+        
+        const middle = 10.5;
+        const distanceFromCenter = Math.abs(i - middle);
+        const yOffset = (distanceFromCenter * distanceFromCenter) * 0.5;
+        const rotation = (i - middle) * 2;
+        
+        card.style.transform = `translateY(${yOffset}px) rotate(${rotation}deg)`;
+        card.dataset.index = deckIndices[i];
+        card.dataset.id = i;
+        
+        card.addEventListener('click', () => selectCard(card));
+        container.appendChild(card);
+      }
+    });
+
+    function selectCard(cardEl) {
+      if(selectedCards.length >= MAX_CARDS) return;
+      
+      cardEl.classList.add('selected');
+      const actualCardData = window.tarotData[cardEl.dataset.index];
+      selectedCards.push(actualCardData);
+      
+      const slotIdx = selectedCards.length;
+      const slotFront = document.querySelector(`#slot-${slotIdx} .card-front`);
+      if(slotFront) {
+        slotFront.classList.remove('empty-slot');
+        slotFront.classList.add('filled-slot');
+      }
+      
+      const instr = document.getElementById('instruction-text');
+      if(instr) instr.innerText = `Sélectionnez ${MAX_CARDS} cartes (${selectedCards.length}/${MAX_CARDS})`;
+      
+      if(selectedCards.length === MAX_CARDS) {
+        if(instr) instr.innerText = "Tirage complet.";
+        setTimeout(() => {
+          document.getElementById('deck-area').style.display = 'none';
+          document.getElementById('reveal-area').style.display = 'block';
+        }, 800);
+      }
+    }
+
+    const btnReveal = document.getElementById('btn-reveal');
+    if (btnReveal) {
+      const newBtnReveal = btnReveal.cloneNode(true);
+      btnReveal.parentNode.replaceChild(newBtnReveal, btnReveal);
+      newBtnReveal.addEventListener('click', () => {
+        newBtnReveal.style.display = 'none';
+
+        setTimeout(() => {
+          for(let i=1; i<=MAX_CARDS; i++) {
+            const cardData = selectedCards[i-1];
+            document.getElementById(`img-${i}`).src = cardData.img;
+            document.getElementById(`name-${i}`).innerText = cardData.name;
+            document.getElementById(`mean-${i}`).innerText = cardData.meaning;
+            setTimeout(() => {
+              document.getElementById(`slot-${i}`).classList.add('flipped');
+            }, i * 400);
+          }
+        }, 100);
+
+        setTimeout(() => {
+          const rs = document.getElementById('reading-section');
+          if (rs && window.tarotInterp) {
+            rs.innerHTML = window.tarotInterp.generateReading('trois-cartes', selectedCards)
+              + window.tarotInterp.generateAllPlaneReadings('trois-cartes', selectedCards);
+            rs.style.display = 'block';
+            rs.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            initPlaneTabs(rs);
+          }
+        }, 2500);
+      });
+    }
+
+    function initPlaneTabs(root) {
+      const tabs = root.querySelectorAll('.tr-plane-tab');
+      const panes = root.querySelectorAll('.tr-plane-pane');
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          const plane = tab.dataset.plane;
+          tabs.forEach(t => t.classList.toggle('active', t === tab));
+          panes.forEach(p => p.classList.toggle('active', p.dataset.plane === plane));
+        });
+      });
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initTarotSpread);
+  } else {
+    initTarotSpread();
+  }
+  document.addEventListener('astro:page-load', initTarotSpread);
+</script>
+
+</Layout>

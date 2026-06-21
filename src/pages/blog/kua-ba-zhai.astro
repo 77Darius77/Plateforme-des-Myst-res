@@ -1,0 +1,212 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Le Nombre Kua et le Ba Zhai : votre boussole intérieure",
+  "description": "Découvrez le Nombre Kua et le système Ba Zhai du Feng Shui : calcul pas à pas, groupes Est et Ouest, 4 directions favorables (Sheng Qi, Tian Yi, Yan Nian, Fu Wei) et 4 directions défavorables. Applications pratiques pour optimiser votre espace.",
+  "author": { "@type": "Organization", "name": "Plateforme des Mystères" },
+  "inLanguage": "fr",
+  "datePublished": "2026-06-17"
+};
+---
+
+<Layout
+  title="Le Nombre Kua et le Ba Zhai : votre boussole intérieure — Blog"
+  description="Découvrez le Nombre Kua et le système Ba Zhai du Feng Shui : calcul pas à pas, groupes Est et Ouest, 4 directions favorables et défavorables, applications pratiques pour optimiser votre espace de vie et de travail."
+  keywords="nombre kua, ba zhai, feng shui, huit demeures, directions favorables, sheng qi, tian yi, yan nian, fu wei, groupe est, groupe ouest, calcul kua"
+  canonicalPath="blog/kua-ba-zhai.html"
+  jsonLd={jsonLd}
+  useBlogStyles={true}
+  scripts={["/assets/js/blog.js"]}
+  section="blog"
+>
+
+<article id="article" class="blog-article">
+
+  <h1>Le Nombre Kua et le Ba Zhai : votre boussole intérieure</h1>
+  <p class="article-subtitle">Du trigramme du I Ching aux directions de votre chambre : comment le système des Huit Demeures révèle votre orientation énergétique naturelle et transforme votre rapport à l'espace.</p>
+
+  <div class="article-meta-bar">
+    <span>📅 Juin 2026</span>
+    <span>📖 10 min de lecture</span>
+    <span>🏷️ Kua · Feng Shui · Ba Zhai</span>
+  </div>
+
+  <p>Dans l'univers du Feng Shui, la plupart des pratiquants connaissent les cinq éléments, le Bagua, l'énergie Chi. Mais peu vont jusqu'au cœur du système — jusqu'à ce calcul précis, personnel, millénaire, qui assigne à chaque être humain une <strong>orientation énergétique fondamentale</strong> : le <strong>Nombre Kua</strong>. Issu du système Ba Zhai, il est à la fois votre empreinte cosmique et une boussole concrète pour organiser votre espace.</p>
+
+  <p>Le Ba Zhai (八宅) n'est pas un outil ésotérique périphérique — c'est l'une des branches les plus structurées et les plus anciennes du Feng Shui classique, pratiquée sans discontinuité depuis la dynasty Tang (618–907 ap. J.-C.) et formalisée dans des textes comme le <em>Yang Zhai San Yao</em> et le <em>Ba Zhai Ming Jing</em>. Son principe fondateur est d'une élégance radicale : chaque personne a des directions qui lui conviennent et d'autres qui lui nuisent — indépendamment de ses goûts, de sa volonté ou de ses croyances.</p>
+
+  <h2>1. Qu'est-ce que le Nombre Kua ?</h2>
+
+  <p>Le Nombre Kua est un entier compris entre 1 et 9 — <em>sauf le 5, qui n'existe pas comme Kua personnel</em> (nous y reviendrons). Chaque Kua correspond à un <strong>trigramme du I Ching</strong>, à un élément naturel, à un groupe énergétique (Est ou Ouest), et à un ensemble précis de huit directions — quatre favorables, quatre défavorables.</p>
+
+  <p>Ce que le Kua révèle sur vous :</p>
+
+  <ul>
+    <li><strong>Votre élément natal</strong> : Eau, Bois, Feu, Terre ou Métal — la qualité énergétique fondamentale qui vous constitue</li>
+    <li><strong>Votre trigramme du I Ching</strong> : le symbole de transformation qui gouverne votre nature profonde</li>
+    <li><strong>Votre groupe</strong> : Est ou Ouest — votre famille énergétique, ceux avec qui vous résonnez naturellement</li>
+    <li><strong>Vos 4 directions favorables</strong> et <strong>vos 4 directions défavorables</strong> : données chiffrées pour orienter votre lit, votre bureau, votre porte d'entrée</li>
+  </ul>
+
+  <p>Ce n'est pas seulement métaphysique. Le Ba Zhai est utilisé depuis des siècles par des architectes, des géomanciens et des familles chinoises pour orienter les maisons, positionner les chambres à coucher, aligner les bureaux de travail et choisir l'emplacement des portes principales. L'efficacité revendiquée du système tient précisément à sa cohérence interne et à sa capacité à fournir des prescriptions concrètes et vérifiables.</p>
+
+  <h2>2. Comment calculer son Kua</h2>
+
+  <p>Le calcul du Nombre Kua suit une procédure rigoureuse en deux étapes. Il dépend de l'<strong>année de naissance</strong> (selon le calendrier solaire chinois, qui commence en février — si vous êtes né en janvier, utilisez l'année précédente) et du <strong>genre assigné à la naissance</strong>.</p>
+
+  <h3>Étape 1 : Réduire l'année de naissance à un seul chiffre</h3>
+
+  <p>Additionnez les quatre chiffres de votre année de naissance, puis réduisez jusqu'à obtenir un chiffre unique.</p>
+
+  <p><strong>Exemple avec 1990 :</strong><br/>
+  1 + 9 + 9 + 0 = 19 → 1 + 9 = 10 → 1 + 0 = <strong>1</strong></p>
+
+  <h3>Étape 2 : Appliquer la formule selon le genre</h3>
+
+  <p><strong>Pour les hommes nés avant 2000 :</strong> soustrayez de 10<br/>
+  Exemple : 10 − 1 = <strong>9</strong> → Kua 9</p>
+
+  <p><strong>Pour les hommes nés en 2000 ou après :</strong> soustrayez de 9<br/>
+  Exemple avec 2002 : 2+0+0+2=4 → 9 − 4 = <strong>5</strong> → voir règle du Kua 5</p>
+
+  <p><strong>Pour les femmes nées avant 2000 :</strong> ajoutez 5<br/>
+  Exemple : 1 + 5 = <strong>6</strong> → Kua 6</p>
+
+  <p><strong>Pour les femmes nées en 2000 ou après :</strong> ajoutez 6<br/>
+  Exemple avec 2002 : 4 + 6 = <strong>10</strong> → 1 + 0 = <strong>1</strong> → Kua 1</p>
+
+  <h3>La règle du Kua 5</h3>
+
+  <p>Si votre calcul aboutit au chiffre 5, vous n'utilisez pas le Kua 5 — il n'existe pas comme Kua personnel. Le 5 représente le Centre, le point d'équilibre entre tous les trigrammes, la position du Tao lui-même. Attribuer ce point à une personne serait lui nier toute appartenance.</p>
+
+  <ul>
+    <li>Si le résultat est 5 pour un <strong>homme</strong> → utiliser le Kua <strong>2</strong></li>
+    <li>Si le résultat est 5 pour une <strong>femme</strong> → utiliser le Kua <strong>8</strong></li>
+  </ul>
+
+  <h3>Les 8 Kua et leurs attributs</h3>
+
+  <table class="archetype-table">
+    <thead>
+      <tr>
+        <th>Kua</th>
+        <th>Trigramme</th>
+        <th>Élément</th>
+        <th>Groupe</th>
+        <th>Direction principale</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>1</td><td>☵ Kan</td><td>Eau</td><td>Est</td><td>Nord</td></tr>
+      <tr><td>2</td><td>☷ Kun</td><td>Terre</td><td>Ouest</td><td>Sud-Ouest</td></tr>
+      <tr><td>3</td><td>☳ Zhen</td><td>Bois</td><td>Est</td><td>Est</td></tr>
+      <tr><td>4</td><td>☴ Xun</td><td>Bois</td><td>Est</td><td>Sud-Est</td></tr>
+      <tr><td>6</td><td>☰ Qian</td><td>Métal</td><td>Ouest</td><td>Nord-Ouest</td></tr>
+      <tr><td>7</td><td>☱ Dui</td><td>Métal</td><td>Ouest</td><td>Ouest</td></tr>
+      <tr><td>8</td><td>☶ Gen</td><td>Terre</td><td>Ouest</td><td>Nord-Est</td></tr>
+      <tr><td>9</td><td>☲ Li</td><td>Feu</td><td>Est</td><td>Sud</td></tr>
+    </tbody>
+  </table>
+
+  <h2>3. Les deux groupes : Est et Ouest</h2>
+
+  <p>Le Ba Zhai divise les huit Kua en deux familles énergétiques. Cette division n'est pas arbitraire — elle suit la logique du Bagua et de la polarité Yin/Yang.</p>
+
+  <h3>Le Groupe Est (Kua 1, 3, 4, 9)</h3>
+
+  <p>Les personnes du Groupe Est s'harmonisent avec les directions <strong>Est, Sud-Est, Sud et Nord</strong>. Ces directions sont associées au mouvement Yang, à l'expansion, à la lumière croissante. Les traits communs observés dans ce groupe : expansivité naturelle, propension au leadership, goût pour le mouvement et le changement, énergie extravertie.</p>
+
+  <h3>Le Groupe Ouest (Kua 2, 6, 7, 8)</h3>
+
+  <p>Les personnes du Groupe Ouest s'harmonisent avec les directions <strong>Ouest, Nord-Ouest, Sud-Ouest et Nord-Est</strong>. Ces directions sont associées au mouvement Yin, à la consolidation, à la densification. Les traits communs : stabilité, pragmatisme, sens de l'ancrage, énergie introvertie et concentrée.</p>
+
+  <blockquote>
+    Les directions favorables du Groupe Est sont précisément les directions défavorables du Groupe Ouest — et inversement. Cette opposition structurelle parfaite est au cœur de la logique du Ba Zhai : l'univers se divise en deux pôles complémentaires, et chaque être humain appartient naturellement à l'un d'eux.
+  </blockquote>
+
+  <p>Ce principe a une implication pratique immédiate : deux personnes de groupes différents partageant la même chambre ne pourront pas simultanément dormir dans leur direction optimale respective. Le Ba Zhai ne prétend pas résoudre cette tension — il la nomme, et invite à trouver le meilleur compromis possible.</p>
+
+  <h2>4. Les 4 directions favorables</h2>
+
+  <p>Pour chaque Kua, le Ba Zhai identifie quatre directions bénéfiques, hiérarchisées par intensité. Elles portent des noms poétiques qui décrivent précisément la qualité d'énergie qu'elles apportent.</p>
+
+  <h3>Sheng Qi (生氣) — Souffle de vie</h3>
+
+  <p>C'est la <strong>meilleure direction</strong> de votre Kua — celle de la croissance maximale, de la vitalité et de la prospérité. Dans l'idéal, c'est la direction vers laquelle vous orientez votre tête pendant le sommeil (le lit positionné de sorte que la tête pointe vers cette direction) et celle vers laquelle vous faites face en travaillant (le bureau orienté pour que votre regard aille vers cette direction). Les décisions importantes prises face au Sheng Qi sont réputées porter leurs fruits.</p>
+
+  <h3>Tian Yi (天醫) — Médecin céleste</h3>
+
+  <p>C'est la direction de la <strong>santé et de la guérison</strong>. Idéale pour la récupération physique, la méditation, la cuisine (la cuisinière orientée vers cette direction favorise des repas nourrissants). Pendant les périodes de maladie ou de fatigue profonde, orienter son lit vers le Tian Yi peut accélérer la régénération. C'est aussi une bonne direction pour les soignants et les thérapeutes qui travaillent.</p>
+
+  <h3>Yan Nian (延年) — Longévité</h3>
+
+  <p>La direction des <strong>relations harmonieuses</strong> et de la longévité sociale. Idéale pour les conversations importantes, les négociations, les réconciliations. Orienter le canapé du salon ou la table de réunion vers cette direction favorise les échanges constructifs. C'est aussi la direction recommandée pour les couples qui souhaitent renforcer leur harmonie.</p>
+
+  <h3>Fu Wei (伏位) — Développement personnel</h3>
+
+  <p>La direction de la <strong>croissance lente mais stable</strong>. Moins spectaculaire que le Sheng Qi, le Fu Wei apporte une progression régulière et ancrée. Il est particulièrement adapté aux activités d'étude, d'apprentissage et de développement de compétences. C'est souvent la direction recommandée pour orienter le bureau d'un enfant qui apprend.</p>
+
+  <h2>5. Les 4 directions défavorables</h2>
+
+  <p>À l'opposé, le Ba Zhai identifie quatre directions qui perturbent votre énergie. Le conseil général est d'éviter de dormir ou de travailler face à ces directions — sans pour autant en faire une obsession.</p>
+
+  <h3>Huo Hai (禍害) — Accidents et déboires</h3>
+
+  <p>La direction des <strong>perturbations mineures mais répétées</strong>. Vivre longtemps exposé au Huo Hai crée une accumulation de petits problèmes, de contrariétés, de malchances ordinaires — rien de catastrophique, mais une friction constante qui épuise. C'est la première direction à corriger si possible.</p>
+
+  <h3>Wu Gui (五鬼) — Cinq fantômes</h3>
+
+  <p>La direction de la <strong>malchance inattendue</strong> : trahisons, sabotages inconscients, problèmes surgissant de nulle part. Le nom évoque les cinq esprits perturbateurs de la tradition taoïste. Travailler longtemps face au Wu Gui est associé aux difficultés relationnelles profondes et aux situations qui semblent se résoudre pour mieux se recomplexer.</p>
+
+  <h3>Liu Sha (六煞) — Six troubles</h3>
+
+  <p>La direction des <strong>conflits relationnels et de l'instabilité</strong>. Le Liu Sha mine les relations durables — famille, couple, partenaires professionnels. Une exposition prolongée est associée à une tendance aux ruptures inexpliquées et à une difficulté à maintenir des engagements.</p>
+
+  <h3>Jue Ming (絕命) — Mort totale</h3>
+
+  <p>C'est la <strong>pire direction</strong> de votre Kua. Le Jue Ming — littéralement "couper la vie" — est associé aux décisions chroniquement contre-productives, à l'épuisement profond, à la fragilité physique et au sentiment de travailler à contre-courant de tout. Si vous avez longtemps dormi dans votre direction Jue Ming sans le savoir, certaines difficultés récurrentes inexpliquées pourraient trouver leur réponse ici.</p>
+
+  <blockquote>
+    « Le sage s'adapte au mouvement de l'univers — il ne force pas le destin, il se place là où le vent souffle favorablement. »
+  </blockquote>
+
+  <h2>6. Applications pratiques</h2>
+
+  <p>La beauté du Ba Zhai est qu'il se traduit en gestes concrets, ajustables sans travaux ni dépenses. Voici les applications par ordre d'impact potentiel :</p>
+
+  <h3>Le lit</h3>
+
+  <p>C'est l'application la plus puissante, car nous passons un tiers de notre vie à dormir. Orientez la tête de votre lit vers votre direction <strong>Sheng Qi</strong> (vitalité et croissance) ou vers votre direction <strong>Tian Yi</strong> (santé et régénération). La direction de la tête, pas des pieds — vérifiez avec une boussole.</p>
+
+  <h3>Le bureau</h3>
+
+  <p>Travaillez <strong>face</strong> à votre direction Sheng Qi. Concrètement : asseyez-vous de sorte que votre regard parte vers cette direction cardinale ou inter-cardinale. Si vous avez une fenêtre dans votre dos ou devant vous, tenez-en compte — l'idéal est d'avoir du soutien derrière (un mur) et votre direction favorable devant.</p>
+
+  <h3>La porte d'entrée</h3>
+
+  <p>La porte principale de votre maison ou appartement, idéalement, s'ouvre vers une direction favorable à votre Kua — ou, si vous êtes en couple, vers une direction favorable au moins à l'un des deux membres. C'est souvent difficile à modifier, mais c'est un critère utile lors d'un déménagement.</p>
+
+  <h3>Les limites du système</h3>
+
+  <p>Soyons clairs : en appartement, en espace partagé, ou dans une configuration architecturale contrainte, vous ne pourrez pas toujours orienter votre lit ou votre bureau dans la direction idéale. Le Ba Zhai n'exige pas de restructurer toute votre vie — il propose des <em>tendances</em> à prendre en compte quand c'est possible.</p>
+
+  <p>Quand l'orientation physique est impossible, certains praticiens recommandent des ajustements symboliques : renforcer l'élément de votre Kua dans la zone défavorable (cristaux, plantes, couleurs associées à votre élément natal), activer l'énergie de votre direction Sheng Qi par des objets significatifs placés dans ce secteur de votre logement.</p>
+
+  <p>L'essentiel est de commencer par ce qui est facilement modifiable — souvent, déplacer simplement son lit ou pivoter son bureau de quelques degrés est suffisant pour observer une différence sensible dans les semaines qui suivent.</p>
+
+  <div class="article-footer">
+    <p>🔮 Calculez votre Kua avec le <a href="../numerologie/chinoise.html" style="color:var(--gold);">calculateur de numérologie chinoise</a>.</p>
+    <p>📚 Lire aussi : <a href="methode-chinoise.html" style="color:var(--gold);">La méthode chinoise expliquée</a> · <a href="lo-shu-fleches.html" style="color:var(--gold);">La Grille Lo Shu et ses flèches</a></p>
+    <a href="index.html" class="back-link">← Retour au blog</a>
+  </div>
+
+</article>
+
+  <p slot="sources" style="color:#64748b;font-size:0.75rem;margin-bottom:0.8rem;">
+    Sources : Lillian Too, <em>The Fundamentals of Feng Shui</em> · Joey Yap, <em>BaZi and Feng Shui</em> · Stephen Skinner, <em>Guide to the Feng Shui Compass</em> · Derek Walters, <em>The Complete Guide to Chinese Astrology</em>
+  </p>
+
+</Layout>

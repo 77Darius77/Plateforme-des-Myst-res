@@ -1,0 +1,128 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Oracle des Miroirs — 53 Cartes | Plateforme des Mystères",
+  "url": "https://mysteres.fr/oracles/miroirs.html",
+  "description": "Oracle des Miroirs : 53 cartes psychanalytiques et intuitives créées par Dimitri d'Alfange d'Uvril. Tirages gratuits en 3 Miroirs, Croix des Reflets et Miroir complet.",
+  "inLanguage": "fr"
+};
+---
+
+<Layout
+  title="Oracle des Miroirs — 53 Cartes de Guidance Intuitive | Plateforme des Mystères"
+  description="Oracle des Miroirs : 53 cartes psychanalytiques créées par Dimitri d'Alfange d'Uvril, illustrées par Aurore Schmitt. Tirages gratuits : 3 cartes, Croix des Reflets, Tirage du Miroir."
+  keywords="oracle des miroirs, dimitri d'alfange d'uvril, aurore schmitt, cartomancie, tirage miroirs, psychanalyse, voyance intuitive"
+  canonicalPath="oracles/miroirs.html"
+  jsonLd={jsonLd}
+  section="oracles"
+>
+
+<nav class="breadcrumb" aria-label="Fil d'Ariane" style="padding:0.8rem 1.5rem;font-family:var(--font-mono);font-size:0.8rem;color:var(--text-muted);max-width:1200px;margin:0 auto;">
+  <a href="../index.html" style="color:var(--cyan);">Accueil</a> &rsaquo;
+  <a href="index.html" style="color:var(--cyan);">Oracles</a> &rsaquo;
+  <span style="color:var(--text);">Oracle des Miroirs</span>
+</nav>
+
+<main style="max-width:900px;margin:0 auto;padding:1.5rem;">
+  <header style="text-align:center;margin-bottom:2.5rem;">
+    <div style="font-size:2.5rem;margin-bottom:0.5rem;">🪞</div>
+    <h1 style="font-family:var(--font-display);font-size:2.2rem;margin:0 0 0.5rem;">
+      <span class="gold">Oracle des Miroirs</span>
+    </h1>
+    <p style="color:var(--cyan);font-family:var(--font-mono);font-size:0.9rem;letter-spacing:1px;">53 CARTES POUR RÉFLÉCHIR VOTRE ÂME</p>
+    <p style="color:var(--text-muted);max-width:650px;margin:1.2rem auto 0;line-height:1.7;font-size:0.95rem;">
+      Créé par <strong>Dimitri d'Alfange d'Uvril</strong> et magnifiquement illustré par <strong>Aurore Schmitt</strong>,
+      l'Oracle des Miroirs est un outil d'introspection psychanalytique et intuitive. Chacune des 53 cartes
+      agit comme un miroir symbolique, révélant les facettes inconscientes de votre être avec bienveillance.
+    </p>
+    <blockquote style="margin:1.5rem auto 0;max-width:500px;font-style:italic;color:var(--cyan);font-size:0.9rem;border-left:3px solid var(--cyan);padding-left:1rem;">
+      « Le miroir ne juge pas — il reflète ce qui est. À vous d'en faire une force. »
+    </blockquote>
+  </header>
+
+  <div class="section-title" style="text-align:center;margin-bottom:2rem;">
+    <div class="num" style="color:var(--cyan);">[ △ ]</div>
+    <h2 style="color:var(--gold);">✦ Choisissez votre tirage</h2>
+    <p class="slate" style="color:var(--text-muted);">Trois méthodes pour explorer les messages des Miroirs.</p>
+  </div>
+
+  <div class="mystere-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem;margin-bottom:3rem;">
+
+    <div class="mystere-card" style="--card-accent-color:var(--cyan);--hover-accent-color:var(--cyan);">
+      <div class="card-icon" style="font-size:1.5rem;">🪞</div>
+      <h3>TIRAGE DES 3 MIROIRS</h3>
+      <p>
+        Passé, Présent, Futur — une introspection simple et profonde sur votre situation.
+        Idéal pour un éclairage rapide avec l'approche psychanalytique des Miroirs.
+      </p>
+      <a href="miroirs/trois-cartes.html" class="btn-explore">Effectuer ce tirage ✦</a>
+    </div>
+
+    <div class="mystere-card" style="--card-accent-color:var(--cyan);--hover-accent-color:var(--cyan);">
+      <div class="card-icon" style="font-size:1.5rem;">✧</div>
+      <h3>CROIX DES REFLETS</h3>
+      <p>
+        Analyse nuancée en 5 positions : le cœur du sujet, ce qui vous soutient, ce qui vous défie,
+        l'idéal à atteindre et les fondations inconscientes.
+      </p>
+      <a href="miroirs/croix.html" class="btn-explore">Effectuer ce tirage ✦</a>
+    </div>
+
+    <div class="mystere-card" style="--card-accent-color:var(--cyan);--hover-accent-color:var(--cyan);">
+      <div class="card-icon" style="font-size:1.5rem;">◎</div>
+      <h3>TIRAGE DU MIROIR</h3>
+      <p>
+        Analyse complète en 9 cartes disposées en carré — trois lignes pour trois niveaux de conscience.
+        Une exploration approfondie de votre destinée.
+      </p>
+      <a href="miroirs/miroir.html" class="btn-explore">Effectuer ce tirage ✦</a>
+    </div>
+
+  </div>
+
+  <section style="background:rgba(var(--cyan-rgb),0.04);border:1px solid rgba(var(--cyan-rgb),0.15);border-radius:12px;padding:1.8rem;max-width:700px;margin:0 auto;">
+    <h3 style="color:var(--cyan);font-size:1.2rem;margin-bottom:1rem;">★ Fondements de l'Oracle des Miroirs</h3>
+    <ul style="color:var(--text-muted);line-height:1.8;font-size:0.9rem;list-style:none;padding:0;">
+      <li>🔹 <strong>Approche psychanalytique</strong> : chaque carte est un miroir de l'inconscient</li>
+      <li>🔹 <strong>Symbolique du reflet</strong> : le miroir révèle sans juger</li>
+      <li>🔹 <strong>Lecture intuitive</strong> : l'image et le mot-clé guident l'interprétation</li>
+      <li>🔹 <strong>Cartes inversées</strong> : blocages, énergies refoulées ou attention particulière</li>
+      <li>🔹 <strong>Associations de cartes</strong> : plus de 2700 combinaisons possibles</li>
+    </ul>
+  </section>
+
+  <p style="text-align:center;margin-top:2.5rem;font-style:italic;color:var(--text-muted);font-size:0.85rem;">
+    L'Oracle des Miroirs est un compagnon de route. Votre intuition reste votre meilleur guide.
+  </p>
+</main>
+
+<!-- NAVIGATION PRÉCÉDENT / SUIVANT -->
+<nav class="sub-nav" style="display:flex;justify-content:space-between;max-width:600px;margin:2rem auto;padding:1rem;">
+  <a href="triade.html" style="color:var(--cyan);font-family:var(--font-mono);">← Oracle de la Triade</a>
+  <a href="runes.html" style="color:var(--cyan);font-family:var(--font-mono);">Runes →</a>
+</nav>
+
+<style>
+  .btn-explore {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.6rem 1.4rem;
+    background: transparent;
+    border: 1px solid var(--card-accent-color);
+    color: var(--card-accent-color);
+    border-radius: 6px;
+    text-decoration: none;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
+  }
+  .btn-explore:hover {
+    background: var(--card-accent-color);
+    color: var(--bg-deep);
+  }
+</style>
+
+</Layout>

@@ -1,0 +1,261 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Tirage Simple — Yi King"
+  description="Tirez un hexagramme unique du Yi King. Une guidance simple et directe du Livre des Mutations."
+  keywords="yi king, i ching, tirage simple, hexagramme unique, divination chinoise, livre des mutations"
+  canonicalPath="oracles/yi-king/simple.html"
+  section="oracles"
+>
+
+<nav class="breadcrumb" aria-label="Fil d'Ariane" style="padding:0.8rem 1.5rem;font-family:var(--font-mono);font-size:0.8rem;color:var(--text-muted);max-width:1200px;margin:0 auto;">
+  <a href="../../index.html" style="color:var(--cyan);">Accueil</a> &rsaquo;
+  <a href="../index.html" style="color:var(--cyan);">Oracles</a> &rsaquo;
+  <a href="../yi-king.html" style="color:var(--cyan);">Yi King</a> &rsaquo;
+  <span style="color:var(--text);">Tirage Simple</span>
+</nav>
+
+<main style="max-width:1200px;margin:0 auto;padding:2rem 1.5rem;text-align:center;">
+  <h1>Tirage <span class="gold">Simple</span></h1>
+  <p class="subtitle">Concentrez-vous sur votre question. Laissez le Yi King vous répondre par un hexagramme unique.</p>
+
+  <div id="deck-area" style="margin-top:2rem;position:relative;height:280px;display:flex;justify-content:center;align-items:center;">
+    <button id="btn-spread" class="btn-explore" style="font-size:1.2rem;padding:1rem 2rem;cursor:pointer;z-index:10;">Étaler les hexagrammes ✦</button>
+    
+    <div id="spread-container" style="display:none;position:relative;width:100%;height:100%;max-width:800px;margin:0 auto;">
+      <p id="instruction-text" style="position:absolute;top:-40px;width:100%;color:var(--gold);font-weight:bold;font-size:1.1rem;">Sélectionnez 1 hexagramme (0/1)</p>
+    </div>
+  </div>
+
+  <div id="resultats" style="margin-top:3rem;">
+    <div style="display:flex;flex-wrap:wrap;gap:2rem;justify-content:center;">
+      <div class="hex-card-container">
+        <div class="hex-pos">Votre Hexagramme</div>
+        <div class="hex-card" id="slot-1">
+          <div class="card-inner">
+            <div class="card-front empty-slot"></div>
+            <div class="card-back">
+              <img id="img-1" src="" alt="" class="card-img">
+              <h3 id="name-1" class="card-name"></h3>
+              <p id="meaning-1" class="card-meaning"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div id="reveal-area" style="display:none;margin-top:2rem;">
+      <button id="btn-reveal" class="btn-explore" style="font-size:1.2rem;padding:1rem 2rem;cursor:pointer;">Révéler l'hexagramme ✦</button>
+    </div>
+
+    <div id="reading-section" class="tr-outer" style="display:none;margin-top:2.5rem;"></div>
+
+    <p style="margin-top:2rem;font-style:italic;color:var(--text-muted);">Le Yi King n'est pas un oracle de prédiction — il éclaire le moment présent et les mutations à l'œuvre. Le libre arbitre reste votre meilleur guide.</p>
+  </div>
+</main>
+
+<style>
+  .hex-card-container { width: 300px; }
+  .hex-pos { font-family: var(--font-mono); font-size: 0.85rem; color: var(--gold); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 1px; }
+  .hex-card { width: 100%; height: 420px; perspective: 1000px; }
+  .card-inner { position: relative; width: 100%; height: 100%; text-align: center; transition: transform 0.8s; transform-style: preserve-3d; }
+  .hex-card.flipped .card-inner { transform: rotateY(180deg); }
+  
+  .card-front, .card-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 10px; border: 2px solid var(--gold); display: flex; flex-direction: column; justify-content: flex-start; align-items: center; padding: 0.8rem; }
+  
+  .card-front { 
+    background-image: url('/images/oracles/yi-king-card-back.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    justify-content: center; align-items: center;
+  }
+  
+  .empty-slot {
+    background: rgba(218, 165, 32, 0.03);
+    background-image: none;
+    border: 2px dashed rgba(218, 165, 32, 0.4);
+  }
+  .filled-slot {
+    background-image: url('/images/oracles/yi-king-card-back.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 2px solid var(--gold);
+    box-shadow: 0 0 14px rgba(218, 165, 32, 0.45);
+  }
+  
+  .card-back { background: var(--bg-card); transform: rotateY(180deg); box-shadow: 0 8px 16px rgba(0,0,0,0.6); overflow: hidden; justify-content: flex-start; align-items: center; gap: 0.5rem; }
+  .card-img { width: 200px; height: auto; margin-top: 0.8rem; object-fit: contain; }
+  .card-name { color: var(--gold); font-size: 1.1rem; margin: 0.3rem 0; padding: 0; width: 100%; text-align: center; }
+  .card-meaning { font-size: 0.78rem; line-height: 1.5; color: var(--text-muted); text-align: center; padding: 0 0.6rem; overflow-y: auto; max-height: 130px; }
+
+  @media (max-width: 768px) {
+    .hex-card-container { width: 260px; }
+    .hex-card { height: 380px; }
+    .card-img { width: 180px; }
+  }
+</style>
+
+<style is:global>
+  .spread-card-yk-s {
+    position: absolute;
+    width: 52px;
+    height: 72px;
+    background-image: url('/images/oracles/yi-king-card-back.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 1px solid var(--gold);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    top: 90px;
+    box-shadow: -2px 0px 6px rgba(0,0,0,0.9), 0 0 6px rgba(218, 165, 32, 0.2);
+  }
+  .spread-card-yk-s:hover {
+    transform: translateY(-18px) !important;
+    z-index: 100 !important;
+    box-shadow: 0px 12px 20px rgba(0,0,0,0.7), 0 0 14px rgba(218, 165, 32, 0.6);
+  }
+  .spread-card-yk-s.selected {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+</style>
+
+<script is:inline src="/js/yi-king-data.js"></script>
+<script is:inline src="/js/yi-king-interp.js"></script>
+<script is:inline src="/js/yi-king-planes.js"></script>
+<script is:inline>
+  function initSimpleTirage() {
+    const btnSpread = document.getElementById('btn-spread');
+    if (!btnSpread || btnSpread.dataset.initialized) return;
+    btnSpread.dataset.initialized = "true";
+
+    const MAX_CARDS = 1;
+    let selectedCards = [];
+    let deckIndices = [];
+
+    const newBtnSpread = btnSpread.cloneNode(true);
+    btnSpread.parentNode.replaceChild(newBtnSpread, btnSpread);
+
+    newBtnSpread.addEventListener('click', () => {
+      newBtnSpread.style.display = 'none';
+      const container = document.getElementById('spread-container');
+      container.style.display = 'block';
+      
+      container.querySelectorAll('.spread-card-yk-s').forEach(c => c.remove());
+      
+      const deckSize = window.yiKingData.length;
+      deckIndices = Array.from({length: deckSize}, (_, i) => i).sort(() => 0.5 - Math.random());
+      
+      void container.offsetWidth;
+      const containerWidth = container.offsetWidth > 0 ? container.offsetWidth : Math.min(window.innerWidth - 40, 800);
+      const cardWidth = 52;
+      const step = (containerWidth - cardWidth) / (deckSize - 1);
+      
+      for(let i=0; i<deckSize; i++) {
+        const card = document.createElement('div');
+        card.className = 'spread-card-yk-s';
+        card.style.left = `${i * step}px`;
+        card.style.zIndex = i;
+        
+        const middle = (deckSize - 1) / 2;
+        const distanceFromCenter = Math.abs(i - middle);
+        const yOffset = (distanceFromCenter * distanceFromCenter) * 0.03;
+        const rotation = (i - middle) * (40 / deckSize);
+        
+        card.style.transform = `translateY(${yOffset}px) rotate(${rotation}deg)`;
+        card.dataset.index = deckIndices[i];
+        card.dataset.id = i;
+        
+        card.addEventListener('click', () => selectCard(card));
+        container.appendChild(card);
+      }
+    });
+
+    function selectCard(cardEl) {
+      if(selectedCards.length >= MAX_CARDS) return;
+      
+      cardEl.classList.add('selected');
+      const actualCardData = window.yiKingData[cardEl.dataset.index];
+      selectedCards.push(actualCardData);
+      
+      const slotFront = document.querySelector(`#slot-1 .card-front`);
+      if(slotFront) {
+        slotFront.classList.remove('empty-slot');
+        slotFront.classList.add('filled-slot');
+      }
+      
+      const instr = document.getElementById('instruction-text');
+      if(instr) instr.innerText = "Hexagramme sélectionné.";
+      
+      if(selectedCards.length === MAX_CARDS) {
+        setTimeout(() => {
+          document.getElementById('deck-area').style.display = 'none';
+          document.getElementById('reveal-area').style.display = 'block';
+        }, 800);
+      }
+    }
+
+    const btnReveal = document.getElementById('btn-reveal');
+    if (btnReveal) {
+      const newBtnReveal = btnReveal.cloneNode(true);
+      btnReveal.parentNode.replaceChild(newBtnReveal, btnReveal);
+      newBtnReveal.addEventListener('click', () => {
+        newBtnReveal.style.display = 'none';
+
+        setTimeout(() => {
+          const cardData = selectedCards[0];
+          const imgEl = document.getElementById('img-1');
+          const nameEl = document.getElementById('name-1');
+          const meaningEl = document.getElementById('meaning-1');
+          const cardId = String(cardData.id).padStart(2, '0');
+          imgEl.src = `/images/oracles/yi-king/hexagramme-${cardId}.svg`;
+          imgEl.onerror = function() { this.style.display = 'none'; };
+          if (nameEl) nameEl.textContent = cardData.name;
+          if (meaningEl) meaningEl.textContent = cardData.theme;
+          setTimeout(() => {
+            document.getElementById('slot-1').classList.add('flipped');
+          }, 400);
+        }, 100);
+
+        setTimeout(() => {
+          const rs = document.getElementById('reading-section');
+          if (rs && window.yiKingInterp) {
+            rs.innerHTML = window.yiKingInterp.generateReadingWithPlanes('simple', selectedCards);
+            setTimeout(function() { initPlaneTabs(); }, 100);
+            rs.style.display = 'block';
+            rs.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }, 1500);
+      });
+    }
+  }
+
+  function initPlaneTabs() {
+    document.querySelectorAll('.tr-plane-tab').forEach(function(tab) {
+      tab.addEventListener('click', function() {
+        var plane = this.dataset.plane;
+        document.querySelectorAll('.tr-plane-tab').forEach(function(t) { t.classList.remove('active'); });
+        this.classList.add('active');
+        document.querySelectorAll('.tr-plane-pane').forEach(function(p) { p.classList.remove('active'); });
+        var pane = document.querySelector('.tr-plane-pane[data-plane="' + plane + '"]');
+        if (pane) pane.classList.add('active');
+      });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initSimpleTirage);
+  } else {
+    initSimpleTirage();
+  }
+  document.addEventListener('astro:page-load', initSimpleTirage);
+</script>
+
+</Layout>

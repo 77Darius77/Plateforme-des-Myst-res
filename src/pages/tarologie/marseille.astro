@@ -3,45 +3,93 @@ import Layout from '../../layouts/Layout.astro';
 
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "Article",
-  "name": "Tarot de Marseille — La tradition ancestrale",
+  "@type": "CollectionPage",
+  "name": "Tarot de Marseille — Méthodes de Tirage",
   "url": "https://mysteres.fr/tarologie/marseille.html",
-  "description": "Découvrez le Tarot de Marseille, ses 22 arcanes majeurs et 56 mineurs.",
+  "description": "Découvrez les 4 méthodes de tirage principales du Tarot de Marseille : 3 cartes, croix, ligne et astrologique.",
   "inLanguage": "fr"
 };
 ---
 
 <Layout
-  title="Tarot de Marseille — Tarologie"
-  description="Découvrez le Tarot de Marseille, ses 22 arcanes majeurs et 56 mineurs. L'un des plus anciens jeux de tarot encore utilisés, aux symboles médiévaux qui parlent directement à l'âme."
-  keywords="tarot de marseille, arcanes majeurs, arcanes mineurs, divination, tarologie"
+  title="Tarot de Marseille — Méthodes de tirage"
+  description="Découvrez 4 méthodes de tirage du Tarot de Marseille : le tirage à 3 cartes, le tirage en croix, le tirage en ligne et le tirage astrologique."
+  keywords="tarot de marseille, méthodes de tirage, tirage en croix, tirage 3 cartes, tarologie"
   canonicalPath="tarologie/marseille.html"
   jsonLd={jsonLd}
+  section="tarologie"
 >
 
 <!-- ═══════════ FIL D'ARIANE ═══════════ -->
-<nav class="breadcrumb" aria-label="Fil d'Ariane" style="padding:0.8rem 1.5rem;font-family:var(--font-mono);font-size:0.8rem;color:var(--text-muted);">
+<nav class="breadcrumb" aria-label="Fil d'Ariane" style="padding:0.8rem 1.5rem;font-family:var(--font-mono);font-size:0.8rem;color:var(--text-muted);max-width:1200px;margin:0 auto;">
   <a href="../index.html" style="color:var(--cyan);">Accueil</a> &rsaquo;
   <a href="index.html" style="color:var(--cyan);">Tarologie</a> &rsaquo;
-  <span style="color:var(--text-primary);">Tarot de Marseille</span>
+  <span style="color:var(--text);">Tarot de Marseille</span>
 </nav>
 
-<!-- ═══════════ BANNIÈRE "BIENTÔT" ═══════════ -->
-<section id="hero" style="text-align:center;padding:6rem 1.5rem 4rem;max-width:700px;margin:0 auto;">
-  <h1>
-    <span class="pulse"></span>
-    🃏 <span class="gold">Tarot de Marseille</span><br>La tradition <span class="emerald">ancestrale</span>
-  </h1>
-  <p class="subtitle">
-    Cette section est en cours de création. Le Tarot de Marseille, avec ses 22 arcanes majeurs et 56 mineurs, est l'un des plus anciens jeux de tarot encore utilisés. Ses symboles médiévaux parlent directement à l'âme. Revenez bientôt !
-  </p>
-  <a href="../tarologie/index.html" class="cta">← Retour à la Tarologie</a>
-</section>
+<div class="hub-container">
+  <aside class="hub-sidebar">
+    <h1>
+      <span class="pulse"></span>
+      🃏 <span class="gold">Tarot de Marseille</span><br>Méthodes de <span class="emerald">tirage</span>
+    </h1>
+    <p class="subtitle">
+      Le Tarot de Marseille est un outil puissant pour explorer l'inconscient. 
+      Choisissez la méthode de tirage la plus adaptée à votre question et découvrez les messages des 22 arcanes majeurs.
+    </p>
+  </aside>
 
-<!-- ═══════════ NAVIGATION PRÉCÉDENT / SUIVANT ═══════════ -->
-<nav class="sub-nav" style="display:flex;justify-content:space-between;max-width:600px;margin:2rem auto;padding:1rem;">
-  <span></span>
-  <a href="rider-waite.html" style="color:var(--cyan);font-family:var(--font-mono);">Rider-Waite-Smith →</a>
-</nav>
+  <main class="hub-main">
+    <div class="section-title">
+      <div class="num">[ 01 ]</div>
+      <h2>✦ Les 4 Tirages</h2>
+      <p class="slate">Explorez votre destinée à travers ces 4 approches.</p>
+    </div>
+
+    <div class="mystere-grid">
+
+      <!-- Carte 1 : 3 Cartes -->
+      <div class="mystere-card" style="--card-accent-color: var(--gold); --hover-accent-color: var(--gold);">
+        <div class="card-icon">🕒</div>
+        <h3>TIRAGE À 3 CARTES</h3>
+        <p>
+          Passé, Présent, Futur. Une méthode simple et rapide pour obtenir une réponse directe à une question ou comprendre une évolution.
+        </p>
+        <a href="marseille/trois-cartes.html" class="btn-explore">Tirer les cartes ✦</a>
+      </div>
+
+      <!-- Carte 2 : En Croix -->
+      <div class="mystere-card" style="--card-accent-color: var(--emerald); --hover-accent-color: var(--emerald);">
+        <div class="card-icon">✚</div>
+        <h3>TIRAGE EN CROIX</h3>
+        <p>
+          Le tirage de référence. 5 cartes pour peser le pour, le contre, comprendre les enjeux spirituels et connaître l'issue matérielle.
+        </p>
+        <a href="marseille/croix.html" class="btn-explore">Tirer les cartes ✦</a>
+      </div>
+
+      <!-- Carte 3 : En Ligne -->
+      <div class="mystere-card" style="--card-accent-color: var(--violet); --hover-accent-color: var(--violet);">
+        <div class="card-icon">📏</div>
+        <h3>TIRAGE EN LIGNE</h3>
+        <p>
+          Une approche narrative et intuitive. Lisez les cartes de gauche à droite comme une histoire, en observant les dynamiques.
+        </p>
+        <a href="marseille/ligne.html" class="btn-explore">Tirer les cartes ✦</a>
+      </div>
+
+      <!-- Carte 4 : Astrologique -->
+      <div class="mystere-card" style="--card-accent-color: var(--rose); --hover-accent-color: var(--rose);">
+        <div class="card-icon">♈</div>
+        <h3>TIRAGE ASTROLOGIQUE</h3>
+        <p>
+          Les 12 maisons. Un tirage approfondi pour faire un bilan global de votre vie sur l'année à venir, reliant tarot et astrologie.
+        </p>
+        <a href="marseille/astrologique.html" class="btn-explore">Tirer les cartes ✦</a>
+      </div>
+
+    </div>
+  </main>
+</div>
 
 </Layout>
