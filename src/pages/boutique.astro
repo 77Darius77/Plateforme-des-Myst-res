@@ -60,14 +60,13 @@ const jsonLd = {
     <!-- Image couverture -->
     <div class="showcase-cover">
       <div class="cover-frame">
-        <div class="cover-mock">
-          <div class="cover-symbol">◈</div>
-          <div class="cover-title">Les 22<br>Archétypes</div>
-          <div class="cover-sub-mock">Tarot · Numérologie · Psyché</div>
-          <div class="cover-cards">
-            <span>🃏</span><span>✦</span><span>🌙</span>
-          </div>
-        </div>
+        <img
+          src="/images/cover-22-archetypes.jpg"
+          alt="Couverture du guide Les 22 Archétypes — Tarot · Numérologie · Psyché"
+          class="cover-img"
+          width="1280"
+          height="720"
+        />
       </div>
       <div class="cover-meta">
         <span>~100 pages</span>
@@ -257,33 +256,11 @@ const jsonLd = {
   overflow: hidden;
   box-shadow: 0 16px 48px rgba(0,0,0,0.3);
 }
-.cover-mock {
-  background: linear-gradient(135deg, #0d1b2a 0%, #1a2a4a 50%, #0d1b2a 100%);
-  aspect-ratio: 3/4;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0.75rem;
-  padding: 2rem;
+.cover-img {
+  width: 100%;
+  height: auto;
+  display: block;
 }
-.cover-symbol { font-size: 2.5rem; color: var(--gold); }
-.cover-title {
-  font-size: 1.4rem;
-  font-weight: 700;
-  color: #f0e6cc;
-  text-align: center;
-  line-height: 1.3;
-  letter-spacing: 0.05em;
-}
-.cover-sub-mock {
-  font-size: 0.65rem;
-  color: var(--gold);
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  opacity: 0.8;
-}
-.cover-cards { font-size: 1.5rem; letter-spacing: 0.5rem; margin-top: 0.5rem; }
 .cover-meta {
   display: flex;
   justify-content: center;
