@@ -156,6 +156,9 @@ const jsonLd = {
     <p class="cta-reassurance">
       Paiement sécurisé via Gumroad &nbsp;·&nbsp; Téléchargement immédiat &nbsp;·&nbsp; Satisfait ou remboursé 30 jours
     </p>
+    <p class="cta-rapport-link">
+      Vous avez déjà acheté ? <a href="/rapport/">Générez votre Rapport d'Incarnation →</a>
+    </p>
   </div>
 </section>
 
@@ -410,6 +413,17 @@ const jsonLd = {
   opacity: 0.7;
   line-height: 1.6;
 }
+.cta-rapport-link {
+  margin-top: 1.2rem;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+.cta-rapport-link a {
+  color: var(--gold);
+  text-decoration: none;
+  font-weight: 600;
+}
+.cta-rapport-link a:hover { text-decoration: underline; }
 
 /* ── Responsive ────────────────────────────────────── */
 @media (max-width: 768px) {

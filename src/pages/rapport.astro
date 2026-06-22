@@ -1,0 +1,402 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Générer mon Rapport d'Incarnation | Plateforme des Mystères"
+  description="Entrez vos informations pour recevoir votre Rapport d'Incarnation personnalisé par email — Numérologie, Tarot, Astrologie, Tikoun."
+  canonicalPath="rapport/"
+>
+
+<section id="rapport-hero">
+  <div class="hero-badge">
+    <span class="badge-dot"></span>
+    Rapport personnalisé · Livraison par email
+  </div>
+  <h1><span class="gold">Votre Rapport<br>d'Incarnation</span></h1>
+  <p class="hero-sub">Numérologie · Tarot · Astrologie · Tikoun</p>
+  <p class="hero-desc">
+    Remplissez le formulaire ci-dessous avec votre clé de licence.<br>
+    Votre rapport PDF personnalisé vous sera envoyé par email en quelques secondes.
+  </p>
+</section>
+
+<!-- Formulaire -->
+<section id="rapport-form-section">
+  <div class="form-card" id="form-container">
+
+    <form id="rapport-form" novalidate>
+
+      <div class="field-group">
+        <label for="prenom">Prénom <span class="req">*</span></label>
+        <input type="text" id="prenom" name="prenom" placeholder="Votre prénom de naissance" autocomplete="given-name" required>
+        <span class="field-hint">Tel qu'il figure sur votre acte de naissance</span>
+      </div>
+
+      <div class="field-group">
+        <label for="nom">Nom complet de naissance <span class="req">*</span></label>
+        <input type="text" id="nom" name="nom" placeholder="Votre nom à la naissance" autocomplete="family-name" required>
+        <span class="field-hint">Nom de naissance (pas nom marital) — utilisé pour les calculs de votre nom</span>
+      </div>
+
+      <div class="field-group">
+        <label for="dateNaissance">Date de naissance <span class="req">*</span></label>
+        <input type="text" id="dateNaissance" name="dateNaissance" placeholder="JJ/MM/AAAA" maxlength="10" inputmode="numeric" required>
+        <span class="field-hint">Format : jour/mois/année — ex. 15/03/1990</span>
+      </div>
+
+      <div class="field-group">
+        <label for="email">Email <span class="req">*</span></label>
+        <input type="email" id="email" name="email" placeholder="votre@email.com" autocomplete="email" required>
+        <span class="field-hint">L'adresse où vous souhaitez recevoir votre rapport PDF</span>
+      </div>
+
+      <div class="field-group">
+        <label for="licenseKey">Clé de licence Gumroad <span class="req">*</span></label>
+        <input type="text" id="licenseKey" name="licenseKey" placeholder="XXXXXXXX-XXXXXXXX-XXXXXXXX-XXXXXXXX" autocomplete="off" required>
+        <span class="field-hint">Reçue par email après votre achat sur Gumroad</span>
+      </div>
+
+      <div id="form-error" class="form-error" style="display:none"></div>
+
+      <button type="submit" class="btn-submit" id="btn-submit">
+        <span id="btn-text">✦ Générer mon rapport</span>
+        <span id="btn-loading" style="display:none">
+          <span class="spinner"></span> Génération en cours…
+        </span>
+      </button>
+
+      <p class="form-notice">
+        Votre rapport arrive en général en moins d'une minute.<br>
+        Vérifiez vos spams si vous ne le recevez pas.
+      </p>
+
+    </form>
+
+  </div>
+
+  <!-- État : succès -->
+  <div class="success-card" id="success-container" style="display:none">
+    <div class="success-symbol">◈</div>
+    <h2>Votre rapport est en route !</h2>
+    <p id="success-msg">Votre Rapport d'Incarnation a été envoyé à votre adresse email.</p>
+    <p class="success-sub">Vérifiez votre boîte de réception — et vos spams si nécessaire.</p>
+    <a href="/boutique/" class="btn-back">← Retour à la boutique</a>
+  </div>
+
+</section>
+
+<!-- Bloc FAQ / Aide -->
+<section id="rapport-faq">
+  <h3>Questions fréquentes</h3>
+  <div class="faq-grid">
+    <div class="faq-item">
+      <strong>Je n'ai pas reçu mon rapport</strong>
+      <p>Vérifiez vos spams. L'email vient de <em>rapports@mysteres.fr</em>. Si le problème persiste, <a href="/contact/">contactez-nous</a>.</p>
+    </div>
+    <div class="faq-item">
+      <strong>Ma clé est refusée</strong>
+      <p>Assurez-vous de copier la clé exactement telle que reçue sur Gumroad, sans espaces. Chaque clé peut être utilisée jusqu'à 3 fois.</p>
+    </div>
+    <div class="faq-item">
+      <strong>Quel nom utiliser ?</strong>
+      <p>Utilisez votre nom de naissance — celui figurant à l'état civil — pas un nom marital. C'est crucial pour la précision des calculs.</p>
+    </div>
+    <div class="faq-item">
+      <strong>Je n'ai pas encore acheté</strong>
+      <p>Le rapport est disponible pour <strong>15 €</strong> sur <a href="/boutique/">la boutique</a>. Vous recevrez votre clé par email après paiement.</p>
+    </div>
+  </div>
+</section>
+
+</Layout>
+
+<script>
+  // ── Auto-formatage date JJ/MM/AAAA ──
+  const dateInput = document.getElementById('dateNaissance');
+  dateInput?.addEventListener('input', (e) => {
+    let v = e.target.value.replace(/\D/g, '');
+    if (v.length >= 3) v = v.slice(0,2) + '/' + v.slice(2);
+    if (v.length >= 6) v = v.slice(0,5) + '/' + v.slice(5,9);
+    e.target.value = v;
+  });
+
+  // ── Soumission du formulaire ──
+  const form      = document.getElementById('rapport-form');
+  const btnText   = document.getElementById('btn-text');
+  const btnLoad   = document.getElementById('btn-loading');
+  const btnSubmit = document.getElementById('btn-submit');
+  const errDiv    = document.getElementById('form-error');
+  const formCont  = document.getElementById('form-container');
+  const succCont  = document.getElementById('success-container');
+  const succMsg   = document.getElementById('success-msg');
+
+  function showError(msg) {
+    errDiv.textContent = msg;
+    errDiv.style.display = 'block';
+    errDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  function setLoading(on) {
+    btnText.style.display   = on ? 'none'         : 'inline';
+    btnLoad.style.display   = on ? 'inline-flex'  : 'none';
+    btnSubmit.disabled      = on;
+  }
+
+  function validerDate(d) {
+    if (!/^\d{2}\/\d{2}\/\d{4}$/.test(d)) return false;
+    const [j, m, a] = d.split('/').map(Number);
+    return m >= 1 && m <= 12 && j >= 1 && j <= 31 && a >= 1900 && a <= 2025;
+  }
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    errDiv.style.display = 'none';
+
+    const data = {
+      prenom:        document.getElementById('prenom').value.trim(),
+      nom:           document.getElementById('nom').value.trim(),
+      dateNaissance: document.getElementById('dateNaissance').value.trim(),
+      email:         document.getElementById('email').value.trim(),
+      licenseKey:    document.getElementById('licenseKey').value.trim(),
+    };
+
+    // Validation côté client
+    if (!data.prenom)                    return showError('Le prénom est requis.');
+    if (!data.nom)                       return showError('Le nom est requis.');
+    if (!validerDate(data.dateNaissance))return showError('La date doit être au format JJ/MM/AAAA (ex. 15/03/1990).');
+    if (!data.email.includes('@'))       return showError('L\'adresse email est invalide.');
+    if (!data.licenseKey)                return showError('La clé de licence est requise.');
+
+    setLoading(true);
+
+    try {
+      const res = await fetch('/.netlify/functions/generer-rapport', {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body:    JSON.stringify(data),
+      });
+
+      const json = await res.json();
+
+      if (!res.ok) {
+        showError(json.erreur || 'Une erreur est survenue. Veuillez réessayer.');
+        setLoading(false);
+        return;
+      }
+
+      // Succès
+      succMsg.textContent = `Votre Rapport d'Incarnation a été envoyé à ${data.email}.`;
+      formCont.style.display = 'none';
+      succCont.style.display = 'block';
+      succCont.scrollIntoView({ behavior: 'smooth' });
+
+    } catch {
+      showError('Erreur réseau. Vérifiez votre connexion et réessayez.');
+      setLoading(false);
+    }
+  });
+</script>
+
+<style is:global>
+
+/* ── Hero ──────────────────────────────────────────────────────────────── */
+#rapport-hero {
+  text-align: center;
+  padding: 4.5rem 1.5rem 2rem;
+  max-width: 640px;
+  margin: 0 auto;
+}
+#rapport-hero h1 {
+  font-size: clamp(2rem, 5.5vw, 3.2rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  margin-bottom: 0.5rem;
+}
+.hero-sub {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  color: var(--text-muted);
+  margin-bottom: 1.2rem;
+}
+.hero-desc {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.8;
+}
+
+/* ── Formulaire ────────────────────────────────────────────────────────── */
+#rapport-form-section {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 0 1.5rem 4rem;
+}
+
+.form-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 2.2rem 2rem;
+}
+
+.field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-bottom: 1.4rem;
+}
+.field-group label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text);
+}
+.req { color: var(--gold); }
+
+.field-group input {
+  background: var(--bg-deep, #0d1117);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.7rem 0.9rem;
+  font-size: 0.95rem;
+  color: var(--text);
+  font-family: inherit;
+  transition: border-color 0.2s;
+  outline: none;
+}
+.field-group input:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(212,175,55,0.12);
+}
+.field-group input::placeholder { color: var(--text-muted); opacity: 0.5; }
+
+.field-hint {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  opacity: 0.7;
+}
+
+.form-error {
+  background: rgba(239,68,68,0.1);
+  border: 1px solid rgba(239,68,68,0.4);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  font-size: 0.88rem;
+  color: #f87171;
+  margin-bottom: 1rem;
+}
+
+.btn-submit {
+  width: 100%;
+  padding: 0.95rem;
+  background: var(--gold);
+  color: var(--bg-deep, #0d1117);
+  font-weight: 700;
+  font-size: 1rem;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.25s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+.btn-submit:hover:not(:disabled) {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+}
+.btn-submit:disabled { opacity: 0.7; cursor: not-allowed; }
+
+.spinner {
+  width: 16px; height: 16px;
+  border: 2px solid rgba(0,0,0,0.2);
+  border-top-color: #0d1117;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  display: inline-block;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.form-notice {
+  margin-top: 0.85rem;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  opacity: 0.65;
+  text-align: center;
+  line-height: 1.6;
+}
+
+/* ── Succès ────────────────────────────────────────────────────────────── */
+.success-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 3rem 2rem;
+  text-align: center;
+}
+.success-symbol {
+  font-size: 2.5rem;
+  color: var(--gold);
+  margin-bottom: 1rem;
+}
+.success-card h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+.success-card p { color: var(--text-muted); line-height: 1.7; }
+.success-sub { font-size: 0.85rem; margin-top: 0.5rem; }
+.btn-back {
+  display: inline-block;
+  margin-top: 1.5rem;
+  padding: 0.65rem 1.5rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.btn-back:hover { border-color: var(--gold); color: var(--gold); }
+
+/* ── FAQ ───────────────────────────────────────────────────────────────── */
+#rapport-faq {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 1.5rem 5rem;
+}
+#rapport-faq h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 1.25rem;
+  color: var(--text-muted);
+}
+.faq-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+.faq-item {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.1rem 1.2rem;
+  font-size: 0.85rem;
+  line-height: 1.65;
+}
+.faq-item strong {
+  display: block;
+  color: var(--text);
+  margin-bottom: 0.4rem;
+  font-size: 0.88rem;
+}
+.faq-item p { color: var(--text-muted); margin: 0; }
+.faq-item a { color: var(--gold); text-decoration: none; }
+
+@media (max-width: 600px) {
+  .form-card { padding: 1.5rem 1.2rem; }
+  .faq-grid  { grid-template-columns: 1fr; }
+}
+</style>
