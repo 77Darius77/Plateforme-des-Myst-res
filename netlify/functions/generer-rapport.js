@@ -8,7 +8,7 @@ import { assemblerContenu }  from './lib/textes.js';
 import { genererRapportPDF } from './lib/generateur-pdf.js';
 import { Resend }            from 'resend';
 
-const GUMROAD_PRODUCT_ID = 'LES-22-ARCHETYPES-RAPPORT'; // slug du produit Gumroad
+const GUMROAD_PRODUCT_ID = 'htqbhd'; // slug du produit Gumroad
 
 // ── Validation de la clé Gumroad ──────────────────────────────────────────
 async function validerCleGumroad(licenseKey) {
