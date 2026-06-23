@@ -211,6 +211,10 @@ export function calculerProfil(prenom, nom, dateNaissance) {
     ...nomComplet.dettes,
   ])];
 
+  const planete    = calculerPlanete(cheminDeVie.valeur);
+  const loShu      = calculerLoShu(jour, mois, annee);
+  const lenormand  = tirerLenormand(jour, mois, annee);
+
   return {
     prenom,
     nom,
@@ -236,5 +240,97 @@ export function calculerProfil(prenom, nom, dateNaissance) {
     // Tarot
     arcaneVie:   arcanes.vie,
     arcaneAnnee: arcanes.annee,
+
+    // Planète
+    planete,
+
+    // Lo Shu
+    loShu,
+
+    // Lenormand
+    lenormand,
   };
+}
+
+// ── Planète gouvernante ───────────────────────────────────────────────────
+function calculerPlanete(cheminDeVie) {
+  const MAP = {
+    1:  { nom: 'Soleil',   symbole: '☉', element: 'Feu',   qualite: 'Yang',    polarite: 'Actif'   },
+    2:  { nom: 'Lune',     symbole: '☽', element: 'Eau',   qualite: 'Yin',     polarite: 'Réceptif'},
+    3:  { nom: 'Jupiter',  symbole: '♃', element: 'Feu',   qualite: 'Yang',    polarite: 'Expansif'},
+    4:  { nom: 'Saturne',  symbole: '♄', element: 'Terre', qualite: 'Yin',     polarite: 'Structurant'},
+    5:  { nom: 'Mercure',  symbole: '☿', element: 'Air',   qualite: 'Neutre',  polarite: 'Adaptable'},
+    6:  { nom: 'Vénus',    symbole: '♀', element: 'Terre', qualite: 'Yin',     polarite: 'Harmonisant'},
+    7:  { nom: 'Neptune',  symbole: '♆', element: 'Eau',   qualite: 'Yin',     polarite: 'Intuitif'},
+    8:  { nom: 'Mars',     symbole: '♂', element: 'Feu',   qualite: 'Yang',    polarite: 'Conquérant'},
+    9:  { nom: 'Mars/Jupiter', symbole: '♂♃', element: 'Feu', qualite: 'Yang', polarite: 'Universel'},
+    11: { nom: 'Uranus',   symbole: '⛢', element: 'Air',   qualite: 'Yang',    polarite: 'Visionnaire'},
+    22: { nom: 'Vulcain',  symbole: '⚒', element: 'Terre', qualite: 'Neutre',  polarite: 'Manifestant'},
+    33: { nom: 'Neptune/Vénus', symbole: '♆♀', element: 'Eau', qualite: 'Yin', polarite: 'Compassionnel'},
+  };
+  return MAP[cheminDeVie] || MAP[1];
+}
+
+// ── Carré Lo Shu ─────────────────────────────────────────────────────────
+function calculerLoShu(jour, mois, annee) {
+  // Collecte tous les chiffres de la date
+  const chiffres = `${String(jour).padStart(2,'0')}${String(mois).padStart(2,'0')}${annee}`
+    .split('').map(Number).filter(n => n > 0);
+
+  const grille = { 1:0, 2:0, 3:0, 4:0, 5:0, 6:0, 7:0, 8:0, 9:0 };
+  for (const c of chiffres) grille[c]++;
+
+  // Positions Lo Shu (ligne par ligne, haut→bas) : 4,9,2 / 3,5,7 / 8,1,6
+  const positions = [[4,9,2],[3,5,7],[8,1,6]];
+
+  // Flèches de forces (séquences complètes présentes dans la grille)
+  const FLECHES = [
+    { nom: 'Volonté',      chiffres: [1,5,9], description: 'Détermination et direction claire' },
+    { nom: 'Intuition',    chiffres: [3,5,7], description: 'Sensibilité et perception intérieure' },
+    { nom: 'Intellect',    chiffres: [2,5,8], description: 'Analyse et mémoire développées' },
+    { nom: 'Plan pratique',chiffres: [1,2,3], description: 'Organisation et méthode naturelles' },
+    { nom: 'Ordre',        chiffres: [4,5,6], description: 'Équilibre émotionnel et harmonie' },
+    { nom: 'Activité',     chiffres: [7,8,9], description: 'Énergie physique et capacité d\'action' },
+    { nom: 'Matière',      chiffres: [1,4,7], description: 'Ancrage dans le concret et la durée' },
+    { nom: 'Résilience',   chiffres: [3,6,9], description: 'Force face aux épreuves et rebond naturel' },
+  ];
+
+  const flechesPresentes  = FLECHES.filter(f => f.chiffres.every(c => grille[c] > 0));
+  const flechesAbsentes   = FLECHES.filter(f => f.chiffres.some(c => grille[c] === 0));
+  const nombresAbsents    = Object.keys(grille).map(Number).filter(n => grille[n] === 0);
+
+  return { grille, positions, flechesPresentes, flechesAbsentes, nombresAbsents };
+}
+
+// ── Tirage Lenormand déterministe ─────────────────────────────────────────
+function tirerLenormand(jour, mois, annee) {
+  // Seed reproductible par date de naissance
+  let seed = jour * 1000003 + mois * 10007 + annee * 31;
+  function rand() {
+    seed = (seed * 1664525 + 1013904223) & 0xffffffff;
+    return (seed >>> 0) / 0xffffffff;
+  }
+
+  // Tire 9 indices uniques parmi 36 cartes (indices 0-35)
+  const pool = Array.from({ length: 36 }, (_, i) => i);
+  const drawn = [];
+  while (drawn.length < 9) {
+    const idx = Math.floor(rand() * pool.length);
+    drawn.push(pool.splice(idx, 1)[0]);
+  }
+
+  // Positions du Carré de 9
+  const positions = [
+    { id: drawn[0], pos: 1, label: 'Passé lointain',    zone: 'passe'   },
+    { id: drawn[1], pos: 2, label: 'Passé récent',      zone: 'passe'   },
+    { id: drawn[2], pos: 3, label: 'Point de bascule',  zone: 'passe'   },
+    { id: drawn[3], pos: 4, label: 'Ressource intérieure', zone: 'present'},
+    { id: drawn[4], pos: 5, label: 'Carte centrale',    zone: 'present' },
+    { id: drawn[5], pos: 5, label: 'Dynamique externe', zone: 'present' },
+    { id: drawn[6], pos: 7, label: 'Ce qui émerge',     zone: 'futur'   },
+    { id: drawn[7], pos: 8, label: 'Invitation',        zone: 'futur'   },
+    { id: drawn[8], pos: 9, label: 'Résultat possible', zone: 'futur'   },
+  ];
+
+  return { positions, indices: drawn };
 }

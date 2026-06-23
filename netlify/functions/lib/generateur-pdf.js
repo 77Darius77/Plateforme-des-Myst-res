@@ -4,6 +4,7 @@
 
 import PDFDocument from 'pdfkit';
 import { CARD_DATA } from './tarot-data.js';
+import { LENORMAND_DATA } from './lenormand-data.js';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 
@@ -211,9 +212,35 @@ function drawCheminDeVie(doc, profil, contenu) {
      .text(c.corps, ML + 94, startY, { width: CW - 94, align: 'justify' });
   doc.y = Math.max(doc.y, startY + 68 + 6) + 16;
 
-  hLine(doc, doc.y - 8, GOLD, 0.3);
-  lbl(doc, 'Ce que ce chemin demande concrètement');
-  body(doc, `Vivre le chemin de vie ${profil.cheminDeVie} pleinement implique d'accepter la responsabilité de ce que vous portez naturellement, sans le minimiser ni l'exagérer. Là où vous vous retrouvez à attendre la permission d'agir, rappelez-vous que ce chemin s'active quand vous décidez. Les moments où vous vous sentez le plus vivant sont les meilleurs indicateurs que vous êtes dans votre axe.`);
+  // Ombre
+  if (c.ombre) {
+    hLine(doc, doc.y - 8, LGRAY, 0.3);
+    doc.y += 4;
+    lbl(doc, "Ce que ce chemin porte comme ombre");
+    body(doc, c.ombre, { font: FONT_SERIF_ITAL, gap: 3, color: MUTED });
+  }
+
+  // Clés pratiques
+  if (c.cles && c.cles.length > 0) {
+    ensureSpace(doc, 100);
+    doc.y += 8;
+    hLine(doc, doc.y - 6, GOLD, 0.3);
+    doc.y += 6;
+    lbl(doc, '3 clés pratiques pour activer ce chemin');
+    c.cles.forEach((cle, i) => {
+      ensureSpace(doc, 45);
+      doc.y += 6;
+      const ky = doc.y;
+      // Numéro
+      doc.rect(ML, ky, 26, 26).fill(GOLD);
+      doc.fillColor(NAVY).font(FONT_SANS_BOLD).fontSize(13)
+         .text(String(i + 1), ML, ky + 5, { width: 26, align: 'center' });
+      // Texte
+      doc.fillColor(DARK).font(FONT_SERIF).fontSize(10).lineGap(2.5)
+         .text(cle, ML + 36, ky, { width: CW - 36, align: 'justify' });
+      doc.y = Math.max(doc.y, ky + 26) + 4;
+    });
+  }
 }
 
 // ── EXPRESSION & ÂME ───────────────────────────────────────────────────────
@@ -274,7 +301,7 @@ function drawPersonnaliteAnnee(doc, profil, contenu) {
 function drawArcaneVie(doc, profil, contenu) {
   const arcane = profil.arcaneVie;
   const card   = CARD_DATA[arcane.key] || CARD_DATA['01'];
-  sectionTitle(doc, '04 — TAROT DE MARSEILLE', 'L\'Arcane de Vie', arcane.nom);
+  sectionTitle(doc, '05 — TAROT DE MARSEILLE', 'L\'Arcane de Vie', arcane.nom);
 
   const y1 = doc.y;
   numberBlock(doc, ML, y1, arcane.numero, 'Arcane de vie');
@@ -298,7 +325,7 @@ function drawArcaneVie(doc, profil, contenu) {
 function drawArcaneAnnee(doc, profil, contenu) {
   const arcane = profil.arcaneAnnee;
   const card   = CARD_DATA[arcane.key] || CARD_DATA['01'];
-  sectionTitle(doc, '05 — TAROT DE MARSEILLE', `L'Arcane du Cycle ${profil.anneeRapport}`, arcane.nom);
+  sectionTitle(doc, '06 — TAROT DE MARSEILLE', `L'Arcane du Cycle ${profil.anneeRapport}`, arcane.nom);
 
   const y1 = doc.y;
   numberBlock(doc, ML, y1, arcane.numero, `Cycle ${profil.anneeRapport}`);
@@ -322,7 +349,7 @@ function drawArcaneAnnee(doc, profil, contenu) {
 
 // ── ASTROLOGIE SOLAIRE ────────────────────────────────────────────────────
 function drawSigne(doc, profil, contenu) {
-  sectionTitle(doc, '06 — ASTROLOGIE SOLAIRE', 'Signe, Élément & Modalité', profil.signe);
+  sectionTitle(doc, '07 — ASTROLOGIE SOLAIRE', 'Signe, Élément & Modalité', profil.signe);
 
   const colW3 = CW / 3;
   const gY = doc.y;
@@ -362,9 +389,279 @@ function drawSigne(doc, profil, contenu) {
   body(doc, modalTextes[profil.modalite] || '');
 }
 
+// ── PLANÈTE GOUVERNANTE ───────────────────────────────────────────────────
+function drawPlanete(doc, profil, contenu) {
+  const pl  = profil.planete;
+  const txt = contenu.planete;
+  sectionTitle(doc, '04 — NUMÉROLOGIE & ASTROLOGIE', 'Planète Gouvernante',
+    `${pl.symbole}  ${pl.nom}`);
+
+  // Bloc planète
+  const startY = doc.y;
+  const bw = 78, bh = 68;
+  doc.rect(ML, startY, bw, bh).fill(NAVY);
+  doc.rect(ML + 0.5, startY + 0.5, bw - 1, bh - 1).lineWidth(0.8).strokeColor(GOLD).stroke();
+  doc.fillColor(GOLD).font(FONT_SANS_BOLD).fontSize(24)
+     .text(pl.symbole, ML, startY + 10, { width: bw, align: 'center' });
+  doc.fillColor(LIGHT).font(FONT_SANS).fontSize(8)
+     .text(pl.nom.toUpperCase(), ML, startY + 46, { width: bw, align: 'center', characterSpacing: 0.8 });
+
+  // Infos en colonne à droite
+  const ix = ML + 94;
+  doc.fillColor(MUTED).font(FONT_SANS).fontSize(7.5)
+     .text(`Élément : ${pl.element}   ·   Polarité : ${pl.polarite}   ·   Qualité : ${pl.qualite}`,
+       ix, startY, { width: CW - 94 });
+  doc.y = startY + 14;
+  doc.fillColor(DARK).font(FONT_SERIF).fontSize(10.5).lineGap(3)
+     .text(txt.corps, ix, doc.y, { width: CW - 94, align: 'justify' });
+  doc.y = Math.max(doc.y, startY + bh + 6) + 14;
+
+  hLine(doc, doc.y - 8, GOLD, 0.3);
+  lbl(doc, 'Le défi planétaire');
+  body(doc, txt.defi, { font: FONT_SERIF_ITAL, gap: 3 });
+
+  doc.y += 8;
+  lbl(doc, 'Correspondances');
+  body(doc, `Chemin de vie ${profil.cheminDeVie}  ·  ${pl.nom} (${pl.symbole})  ·  Élément ${pl.element}  ·  Polarité ${pl.polarite}  ·  Qualité ${pl.qualite}`, { font: FONT_SANS, size: 9, color: MUTED });
+}
+
+// ── CARRÉ LO SHU ─────────────────────────────────────────────────────────
+function drawLoShu(doc, profil) {
+  const ls = profil.loShu;
+  sectionTitle(doc, '08 — NUMÉROLOGIE GÉOMÉTRIQUE', 'Carré Lo Shu',
+    'Le miroir géométrique de votre date de naissance');
+
+  body(doc, `Le carré Lo Shu est une figure mathématique millénaire : un carré magique 3×3 dans lequel les chiffres de 1 à 9 sont disposés de façon à ce que chaque ligne, colonne et diagonale donne la même somme (15). Appliqué à votre date de naissance, il révèle quels chiffres sont fortement présents, lesquels sont absents, et quelles "flèches" — séquences complètes — dessinent vos ressources naturelles.`);
+  doc.y += 8;
+
+  // Grille 3×3
+  const cellSize = 62;
+  const gridW    = cellSize * 3;
+  const gridX    = ML + (CW - gridW) / 2;
+  const gridY    = doc.y;
+
+  ls.positions.forEach((row, ri) => {
+    row.forEach((num, ci) => {
+      const x   = gridX + ci * cellSize;
+      const y   = gridY + ri * cellSize;
+      const cnt = ls.grille[num];
+      const absent = cnt === 0;
+
+      // Fond
+      doc.rect(x + 2, y + 2, cellSize - 4, cellSize - 4)
+         .fill(absent ? '#e9ecef' : NAVY);
+
+      // Bordure
+      doc.rect(x + 2, y + 2, cellSize - 4, cellSize - 4)
+         .lineWidth(absent ? 0.3 : 0.8)
+         .strokeColor(absent ? LGRAY : GOLD).stroke();
+
+      // Chiffre Lo Shu
+      doc.fillColor(absent ? MUTED : GOLD)
+         .font(FONT_SANS_BOLD).fontSize(22)
+         .text(String(num), x + 2, y + 8, { width: cellSize - 4, align: 'center' });
+
+      // Compteur de présences
+      if (!absent) {
+        const dots = '●'.repeat(Math.min(cnt, 5));
+        doc.fillColor(LIGHT).font(FONT_SANS).fontSize(8)
+           .text(dots, x + 2, y + 40, { width: cellSize - 4, align: 'center' });
+      } else {
+        doc.fillColor(MUTED).font(FONT_SANS).fontSize(8)
+           .text('absent', x + 2, y + 40, { width: cellSize - 4, align: 'center' });
+      }
+    });
+  });
+  doc.y = gridY + cellSize * 3 + 18;
+
+  // Légende : chiffres absents
+  if (ls.nombresAbsents.length > 0) {
+    lbl(doc, `Chiffres absents : ${ls.nombresAbsents.join(', ')}`);
+    body(doc, `L'absence d'un chiffre dans votre date de naissance indique une énergie que vous êtes invité à développer consciemment au cours de cette vie. Ce n'est pas un manque — c'est une direction de croissance.`, { color: MUTED, font: FONT_SERIF_ITAL, size: 9.5 });
+    doc.y += 6;
+  }
+
+  // Flèches présentes
+  if (ls.flechesPresentes.length > 0) {
+    hLine(doc, doc.y, GOLD, 0.3);
+    doc.y += 12;
+    lbl(doc, `Fleches de forces actives (${ls.flechesPresentes.length})`);
+    ls.flechesPresentes.forEach(f => {
+      ensureSpace(doc, 28);
+      doc.y += 4;
+      const fy = doc.y;
+      doc.rect(ML, fy, 3, 18).fill(GOLD);
+      doc.fillColor(NAVY).font(FONT_SANS_BOLD).fontSize(9)
+         .text(`${f.nom}  [${f.chiffres.join('-')}]`, ML + 10, fy, { width: CW - 10 });
+      doc.fillColor(MUTED).font(FONT_SERIF).fontSize(9)
+         .text(f.description, ML + 10, doc.y + 1, { width: CW - 10 });
+      doc.y += 12;
+    });
+  }
+
+  // Flèches absentes
+  if (ls.flechesAbsentes.length > 0) {
+    ensureSpace(doc, 60);
+    doc.y += 10;
+    hLine(doc, doc.y, LGRAY, 0.3);
+    doc.y += 12;
+    lbl(doc, `Sequances à développer (${ls.flechesAbsentes.length})`);
+    body(doc, ls.flechesAbsentes.map(f => `${f.nom} [${f.chiffres.join('-')}] — ${f.description}`).join('  |  '),
+      { color: MUTED, font: FONT_SANS, size: 8.5 });
+  }
+}
+
+// ── CARRÉ DE 9 — PETIT LENORMAND ─────────────────────────────────────────
+function drawCarreDe9(doc, profil) {
+  const len  = profil.lenormand;
+  sectionTitle(doc, '09 — ORACLE LENORMAND', 'Le Carré de 9',
+    'Tirage déterministe — ancré dans votre date de naissance');
+
+  body(doc, `Le Carré de 9 est le tirage le plus complet du Petit Lenormand : neuf cartes disposées en grille 3×3, lues horizontalement (passé, présent, futur), verticalement (axe psychique, social, matériel) et en diagonales (flèches d'énergie). La carte centrale (#5) est la synthèse du tout. Ce tirage est calculé de façon déterministe depuis votre date de naissance — il est unique et reproductible : chaque fois que vous générez ce rapport avec la même date, vous obtiendrez les mêmes cartes.`);
+  doc.y += 10;
+
+  // Dessin de la grille 3×3
+  const cellW = 140, cellH = 90;
+  const gridW = cellW * 3;
+  const gridX = ML + (CW - gridW) / 2;
+  let   gridY = doc.y;
+
+  ensureSpace(doc, cellH * 3 + 30);
+  gridY = doc.y;
+
+  const ZONES = { passe: '#1a1a2e', present: NAVY, futur: '#0d2b1a' };
+
+  len.positions.forEach((pos, i) => {
+    const ri  = Math.floor(i / 3);
+    const ci  = i % 3;
+    const x   = gridX + ci * cellW;
+    const y   = gridY + ri * cellH;
+    const card = LENORMAND_DATA[pos.id] || {};
+    const isCentral = (i === 4);
+
+    // Fond
+    doc.rect(x + 3, y + 3, cellW - 6, cellH - 6)
+       .fill(isCentral ? GOLD : ZONES[pos.zone] || NAVY);
+
+    // Bordure
+    doc.rect(x + 3, y + 3, cellW - 6, cellH - 6)
+       .lineWidth(isCentral ? 1.5 : 0.5)
+       .strokeColor(isCentral ? NAVY : GOLD).stroke();
+
+    // Numéro de position
+    const textColor = isCentral ? NAVY : GOLD;
+    doc.fillColor(textColor).font(FONT_SANS_BOLD).fontSize(7)
+       .text(String(pos.pos), x + 6, y + 8, { width: 16 });
+
+    // Nom de la carte
+    doc.fillColor(isCentral ? NAVY : LIGHT).font(FONT_SANS_BOLD).fontSize(9.5)
+       .text(card.name || `Carte ${pos.id + 1}`, x + 6, y + 18, { width: cellW - 12, align: 'center' });
+
+    // Symbole
+    if (card.symbol) {
+      doc.fillColor(textColor).font(FONT_SANS).fontSize(14)
+         .text(card.symbol, x + 6, y + 32, { width: cellW - 12, align: 'center' });
+    }
+
+    // Label de position
+    doc.fillColor(isCentral ? NAVY : MUTED).font(FONT_SANS).fontSize(6.5)
+       .text(pos.label, x + 6, y + cellH - 22, { width: cellW - 12, align: 'center', characterSpacing: 0.5 });
+  });
+  doc.y = gridY + cellH * 3 + 20;
+
+  // Lecture des lignes
+  hLine(doc, doc.y, GOLD, 0.3);
+  doc.y += 12;
+  lbl(doc, 'Lecture horizontale — Axe Temps');
+
+  const lignes = [
+    { label: 'Ligne 1 — Passé',   indices: [0, 1, 2] },
+    { label: 'Ligne 2 — Présent', indices: [3, 4, 5] },
+    { label: 'Ligne 3 — Futur',   indices: [6, 7, 8] },
+  ];
+  lignes.forEach(lg => {
+    ensureSpace(doc, 40);
+    doc.y += 6;
+    doc.fillColor(GOLD).font(FONT_SANS_BOLD).fontSize(8)
+       .text(lg.label.toUpperCase(), ML, doc.y, { width: CW, characterSpacing: 0.8 });
+    doc.y += 4;
+    const cards = lg.indices.map(i => {
+      const p = len.positions[i];
+      const c = LENORMAND_DATA[p.id] || {};
+      return `${c.name || '?'} (${p.label})`;
+    }).join('  →  ');
+    body(doc, cards, { font: FONT_SANS, size: 9, color: DARK, after: 4 });
+
+    // Lecture des mots-clés combinés
+    const keywords = lg.indices.flatMap(i => {
+      const p = len.positions[i];
+      const c = LENORMAND_DATA[p.id] || {};
+      return (c.keywords || []).slice(0, 2);
+    });
+    if (keywords.length > 0) {
+      body(doc, 'Thèmes : ' + keywords.join('  ·  '), { font: FONT_SERIF_ITAL, size: 9, color: MUTED, after: 2 });
+    }
+  });
+
+  // Lecture des colonnes
+  doc.y += 10;
+  ensureSpace(doc, 80);
+  hLine(doc, doc.y, LGRAY, 0.3);
+  doc.y += 12;
+  lbl(doc, 'Lecture verticale — Trois axes de vie');
+
+  const colonnes = [
+    { label: 'Colonne 1 — Axe Intérieur',  indices: [0, 3, 6] },
+    { label: 'Colonne 2 — Axe Relationnel', indices: [1, 4, 7] },
+    { label: 'Colonne 3 — Axe Extérieur',  indices: [2, 5, 8] },
+  ];
+  colonnes.forEach(col => {
+    ensureSpace(doc, 40);
+    doc.y += 6;
+    doc.fillColor(GOLD).font(FONT_SANS_BOLD).fontSize(8)
+       .text(col.label.toUpperCase(), ML, doc.y, { width: CW, characterSpacing: 0.8 });
+    doc.y += 4;
+    const cards = col.indices.map(i => {
+      const p = len.positions[i];
+      const c = LENORMAND_DATA[p.id] || {};
+      return `${c.name || '?'}`;
+    }).join('  ·  ');
+    body(doc, cards, { font: FONT_SANS, size: 9, color: DARK, after: 4 });
+  });
+
+  // Carte centrale
+  ensureSpace(doc, 80);
+  doc.y += 10;
+  hLine(doc, doc.y, GOLD);
+  doc.y += 14;
+  lbl(doc, 'Carte centrale — Synthèse du tirage');
+  const central = len.positions[4];
+  const centralCard = LENORMAND_DATA[central.id] || {};
+  const cx = doc.y;
+  const bw = 78, bh = 68;
+  doc.rect(ML, cx, bw, bh).fill(GOLD);
+  doc.fillColor(NAVY).font(FONT_SANS_BOLD).fontSize(11)
+     .text(centralCard.name || '?', ML, cx + 8, { width: bw, align: 'center' });
+  if (centralCard.symbol) {
+    doc.fillColor(NAVY).font(FONT_SANS).fontSize(18)
+       .text(centralCard.symbol, ML, cx + 26, { width: bw, align: 'center' });
+  }
+  const meanText = centralCard.meaning || centralCard.synthesis || '';
+  if (meanText) {
+    doc.fillColor(DARK).font(FONT_SERIF).fontSize(10.5).lineGap(3)
+       .text(meanText, ML + 94, cx, { width: CW - 94, align: 'justify' });
+  }
+  doc.y = Math.max(doc.y, cx + bh + 6) + 10;
+
+  if (centralCard.advice) {
+    lbl(doc, 'Invitation de la carte centrale');
+    body(doc, centralCard.advice, { font: FONT_SERIF_ITAL, gap: 3, color: MUTED });
+  }
+}
+
 // ── TIKOUN — LEÇONS & DETTES ──────────────────────────────────────────────
 function drawKarmique(doc, profil, contenu) {
-  sectionTitle(doc, '07 — NUMÉROLOGIE PROFONDE', 'Tikoun — Leçons & Dettes Karmiques',
+  sectionTitle(doc, '10 — NUMÉROLOGIE PROFONDE', 'Tikoun — Leçons & Dettes Karmiques',
     'Ce que cette vie vous invite à traverser');
 
   body(doc, `En numérologie, les nombres absents de votre nom de naissance et les valeurs karmiques dans vos calculs pointent vers des domaines que votre âme a choisi d'explorer particulièrement dans cette incarnation. Ce n'est pas une condamnation — c'est une carte précise de là où la croissance la plus profonde vous attend.`);
@@ -414,7 +711,7 @@ function drawKarmique(doc, profil, contenu) {
 // ── SYNTHÈSE ───────────────────────────────────────────────────────────────
 function drawSynthese(doc, profil, contenu) {
   const syn = contenu.synthese;
-  sectionTitle(doc, '08 — SYNTHÈSE', 'Convergences & Tensions', 'Le cœur du rapport');
+  sectionTitle(doc, '11 — SYNTHÈSE', 'Convergences & Tensions', 'Le cœur du rapport');
 
   body(doc, `Cette section croise quatre disciplines différentes pour repérer ce qu'aucune d'elles ne peut voir seule. Les convergences indiquent des énergies qui se renforcent mutuellement. Les tensions révèlent les zones de friction productive — les endroits où votre croissance la plus riche est disponible.`);
   doc.y += 8;
@@ -510,8 +807,11 @@ function drawMethodo(doc, profil) {
 
   [
     ['Numérologie pythagoricienne', `Table A=1…Z=8/9. Convention : Y = voyelle. Chemin de vie calculé par composants (jour, mois, année réduits séparément). Nombres Maîtres 11, 22, 33 préservés à chaque palier.`],
+    ['Planète gouvernante', `Mapping Chemin de vie → planète tradition rosicrucienne. 1=Soleil, 2=Lune, 3=Jupiter, 4=Saturne, 5=Mercure, 6=Vénus, 7=Neptune, 8=Mars, 9=Mars/Jupiter, 11=Uranus, 22=Vulcain, 33=Neptune/Vénus.`],
     ['Astrologie solaire', `Calcul depuis la date de naissance uniquement (sans heure ni lieu). Dates des signes approximatives — pour une précision maximale sur les cuspides, consultez un thème natal complet.`],
     ['Tarot de Marseille', `Deck Nicolas Conver 1760. Arcane de Vie : somme de tous les chiffres de la date, réduit à ≤ 22. Arcane du Cycle : idem avec l'année de génération du rapport.`],
+    ['Carré Lo Shu', `Carré magique 3×3 (positions 4,9,2 / 3,5,7 / 8,1,6). Chiffres collectés depuis la date de naissance (JJ/MM/AAAA). 8 flèches de force analysées.`],
+    ['Carré de 9 Lenormand', `Tirage déterministe : graine LCG = jour×1000003 + mois×10007 + année×31. Algorithme LCG (a=1664525, c=1013904223). 9 cartes uniques tirées parmi 36. Reproductible à date identique.`],
     ['Tikoun / Leçons karmiques', `Nombres absents de 1 à 9 dans le nom complet de naissance. Dettes karmiques (13, 14, 16, 19) : valeurs intermédiaires des réductions numériques.`],
     ['Données utilisées', `${profil.prenom} ${profil.nom}  ·  ${profil.dateNaissance}`],
     ['Rapport généré le', dateStr],
@@ -545,9 +845,12 @@ export async function genererRapportPDF(profil, contenu) {
     drawCheminDeVie(doc, profil, contenu);
     drawExpressionAme(doc, profil, contenu);
     drawPersonnaliteAnnee(doc, profil, contenu);
+    drawPlanete(doc, profil, contenu);
     drawArcaneVie(doc, profil, contenu);
     drawArcaneAnnee(doc, profil, contenu);
     drawSigne(doc, profil, contenu);
+    drawLoShu(doc, profil);
+    drawCarreDe9(doc, profil);
     drawKarmique(doc, profil, contenu);
     drawSynthese(doc, profil, contenu);
     drawConclusion(doc, profil);

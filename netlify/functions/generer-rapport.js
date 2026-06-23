@@ -58,9 +58,12 @@ async function envoyerRapport(email, prenom, pdfBuffer, resendApiKey) {
         </p>
         <p style="font-size:15px;line-height:1.7">Ce rapport croise :</p>
         <ul style="font-size:15px;line-height:1.9;padding-left:20px">
-          <li><strong>Numérologie pythagoricienne</strong> — vos 5 nombres fondamentaux</li>
+          <li><strong>Numérologie pythagoricienne</strong> — vos 5 nombres fondamentaux avec ombre et clés pratiques</li>
+          <li><strong>Planète gouvernante</strong> — pont entre numérologie et astrologie</li>
           <li><strong>Tarot de Marseille</strong> — votre arcane de vie et de l'année</li>
           <li><strong>Astrologie solaire</strong> — votre signe, élément et modalité</li>
+          <li><strong>Carré Lo Shu</strong> — grille géométrique de votre date de naissance</li>
+          <li><strong>Carré de 9 Lenormand</strong> — tirage oracle en 9 cartes</li>
           <li><strong>Tikoun</strong> — vos leçons et dettes karmiques</li>
           <li><strong>Synthèse</strong> — convergences et tensions entre les disciplines</li>
         </ul>
