@@ -38,7 +38,8 @@ async function envoyerRapport(email, prenom, pdfBuffer, resendApiKey) {
   const resend = new Resend(resendApiKey);
 
   const { error } = await resend.emails.send({
-    from:    'Plateforme des Mystères <rapports@mysteres.fr>',
+    from:    'Plateforme des Mystères <onboarding@resend.dev>',
+    replyTo: 'plateformedesmysteres@gmail.com',
     to:      [email],
     subject: `✦ Votre Rapport d'Incarnation, ${prenom}`,
     html: `
