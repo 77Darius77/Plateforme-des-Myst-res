@@ -24,8 +24,10 @@ async function validerCleGumroad(licenseKey) {
 
   const data = await res.json();
 
+  console.log('Gumroad response:', JSON.stringify(data));
+
   if (!data.success) {
-    return { valide: false, raison: 'Clé de licence invalide ou déjà utilisée.' };
+    return { valide: false, raison: `Clé invalide (${data.message || 'erreur inconnue'})` };
   }
   if (data.uses > 3) {
     return { valide: false, raison: 'Cette clé a déjà été utilisée le nombre maximal de fois.' };
