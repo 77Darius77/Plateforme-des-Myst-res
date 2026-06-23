@@ -326,7 +326,7 @@ function tirerLenormand(jour, mois, annee) {
     { id: drawn[2], pos: 3, label: 'Point de bascule',  zone: 'passe'   },
     { id: drawn[3], pos: 4, label: 'Ressource intérieure', zone: 'present'},
     { id: drawn[4], pos: 5, label: 'Carte centrale',    zone: 'present' },
-    { id: drawn[5], pos: 5, label: 'Dynamique externe', zone: 'present' },
+    { id: drawn[5], pos: 6, label: 'Dynamique externe', zone: 'present' },
     { id: drawn[6], pos: 7, label: 'Ce qui émerge',     zone: 'futur'   },
     { id: drawn[7], pos: 8, label: 'Invitation',        zone: 'futur'   },
     { id: drawn[8], pos: 9, label: 'Résultat possible', zone: 'futur'   },

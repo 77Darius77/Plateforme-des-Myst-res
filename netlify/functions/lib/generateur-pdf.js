@@ -485,7 +485,7 @@ function drawLoShu(doc, profil) {
   if (ls.flechesPresentes.length > 0) {
     hLine(doc, doc.y, GOLD, 0.3);
     doc.y += 12;
-    lbl(doc, `Fleches de forces actives (${ls.flechesPresentes.length})`);
+    lbl(doc, `Flèches de forces actives (${ls.flechesPresentes.length})`);
     ls.flechesPresentes.forEach(f => {
       ensureSpace(doc, 28);
       doc.y += 4;
@@ -505,7 +505,7 @@ function drawLoShu(doc, profil) {
     doc.y += 10;
     hLine(doc, doc.y, LGRAY, 0.3);
     doc.y += 12;
-    lbl(doc, `Sequances à développer (${ls.flechesAbsentes.length})`);
+    lbl(doc, `Séquences à développer (${ls.flechesAbsentes.length})`);
     body(doc, ls.flechesAbsentes.map(f => `${f.nom} [${f.chiffres.join('-')}] — ${f.description}`).join('  |  '),
       { color: MUTED, font: FONT_SANS, size: 8.5 });
   }
@@ -554,14 +554,12 @@ function drawCarreDe9(doc, profil) {
        .text(String(pos.pos), x + 6, y + 8, { width: 16 });
 
     // Nom de la carte
-    doc.fillColor(isCentral ? NAVY : LIGHT).font(FONT_SANS_BOLD).fontSize(9.5)
-       .text(card.name || `Carte ${pos.id + 1}`, x + 6, y + 18, { width: cellW - 12, align: 'center' });
+    doc.fillColor(isCentral ? NAVY : LIGHT).font(FONT_SANS_BOLD).fontSize(10)
+       .text(card.name || `Carte ${pos.id + 1}`, x + 6, y + 16, { width: cellW - 12, align: 'center' });
 
-    // Symbole
-    if (card.symbol) {
-      doc.fillColor(textColor).font(FONT_SANS).fontSize(14)
-         .text(card.symbol, x + 6, y + 32, { width: cellW - 12, align: 'center' });
-    }
+    // Numéro Lenormand
+    doc.fillColor(isCentral ? NAVY : GOLD).font(FONT_SANS).fontSize(8)
+       .text(`N° ${pos.id + 1}`, x + 6, y + 34, { width: cellW - 12, align: 'center', characterSpacing: 0.5 });
 
     // Label de position
     doc.fillColor(isCentral ? NAVY : MUTED).font(FONT_SANS).fontSize(6.5)
