@@ -8,7 +8,7 @@ import { assemblerContenu }  from './lib/textes.js';
 import { genererRapportPDF } from './lib/generateur-pdf.js';
 import { Resend }            from 'resend';
 
-const GUMROAD_PRODUCT_ID = 'rapportdincarnation'; // slug du produit Gumroad
+const GUMROAD_PRODUCT_ID = 'faObuZYZEngNX_Pf9BKZFw=='; // product_id Gumroad
 
 // ── Validation de la clé Gumroad ──────────────────────────────────────────
 async function validerCleGumroad(licenseKey) {
@@ -16,8 +16,8 @@ async function validerCleGumroad(licenseKey) {
     method:  'POST',
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
     body:    new URLSearchParams({
-      product_permalink: GUMROAD_PRODUCT_ID,
-      license_key:       licenseKey,
+      product_id:           GUMROAD_PRODUCT_ID,
+      license_key:          licenseKey,
       increment_uses_count: 'true',
     }),
   });
