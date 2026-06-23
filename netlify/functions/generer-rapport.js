@@ -122,11 +122,10 @@ export const handler = async (event) => {
   }
 
   // Variables d'environnement
-  const GUMROAD_API_KEY = process.env.GUMROAD_API_KEY;
-  const RESEND_API_KEY  = process.env.RESEND_API_KEY;
+  const RESEND_API_KEY = process.env.RESEND_API_KEY;
 
-  if (!GUMROAD_API_KEY || !RESEND_API_KEY) {
-    console.error('Variables d\'environnement manquantes');
+  if (!RESEND_API_KEY) {
+    console.error('RESEND_API_KEY manquant');
     return json(500, { erreur: 'Configuration serveur incomplète.' });
   }
 
