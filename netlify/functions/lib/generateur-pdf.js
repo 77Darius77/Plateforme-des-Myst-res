@@ -4,6 +4,15 @@
 
 import PDFDocument from 'pdfkit';
 import { CARD_DATA } from './tarot-data.js';
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const FONT_SANS       = join(__dirname, 'fonts/Sans-Regular.ttf');
+const FONT_SANS_BOLD  = join(__dirname, 'fonts/Sans-Bold.ttf');
+const FONT_SERIF      = join(__dirname, 'fonts/Serif-Regular.ttf');
+const FONT_SERIF_BOLD = join(__dirname, 'fonts/Serif-Bold.ttf');
+const FONT_SERIF_ITAL = join(__dirname, 'fonts/Serif-Italic.ttf');
 
 // ── Palette ────────────────────────────────────────────────────────────────
 const NAVY  = '#0d1b2a';
@@ -32,7 +41,7 @@ function ensureSpace(doc, needed) {
 
 function pageHeader(doc, label) {
   doc.rect(0, 0, W, 8).fill(NAVY);
-  doc.fillColor(GOLD).font('Helvetica').fontSize(6)
+  doc.fillColor(GOLD).font(FONT_SANS).fontSize(6)
      .text(label.toUpperCase(), ML, 14, { width: CW, align: 'right', characterSpacing: 1.5 });
   doc.y = MT;
 }
@@ -40,9 +49,9 @@ function pageHeader(doc, label) {
 function footer(doc, pageNum, total, annee) {
   const y = H - 35;
   hLine(doc, y, GOLD, 0.3);
-  doc.fillColor(MUTED).font('Helvetica').fontSize(7)
+  doc.fillColor(MUTED).font(FONT_SANS).fontSize(7)
      .text(`Plateforme des Mystères  ·  Rapport d'Incarnation ${annee}`, ML, y + 6, { width: CW * 0.65 });
-  doc.fillColor(GOLD).font('Helvetica').fontSize(7)
+  doc.fillColor(GOLD).font(FONT_SANS).fontSize(7)
      .text(`${pageNum} / ${total}`, ML, y + 6, { width: CW, align: 'right' });
 }
 
@@ -50,9 +59,9 @@ function numberBlock(doc, x, y, num, lbl) {
   const bw = 78, bh = 68;
   doc.rect(x, y, bw, bh).fill(NAVY);
   doc.rect(x + 0.5, y + 0.5, bw - 1, bh - 1).lineWidth(0.8).strokeColor(GOLD).stroke();
-  doc.fillColor(GOLD).font('Helvetica-Bold').fontSize(30)
+  doc.fillColor(GOLD).font(FONT_SANS_BOLD).fontSize(30)
      .text(String(num), x, y + 8, { width: bw, align: 'center' });
-  doc.fillColor(LIGHT).font('Helvetica').fontSize(6.5)
+  doc.fillColor(LIGHT).font(FONT_SANS).fontSize(6.5)
      .text(lbl.toUpperCase(), x, y + 48, { width: bw, align: 'center', characterSpacing: 0.8 });
 }
 
@@ -61,13 +70,13 @@ function sectionTitle(doc, numero, titre, sousTitre) {
   pageHeader(doc, 'Rapport d\'Incarnation');
   const ty = doc.y;
   doc.rect(ML - 5, ty, CW + 10, 42).fill(NAVY);
-  doc.fillColor(GOLD).font('Helvetica').fontSize(7)
+  doc.fillColor(GOLD).font(FONT_SANS).fontSize(7)
      .text(numero, ML, ty + 5, { width: CW, align: 'center', characterSpacing: 1.5 });
-  doc.fillColor(LIGHT).font('Helvetica-Bold').fontSize(14)
+  doc.fillColor(LIGHT).font(FONT_SANS_BOLD).fontSize(14)
      .text(titre, ML, ty + 16, { width: CW, align: 'center' });
   doc.y = ty + 42 + 6;
   if (sousTitre) {
-    doc.fillColor(GOLD).font('Helvetica-Bold').fontSize(9)
+    doc.fillColor(GOLD).font(FONT_SANS_BOLD).fontSize(9)
        .text(sousTitre.toUpperCase(), ML, doc.y, { width: CW, align: 'center', characterSpacing: 1.2 });
     doc.y += 4;
   }
@@ -77,7 +86,7 @@ function sectionTitle(doc, numero, titre, sousTitre) {
 
 function lbl(doc, text) {
   doc.x = ML;
-  doc.fillColor(GOLD).font('Helvetica-Bold').fontSize(7.5)
+  doc.fillColor(GOLD).font(FONT_SANS_BOLD).fontSize(7.5)
      .text(text.toUpperCase(), ML, doc.y, { width: CW, characterSpacing: 1.2 });
   doc.y += 6;
 }
@@ -85,7 +94,7 @@ function lbl(doc, text) {
 function body(doc, text, opts = {}) {
   doc.x = ML;
   doc.fillColor(opts.color || DARK)
-     .font(opts.font || 'Times-Roman')
+     .font(opts.font || FONT_SERIF)
      .fontSize(opts.size || 10.5)
      .lineGap(opts.gap || 3)
      .text(text, ML, doc.y, { width: CW, align: opts.align || 'justify' });
@@ -96,33 +105,33 @@ function body(doc, text, opts = {}) {
 function drawCover(doc, profil) {
   doc.rect(0, 0, W, H).fill(NAVY);
 
-  doc.fillColor(GOLD).font('Helvetica').fontSize(8)
+  doc.fillColor(GOLD).font(FONT_SANS).fontSize(8)
      .text('✦  ✦  ✦', 0, 60, { width: W, align: 'center', characterSpacing: 6 });
 
-  doc.fillColor(GOLD).font('Helvetica-Bold').fontSize(40)
+  doc.fillColor(GOLD).font(FONT_SANS_BOLD).fontSize(40)
      .text('◈', 0, H * 0.22, { width: W, align: 'center' });
 
-  doc.fillColor(LIGHT).font('Helvetica-Bold').fontSize(26)
+  doc.fillColor(LIGHT).font(FONT_SANS_BOLD).fontSize(26)
      .text('RAPPORT', 0, H * 0.36, { width: W, align: 'center', characterSpacing: 1.5 });
-  doc.fillColor(GOLD).font('Helvetica-Bold').fontSize(26)
+  doc.fillColor(GOLD).font(FONT_SANS_BOLD).fontSize(26)
      .text('D\'INCARNATION', 0, doc.y, { width: W, align: 'center', characterSpacing: 1.5 });
 
   const sepY = doc.y + 12;
   doc.moveTo(W * 0.3, sepY).lineTo(W * 0.7, sepY).lineWidth(0.5).strokeColor(GOLD).stroke();
 
-  doc.fillColor(GOLD).font('Helvetica').fontSize(7.5)
+  doc.fillColor(GOLD).font(FONT_SANS).fontSize(7.5)
      .text('TAROT  ·  NUMÉROLOGIE  ·  ASTROLOGIE  ·  TIKOUN', 0, sepY + 12, { width: W, align: 'center', characterSpacing: 2 });
 
-  doc.fillColor(LIGHT).font('Helvetica-Bold').fontSize(22)
+  doc.fillColor(LIGHT).font(FONT_SANS_BOLD).fontSize(22)
      .text(`${profil.prenom.toUpperCase()} ${profil.nom.toUpperCase()}`, 0, H * 0.58, { width: W, align: 'center' });
-  doc.fillColor(MUTED).font('Helvetica').fontSize(9)
+  doc.fillColor(MUTED).font(FONT_SANS).fontSize(9)
      .text('né(e) le ' + profil.dateNaissance, 0, doc.y + 4, { width: W, align: 'center', characterSpacing: 1 });
 
   doc.moveTo(W * 0.25, H * 0.72).lineTo(W * 0.75, H * 0.72).lineWidth(0.3).strokeColor(GOLD).stroke();
 
-  doc.fillColor(MUTED).font('Helvetica').fontSize(7)
+  doc.fillColor(MUTED).font(FONT_SANS).fontSize(7)
      .text('PLATEFORME DES MYSTÈRES', 0, H - 65, { width: W, align: 'center', characterSpacing: 3 });
-  doc.fillColor(MUTED).font('Helvetica').fontSize(7)
+  doc.fillColor(MUTED).font(FONT_SANS).fontSize(7)
      .text(String(profil.anneeRapport), 0, H - 50, { width: W, align: 'center' });
 }
 
@@ -131,7 +140,7 @@ function drawOverview(doc, profil, contenu) {
   doc.addPage();
   pageHeader(doc, 'Vue d\'ensemble');
 
-  doc.fillColor(NAVY).font('Helvetica-Bold').fontSize(18)
+  doc.fillColor(NAVY).font(FONT_SANS_BOLD).fontSize(18)
      .text('Votre Portrait d\'Incarnation', ML, doc.y, { width: CW });
   doc.y += 6;
   hLine(doc, doc.y, GOLD);
@@ -161,9 +170,9 @@ function drawOverview(doc, profil, contenu) {
     { l: 'Arcane du cycle', v: profil.arcaneAnnee.nom },
   ].forEach((item, i) => {
     const x = ML + i * colW;
-    doc.fillColor(MUTED).font('Helvetica').fontSize(7)
+    doc.fillColor(MUTED).font(FONT_SANS).fontSize(7)
        .text(item.l.toUpperCase(), x, rowY, { width: colW, align: 'center', characterSpacing: 0.8 });
-    doc.fillColor(NAVY).font('Helvetica-Bold').fontSize(9)
+    doc.fillColor(NAVY).font(FONT_SANS_BOLD).fontSize(9)
        .text(item.v, x, rowY + 12, { width: colW, align: 'center' });
   });
   doc.y = rowY + 32;
@@ -171,7 +180,7 @@ function drawOverview(doc, profil, contenu) {
   doc.y += 16;
 
   lbl(doc, 'Portrait narratif');
-  body(doc, contenu.synthese.portrait, { font: 'Times-Italic', gap: 4 });
+  body(doc, contenu.synthese.portrait, { font: FONT_SERIF_ITAL, gap: 4 });
 
   if (profil.nombresAbsents.length > 0) {
     doc.y += 4;
@@ -179,7 +188,7 @@ function drawOverview(doc, profil, contenu) {
     body(doc, profil.nombresAbsents.map(n => {
       const l = contenu.lecons.find(x => x.numero === n);
       return l ? `${n} — ${l.titre}` : String(n);
-    }).join('  ·  '), { font: 'Helvetica', size: 9, color: MUTED, after: 4 });
+    }).join('  ·  '), { font: FONT_SANS, size: 9, color: MUTED, after: 4 });
   }
 
   if (profil.dettesKarmiques.length > 0) {
@@ -187,7 +196,7 @@ function drawOverview(doc, profil, contenu) {
     body(doc, profil.dettesKarmiques.map(d => {
       const x = contenu.dettes.find(k => k.numero === d);
       return x ? `${d} — ${x.titre}` : String(d);
-    }).join('  ·  '), { font: 'Helvetica', size: 9, color: MUTED, after: 4 });
+    }).join('  ·  '), { font: FONT_SANS, size: 9, color: MUTED, after: 4 });
   }
 }
 
@@ -198,7 +207,7 @@ function drawCheminDeVie(doc, profil, contenu) {
 
   const startY = doc.y;
   numberBlock(doc, ML, startY, profil.cheminDeVie, 'Chemin de vie');
-  doc.fillColor(DARK).font('Times-Roman').fontSize(10.5).lineGap(3)
+  doc.fillColor(DARK).font(FONT_SERIF).fontSize(10.5).lineGap(3)
      .text(c.corps, ML + 94, startY, { width: CW - 94, align: 'justify' });
   doc.y = Math.max(doc.y, startY + 68 + 6) + 16;
 
@@ -215,7 +224,7 @@ function drawExpressionAme(doc, profil, contenu) {
   lbl(doc, `Nombre d'Expression — ${profil.expression}  ·  Ce que vous projetez`);
   const y1 = doc.y;
   numberBlock(doc, ML, y1, profil.expression, 'Expression');
-  doc.fillColor(DARK).font('Times-Roman').fontSize(10.5).lineGap(3)
+  doc.fillColor(DARK).font(FONT_SERIF).fontSize(10.5).lineGap(3)
      .text(contenu.expression.corps, ML + 94, y1, { width: CW - 94, align: 'justify' });
   doc.y = Math.max(doc.y, y1 + 68 + 6) + 18;
 
@@ -224,7 +233,7 @@ function drawExpressionAme(doc, profil, contenu) {
   lbl(doc, `Nombre de l'Âme — ${profil.ame}  ·  Vos aspirations profondes`);
   const y2 = doc.y;
   numberBlock(doc, ML, y2, profil.ame, 'Âme');
-  doc.fillColor(DARK).font('Times-Roman').fontSize(10.5).lineGap(3)
+  doc.fillColor(DARK).font(FONT_SERIF).fontSize(10.5).lineGap(3)
      .text(contenu.ame.corps, ML + 94, y2, { width: CW - 94, align: 'justify' });
   doc.y = Math.max(doc.y, y2 + 68 + 6) + 16;
 
@@ -243,7 +252,7 @@ function drawPersonnaliteAnnee(doc, profil, contenu) {
   lbl(doc, `Nombre de Personnalité — ${profil.personnalite}  ·  L'image que vous projetez`);
   const y1 = doc.y;
   numberBlock(doc, ML, y1, profil.personnalite, 'Personnalité');
-  doc.fillColor(DARK).font('Times-Roman').fontSize(10.5).lineGap(3)
+  doc.fillColor(DARK).font(FONT_SERIF).fontSize(10.5).lineGap(3)
      .text(contenu.personnalite.corps, ML + 94, y1, { width: CW - 94, align: 'justify' });
   doc.y = Math.max(doc.y, y1 + 68 + 6) + 20;
 
@@ -252,7 +261,7 @@ function drawPersonnaliteAnnee(doc, profil, contenu) {
   lbl(doc, `Année Personnelle ${profil.anneeRapport} — Cycle ${profil.anneePersonnelle}`);
   const y2 = doc.y;
   numberBlock(doc, ML, y2, profil.anneePersonnelle, `Année ${profil.anneeRapport}`);
-  doc.fillColor(DARK).font('Times-Roman').fontSize(10.5).lineGap(3)
+  doc.fillColor(DARK).font(FONT_SERIF).fontSize(10.5).lineGap(3)
      .text(contenu.anneePerso.corps, ML + 94, y2, { width: CW - 94, align: 'justify' });
   doc.y = Math.max(doc.y, y2 + 68 + 6) + 16;
 
@@ -269,7 +278,7 @@ function drawArcaneVie(doc, profil, contenu) {
 
   const y1 = doc.y;
   numberBlock(doc, ML, y1, arcane.numero, 'Arcane de vie');
-  doc.fillColor(DARK).font('Times-Roman').fontSize(10.5).lineGap(3)
+  doc.fillColor(DARK).font(FONT_SERIF).fontSize(10.5).lineGap(3)
      .text(`L'Arcane ${arcane.nom} est le mythe intérieur qui traverse toute votre histoire. Il ne désigne pas une période ni un événement — il nomme l'énergie fondamentale qui opère en arrière-plan de votre vie, souvent sans que vous en ayez conscience. C'est la carte qui revient, le thème récurrent, la tension centrale que vous rencontrez sous mille formes différentes.`,
        ML + 94, y1, { width: CW - 94, align: 'justify' });
   doc.y = Math.max(doc.y, y1 + 68 + 6) + 16;
@@ -293,7 +302,7 @@ function drawArcaneAnnee(doc, profil, contenu) {
 
   const y1 = doc.y;
   numberBlock(doc, ML, y1, arcane.numero, `Cycle ${profil.anneeRapport}`);
-  doc.fillColor(DARK).font('Times-Roman').fontSize(10.5).lineGap(3)
+  doc.fillColor(DARK).font(FONT_SERIF).fontSize(10.5).lineGap(3)
      .text(`L'Arcane du Cycle est un compagnon symbolique pour les douze prochains mois. Là où l'Arcane de Vie est une constante de toute votre existence, celui-ci est une invitation ponctuelle — une énergie que vous traversez en ${profil.anneeRapport} et qui colorera vos défis et opportunités de cette période.`,
        ML + 94, y1, { width: CW - 94, align: 'justify' });
   doc.y = Math.max(doc.y, y1 + 68 + 6) + 16;
@@ -324,9 +333,9 @@ function drawSigne(doc, profil, contenu) {
   ].forEach((item, i) => {
     const x = ML + i * colW3;
     doc.rect(x + 4, gY, colW3 - 8, 52).fill('#f1f5f9');
-    doc.fillColor(MUTED).font('Helvetica').fontSize(7)
+    doc.fillColor(MUTED).font(FONT_SANS).fontSize(7)
        .text(item.l.toUpperCase(), x + 4, gY + 8, { width: colW3 - 8, align: 'center', characterSpacing: 1 });
-    doc.fillColor(NAVY).font('Helvetica-Bold').fontSize(16)
+    doc.fillColor(NAVY).font(FONT_SANS_BOLD).fontSize(16)
        .text(item.v, x + 4, gY + 20, { width: colW3 - 8, align: 'center' });
   });
   doc.y = gY + 64;
@@ -370,14 +379,14 @@ function drawKarmique(doc, profil, contenu) {
       doc.y += 8;
       const ly = doc.y;
       numberBlock(doc, ML, ly, lecon.numero, 'Absent');
-      doc.fillColor(NAVY).font('Helvetica-Bold').fontSize(10)
+      doc.fillColor(NAVY).font(FONT_SANS_BOLD).fontSize(10)
          .text(lecon.titre, ML + 94, ly, { width: CW - 94 });
-      doc.fillColor(DARK).font('Times-Roman').fontSize(10.5).lineGap(3)
+      doc.fillColor(DARK).font(FONT_SERIF).fontSize(10.5).lineGap(3)
          .text(lecon.corps, ML + 94, doc.y + 2, { width: CW - 94, align: 'justify' });
       doc.y = Math.max(doc.y, ly + 68 + 6) + 10;
     });
   } else {
-    body(doc, `Tous les chiffres de 1 à 9 sont présents dans votre nom de naissance — aucune leçon karmique n'est signalée. Vos axes de croissance se lisent dans les autres dimensions de votre profil.`, { color: MUTED, font: 'Times-Italic' });
+    body(doc, `Tous les chiffres de 1 à 9 sont présents dans votre nom de naissance — aucune leçon karmique n'est signalée. Vos axes de croissance se lisent dans les autres dimensions de votre profil.`, { color: MUTED, font: FONT_SERIF_ITAL });
   }
 
   doc.y += 8;
@@ -391,14 +400,14 @@ function drawKarmique(doc, profil, contenu) {
       doc.y += 8;
       const dy = doc.y;
       numberBlock(doc, ML, dy, dette.numero, 'Dette');
-      doc.fillColor(NAVY).font('Helvetica-Bold').fontSize(10)
+      doc.fillColor(NAVY).font(FONT_SANS_BOLD).fontSize(10)
          .text(dette.titre, ML + 94, dy, { width: CW - 94 });
-      doc.fillColor(DARK).font('Times-Roman').fontSize(10.5).lineGap(3)
+      doc.fillColor(DARK).font(FONT_SERIF).fontSize(10.5).lineGap(3)
          .text(dette.corps, ML + 94, doc.y + 2, { width: CW - 94, align: 'justify' });
       doc.y = Math.max(doc.y, dy + 68 + 6) + 10;
     });
   } else {
-    body(doc, `Aucune dette karmique détectée dans vos calculs numériques.`, { color: MUTED, font: 'Times-Italic' });
+    body(doc, `Aucune dette karmique détectée dans vos calculs numériques.`, { color: MUTED, font: FONT_SERIF_ITAL });
   }
 }
 
@@ -445,7 +454,7 @@ function drawSynthese(doc, profil, contenu) {
   hLine(doc, doc.y, GOLD);
   doc.y += 14;
   lbl(doc, 'Portrait de clôture');
-  body(doc, syn.portrait, { font: 'Times-Italic', size: 11, gap: 4 });
+  body(doc, syn.portrait, { font: FONT_SERIF_ITAL, size: 11, gap: 4 });
 }
 
 // ── CONCLUSION ────────────────────────────────────────────────────────────
@@ -453,10 +462,10 @@ function drawConclusion(doc, profil) {
   doc.addPage();
   doc.rect(0, 0, W, H).fill(NAVY);
 
-  doc.fillColor(GOLD).font('Helvetica-Bold').fontSize(36)
+  doc.fillColor(GOLD).font(FONT_SANS_BOLD).fontSize(36)
      .text('◈', 0, H * 0.2, { width: W, align: 'center' });
 
-  doc.fillColor(LIGHT).font('Helvetica-Bold').fontSize(20)
+  doc.fillColor(LIGHT).font(FONT_SANS_BOLD).fontSize(20)
      .text('Pour aller plus loin', 0, H * 0.3, { width: W, align: 'center' });
 
   doc.moveTo(W * 0.35, H * 0.37).lineTo(W * 0.65, H * 0.37)
@@ -471,9 +480,9 @@ function drawConclusion(doc, profil) {
 
   let ty = H * 0.41;
   tips.forEach((tip, i) => {
-    doc.fillColor(GOLD).font('Helvetica-Bold').fontSize(9)
+    doc.fillColor(GOLD).font(FONT_SANS_BOLD).fontSize(9)
        .text(`${i + 1}.`, ML + 20, ty, { width: 20 });
-    doc.fillColor(LIGHT).font('Times-Roman').fontSize(10).lineGap(2)
+    doc.fillColor(LIGHT).font(FONT_SERIF).fontSize(10).lineGap(2)
        .text(tip, ML + 44, ty, { width: CW - 44 });
     ty = doc.y + 14;
   });
@@ -481,7 +490,7 @@ function drawConclusion(doc, profil) {
   doc.moveTo(W * 0.35, ty + 8).lineTo(W * 0.65, ty + 8)
      .lineWidth(0.4).strokeColor(GOLD).stroke();
 
-  doc.fillColor(MUTED).font('Times-Italic').fontSize(9)
+  doc.fillColor(MUTED).font(FONT_SERIF_ITAL).fontSize(9)
      .text('Ce rapport n\'est ni un diagnostic médical, ni un conseil psychologique, ni une prédiction.\nUtilisez-le comme un miroir, pas comme un oracle.', 0, ty + 22, { width: W, align: 'center' });
 }
 
@@ -490,7 +499,7 @@ function drawMethodo(doc, profil) {
   doc.addPage();
   pageHeader(doc, 'Note méthodologique');
 
-  doc.fillColor(NAVY).font('Helvetica-Bold').fontSize(16)
+  doc.fillColor(NAVY).font(FONT_SANS_BOLD).fontSize(16)
      .text('Note méthodologique', ML, doc.y, { width: CW });
   doc.y += 6;
   hLine(doc, doc.y, GOLD);
@@ -508,10 +517,10 @@ function drawMethodo(doc, profil) {
     ['Rapport généré le', dateStr],
   ].forEach(([titre, texte]) => {
     ensureSpace(doc, 40);
-    doc.fillColor(GOLD).font('Helvetica-Bold').fontSize(8)
+    doc.fillColor(GOLD).font(FONT_SANS_BOLD).fontSize(8)
        .text(titre.toUpperCase(), ML, doc.y, { width: CW, characterSpacing: 1 });
     doc.y += 2;
-    doc.fillColor(MUTED).font('Times-Roman').fontSize(9.5).lineGap(2)
+    doc.fillColor(MUTED).font(FONT_SERIF).fontSize(9.5).lineGap(2)
        .text(texte, ML, doc.y, { width: CW });
     doc.y += 12;
     hLine(doc, doc.y - 4, LGRAY, 0.3);
@@ -519,7 +528,7 @@ function drawMethodo(doc, profil) {
   });
 
   doc.y += 10;
-  doc.fillColor(MUTED).font('Times-Italic').fontSize(9)
+  doc.fillColor(MUTED).font(FONT_SERIF_ITAL).fontSize(9)
      .text('Plateforme des Mystères', ML, doc.y, { width: CW, align: 'center' });
 }
 
