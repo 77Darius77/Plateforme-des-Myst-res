@@ -37,7 +37,10 @@ function hLine(doc, y, color = GOLD, lw = 0.5) {
 }
 
 function ensureSpace(doc, needed) {
-  if (doc.y + needed > H - MB) doc.addPage();
+  if (doc.y + needed > H - MB) {
+    doc.addPage();
+    pageHeader(doc, 'Rapport d\'Incarnation');
+  }
 }
 
 function pageHeader(doc, label) {
@@ -101,6 +104,151 @@ function body(doc, text, opts = {}) {
      .text(text, ML, doc.y, { width: CW, align: opts.align || 'justify' });
   doc.y += opts.after || 10;
 }
+
+// ── chainReadPDF — narration contextuelle d'une séquence de 3 cartes ────────
+function chainReadPDF(cardA, cardB, cardC, context) {
+  function lo(s) { return s ? s.charAt(0).toLowerCase() + s.slice(1) : ''; }
+  function kw(c) { return c.keywords?.[0] || 'transformation'; }
+  function findPairing(src, target) {
+    if (!src?.pairings || !target?.id) return null;
+    return src.pairings.find(p => p.with === target.id)?.meaning || null;
+  }
+
+  const abP = findPairing(cardA, cardB);
+  const bcP = cardC ? findPairing(cardB, cardC) : null;
+  const syn = cardC ? (cardC.synthesis || cardC.meaning || '').split('.')[0] : '';
+  const synLow = syn ? lo(syn) : '';
+
+  let openA, linkAB, openB, linkBC, closeC;
+
+  if (context === 'ligne-passe') {
+    openA  = `Dans vos racines, ${cardA.name} inscrit l'empreinte`;
+    linkAB = abP ? ` : ${lo(abP)}` : `, portant son énergie de ${kw(cardA)}.`;
+    openB  = ` ${cardB.name} en révèle la profondeur`;
+    linkBC = cardC && bcP ? ` : ${lo(bcP)}` : cardC ? `, laissant émerger ${kw(cardB)} avant la venue de ${cardC.name}.` : `.`;
+    closeC = cardC ? ` ${cardC.name} scelle cette empreinte : ${synLow}.` : '';
+  } else if (context === 'ligne-present') {
+    openA  = `Au cœur de l'instant, ${cardA.name} porte l'enjeu central`;
+    linkAB = abP ? ` : ${lo(abP)}` : `, avec son énergie de ${kw(cardA)}.`;
+    openB  = ` ${cardB.name} amplifie ou nuance la dynamique`;
+    linkBC = cardC && bcP ? ` : ${lo(bcP)}` : cardC ? `, en apportant ${kw(cardB)}, tandis que ${cardC.name} oriente l'issue.` : `.`;
+    closeC = cardC ? ` ${cardC.name} canalise l'ensemble : ${synLow}.` : '';
+  } else if (context === 'ligne-futur') {
+    openA  = `À l'horizon, ${cardA.name} ouvre la voie`;
+    linkAB = abP ? ` : ${lo(abP)}` : `, par son énergie de ${kw(cardA)}.`;
+    openB  = ` ${cardB.name} trace la direction`;
+    linkBC = cardC && bcP ? ` : ${lo(bcP)}` : cardC ? `, en mobilisant ${kw(cardB)} vers ce que ${cardC.name} accomplira.` : `.`;
+    closeC = cardC ? ` ${cardC.name} dessine l'aboutissement possible : ${synLow}.` : '';
+  } else if (context === 'col-interieur') {
+    openA  = `Sur votre axe intérieur, ${cardA.name} ancre la dynamique`;
+    linkAB = abP ? ` : ${lo(abP)}` : `, par son énergie de ${kw(cardA)}.`;
+    openB  = ` ${cardB.name} en révèle la profondeur psychique`;
+    linkBC = cardC && bcP ? ` : ${lo(bcP)}` : cardC ? `, mêlant ${kw(cardB)} à ce que ${cardC.name} portera.` : `.`;
+    closeC = cardC ? ` ${cardC.name} dessine ce que vous emportez vers l'avenir : ${synLow}.` : '';
+  } else if (context === 'col-relationnel') {
+    openA  = `Sur votre axe relationnel, ${cardA.name} établit la qualité du lien`;
+    linkAB = abP ? ` : ${lo(abP)}` : `, portant son énergie de ${kw(cardA)}.`;
+    openB  = ` ${cardB.name} en transforme les contours`;
+    linkBC = cardC && bcP ? ` : ${lo(bcP)}` : cardC ? `, tissant ${kw(cardB)} jusqu'à la venue de ${cardC.name}.` : `.`;
+    closeC = cardC ? ` ${cardC.name} indique le fruit de cet échange : ${synLow}.` : '';
+  } else if (context === 'col-exterieur') {
+    openA  = `Sur votre axe extérieur, ${cardA.name} révèle les forces en jeu`;
+    linkAB = abP ? ` : ${lo(abP)}` : `, par son énergie de ${kw(cardA)}.`;
+    openB  = ` ${cardB.name} les module ou les contredit`;
+    linkBC = cardC && bcP ? ` : ${lo(bcP)}` : cardC ? `, en apportant ${kw(cardB)}, avant que ${cardC.name} n'oriente l'issue.` : `.`;
+    closeC = cardC ? ` ${cardC.name} pointe le dénouement dans le monde concret : ${synLow}.` : '';
+  } else if (context === 'diag-descend') {
+    openA  = `De vos origines, ${cardA.name} plante la graine initiale`;
+    linkAB = abP ? ` : ${lo(abP)}` : `, par son énergie de ${kw(cardA)}.`;
+    openB  = ` ${cardB.name}, au cœur du présent, transforme cette semence`;
+    linkBC = cardC && bcP ? ` : ${lo(bcP)}` : cardC ? `, en activant ${kw(cardB)} vers la maturation de ${cardC.name}.` : `.`;
+    closeC = cardC ? ` ${cardC.name} révèle la destinée de ce fil : ${synLow}.` : '';
+  } else {
+    openA  = `De ce qui émerge en vous, ${cardA.name} fait remonter une énergie`;
+    linkAB = abP ? ` : ${lo(abP)}` : `, portant ${kw(cardA)}.`;
+    openB  = ` ${cardB.name}, au cœur du présent, intègre et transforme`;
+    linkBC = cardC && bcP ? ` : ${lo(bcP)}` : cardC ? `, en mobilisant ${kw(cardB)} pour toucher ${cardC.name}.` : `.`;
+    closeC = cardC ? ` ${cardC.name} achève l'intégration : ${synLow}.` : '';
+  }
+
+  return openA + linkAB + openB + linkBC + (closeC || '');
+}
+
+// ── Contenu détaillé des flèches Lo Shu à développer ───────────────────────
+const FLECHES_CONSEILS = {
+  'Volonté': {
+    intro: `L'absence de la Flèche de Volonté (1–5–9) indique que maintenir une direction ferme sur la durée peut demander un effort conscient. Vous pouvez amorcer de nombreux projets avec enthousiasme et peiner à les porter jusqu'à leur aboutissement — non par manque de talent, mais parce que l'énergie de détermination linéaire ne vient pas naturellement.`,
+    exemples: [
+      `Choisissez un seul projet prioritaire pour les 90 prochains jours et travaillez-y chaque matin pendant 20 minutes avant toute autre tâche. La constance prime sur l'intensité.`,
+      `Tenez un carnet d'intentions hebdomadaires : chaque dimanche, notez ce que vous voulez avoir accompli vendredi. Relisez-le chaque matin. Cette micro-habitude renforce la continuité de l'élan.`,
+      `Apprenez à dire "pas maintenant" aux nouvelles idées qui surgissent : notez-les dans un carnet "plus tard" pour ne pas les perdre, sans dévier de votre cap actuel.`,
+    ],
+    conseil: `La volonté s'entraîne comme un muscle — et comme tout muscle, elle grandit dans la régularité, pas dans l'intensité sporadique. Commencez petit, tenez la durée, et observez la confiance en vos propres engagements se transformer progressivement.`,
+  },
+  'Intuition': {
+    intro: `L'absence de la Flèche d'Intuition (3–5–7) invite à développer votre connexion au ressenti profond et à la perception subtile. Vous avez tendance à sur-analyser là où il s'agirait de simplement ressentir, ou à rejeter vos premières impressions au profit de la logique — ce qui peut vous éloigner de votre boussole intérieure.`,
+    exemples: [
+      `Notez vos rêves dans un carnet dès le réveil, avant d'ouvrir votre téléphone. Ce simple geste développe progressivement l'attention au langage de l'inconscient.`,
+      `Pratiquez 5 minutes de silence intentionnel par jour sans écran, sans musique, sans tâche. Observez ce qui émerge spontanément à l'esprit — c'est souvent là que vit l'intuition.`,
+      `Avant toute décision importante, notez ce que vous ressentez dans le corps (gorge, ventre, poitrine) avant de penser. L'intuition parle d'abord physiquement.`,
+    ],
+    conseil: `Votre intuition est présente, mais couverte par le bruit mental. Créez des îlots de silence dans votre quotidien : ce n'est pas dans l'agitation que la voix intérieure se fait entendre, mais dans l'espace que vous lui offrez délibérément.`,
+  },
+  'Intellect': {
+    intro: `L'absence de la Flèche d'Intellect (2–5–8) indique que la mémorisation structurée et la pensée analytique rigoureuse sont des zones de développement. Vous pouvez préférer l'intuition ou l'action directe à la méthodologie — ce qui vous donne de la fluidité mais peut parfois vous faire manquer de fondations conceptuelles solides.`,
+    exemples: [
+      `Lisez 10 pages par jour sur un sujet qui vous fascine — non pour être productif, mais pour le plaisir de comprendre. La curiosité soutenue est le meilleur entraîneur de l'intellect.`,
+      `Pratiquez la reformulation : après chaque réunion importante ou lecture significative, notez en 3 phrases ce que vous en avez retenu. Cela consolide la mémoire active.`,
+      `Apprenez quelque chose de structurellement nouveau — une langue, les bases d'un instrument, un cours en ligne dans un domaine étranger. La diversité stimule les connexions neuronales.`,
+    ],
+    conseil: `L'intellect s'affûte par la curiosité et la discipline conjointes. Choisissez un domaine qui vous attire et plongez-y avec méthode. La profondeur d'un seul sujet développe davantage l'intellect que l'accumulation superficielle de nombreux autres.`,
+  },
+  'Plan pratique': {
+    intro: `L'absence de la Flèche du Plan Pratique (1–2–3) indique que l'organisation naturelle, la méthode et la planification ne sont pas vos premières ressources. Votre créativité ou votre réactivité peuvent être grandes, mais sans structure, vos projets risquent de stagner ou de se disperser faute de jalons clairs.`,
+    exemples: [
+      `Adoptez la règle des 3 priorités : chaque matin, avant d'ouvrir vos messages, notez les 3 choses les plus importantes de la journée. Concentrez-vous sur la première avant de passer à la suivante.`,
+      `Découpez chaque projet en étapes hebdomadaires avec une date et un livrable précis. La structure libère l'énergie créative en lui donnant un canal.`,
+      `Préparez votre lendemain le soir avant de vous coucher : 10 minutes de préparation le soir vous font gagner une heure le matin et réduisent l'anxiété de la page blanche.`,
+    ],
+    conseil: `La méthode n'est pas l'ennemie de la liberté — c'est son infrastructure. Essayez une seule routine structurante pendant 21 jours (lever à heure fixe, 15 minutes de planification quotidienne) et observez comment votre espace mental s'ouvre.`,
+  },
+  'Ordre': {
+    intro: `L'absence de la Flèche d'Ordre (4–5–6) invite à travailler l'équilibre émotionnel et l'harmonie relationnelle. Vous pouvez osciller entre des extrêmes — trop de rigidité ou trop de fluidité — sans trouver facilement un centre stable qui vous permette de tenir vos engagements sans vous épuiser.`,
+    exemples: [
+      `Identifiez votre baromètre émotionnel personnel : qu'est-ce qui vous indique précisément que vous êtes centré ? Reproduisez délibérément ces conditions chaque jour, même brièvement.`,
+      `Pratiquez une activité d'ancrage régulière : marche en nature, yoga, jardinage, cuisine consciente. Ces pratiques ramènent au corps et neutralisent l'agitation mentale.`,
+      `Apprenez à identifier vos déclencheurs de déséquilibre (personnes, situations, heures de la journée) et préparez une réponse intentionnelle à chacun, plutôt que de réagir automatiquement.`,
+    ],
+    conseil: `L'harmonie intérieure se construit dans les petits gestes quotidiens, pas dans les grandes décisions. Un seul rituel de recentrage — même de 5 minutes — pratiqué chaque jour vaut infiniment plus que deux heures de méditation une fois par semaine.`,
+  },
+  'Activité': {
+    intro: `L'absence de la Flèche d'Activité (7–8–9) indique que l'énergie physique disponible et la capacité à passer à l'action concrète sont des zones de développement prioritaire. Vous pouvez rester longtemps dans la réflexion ou l'intention sans franchir le seuil de l'action effective — non par paresse, mais parce que l'élan physique ne s'enclenche pas spontanément.`,
+    exemples: [
+      `Adoptez la règle des 2 minutes : si une tâche prend moins de 2 minutes, faites-la immédiatement sans la noter ni la reporter. Cette règle seule transforme la gestion du quotidien.`,
+      `Intégrez au moins 20 minutes de mouvement physique quotidien — marche rapide, vélo, natation. Le corps en mouvement libère une énergie mentale que la sédentarité retient captive.`,
+      `Terminez quelque chose de concret chaque jour, même de très petit : un email envoyé, une pièce rangée, un appel passé. L'élan de l'achèvement est contagieux.`,
+    ],
+    conseil: `L'action précède souvent la motivation, pas l'inverse. N'attendez pas de vous sentir prêt ou inspiré : faites le premier geste, aussi minuscule soit-il. La dynamique s'enclenche en agissant, jamais en attendant d'en avoir envie.`,
+  },
+  'Matière': {
+    intro: `L'absence de la Flèche de Matière (1–4–7) invite à renforcer votre ancrage dans le monde concret et matériel. Les réalités pratiques — finances, habitat, corps physique, ressources — peuvent demander plus d'attention que vous ne leur en accordez naturellement, vous laissant parfois dans une fragilité de base qui dessert vos aspirations plus élevées.`,
+    exemples: [
+      `Tenez un budget mensuel simple : notez vos entrées et sorties chaque semaine. La clarté financière n'est pas une contrainte — c'est une forme de conscience de soi et de respect de vos ressources.`,
+      `Prenez soin de votre espace de vie : rangez, allégez, rendez votre environnement immédiat intentionnel. L'espace extérieur reflète et influence directement votre espace intérieur.`,
+      `Planifiez vos bilans médicaux et dentaires à l'avance. Le corps est votre premier instrument — entretenir sa mécanique est un acte de respect fondamental envers vous-même.`,
+    ],
+    conseil: `La matière est le fondement de tout le reste. Choisissez un seul domaine concret (finances, corps, habitat) et améliorez-le méthodiquement pendant 3 mois. Une base solide multiplie votre efficacité dans tous les autres domaines de vie.`,
+  },
+  'Résilience': {
+    intro: `L'absence de la Flèche de Résilience (3–6–9) indique que la capacité de rebond face aux épreuves et aux revers est une force à construire consciemment. Vous pouvez être profondément affecté par les difficultés, mettre du temps à vous relever, ou éviter les situations à risque par peur de ne pas pouvoir encaisser un échec.`,
+    exemples: [
+      `Tenez un journal de ce que vous avez déjà surmonté : listez 10 moments difficiles que vous avez traversés. Ce témoignage personnel est votre meilleure preuve tangible de résilience existante.`,
+      `Entourez-vous délibérément de personnes qui vous relèvent : éloignez-vous des cercles de plaignants chroniques et cultivez les relations avec ceux qui voient les solutions dans les obstacles.`,
+      `Pratiquez la gratitude quotidienne pour les petites choses, même en période difficile. Ce n'est pas de la naïveté : c'est un entraînement progressif du regard qui change votre rapport à l'adversité.`,
+    ],
+    conseil: `La résilience ne signifie pas ne jamais tomber — elle signifie tomber avec moins de résistance et se relever avec plus de rapidité. Elle se construit en nommant vos forces passées, en célébrant vos petites victoires, et en acceptant que traverser une épreuve ne vous définit pas, mais vous forme.`,
+  },
+};
 
 // ── COUVERTURE ─────────────────────────────────────────────────────────────
 function drawCover(doc, profil) {
@@ -506,8 +654,51 @@ function drawLoShu(doc, profil) {
     hLine(doc, doc.y, LGRAY, 0.3);
     doc.y += 12;
     lbl(doc, `Séquences à développer (${ls.flechesAbsentes.length})`);
-    body(doc, ls.flechesAbsentes.map(f => `${f.nom} [${f.chiffres.join('-')}] — ${f.description}`).join('  |  '),
-      { color: MUTED, font: FONT_SANS, size: 8.5 });
+    body(doc, `Ces séquences, absentes de votre date de naissance, représentent des qualités que votre âme a choisies de développer dans cette incarnation. Ce ne sont pas des manques — ce sont des directions de croissance précises, les axes sur lesquels vos efforts conscients portent le plus de fruits.`, { font: FONT_SERIF_ITAL, size: 9.5, color: MUTED, after: 14 });
+
+    ls.flechesAbsentes.forEach(f => {
+      const conseils = FLECHES_CONSEILS[f.nom];
+      ensureSpace(doc, 140);
+      doc.y += 8;
+
+      // En-tête de la flèche
+      const fy = doc.y;
+      doc.rect(ML, fy, 3, 22).fill(LGRAY);
+      doc.fillColor(NAVY).font(FONT_SANS_BOLD).fontSize(10)
+         .text(`${f.nom}  [${f.chiffres.join('–')}]`, ML + 10, fy, { width: CW - 10 });
+      doc.fillColor(MUTED).font(FONT_SANS).fontSize(8)
+         .text(f.description, ML + 10, doc.y + 2, { width: CW - 10 });
+      doc.y += 14;
+
+      if (conseils) {
+        body(doc, conseils.intro, { font: FONT_SERIF, size: 10, gap: 2.5, color: DARK, after: 8 });
+
+        doc.fillColor(GOLD).font(FONT_SANS_BOLD).fontSize(7.5)
+           .text('EXEMPLES PRATIQUES', ML, doc.y, { width: CW, characterSpacing: 1 });
+        doc.y += 7;
+        conseils.exemples.forEach((ex, i) => {
+          ensureSpace(doc, 34);
+          const ey = doc.y;
+          doc.rect(ML, ey + 2, 18, 18).fill(GOLD);
+          doc.fillColor(NAVY).font(FONT_SANS_BOLD).fontSize(9)
+             .text(String(i + 1), ML, ey + 4, { width: 18, align: 'center' });
+          doc.fillColor(DARK).font(FONT_SERIF).fontSize(9.5).lineGap(2.5)
+             .text(ex, ML + 26, ey, { width: CW - 26, align: 'justify' });
+          doc.y = Math.max(doc.y, ey + 18) + 5;
+        });
+
+        ensureSpace(doc, 50);
+        doc.y += 4;
+        hLine(doc, doc.y - 2, LGRAY, 0.3);
+        doc.y += 6;
+        doc.fillColor(GOLD).font(FONT_SANS_BOLD).fontSize(7.5)
+           .text('CLÉ DE DÉVELOPPEMENT', ML, doc.y, { width: CW, characterSpacing: 1 });
+        doc.y += 7;
+        body(doc, conseils.conseil, { font: FONT_SERIF_ITAL, size: 10, gap: 2.5, color: DARK, after: 18 });
+      } else {
+        body(doc, f.description, { font: FONT_SERIF, size: 10, color: MUTED, after: 12 });
+      }
+    });
   }
 }
 
@@ -597,7 +788,12 @@ function drawCarreDe9(doc, profil) {
       return (c.keywords || []).slice(0, 2);
     });
     if (keywords.length > 0) {
-      body(doc, 'Thèmes : ' + keywords.join('  ·  '), { font: FONT_SERIF_ITAL, size: 9, color: MUTED, after: 2 });
+      body(doc, 'Thèmes : ' + keywords.join('  ·  '), { font: FONT_SERIF_ITAL, size: 9, color: MUTED, after: 5 });
+    }
+    const lineCards = lg.indices.map(i => LENORMAND_DATA[len.positions[i].id] || {});
+    if (lineCards.every(c => c.name)) {
+      const ctx = lg.indices[0] < 3 ? 'ligne-passe' : lg.indices[0] < 6 ? 'ligne-present' : 'ligne-futur';
+      body(doc, chainReadPDF(lineCards[0], lineCards[1], lineCards[2], ctx), { font: FONT_SERIF, size: 9.5, gap: 2.5, after: 7 });
     }
   });
 
@@ -624,8 +820,43 @@ function drawCarreDe9(doc, profil) {
       const c = LENORMAND_DATA[p.id] || {};
       return `${c.name || '?'}`;
     }).join('  ·  ');
-    body(doc, cards, { font: FONT_SANS, size: 9, color: DARK, after: 4 });
+    body(doc, cards, { font: FONT_SANS, size: 9, color: DARK, after: 5 });
+    const colCards = col.indices.map(i => LENORMAND_DATA[len.positions[i].id] || {});
+    if (colCards.every(c => c.name)) {
+      const ctx = col.indices[0] === 0 ? 'col-interieur' : col.indices[0] === 1 ? 'col-relationnel' : 'col-exterieur';
+      body(doc, chainReadPDF(colCards[0], colCards[1], colCards[2], ctx), { font: FONT_SERIF, size: 9.5, gap: 2.5, after: 7 });
+    }
   });
+
+  // Diagonales
+  doc.y += 10;
+  ensureSpace(doc, 120);
+  hLine(doc, doc.y, LGRAY, 0.3);
+  doc.y += 12;
+  lbl(doc, 'Diagonales — Fils d\'énergie transversaux');
+
+  const diag1 = [0, 4, 8].map(i => LENORMAND_DATA[len.positions[i].id] || {});
+  const diag2 = [6, 4, 2].map(i => LENORMAND_DATA[len.positions[i].id] || {});
+
+  ensureSpace(doc, 65);
+  doc.y += 6;
+  doc.fillColor(GOLD).font(FONT_SANS_BOLD).fontSize(8)
+     .text('DIAGONALE DE LA MANIFESTATION — DE L\'ORIGINE AU RÉSULTAT', ML, doc.y, { width: CW, characterSpacing: 0.8 });
+  doc.y += 4;
+  body(doc, diag1.map(c => c.name || '?').join('  →  '), { font: FONT_SANS, size: 9, color: DARK, after: 5 });
+  if (diag1.every(c => c.name)) {
+    body(doc, chainReadPDF(diag1[0], diag1[1], diag1[2], 'diag-descend'), { font: FONT_SERIF, size: 9.5, gap: 2.5, after: 8 });
+  }
+
+  ensureSpace(doc, 65);
+  doc.y += 6;
+  doc.fillColor(GOLD).font(FONT_SANS_BOLD).fontSize(8)
+     .text('DIAGONALE DE L\'INTÉGRATION — DU DEVENIR AUX FONDATIONS', ML, doc.y, { width: CW, characterSpacing: 0.8 });
+  doc.y += 4;
+  body(doc, diag2.map(c => c.name || '?').join('  →  '), { font: FONT_SANS, size: 9, color: DARK, after: 5 });
+  if (diag2.every(c => c.name)) {
+    body(doc, chainReadPDF(diag2[0], diag2[1], diag2[2], 'diag-ascend'), { font: FONT_SERIF, size: 9.5, gap: 2.5, after: 8 });
+  }
 
   // Carte centrale
   ensureSpace(doc, 80);
@@ -640,10 +871,8 @@ function drawCarreDe9(doc, profil) {
   doc.rect(ML, cx, bw, bh).fill(GOLD);
   doc.fillColor(NAVY).font(FONT_SANS_BOLD).fontSize(11)
      .text(centralCard.name || '?', ML, cx + 8, { width: bw, align: 'center' });
-  if (centralCard.symbol) {
-    doc.fillColor(NAVY).font(FONT_SANS).fontSize(18)
-       .text(centralCard.symbol, ML, cx + 26, { width: bw, align: 'center' });
-  }
+  doc.fillColor(NAVY).font(FONT_SANS_BOLD).fontSize(13)
+     .text(`N° ${central.id + 1}`, ML, cx + 30, { width: bw, align: 'center', characterSpacing: 0.5 });
   const meanText = centralCard.meaning || centralCard.synthesis || '';
   if (meanText) {
     doc.fillColor(DARK).font(FONT_SERIF).fontSize(10.5).lineGap(3)
@@ -655,6 +884,110 @@ function drawCarreDe9(doc, profil) {
     lbl(doc, 'Invitation de la carte centrale');
     body(doc, centralCard.advice, { font: FONT_SERIF_ITAL, gap: 3, color: MUTED });
   }
+
+  // ── Lecture par domaine de vie ──────────────────────────────────────────
+  ensureSpace(doc, 80);
+  doc.y += 14;
+  hLine(doc, doc.y, GOLD, 0.5);
+  doc.y += 14;
+  lbl(doc, 'Lecture par domaine de vie');
+  body(doc, `Le même tirage parle simultanément à tous les plans de votre existence. En interrogeant chaque axe du Carré de 9 à travers le prisme d'un domaine précis et en lisant les significations spécifiques de chaque carte pour ce contexte, voici ce que vos cartes révèlent concrètement pour votre vie personnelle, professionnelle et relationnelle.`, { font: FONT_SERIF_ITAL, size: 9.5, color: MUTED, after: 14 });
+
+  const loFirst = s => s && s.length ? s.charAt(0).toLowerCase() + s.slice(1) : s;
+  const firstSent = (card, field) => ((card[field] || card.meaning || '').split('.')[0] || '').trim();
+
+  const DOMAINES = [
+    {
+      label: 'Plan Personnel',
+      sous: 'Bien-être · développement intérieur · ressources psychiques',
+      indices: [3, 4, 6],
+      roles: ['Votre ressource intérieure', 'Énergie centrale', 'Ce qui émerge pour vous'],
+      field: 'health',
+      opens: [
+        n => `${n} constitue votre ressource fondamentale pour ce cycle`,
+        n => `${n}, au cœur du tirage, affirme`,
+        n => `${n} ouvre la voie de ce qui se prépare pour vous`,
+      ],
+    },
+    {
+      label: 'Plan Professionnel',
+      sous: 'Travail · projets · finances · créativité',
+      indices: [2, 5, 8],
+      roles: ['Point de bascule', 'Dynamique active', 'Résultat à venir'],
+      field: 'work',
+      opens: [
+        n => `${n} marque le tournant de votre trajectoire professionnelle`,
+        n => `${n} représente la dynamique active de vos projets`,
+        n => `${n} dessine l'horizon professionnel qui se profile`,
+      ],
+    },
+    {
+      label: 'Plan Relationnel',
+      sous: 'Amour · liens affectifs · échanges & connexions humaines',
+      indices: [1, 4, 7],
+      roles: ['Écho du passé récent', 'Cœur de la dynamique', 'Ce qui vous est proposé'],
+      field: 'love',
+      opens: [
+        n => `${n} porte l'empreinte de vos liens récents`,
+        n => `${n}, au cœur de cette dynamique, révèle`,
+        n => `${n} ouvre la voie de ce qui s'offre à vous`,
+      ],
+    },
+  ];
+
+  DOMAINES.forEach(dom => {
+    ensureSpace(doc, 110);
+    doc.y += 10;
+
+    // En-tête domaine
+    const dy = doc.y;
+    doc.rect(ML, dy, CW, 32).fill(NAVY);
+    doc.fillColor(GOLD).font(FONT_SANS_BOLD).fontSize(11)
+       .text(dom.label.toUpperCase(), ML + 14, dy + 7, { width: CW - 28, characterSpacing: 1.2 });
+    doc.fillColor(MUTED).font(FONT_SANS).fontSize(8)
+       .text(dom.sous, ML + 14, dy + 21, { width: CW - 28 });
+    doc.y = dy + 38;
+
+    const domPositions = dom.indices.map(i => len.positions[i]);
+    const domCards     = domPositions.map(p => LENORMAND_DATA[p.id] || {});
+
+    domCards.forEach((card, i) => {
+      const pos = domPositions[i];
+      const raw = card[dom.field] || card.meaning || '';
+      const domText = raw.split('.').filter(s => s.trim().length > 5).slice(0, 2).join('. ').trim() + '.';
+
+      ensureSpace(doc, 65);
+      doc.y += 7;
+
+      const cy = doc.y;
+      doc.rect(ML, cy, 3, 24).fill(GOLD);
+      doc.fillColor(MUTED).font(FONT_SANS).fontSize(7)
+         .text(dom.roles[i].toUpperCase(), ML + 10, cy, { width: CW - 10, characterSpacing: 0.8 });
+      doc.fillColor(NAVY).font(FONT_SANS_BOLD).fontSize(10)
+         .text(`${card.name || '?'}`, ML + 10, cy + 11, { continued: true });
+      doc.fillColor(MUTED).font(FONT_SANS).fontSize(8)
+         .text(`  —  N° ${pos.id + 1}`, { width: CW - 10 });
+      doc.y += 4;
+
+      body(doc, domText, { font: FONT_SERIF, size: 9.5, gap: 2.5, color: DARK, after: 8 });
+    });
+
+    // Synthèse narrative du domaine
+    ensureSpace(doc, 70);
+    doc.y += 6;
+    hLine(doc, doc.y, LGRAY, 0.3);
+    doc.y += 8;
+    doc.fillColor(GOLD).font(FONT_SANS_BOLD).fontSize(7.5)
+       .text('SYNTHÈSE', ML, doc.y, { width: CW, characterSpacing: 1 });
+    doc.y += 7;
+
+    const synthesis =
+      `${dom.opens[0](domCards[0].name)} : ${loFirst(firstSent(domCards[0], dom.field))}. ` +
+      `${dom.opens[1](domCards[1].name)} : ${loFirst(firstSent(domCards[1], dom.field))}. ` +
+      `Enfin, ${dom.opens[2](domCards[2].name)} : ${loFirst(firstSent(domCards[2], dom.field))}.`;
+
+    body(doc, synthesis, { font: FONT_SERIF_ITAL, size: 10, gap: 3, color: DARK, after: 18 });
+  });
 }
 
 // ── TIKOUN — LEÇONS & DETTES ──────────────────────────────────────────────
