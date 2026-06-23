@@ -150,18 +150,30 @@ export const handler = async (event) => {
   const { valide, raison } = await validerCleGumroad(licenseKey.trim());
   if (!valide) return json(403, { erreur: raison });
 
-  // Génération du rapport
-  const profil  = calculerProfil(prenom.trim(), nom.trim(), dateNaissance.trim());
-  const contenu = assemblerContenu(profil);
-  const pdf     = await genererRapportPDF(profil, contenu);
+  try {
+    // Génération du rapport
+    console.log('Étape: calculerProfil');
+    const profil  = calculerProfil(prenom.trim(), nom.trim(), dateNaissance.trim());
+    console.log('Étape: assemblerContenu');
+    const contenu = assemblerContenu(profil);
+    console.log('Étape: genererRapportPDF');
+    const pdf     = await genererRapportPDF(profil, contenu);
+    console.log('PDF généré, taille:', pdf.length);
 
-  // Envoi email
-  await envoyerRapport(email.trim(), prenom.trim(), pdf, RESEND_API_KEY);
+    // Envoi email
+    console.log('Étape: envoyerRapport');
+    await envoyerRapport(email.trim(), prenom.trim(), pdf, RESEND_API_KEY);
+    console.log('Email envoyé avec succès');
 
-  return json(200, {
-    message: `Votre rapport a été envoyé à ${email}. Vérifiez aussi vos spams.`,
-    prenom: prenom.trim(),
-  });
+    return json(200, {
+      message: `Votre rapport a été envoyé à ${email}. Vérifiez aussi vos spams.`,
+      prenom: prenom.trim(),
+    });
+  } catch (err) {
+    console.error('Erreur génération rapport:', err?.message || err);
+    console.error('Stack:', err?.stack);
+    return json(500, { erreur: `Erreur interne : ${err?.message || 'inconnue'}` });
+  }
 };
 
 function json(status, body) {
