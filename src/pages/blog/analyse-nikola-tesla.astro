@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import AffiliateBooks from '../../components/AffiliateBooks.astro';
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -160,6 +161,12 @@ const jsonLd = {
   </blockquote>
 
   <p>La vie de Tesla est peut-être la plus poignante illustration du paradoxe que la numérologie cabalistique peut révéler : un homme dont le don central est la Reconnaissance (archétype 20) et dont l'épreuve d'âme est d'incarner ses créations (ticún 3) — et qui a précisément échoué à ce double défi, laissant ses inventions à d'autres et mourant sans la reconnaissance qu'il méritait. Mais la Roue tourne (chemin de vie 10) : aujourd'hui son nom est partout, ses travaux fondent notre monde électrifié, et une unité internationale d'induction magnétique porte son prénom.</p>
+
+  <AffiliateBooks books={[
+    { title: "ABC de la Numérologie", author: "Jean-Daniel Fermier", description: "La référence francophone sur la numérologie traditionnelle. Calculs, archétypes et interprétations.", searchTerm: "ABC numérologie Jean-Daniel Fermier" },
+    { title: "L'homme et ses symboles", author: "Carl Gustav Jung", description: "Comment les archétypes se manifestent dans les personnalités et les destins individuels. Indispensable pour lire les portraits symboliques.", searchTerm: "Carl Gustav Jung l'homme et ses symboles" },
+    { title: "La Kabbale — Le Livre de la Création", author: "Annick de Souzenelle", description: "Plongée dans la symbolique hébraïque à la source de la numérologie cabalistique de Raúl Durán.", searchTerm: "Annick de Souzenelle kabbale livre de la création" },
+  ]} />
 
   <div class="article-footer">
     <p>🔢 Calculez votre propre profil avec le <a href="/numerologie/cabalistique/" style="color:var(--gold);">calculateur de numérologie</a>.</p>

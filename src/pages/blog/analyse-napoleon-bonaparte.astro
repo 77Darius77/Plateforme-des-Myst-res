@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import AffiliateBooks from '../../components/AffiliateBooks.astro';
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -156,6 +157,12 @@ const jsonLd = {
   </blockquote>
 
   <p>La numérologie ne cherche pas à expliquer les campagnes d'Italie ou la bataille d'Austerlitz. Elle propose un prisme : celui d'une âme venue expérimenter les cycles du destin (10), armée du don de la transmission doctrinale (5), confrontée à l'épreuve de la dualité (2). Un homme qui voulait être à la fois l'épée et la balance, le conquérant et le juge — et qui, ce faisant, a changé la face de l'Europe pour toujours.</p>
+
+  <AffiliateBooks books={[
+    { title: "ABC de la Numérologie", author: "Jean-Daniel Fermier", description: "La référence francophone sur la numérologie traditionnelle. Calculs, archétypes et interprétations.", searchTerm: "ABC numérologie Jean-Daniel Fermier" },
+    { title: "L'homme et ses symboles", author: "Carl Gustav Jung", description: "Comment les archétypes se manifestent dans les personnalités et les destins individuels. Indispensable pour lire les portraits symboliques.", searchTerm: "Carl Gustav Jung l'homme et ses symboles" },
+    { title: "La Kabbale — Le Livre de la Création", author: "Annick de Souzenelle", description: "Plongée dans la symbolique hébraïque à la source de la numérologie cabalistique de Raúl Durán.", searchTerm: "Annick de Souzenelle kabbale livre de la création" },
+  ]} />
 
   <div class="article-footer">
     <p>🔢 Calculez votre propre profil avec le <a href="/numerologie/cabalistique/" style="color:var(--gold);">calculateur de numérologie</a>.</p>
