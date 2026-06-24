@@ -40,6 +40,11 @@ const jsonLd = {
     <a href="/tarologie/marseille/trois-cartes/" class="hero-btn-secondary">🃏 Tirer le Tarot</a>
     <a href="/numerologie/prenom/" class="hero-btn-secondary">Analyser mon Prénom</a>
   </div>
+  <a href="/rapport/" class="rapport-hero-teaser">
+    <span class="rapport-teaser-pill">RAPPORT PDF</span>
+    <span class="rapport-teaser-text">Incarnation complète en 20+ pages · Numérologie, Tarot, Astrologie, Tikoun</span>
+    <span class="rapport-teaser-arrow">→</span>
+  </a>
 </section>
 
 <!-- ═══════════ OUTILS RAPIDES ═══════════ -->
@@ -123,6 +128,60 @@ const jsonLd = {
       </div>
       <span class="tool-cta">Tirer ✦</span>
     </a>
+
+  </div>
+</section>
+
+<!-- ═══════════ RAPPORT D'INCARNATION ═══════════ -->
+<section id="rapport-premium" class="reveal">
+  <div class="rapport-premium-inner">
+
+    <div class="rapport-premium-content">
+      <div class="num">[ RAPPORT PDF ]</div>
+      <h2 class="rapport-h2">✦ Rapport d'Incarnation</h2>
+      <p class="rapport-intro">Un document de <strong>20+ pages</strong>, entièrement personnalisé à partir de votre prénom, nom de naissance et date de naissance. Livré par email en moins d'une minute.</p>
+
+      <ul class="rapport-features">
+        <li><span class="rf-bullet">✦</span> Numérologie complète — chemin de vie, expression, âme, personnalité</li>
+        <li><span class="rf-bullet">✦</span> Carré Lo Shu & séquences à développer (exemples concrets)</li>
+        <li><span class="rf-bullet">✦</span> Oracle Lenormand — Carré de 9, lignes, colonnes, diagonales</li>
+        <li><span class="rf-bullet">✦</span> Plans personnel, professionnel et relationnel</li>
+        <li><span class="rf-bullet">✦</span> Tarot de Marseille · Astrologie · Tikoun kabbalistique</li>
+        <li><span class="rf-bullet">✦</span> Livraison email instantanée · PDF haute qualité</li>
+      </ul>
+
+      <div class="rapport-cta-row">
+        <a href="/rapport/" class="rapport-cta-main">✦ Obtenir mon rapport — 15 €</a>
+        <a href="/boutique/" class="rapport-cta-secondary">Acheter une clé →</a>
+      </div>
+      <p class="rapport-note">Clé de licence requise · Disponible sur la boutique · Utilisable 3 fois</p>
+    </div>
+
+    <div class="rapport-premium-visual">
+      <div class="rapport-pdf-mock">
+        <div class="pdf-mock-header">
+          <span class="pdf-mock-logo">◈</span>
+          <span>Plateforme des Mystères</span>
+        </div>
+        <div class="pdf-mock-title">Rapport<br>d'Incarnation</div>
+        <div class="pdf-mock-name">Votre Prénom Nom</div>
+        <div class="pdf-mock-disciplines">
+          <span>Numérologie</span>
+          <span>Tarot</span>
+          <span>Astrologie</span>
+          <span>Tikoun</span>
+        </div>
+        <div class="pdf-mock-sections">
+          <div class="pdf-section-line">01 — Profil Numérologique</div>
+          <div class="pdf-section-line">05 — Carré Lo Shu</div>
+          <div class="pdf-section-line">09 — Oracle Lenormand</div>
+          <div class="pdf-section-line">14 — Tarot de Marseille</div>
+          <div class="pdf-section-line">18 — Astrologie & Tikoun</div>
+          <div class="pdf-section-line">21 — Synthèse & Conseils</div>
+        </div>
+        <div class="pdf-mock-footer">20+ pages · PDF personnalisé</div>
+      </div>
+    </div>
 
   </div>
 </section>
@@ -327,6 +386,243 @@ const jsonLd = {
   border-color: var(--gold);
   color: var(--gold);
   transform: translateY(-2px);
+}
+
+/* ═══════════ RAPPORT HERO TEASER ═══════════ */
+.rapport-hero-teaser {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin-top: 2rem;
+  padding: 0.6rem 1.25rem;
+  background: rgba(223,178,108,0.06);
+  border: 1px solid rgba(223,178,108,0.2);
+  border-radius: 999px;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  max-width: min(600px, 100%);
+  flex-wrap: nowrap;
+}
+.rapport-hero-teaser:hover {
+  background: rgba(223,178,108,0.1);
+  border-color: rgba(223,178,108,0.45);
+  transform: translateY(-1px);
+}
+.rapport-teaser-pill {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  color: var(--bg-deep);
+  background: var(--gold);
+  border-radius: 999px;
+  padding: 0.2rem 0.65rem;
+  font-weight: 700;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+.rapport-teaser-text {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  line-height: 1.3;
+}
+.rapport-teaser-arrow {
+  color: var(--gold);
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+/* ═══════════ RAPPORT PREMIUM SECTION ═══════════ */
+#rapport-premium {
+  padding: 5rem 1.5rem;
+  position: relative;
+}
+#rapport-premium::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 65% 50%, rgba(223,178,108,0.05) 0%, transparent 60%);
+  pointer-events: none;
+}
+.rapport-premium-inner {
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: 4rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  align-items: center;
+}
+.rapport-h2 {
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-weight: 700;
+  color: var(--gold);
+  margin-bottom: 1.25rem;
+  letter-spacing: -0.02em;
+}
+.rapport-intro {
+  font-size: 1rem;
+  color: var(--text-muted);
+  line-height: 1.75;
+  margin-bottom: 2rem;
+  max-width: 520px;
+}
+.rapport-intro strong { color: var(--text); }
+.rapport-features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+.rapport-features li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+  font-size: 0.9rem;
+  color: var(--text);
+  line-height: 1.5;
+}
+.rf-bullet {
+  color: var(--gold);
+  font-size: 0.7rem;
+  margin-top: 0.3rem;
+  flex-shrink: 0;
+}
+.rapport-cta-row {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.85rem;
+}
+.rapport-cta-main {
+  display: inline-block;
+  padding: 0.9rem 2.25rem;
+  background: var(--gold);
+  color: var(--bg-deep);
+  font-weight: 700;
+  font-size: 0.95rem;
+  border-radius: 12px;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  letter-spacing: 0.02em;
+}
+.rapport-cta-main:hover {
+  filter: brightness(1.1);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(223,178,108,0.35);
+}
+.rapport-cta-secondary {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  text-decoration: none;
+  font-family: var(--font-mono);
+  transition: color 0.2s;
+}
+.rapport-cta-secondary:hover { color: var(--gold); }
+.rapport-note {
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+  letter-spacing: 0.02em;
+}
+/* PDF Mockup */
+.rapport-pdf-mock {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.75rem;
+  position: relative;
+  overflow: hidden;
+}
+.rapport-pdf-mock::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold), rgba(223,178,108,0.2));
+}
+.pdf-mock-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.pdf-mock-logo { color: var(--gold); font-size: 0.85rem; }
+.pdf-mock-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--gold);
+  line-height: 1.2;
+  margin-bottom: 0.6rem;
+  letter-spacing: -0.02em;
+}
+.pdf-mock-name {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  margin-bottom: 1.1rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.pdf-mock-disciplines {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-bottom: 1.5rem;
+}
+.pdf-mock-disciplines span {
+  font-size: 0.63rem;
+  font-family: var(--font-mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid rgba(223,178,108,0.3);
+  border-radius: 999px;
+  padding: 0.18rem 0.55rem;
+}
+.pdf-mock-sections {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: 1.25rem;
+}
+.pdf-section-line {
+  font-size: 0.74rem;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+  padding: 0.35rem 0.65rem;
+  background: rgba(255,255,255,0.02);
+  border-left: 2px solid rgba(223,178,108,0.25);
+  border-radius: 0 4px 4px 0;
+  letter-spacing: 0.02em;
+}
+.pdf-mock-footer {
+  text-align: center;
+  font-size: 0.67rem;
+  font-family: var(--font-mono);
+  color: var(--text-dim);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding-top: 1.1rem;
+  border-top: 1px solid var(--border);
+}
+@media (max-width: 900px) {
+  .rapport-premium-inner {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  .rapport-pdf-mock { max-width: 440px; margin: 0 auto; }
+  .rapport-hero-teaser { flex-wrap: wrap; }
+}
+@media (max-width: 600px) {
+  .rapport-teaser-text { font-size: 0.76rem; }
+  .rapport-hero-teaser { gap: 0.6rem; }
 }
 
 /* ═══════════ OUTILS RAPIDES ═══════════ */
