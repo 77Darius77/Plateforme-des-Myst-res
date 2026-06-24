@@ -21,6 +21,13 @@ import Layout from '../layouts/Layout.astro';
   </p>
 </section>
 
+<!-- Encart clé -->
+<div class="key-notice-bar">
+  <span class="key-notice-icon">🔑</span>
+  <span class="key-notice-text">Vous n'avez pas encore de clé de licence ?</span>
+  <a href="https://mystereplateform.gumroad.com/l/rapportdincarnation" target="_blank" rel="noopener" class="key-notice-link">Obtenir pour 10 € →</a>
+</div>
+
 <!-- Formulaire -->
 <section id="rapport-form-section">
   <div class="form-card" id="form-container">
@@ -54,7 +61,7 @@ import Layout from '../layouts/Layout.astro';
       <div class="field-group">
         <label for="licenseKey">Clé de licence Gumroad <span class="req">*</span></label>
         <input type="text" id="licenseKey" name="licenseKey" placeholder="XXXXXXXX-XXXXXXXX-XXXXXXXX-XXXXXXXX" autocomplete="off" required>
-        <span class="field-hint">Reçue par email après votre achat sur Gumroad</span>
+        <span class="field-hint">Reçue par email après votre achat · <a href="https://mystereplateform.gumroad.com/l/rapportdincarnation" target="_blank" rel="noopener" class="hint-link">Pas encore de clé ?</a></span>
       </div>
 
       <div id="form-error" class="form-error" style="display:none"></div>
@@ -104,7 +111,7 @@ import Layout from '../layouts/Layout.astro';
     </div>
     <div class="faq-item">
       <strong>Je n'ai pas encore acheté</strong>
-      <p>Le rapport est disponible pour <strong>15 €</strong> sur <a href="/boutique/">la boutique</a>. Vous recevrez votre clé par email après paiement.</p>
+      <p>Le rapport est disponible pour <strong>10 €</strong> sur <a href="https://mystereplateform.gumroad.com/l/rapportdincarnation" target="_blank" rel="noopener">Gumroad</a>. Vous recevrez votre clé par email après paiement.</p>
     </div>
   </div>
 </section>
@@ -199,6 +206,42 @@ import Layout from '../layouts/Layout.astro';
 </script>
 
 <style is:global>
+
+/* ── Encart clé ─────────────────────────────────────────────────────────── */
+.key-notice-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  max-width: 560px;
+  margin: 0 auto 1.5rem;
+  padding: 0.75rem 1.25rem;
+  background: rgba(223,178,108,0.06);
+  border: 1px solid rgba(223,178,108,0.22);
+  border-radius: 10px;
+  font-size: 0.85rem;
+}
+.key-notice-icon { font-size: 1rem; flex-shrink: 0; }
+.key-notice-text { color: var(--text-muted); }
+.key-notice-link {
+  color: var(--gold);
+  text-decoration: none;
+  font-weight: 600;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  transition: opacity 0.2s;
+}
+.key-notice-link:hover { opacity: 0.8; text-decoration: underline; }
+
+.hint-link {
+  color: var(--gold);
+  text-decoration: none;
+  font-weight: 600;
+}
+.hint-link:hover { text-decoration: underline; }
 
 /* ── Hero ──────────────────────────────────────────────────────────────── */
 #rapport-hero {
