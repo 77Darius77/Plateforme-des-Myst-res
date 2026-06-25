@@ -63,6 +63,12 @@ const jsonLd = {
         <span class="sidebar-cat-count">22</span>
       </a>
 
+      <a href="#cat-portraits" class="sidebar-subcat">
+        <span class="sidebar-subcat-icon">◎</span>
+        <span class="sidebar-subcat-label">Portraits</span>
+        <span class="sidebar-subcat-count">8</span>
+      </a>
+
       <a href="#cat-tarologie" class="sidebar-cat cat-tarot">
         <span class="sidebar-cat-icon">◆</span>
         <span class="sidebar-cat-label">Tarologie</span>
@@ -206,6 +212,12 @@ const jsonLd = {
       <p>D'où viennent les 72 Noms ? Structure, méditation, tableau des attributs et lien avec les 22 archétypes cabalistiques.</p>
       <span class="blog-read">Lire l'article →</span>
     </a>
+
+      <div class="blog-subcat-divider" id="cat-portraits">
+        <span class="blog-subcat-icon">◎</span>
+        <span class="blog-subcat-label">Portraits numérologiques</span>
+        <span class="blog-subcat-count">8 portraits</span>
+      </div>
 
     <a href="/blog/analyse-donald-trump/" class="blog-card card-accent-num">
       <div class="blog-meta">Analyse · 6 min</div>
@@ -772,6 +784,89 @@ const jsonLd = {
 .blog-content {
   flex: 1;
   min-width: 0;
+}
+
+/* ─── Sidebar Sub-category ─── */
+.sidebar-subcat {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.7rem 0.35rem 2rem;
+  margin-bottom: 0.3rem;
+  border-radius: var(--radius);
+  text-decoration: none;
+  transition: background 0.2s ease;
+  position: relative;
+}
+
+.sidebar-subcat::before {
+  content: '';
+  position: absolute;
+  left: 1.15rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1px;
+  height: 70%;
+  background: var(--border);
+}
+
+.sidebar-subcat:hover { background: var(--bg-card); }
+
+.sidebar-subcat-icon {
+  font-size: 0.7rem;
+  width: 0.9rem;
+  text-align: center;
+  flex-shrink: 0;
+  color: var(--gold);
+  opacity: 0.7;
+}
+
+.sidebar-subcat-label {
+  font-family: var(--font-mono);
+  font-size: 0.73rem;
+  color: var(--slate);
+  flex: 1;
+}
+
+.sidebar-subcat-count {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: var(--text-dim);
+  background: var(--bg-card);
+  padding: 0.1em 0.45em;
+  border-radius: 999px;
+}
+
+/* ─── Blog Sub-category Divider ─── */
+.blog-subcat-divider {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1.4rem 0 0.9rem;
+  border-top: 1px solid var(--border);
+  margin-top: 0.4rem;
+}
+
+.blog-subcat-icon {
+  font-size: 0.9rem;
+  color: var(--gold);
+  opacity: 0.8;
+}
+
+.blog-subcat-label {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--text);
+  letter-spacing: 0.04em;
+  flex: 1;
+}
+
+.blog-subcat-count {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--text-dim);
+  opacity: 0.7;
 }
 
 /* ─── Category Section ─── */
