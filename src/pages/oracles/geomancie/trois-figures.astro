@@ -1,0 +1,123 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Tirage à 3 Figures — Géomancie Classique"
+  description="Tirage géomantique à 3 figures : Passé, Présent, Futur. Consultez l'oracle des 16 figures géomantiques issues de la tradition arabe (Ilm al-Raml)."
+  keywords="géomancie, tirage 3 figures, passé présent futur, ilm al-raml, oracle géomantique"
+  canonicalPath="oracles/geomancie/trois-figures/"
+  breadcrumb={[
+    { name: "Accueil", item: "https://mysteres.fr/" },
+    { name: "Oracles", item: "https://mysteres.fr/oracles/" },
+    { name: "Géomancie", item: "https://mysteres.fr/oracles/geomancie/" },
+    { name: "Trois Figures", item: "https://mysteres.fr/oracles/geomancie/trois-figures/" }
+  ]}
+  section="oracles"
+>
+
+<nav class="breadcrumb" aria-label="Fil d'Ariane" style="padding:0.8rem 1.5rem;font-family:var(--font-mono);font-size:0.8rem;color:var(--text-muted);max-width:1200px;margin:0 auto;">
+  <a href="/" style="color:var(--cyan);">Accueil</a> &rsaquo;
+  <a href="/oracles/" style="color:var(--cyan);">Oracles</a> &rsaquo;
+  <a href="/oracles/geomancie/" style="color:var(--cyan);">Géomancie</a> &rsaquo;
+  <span style="color:var(--text);">Trois Figures</span>
+</nav>
+
+<main style="max-width:1200px;margin:0 auto;padding:2rem 1.5rem;text-align:center;">
+  <h1>Tirage à <span class="gold">3 Figures</span></h1>
+  <p class="subtitle">Concentrez-vous sur votre question. Trois figures géomantiques vont révéler Passé, Présent et Futur.</p>
+
+  <div id="oracle-zone" style="margin-top:2.5rem;">
+    <button id="btn-consult" class="btn-explore" style="font-size:1.2rem;padding:1rem 2.5rem;cursor:pointer;">
+      Consulter l'oracle ✦
+    </button>
+  </div>
+
+  <div id="figures-row" style="display:none;margin-top:2.5rem;">
+    <div style="display:flex;flex-wrap:wrap;gap:2rem;justify-content:center;" id="figures-slots"></div>
+  </div>
+
+  <div id="reading-section" class="tr-outer" style="display:none;margin-top:2.5rem;text-align:left;"></div>
+
+  <p style="margin-top:2rem;font-style:italic;color:var(--text-muted);">Ce tirage vous offre des pistes de réflexion. Le libre arbitre reste votre meilleur guide.</p>
+
+  <div style="margin-top:2rem;">
+    <a href="/oracles/geomancie/" style="color:var(--cyan);font-family:var(--font-mono);font-size:0.85rem;">← Retour aux méthodes de tirage</a>
+  </div>
+</main>
+
+<style>
+  .geo-slot { width: 200px; }
+  .geo-pos { font-family: var(--font-mono); font-size: 0.85rem; color: var(--gold); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 1px; }
+  .geo-card { background: var(--bg-card); border: 2px solid var(--gold); border-radius: 10px; padding: 1.2rem 1rem; display: flex; flex-direction: column; align-items: center; gap: 0.6rem; min-height: 200px; justify-content: center; box-shadow: 0 4px 12px rgba(0,0,0,0.4); }
+  .geo-card.tone-defavorable { border-color: var(--rose, #f43f5e); }
+  .geo-card.tone-neutre { border-color: var(--cyan, #22d3ee); }
+  .geo-card.tone-mixte { border-color: var(--violet, #a78bfa); }
+  .geo-nom-fr { font-size: 0.85rem; color: var(--gold); font-family: var(--font-mono); }
+  .geo-card.tone-defavorable .geo-nom-fr { color: var(--rose, #f43f5e); }
+  .geo-card.tone-neutre .geo-nom-fr { color: var(--cyan, #22d3ee); }
+  .geo-card.tone-mixte .geo-nom-fr { color: var(--violet, #a78bfa); }
+  .geo-nom-lat { font-size: 0.75rem; color: var(--text-muted); }
+  .geo-planet { font-size: 0.75rem; color: var(--text-muted); }
+
+  @media (max-width: 680px) {
+    .geo-slot { width: 160px; }
+  }
+</style>
+
+<script is:inline src="/js/geomancie-data.js"></script>
+<script is:inline src="/js/geomancie-interp.js"></script>
+<script is:inline>
+  var GEO_SPREAD = 'trois-figures';
+  var GEO_POSITIONS = ['Le Passé', 'Le Présent', 'Le Futur'];
+
+  function initGeomancie() {
+    var btn = document.getElementById('btn-consult');
+    if (!btn || btn.dataset.initialized) return;
+    btn.dataset.initialized = 'true';
+
+    var fresh = btn.cloneNode(true);
+    btn.parentNode.replaceChild(fresh, btn);
+
+    fresh.addEventListener('click', function() {
+      if (!window.geomancieInterp) return;
+
+      var figures = window.geomancieInterp.generateFigures(GEO_SPREAD);
+
+      fresh.style.display = 'none';
+
+      var slotsEl = document.getElementById('figures-slots');
+      slotsEl.innerHTML = '';
+      figures.forEach(function(f, i) {
+        var svg = window.geomancieInterp.renderFigureSVG(f.lignes, 'md');
+        var slot = document.createElement('div');
+        slot.className = 'geo-slot';
+        slot.innerHTML = '<div class="geo-pos">' + (i + 1) + '. ' + GEO_POSITIONS[i] + '</div>'
+          + '<div class="geo-card tone-' + f.tonalite + '">'
+          + svg
+          + '<div class="geo-nom-fr">' + f.nomFrancais + '</div>'
+          + '<div class="geo-nom-lat">' + f.nomLatin + '</div>'
+          + '<div class="geo-planet">' + f.symbole + ' ' + f.planete + '</div>'
+          + '</div>';
+        slotsEl.appendChild(slot);
+      });
+      document.getElementById('figures-row').style.display = 'block';
+
+      var rs = document.getElementById('reading-section');
+      rs.innerHTML = window.geomancieInterp.generateReadingHTML(GEO_SPREAD, figures);
+      rs.style.display = 'block';
+      setTimeout(function() {
+        rs.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 400);
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initGeomancie);
+  } else {
+    initGeomancie();
+  }
+  document.addEventListener('astro:page-load', initGeomancie);
+</script>
+
+</Layout>

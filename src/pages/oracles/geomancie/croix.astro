@@ -1,0 +1,159 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Croix Géomantique — 5 Figures — Géomancie Classique"
+  description="Tirage géomantique en Croix : 5 figures pour une analyse complète de votre situation. Situation, Soutien, Racines, Obstacle, Issue. Oracle des 16 figures géomantiques."
+  keywords="géomancie, croix géomantique, tirage 5 figures, ilm al-raml, oracle géomantique classique"
+  canonicalPath="oracles/geomancie/croix/"
+  breadcrumb={[
+    { name: "Accueil", item: "https://mysteres.fr/" },
+    { name: "Oracles", item: "https://mysteres.fr/oracles/" },
+    { name: "Géomancie", item: "https://mysteres.fr/oracles/geomancie/" },
+    { name: "Croix Géomantique", item: "https://mysteres.fr/oracles/geomancie/croix/" }
+  ]}
+  section="oracles"
+>
+
+<nav class="breadcrumb" aria-label="Fil d'Ariane" style="padding:0.8rem 1.5rem;font-family:var(--font-mono);font-size:0.8rem;color:var(--text-muted);max-width:1200px;margin:0 auto;">
+  <a href="/" style="color:var(--cyan);">Accueil</a> &rsaquo;
+  <a href="/oracles/" style="color:var(--cyan);">Oracles</a> &rsaquo;
+  <a href="/oracles/geomancie/" style="color:var(--cyan);">Géomancie</a> &rsaquo;
+  <span style="color:var(--text);">Croix Géomantique</span>
+</nav>
+
+<main style="max-width:1200px;margin:0 auto;padding:2rem 1.5rem;text-align:center;">
+  <h1>Croix <span class="emerald">Géomantique</span></h1>
+  <p class="subtitle">Concentrez-vous sur votre question. Cinq figures révèleront toutes les dimensions de votre situation.</p>
+
+  <div id="oracle-zone" style="margin-top:2.5rem;">
+    <button id="btn-consult" class="btn-explore" style="font-size:1.2rem;padding:1rem 2.5rem;cursor:pointer;">
+      Consulter l'oracle ✦
+    </button>
+  </div>
+
+  <!-- Disposition en croix -->
+  <div id="figures-cross" style="display:none;margin-top:2.5rem;">
+    <div class="cross-grid" id="figures-slots"></div>
+  </div>
+
+  <div id="reading-section" class="tr-outer" style="display:none;margin-top:2.5rem;text-align:left;"></div>
+
+  <p style="margin-top:2rem;font-style:italic;color:var(--text-muted);">Ce tirage vous offre des pistes de réflexion. Le libre arbitre reste votre meilleur guide.</p>
+
+  <div style="margin-top:2rem;">
+    <a href="/oracles/geomancie/" style="color:var(--cyan);font-family:var(--font-mono);font-size:0.85rem;">← Retour aux méthodes de tirage</a>
+  </div>
+</main>
+
+<style>
+  /* Grille en croix : 3 colonnes × 3 lignes, figure au centre */
+  .cross-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 180px);
+    grid-template-rows: repeat(3, auto);
+    gap: 1rem;
+    justify-content: center;
+    align-items: start;
+  }
+  /* positions : haut-centre, milieu-gauche, milieu-centre, milieu-droite, bas-centre */
+  .cross-pos-1 { grid-column: 2; grid-row: 1; }
+  .cross-pos-2 { grid-column: 1; grid-row: 2; }
+  .cross-pos-3 { grid-column: 2; grid-row: 2; }
+  .cross-pos-4 { grid-column: 3; grid-row: 2; }
+  .cross-pos-5 { grid-column: 2; grid-row: 3; }
+
+  .geo-slot { text-align: center; }
+  .geo-pos-label { font-family: var(--font-mono); font-size: 0.75rem; color: var(--emerald, #34d399); margin-bottom: 0.4rem; text-transform: uppercase; letter-spacing: 1px; }
+  .geo-card { background: var(--bg-card); border: 2px solid var(--emerald, #34d399); border-radius: 10px; padding: 1rem 0.8rem; display: flex; flex-direction: column; align-items: center; gap: 0.5rem; min-height: 180px; justify-content: center; box-shadow: 0 4px 12px rgba(0,0,0,0.4); }
+  .geo-card.tone-favorable { border-color: var(--gold); }
+  .geo-card.tone-defavorable { border-color: var(--rose, #f43f5e); }
+  .geo-card.tone-neutre { border-color: var(--cyan, #22d3ee); }
+  .geo-card.tone-mixte { border-color: var(--violet, #a78bfa); }
+  .geo-nom-fr { font-size: 0.8rem; color: var(--emerald, #34d399); font-family: var(--font-mono); }
+  .geo-card.tone-favorable .geo-nom-fr { color: var(--gold); }
+  .geo-card.tone-defavorable .geo-nom-fr { color: var(--rose, #f43f5e); }
+  .geo-card.tone-neutre .geo-nom-fr { color: var(--cyan, #22d3ee); }
+  .geo-card.tone-mixte .geo-nom-fr { color: var(--violet, #a78bfa); }
+  .geo-nom-lat { font-size: 0.7rem; color: var(--text-muted); }
+  .geo-planet { font-size: 0.7rem; color: var(--text-muted); }
+
+  /* Connecteur vertical et horizontal optionnel */
+  .cross-pos-3 .geo-card { border-width: 3px; box-shadow: 0 0 16px rgba(52,211,153,0.25); }
+
+  @media (max-width: 680px) {
+    .cross-grid { grid-template-columns: repeat(3, 120px); gap: 0.6rem; }
+    .geo-card { min-height: 140px; padding: 0.7rem 0.5rem; }
+  }
+</style>
+
+<script is:inline src="/js/geomancie-data.js"></script>
+<script is:inline src="/js/geomancie-interp.js"></script>
+<script is:inline>
+  var GEO_SPREAD = 'croix';
+  var GEO_LABELS = [
+    'Situation\nprésente',
+    'Ce qui\nsoutient',
+    'Racines\nprofondes',
+    'Obstacle',
+    'Issue\nprobable'
+  ];
+  var GEO_CROSS_CLASSES = [
+    'cross-pos-1',
+    'cross-pos-2',
+    'cross-pos-3',
+    'cross-pos-4',
+    'cross-pos-5'
+  ];
+
+  function initGeomancie() {
+    var btn = document.getElementById('btn-consult');
+    if (!btn || btn.dataset.initialized) return;
+    btn.dataset.initialized = 'true';
+
+    var fresh = btn.cloneNode(true);
+    btn.parentNode.replaceChild(fresh, btn);
+
+    fresh.addEventListener('click', function() {
+      if (!window.geomancieInterp) return;
+
+      var figures = window.geomancieInterp.generateFigures(GEO_SPREAD);
+
+      fresh.style.display = 'none';
+
+      var slotsEl = document.getElementById('figures-slots');
+      slotsEl.innerHTML = '';
+      figures.forEach(function(f, i) {
+        var svg = window.geomancieInterp.renderFigureSVG(f.lignes, 'sm');
+        var slot = document.createElement('div');
+        slot.className = 'geo-slot ' + GEO_CROSS_CLASSES[i];
+        slot.innerHTML = '<div class="geo-pos-label">' + GEO_LABELS[i].replace('\n', '<br>') + '</div>'
+          + '<div class="geo-card tone-' + f.tonalite + '">'
+          + svg
+          + '<div class="geo-nom-fr">' + f.nomFrancais + '</div>'
+          + '<div class="geo-nom-lat">' + f.nomLatin + '</div>'
+          + '<div class="geo-planet">' + f.symbole + ' ' + f.planete + '</div>'
+          + '</div>';
+        slotsEl.appendChild(slot);
+      });
+      document.getElementById('figures-cross').style.display = 'block';
+
+      var rs = document.getElementById('reading-section');
+      rs.innerHTML = window.geomancieInterp.generateReadingHTML(GEO_SPREAD, figures);
+      rs.style.display = 'block';
+      setTimeout(function() {
+        rs.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 400);
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initGeomancie);
+  } else {
+    initGeomancie();
+  }
+  document.addEventListener('astro:page-load', initGeomancie);
+</script>
+
+</Layout>

@@ -1,0 +1,157 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Géomancie — 16 Figures — Méthodes de Tirage",
+  "url": "https://mysteres.fr/oracles/geomancie/",
+  "description": "Découvrez les 3 méthodes de tirage de la géomancie classique : Trois Figures, Croix géomantique et Étoile. L'art divinatoire des 16 figures issu de la tradition arabe et hermétique.",
+  "inLanguage": "fr"
+};
+---
+
+<Layout
+  title="Géomancie Classique — Méthodes de tirage"
+  description="Consultez l'oracle de géomancie classique : 16 figures géomantiques issues de la tradition arabe (Ilm al-Raml) et hermétique. Tirage à 3 Figures, Croix géomantique, Étoile à 7 Figures."
+  keywords="géomancie, 16 figures géomantiques, ilm al-raml, tirage géomantique, oracle géomantique, via populus fortuna"
+  canonicalPath="oracles/geomancie/"
+  jsonLd={jsonLd}
+  breadcrumb={[
+    { name: "Accueil", item: "https://mysteres.fr/" },
+    { name: "Oracles", item: "https://mysteres.fr/oracles/" },
+    { name: "Géomancie", item: "https://mysteres.fr/oracles/geomancie/" }
+  ]}
+  section="oracles"
+>
+
+<!-- FIL D'ARIANE -->
+<nav class="breadcrumb" aria-label="Fil d'Ariane" style="padding:0.8rem 1.5rem;font-family:var(--font-mono);font-size:0.8rem;color:var(--text-muted);max-width:1200px;margin:0 auto;">
+  <a href="/" style="color:var(--cyan);">Accueil</a> &rsaquo;
+  <a href="/oracles/" style="color:var(--cyan);">Oracles</a> &rsaquo;
+  <span style="color:var(--text);">Géomancie</span>
+</nav>
+
+<div class="hub-container">
+  <aside class="hub-sidebar">
+    <h1>
+      <span class="pulse"></span>
+      🪨 <span class="gold">Géomancie</span><br>Les 16 <span class="emerald">Figures</span>
+    </h1>
+    <p class="subtitle">
+      Née dans les sables du Sahara aux VIII<sup>e</sup>–IX<sup>e</sup> siècles, codifiée en arabe sous le nom d'<em>Ilm al-Raml</em> (science du sable), la géomancie parvient en Europe au XII<sup>e</sup> siècle par les traductions de Tolède. Cornelius Agrippa et Robert Fludd l'inscrivent dans la grande tradition hermétique. Seize figures binaires, issues de quatre jets aléatoires de points, forment l'alphabet complet du destin.
+    </p>
+    <div class="quote">
+      « Les figures naissent du hasard, mais leur sens vient de l'ordre caché des choses. »
+      <br><span class="gold">— Cornelius Agrippa, <em>De Occulta Philosophia</em></span>
+    </div>
+  </aside>
+
+  <main class="hub-main">
+    <div class="section-title">
+      <div class="num">[ 01 ]</div>
+      <h2>✦ Les 3 Tirages Géomantiques</h2>
+      <p class="slate">Du tirage rapide à l'analyse en étoile, choisissez la méthode qui correspond à votre question.</p>
+    </div>
+
+    <div class="mystere-grid">
+
+      <!-- Tirage à 3 Figures -->
+      <div class="mystere-card" style="--card-accent-color: var(--gold); --hover-accent-color: var(--gold);">
+        <div class="card-icon">⁙</div>
+        <h3>TROIS FIGURES</h3>
+        <p>
+          Passé, Présent, Futur. Trois figures générées pour explorer l'origine de votre situation, son état actuel et sa trajectoire probable. La méthode classique d'initiation à la géomancie.
+        </p>
+        <a href="/oracles/geomancie/trois-figures/" class="btn-explore">Consulter l'oracle ✦</a>
+      </div>
+
+      <!-- Croix Géomantique -->
+      <div class="mystere-card" style="--card-accent-color: var(--emerald); --hover-accent-color: var(--emerald);">
+        <div class="card-icon">✚</div>
+        <h3>CROIX GÉOMANTIQUE</h3>
+        <p>
+          Cinq figures en croix pour une analyse complète : la situation présente au centre, ce qui soutient, les racines, l'obstacle et l'issue probable. Une lecture à plusieurs profondeurs.
+        </p>
+        <a href="/oracles/geomancie/croix/" class="btn-explore">Consulter l'oracle ✦</a>
+      </div>
+
+      <!-- Étoile -->
+      <div class="mystere-card" style="--card-accent-color: var(--violet); --hover-accent-color: var(--violet);">
+        <div class="card-icon">✦</div>
+        <h3>ÉTOILE GÉOMANTIQUE</h3>
+        <p>
+          Sept figures en étoile pour explorer toutes les dimensions de votre situation : cœur du tirage, aspiration, fondation, passé, avenir, ressources intérieures et environnement extérieur.
+        </p>
+        <a href="/oracles/geomancie/etoile/" class="btn-explore">Consulter l'oracle ✦</a>
+      </div>
+
+    </div>
+
+    <!-- Les 16 figures — aperçu visuel -->
+    <div class="section-title" style="margin-top:3rem;">
+      <div class="num">[ 02 ]</div>
+      <h2>✦ Les 16 Figures</h2>
+      <p class="slate">Chaque figure est un agencement unique de points pairs et impairs sur quatre lignes : Feu, Air, Eau, Terre.</p>
+    </div>
+
+    <div id="figures-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:1rem;margin-top:1rem;"></div>
+
+  </main>
+</div>
+
+<!-- NAVIGATION -->
+<nav class="sub-nav" style="display:flex;justify-content:space-between;max-width:600px;margin:2rem auto;padding:1rem;">
+  <a href="/oracles/yi-king/" style="color:var(--cyan);font-family:var(--font-mono);">← Yi King</a>
+  <a href="/oracles/" style="color:var(--cyan);font-family:var(--font-mono);">Tous les Oracles →</a>
+</nav>
+
+  <p slot="sources" style="color:#64748b;font-size:0.75rem;margin-bottom:0.8rem;">
+    Sources : Cornelius Agrippa <em>De Occulta Philosophia</em> (1531), Robert Fludd <em>Utriusque Cosmi Historia</em> (1617), Al-Zanati <em>Kitab al-Fasl</em> (IX<sup>e</sup> s.), John Michael Greer <em>The Art and Practice of Geomancy</em> (2009)
+  </p>
+
+</Layout>
+
+<style>
+  .geo-preview-card {
+    background: var(--bg-card);
+    border: 1px solid rgba(218,165,32,0.15);
+    border-radius: 8px;
+    padding: 0.8rem;
+    text-align: center;
+    transition: border-color 0.3s;
+  }
+  .geo-preview-card:hover { border-color: var(--gold); }
+  .geo-preview-card .geo-name { font-size: 0.75rem; font-family: var(--font-mono); color: var(--gold); margin-bottom: 0.3rem; }
+  .geo-preview-card .geo-latin { font-size: 0.65rem; color: var(--text-muted); margin-bottom: 0.5rem; }
+  .geo-preview-card .geo-planet { font-size: 0.65rem; color: var(--text-muted); margin-top: 0.4rem; }
+  .geo-svg { color: var(--gold); }
+  .tone-defavorable .geo-svg { color: var(--rose); }
+  .tone-neutre .geo-svg { color: var(--cyan); }
+  .tone-mixte .geo-svg { color: var(--violet); }
+</style>
+
+<script is:inline src="/js/geomancie-data.js"></script>
+<script is:inline src="/js/geomancie-interp.js"></script>
+<script is:inline>
+  function renderFiguresGrid() {
+    var grid = document.getElementById('figures-grid');
+    if (!grid || !window.geomancieData) return;
+    grid.innerHTML = window.geomancieData.map(function(f) {
+      var svg = window.geomancieInterp.renderFigureSVG(f.lignes, 'sm');
+      return '<div class="geo-preview-card tone-' + f.tonalite + '">'
+        + '<div class="geo-name">' + f.nomFrancais + '</div>'
+        + '<div class="geo-latin">' + f.nomLatin + '</div>'
+        + svg
+        + '<div class="geo-planet">' + f.symbole + ' ' + f.planete + '</div>'
+        + '</div>';
+    }).join('');
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', renderFiguresGrid);
+  } else {
+    renderFiguresGrid();
+  }
+  document.addEventListener('astro:page-load', renderFiguresGrid);
+</script>
