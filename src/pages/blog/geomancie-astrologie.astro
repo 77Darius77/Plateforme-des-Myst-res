@@ -1,0 +1,256 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AffiliateBooks from '../../components/AffiliateBooks.astro';
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Géomancie et astrologie : les correspondances planétaires",
+  "description": "Les 16 figures géomantiques sont enracinées dans l'astrologie médiévale : planètes, signes, maisons. Comprendre ces correspondances éclaire chaque figure et ouvre des niveaux d'interprétation insoupçonnés.",
+  "author": {
+    "@type": "Organization",
+    "name": "Plateforme des Mystères"
+  },
+  "inLanguage": "fr",
+  "url": "https://mysteres.fr/blog/geomancie-astrologie/",
+  "image": "https://mysteres.fr/images/og-default.svg",
+  "dateModified": "2026-06-26",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Plateforme des Mystères",
+    "url": "https://mysteres.fr"
+  },
+  "datePublished": "2026-06-26"
+};
+---
+
+<Layout
+  title="Géomancie et astrologie : les correspondances planétaires — Blog"
+  description="Les 16 figures géomantiques sont enracinées dans l'astrologie médiévale : planètes, signes, maisons. Comprendre ces correspondances éclaire chaque figure et ouvre des niveaux d'interprétation insoupçonnés."
+  keywords="géomancie astrologie, figures géomantiques planètes, maisons astrologiques géomancie, correspondances planétaires, géomancie médiévale, thème géomantique maisons"
+  canonicalPath="blog/geomancie-astrologie/"
+  jsonLd={jsonLd}
+  useBlogStyles={true}
+  scripts={["/assets/js/blog.js"]}
+  section="blog"
+>
+
+<article id="article" class="blog-article">
+
+  <h1>Géomancie et astrologie : les correspondances planétaires</h1>
+  <p class="article-subtitle">Les 16 figures géomantiques ne sont pas nées dans un vide cosmologique. Elles sont enracinées dans l'astrologie médiévale : sept planètes, douze maisons, quatre éléments. Comprendre ces correspondances éclaire profondément chaque figure.</p>
+
+  <div class="article-meta-bar">
+    <span>📅 Juin 2026</span>
+    <span>📖 12 min de lecture</span>
+    <span>🏷️ Oracles · Géomancie · Astrologie</span>
+  </div>
+
+  <blockquote>
+    « La géomancie n'est pas autre chose qu'une astrologie terrestre : là où l'astrologue lit les planètes dans le ciel, le géomancien lit leurs empreintes dans la terre. »<br>
+    <em>— Robert Fludd, <em>Utriusque Cosmi Historia</em>, vol. II (1617)</em>
+  </blockquote>
+
+  <hr>
+
+  <h2>Une astrologie sans ciel</h2>
+
+  <p>La géomancie médiévale arabe et européenne a été élaborée dans un cadre cosmologique précis : celui de l'astrologie ptolémaïque à sept planètes. Cette parenté n'est pas superficielle. Les traducteurs arabes qui ont codifié la géomancie aux VIIIᵉ–IXᵉ siècles, puis les érudits européens qui l'ont traduite aux XIIᵉ–XIIIᵉ siècles, ont délibérément construit un système où les <strong>16 figures reflètent les 7 planètes</strong> et où le <strong>thème géomantique reproduit les 12 maisons</strong> astrologiques.</p>
+
+  <p>L'idée sous-jacente est précise : puisque les planètes influencent le monde sublunaire, leurs empreintes se manifestent partout — y compris dans les points tracés au hasard dans le sable. La géomancie est, selon cette vision, une <strong>lecture des influences planétaires à travers le hasard orienté</strong>. Cornelius Agrippa, dans son <em>De Occulta Philosophia</em> (1531), l'explicite clairement dans son tableau de correspondances.</p>
+
+  <hr>
+
+  <h2>Les 7 planètes et leurs figures</h2>
+
+  <p>Les sept planètes traditionnelles — Saturne, Jupiter, Mars, Soleil, Vénus, Mercure, Lune — se distribuent entre les seize figures. Certaines planètes régissent deux figures, une dans son aspect « entrant » (favorable, ascendant) et une dans son aspect « sortant » (défavorable, descendant).</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Planète</th>
+        <th>Figure entrant / ascendant</th>
+        <th>Figure sortant / descendant</th>
+        <th>Domaine principal</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>☉ Soleil</strong></td>
+        <td>Fortuna Major</td>
+        <td>Fortuna Minor</td>
+        <td>Puissance, réussite, autorité</td>
+      </tr>
+      <tr>
+        <td><strong>☽ Lune</strong></td>
+        <td>Via</td>
+        <td>Populus</td>
+        <td>Mouvement, peuple, émotions</td>
+      </tr>
+      <tr>
+        <td><strong>♂ Mars</strong></td>
+        <td>Puer</td>
+        <td>Rubeus</td>
+        <td>Énergie, conflit, passion</td>
+      </tr>
+      <tr>
+        <td><strong>♀ Vénus</strong></td>
+        <td>Puella</td>
+        <td>Amissio</td>
+        <td>Beauté, amour, perte affective</td>
+      </tr>
+      <tr>
+        <td><strong>☿ Mercure</strong></td>
+        <td>Albus</td>
+        <td>Conjunctio</td>
+        <td>Intellect, communication, union</td>
+      </tr>
+      <tr>
+        <td><strong>♃ Jupiter</strong></td>
+        <td>Acquisitio</td>
+        <td>Laetitia</td>
+        <td>Abondance, joie, expansion</td>
+      </tr>
+      <tr>
+        <td><strong>♄ Saturne</strong></td>
+        <td>Carcer</td>
+        <td>Tristitia</td>
+        <td>Limite, peine, durée</td>
+      </tr>
+      <tr>
+        <td><strong>☊ Nœud Nord</strong></td>
+        <td>Caput Draconis</td>
+        <td>—</td>
+        <td>Entrée, commencement, croissance</td>
+      </tr>
+      <tr>
+        <td><strong>☋ Nœud Sud</strong></td>
+        <td>—</td>
+        <td>Cauda Draconis</td>
+        <td>Sortie, fin, libération</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>On remarque que Conjunctio est assignée à Mercure dans son aspect « sortant » non pas parce qu'elle est défavorable (elle est neutre), mais parce que son mouvement est de type mercurien-passif : elle recueille et rassemble plutôt qu'elle ne génère. Albus, l'aspect actif de Mercure, produit la sagesse ; Conjunctio, l'aspect passif, crée la réunion.</p>
+
+  <hr>
+
+  <h2>Les correspondances zodiacales</h2>
+
+  <p>Au-delà des planètes, chaque figure est associée à un ou deux <strong>signes du zodiaque</strong>. Ces correspondances, présentes chez Agrippa et stabilisées dans la tradition anglaise par John Michael Greer, enrichissent l'interprétation en ajoutant la couleur du signe à celle de la planète.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Figure</th>
+        <th>Planète</th>
+        <th>Signe</th>
+        <th>Maison naturelle</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Via</td><td>☽ Lune</td><td>Cancer</td><td>IV</td></tr>
+      <tr><td>Populus</td><td>☽ Lune</td><td>Cancer</td><td>IV</td></tr>
+      <tr><td>Fortuna Major</td><td>☉ Soleil entrant</td><td>Lion</td><td>V</td></tr>
+      <tr><td>Fortuna Minor</td><td>☉ Soleil sortant</td><td>Lion</td><td>V</td></tr>
+      <tr><td>Acquisitio</td><td>♃ Jupiter entrant</td><td>Sagittaire</td><td>IX</td></tr>
+      <tr><td>Laetitia</td><td>♃ Jupiter sortant</td><td>Poissons</td><td>XII</td></tr>
+      <tr><td>Tristitia</td><td>♄ Saturne sortant</td><td>Verseau / Scorpion</td><td>XI</td></tr>
+      <tr><td>Carcer</td><td>♄ Saturne entrant</td><td>Capricorne</td><td>X</td></tr>
+      <tr><td>Puer</td><td>♂ Mars entrant</td><td>Bélier</td><td>I</td></tr>
+      <tr><td>Rubeus</td><td>♂ Mars sortant</td><td>Scorpion</td><td>VIII</td></tr>
+      <tr><td>Puella</td><td>♀ Vénus entrant</td><td>Balance / Taureau</td><td>VII / II</td></tr>
+      <tr><td>Amissio</td><td>♀ Vénus sortant</td><td>Taureau / Balance</td><td>II / VII</td></tr>
+      <tr><td>Albus</td><td>☿ Mercure entrant</td><td>Gémeaux</td><td>III</td></tr>
+      <tr><td>Conjunctio</td><td>☿ Mercure sortant</td><td>Vierge</td><td>VI</td></tr>
+      <tr><td>Caput Draconis</td><td>☊ Nœud Nord</td><td>Vierge / Capricorne</td><td>VI / X</td></tr>
+      <tr><td>Cauda Draconis</td><td>☋ Nœud Sud</td><td>Sagittaire / Scorpion</td><td>IX / VIII</td></tr>
+    </tbody>
+  </table>
+
+  <p>Ces correspondances zodiacales permettent d'affiner l'interprétation. Par exemple, lorsque Acquisitio (Jupiter / Sagittaire) tombe dans la maison IX d'un thème géomantique, son sens est renforcé dans le domaine des voyages, de la spiritualité et de l'enseignement supérieur — car la maison IX est sa « maison naturelle ».</p>
+
+  <hr>
+
+  <h2>Le thème géomantique et les 12 maisons</h2>
+
+  <p>Le parallèle avec l'astrologie ne s'arrête pas aux correspondances figure-planète. Dans la méthode du <strong>thème géomantique complet</strong> — la méthode classique utilisant les 4 Mères, 4 Filles et 4 Nièces — les douze premières figures sont assignées aux douze maisons astrologiques selon la séquence suivante :</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Position</th>
+        <th>Maison</th>
+        <th>Domaine</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Mère 1</td><td>I</td><td>Le consultant, son état physique et mental</td></tr>
+      <tr><td>Mère 2</td><td>II</td><td>Argent, ressources, valeurs matérielles</td></tr>
+      <tr><td>Mère 3</td><td>III</td><td>Communication, fratrie, déplacements courts</td></tr>
+      <tr><td>Mère 4</td><td>IV</td><td>Foyer, parents, racines, fin de vie</td></tr>
+      <tr><td>Fille 1</td><td>V</td><td>Amour, créativité, enfants, plaisirs</td></tr>
+      <tr><td>Fille 2</td><td>VI</td><td>Travail, santé, service, animaux</td></tr>
+      <tr><td>Fille 3</td><td>VII</td><td>Partenaire, mariage, adversaires, contrats</td></tr>
+      <tr><td>Fille 4</td><td>VIII</td><td>Mort, héritages, secrets, sexualité</td></tr>
+      <tr><td>Nièce 1</td><td>IX</td><td>Voyages longs, spiritualité, études supérieures</td></tr>
+      <tr><td>Nièce 2</td><td>X</td><td>Carrière, statut social, réputation</td></tr>
+      <tr><td>Nièce 3</td><td>XI</td><td>Amis, espoirs, projets, associations</td></tr>
+      <tr><td>Nièce 4</td><td>XII</td><td>Épreuves cachées, karma, ennemis secrets</td></tr>
+    </tbody>
+  </table>
+
+  <p>Pour lire un thème complet, le géomancien examine <strong>la maison de la question</strong> (par exemple la V pour une question d'amour) et <strong>la maison opposée</strong> (ici la XI, pour les espoirs liés à cette relation). Il lit aussi les maisons des « acteurs » impliqués — la I pour le consultant, la VII pour le partenaire.</p>
+
+  <hr>
+
+  <h2>Dignités et débilités des figures dans les maisons</h2>
+
+  <p>Tout comme en astrologie une planète est en domicile, en exaltation, en chute ou en exil selon sa position zodiacale, une figure géomantique est renforcée ou affaiblie selon la maison où elle tombe. On parle de <strong>dignité essentielle géomantique</strong>.</p>
+
+  <p>La règle principale : une figure est <strong>en dignité</strong> lorsqu'elle tombe dans sa maison naturelle (celle de son signe de correspondance). Exemples :</p>
+
+  <ul>
+    <li><strong>Acquisitio en maison IX</strong> : excellence — Jupiter Sagittaire dans sa maison naturelle. Voyage réussi, succès académique ou spirituel.</li>
+    <li><strong>Fortuna Major en maison V</strong> : force — Soleil en Lion dans le domaine de la créativité et de l'amour. Très positif.</li>
+    <li><strong>Rubeus en maison VIII</strong> : la figure la plus destructrice dans la maison des secrets et de la mort. Signal d'alarme sérieux.</li>
+    <li><strong>Laetitia en maison XII</strong> : la joie dans la maison des épreuves — résilience possible, mais bonheur fragile ou caché.</li>
+  </ul>
+
+  <hr>
+
+  <h2>Témoins, Juge et Réconciliateur : la syntaxe astro-géomantique</h2>
+
+  <p>Les deux <strong>Témoins</strong> et le <strong>Juge</strong> qui synthétisent le thème sont aussi interprétés à travers le prisme planétaire. Le Témoin droit (somme des Mères 1+2 et Filles 1+2) représente <strong>l'extérieur et le passé</strong>. Le Témoin gauche représente <strong>l'intérieur et le futur</strong>. Le Juge synthétise les deux.</p>
+
+  <p>La tradition précise que si le Juge est Rubeus ou Cauda Draconis, la question est mal posée ou la situation est fondamentalement bloquée. Si le Juge est Acquisitio, Fortuna Major ou Laetitia, la réponse est clairement affirmative, quelle que soit la question. Ces règles s'apparentent aux <strong>significations essentielles</strong> (essential dignities) de l'astrologie horoscope médiévale de William Lilly.</p>
+
+  <hr>
+
+  <h2>Géomancie et astrologie : deux disciplines sœurs</h2>
+
+  <p>La parenté entre géomancie et astrologie est si profonde que certains géomanciens médiévaux considéraient la première comme une <strong>voie d'accès rapide à l'astrologie</strong> pour ceux qui ne pouvaient pas observer le ciel : les voyageurs, les prisonniers, les pratiquants de nuit sans instruments. Cette complémentarité reste valide aujourd'hui : la géomancie apporte une réponse immédiate, incarnée dans le geste de tracer des points ; l'astrologie apporte la profondeur du temps et des cycles.</p>
+
+  <p>Pour le praticien qui maîtrise les deux disciplines, elles se nourrissent mutuellement. Lorsque la planète régente d'une figure correspond précisément à un transit actif dans la carte natale du consultant, la convergence des deux systèmes renforce considérablement la signification du tirage.</p>
+
+  <AffiliateBooks books={[
+    { title: "De Occulta Philosophia", author: "Cornelius Agrippa", description: "La source classique des correspondances planétaires des figures géomantiques — la référence fondatrice de la tradition hermétique européenne.", searchTerm: "Cornelius Agrippa De Occulta Philosophia hermétique philosophie occculte" },
+    { title: "The Art and Practice of Geomancy", author: "John Michael Greer", description: "Le guide moderne le plus complet sur le thème géomantique, les maisons et les correspondances astrologiques des 16 figures.", searchTerm: "John Michael Greer geomancy houses astrological practice" },
+    { title: "Christian Astrology", author: "William Lilly", description: "Le traité classique de l'astrologie horoscope médiévale qui partage avec la géomancie la même cosmologie planétaire et les mêmes maisons.", searchTerm: "William Lilly Christian Astrology horary medieval houses planets" },
+  ]} />
+
+  <div class="article-footer">
+    <p>🪨 Pratiquez la géomancie avec notre <a href="/oracles/geomancie/" style="color:var(--gold);">outil de tirage interactif</a> — Trois Figures, Croix et Étoile.</p>
+    <p>📚 Lire aussi : <a href="/blog/geomancie/" style="color:var(--gold);">La Géomancie : histoire et fonctionnement des 16 figures de terre</a></p>
+    <p>📚 Lire aussi : <a href="/blog/geomancie-16-figures/" style="color:var(--gold);">Les 16 figures géomantiques : symbolisme, planètes et interprétations</a></p>
+    <a href="/blog/" class="back-link">← Retour au blog</a>
+  </div>
+
+</article>
+
+  <p slot="sources" style="color:#64748b;font-size:0.75rem;margin-bottom:0.8rem;">
+    Sources : Cornelius Agrippa, <em>De Occulta Philosophia</em>, Livre II (1531) ; Robert Fludd, <em>Utriusque Cosmi Historia</em> (1617) ; John Michael Greer, <em>The Art and Practice of Geomancy</em> (2009) ; William Lilly, <em>Christian Astrology</em> (1647) ; Stephen Skinner, <em>Geomancy in Theory and Practice</em> (1980)
+  </p>
+
+</Layout>
