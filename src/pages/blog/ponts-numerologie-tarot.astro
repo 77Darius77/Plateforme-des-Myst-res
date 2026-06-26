@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import AffiliateBooks from '../../components/AffiliateBooks.astro';
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -284,6 +285,12 @@ const jsonLd = {
   <hr>
 
   <p style="color:var(--text-dim);font-size:0.9rem;text-align:center;"><em>Rédigé en juin 2026, dans l'esprit d'une exploration croisée des traditions.</em></p>
+
+  <AffiliateBooks books={[
+    { title: "La Voie du Tarot", author: "Alejandro Jodorowsky & Marianne Costa", description: "Le pont majeur entre les 22 arcanes du Tarot et la kabbale — fondation de toute lecture ésotérique croisée.", searchTerm: "La voie du tarot Jodorowsky Marianne Costa" },
+    { title: "ABC de la Numérologie", author: "Jean-Daniel Fermier", description: "Les 22 archétypes cabalistiques en miroir des 22 arcanes majeurs — les deux langages d'un même système.", searchTerm: "ABC numérologie Jean-Daniel Fermier" },
+    { title: "La Kabbale — Le Livre de la Création", author: "Annick de Souzenelle", description: "Les 22 lettres hébraïques à la source des 22 arcanes et des 22 archétypes — le tronc commun.", searchTerm: "Annick de Souzenelle kabbale livre de la création" },
+  ]} />
 
   <div class="article-footer">
     <p>🃏 Explorez aussi : <a href="/blog/guide-22-archetypes/" style="color:var(--gold);">Le guide des 22 archétypes</a></p>

@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import AffiliateBooks from '../../components/AffiliateBooks.astro';
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -245,6 +246,12 @@ const jsonLd = {
   <h2>Infographie des 22 archétypes</h2>
 
   <p>Pour une vue d'ensemble visuelle, consultez notre <strong><a href="/assets/images/infographie_22_archetypes.svg" style="color:var(--gold);">infographie des 22 archétypes</a></strong> — un diagramme complet qui présente chaque nombre, sa lettre hébraïque et son symbole.</p>
+
+  <AffiliateBooks books={[
+    { title: "La Voie du Tarot", author: "Alejandro Jodorowsky & Marianne Costa", description: "La référence absolue sur les 22 arcanes majeurs du Tarot de Marseille — clé de lecture des 22 archétypes.", searchTerm: "La voie du tarot Jodorowsky Marianne Costa" },
+    { title: "ABC de la Numérologie", author: "Jean-Daniel Fermier", description: "Les 22 archétypes cabalistiques expliqués pas à pas, avec calculs et interprétations.", searchTerm: "ABC numérologie Jean-Daniel Fermier" },
+    { title: "Les Archétypes et l'Inconscient Collectif", author: "Carl Gustav Jung", description: "La théorie des archétypes à la source de la symbolique des 22 — fondation psychologique indispensable.", searchTerm: "Jung archétypes inconscient collectif" },
+  ]} />
 
   <div class="article-footer">
     <p>🔢 Calculez vos nombres personnels avec le <a href="/numerologie/cabalistique/" style="color:var(--gold);">calculateur de numérologie</a>.</p>

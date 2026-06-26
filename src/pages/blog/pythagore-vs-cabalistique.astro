@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import AffiliateBooks from '../../components/AffiliateBooks.astro';
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -181,6 +182,12 @@ const jsonLd = {
   <blockquote>
     <strong>Les deux systèmes ne se contredisent pas — ils se complètent.</strong> L'un révèle ce que vous êtes venu être. L'autre révèle comment vous le vivez dans la quotidienneté. Ensemble, ils donnent une carte topographique de l'identité d'une rare précision.
   </blockquote>
+
+  <AffiliateBooks books={[
+    { title: "ABC de la Numérologie", author: "Jean-Daniel Fermier", description: "Les deux méthodes côte à côte — pythagoricienne et cabalistique — leurs calculs et leurs philosophies comparées.", searchTerm: "ABC numérologie Jean-Daniel Fermier" },
+    { title: "Le Livre de Votre Destin", author: "Dan Millman", description: "La méthode pythagoricienne dans sa version la plus aboutie — pour comprendre ce que la tradition occidentale révèle.", searchTerm: "Dan Millman livre destin numérologie chemin de vie" },
+    { title: "La Kabbale — Le Livre de la Création", author: "Annick de Souzenelle", description: "La tradition cabalistique en profondeur — pour saisir ce que la méthode hébraïque voit que Pythagore ne voit pas.", searchTerm: "Annick de Souzenelle kabbale livre de la création" },
+  ]} />
 
   <div class="article-footer">
     <p>🔮 Essayez les deux calculateurs : <a href="/numerologie/cabalistique/" style="color:var(--gold);">Cabalistique (Raúl Durán)</a> · <a href="/numerologie/pythagoricienne/" style="color:var(--gold);">Pythagoricien (5 nombres)</a></p>

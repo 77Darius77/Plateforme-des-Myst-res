@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import AffiliateBooks from '../../components/AffiliateBooks.astro';
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -215,6 +216,12 @@ const jsonLd = {
   <hr>
 
   <p style="color:var(--text-dim);font-size:0.9rem;text-align:center;"><em>Rédigé en juin 2026, dans l'esprit d'une libre enquête.</em></p>
+
+  <AffiliateBooks books={[
+    { title: "La Kabbale — Le Livre de la Création", author: "Annick de Souzenelle", description: "Réflexion philosophique et spirituelle sur les fondements de la numérologie cabalistique — incontournable.", searchTerm: "Annick de Souzenelle kabbale livre de la création" },
+    { title: "ABC de la Numérologie", author: "Jean-Daniel Fermier", description: "La pratique rigoureuse qui complète la réflexion théorique — de la philosophie au calcul concret.", searchTerm: "ABC numérologie Jean-Daniel Fermier" },
+    { title: "L'homme et ses symboles", author: "Carl Gustav Jung", description: "Le cadre psychologique des archétypes — fondation épistémologique pour réfléchir à la validité de la numérologie.", searchTerm: "Carl Gustav Jung l'homme et ses symboles" },
+  ]} />
 
   <div class="article-footer">
     <p>📚 Explorez aussi : <a href="/blog/methode-raul-duran/" style="color:var(--gold);">La méthode Raúl Durán expliquée</a></p>

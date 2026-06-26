@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import AffiliateBooks from '../../components/AffiliateBooks.astro';
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -210,6 +211,12 @@ const jsonLd = {
   <hr>
 
   <p style="color:var(--text-dim);font-size:0.9rem;text-align:center;"><em>Rédigé en juin 2026, dans l'esprit d'une initiation respectueuse à la tradition kabbalistique.</em></p>
+
+  <AffiliateBooks books={[
+    { title: "Les 72 Noms de Dieu", author: "Yehuda Berg", description: "La technologie de la guérison par les 72 séquences hébraïques — méditations et applications pratiques.", searchTerm: "Les 72 Noms de Dieu Yehuda Berg kabbale" },
+    { title: "La Kabbale — Le Livre de la Création", author: "Annick de Souzenelle", description: "Plongée dans la symbolique hébraïque à la source des 72 Noms et de la guématrie.", searchTerm: "Annick de Souzenelle kabbale livre de la création" },
+    { title: "Le Zohar — Extraction des lumières", author: "Michael Laitman", description: "Introduction au Livre de la Splendeur, texte fondateur de la kabbale qui encode les 72 Noms.", searchTerm: "Zohar kabbale livre splendeur lumières" },
+  ]} />
 
   <div class="article-footer">
     <p>📚 Lire aussi : <a href="/blog/reflexions-numerologie/" style="color:var(--gold);">Réflexions sur la numérologie cabalistique</a></p>

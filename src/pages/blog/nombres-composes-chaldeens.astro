@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import AffiliateBooks from '../../components/AffiliateBooks.astro';
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -203,6 +204,12 @@ const jsonLd = {
   <blockquote>
     <strong>La règle d'or chaldéenne :</strong> un nombre composé "défavorable" n'est jamais une malédiction — c'est une mise en garde. La tradition babylonienne ne cherchait pas à prédire la défaite, mais à l'éviter en la nommant.
   </blockquote>
+
+  <AffiliateBooks books={[
+    { title: "ABC de la Numérologie", author: "Jean-Daniel Fermier", description: "Les nombres composés chaldéens et leur double lecture — la référence francophone des traditions babyloniennes.", searchTerm: "ABC numérologie Jean-Daniel Fermier" },
+    { title: "Numerology — The Complete Guide", author: "Matthew Oliver Goodwin", description: "Le guide anglophone de référence sur les nombres composés chaldéens et leurs significations profondes.", searchTerm: "Numerology complete guide Matthew Goodwin chaldean" },
+    { title: "The Chaldean Numerology System", author: "Joanne Justis", description: "Étude approfondie de la tradition numérologique babylonienne — des nombres composés aux vibrations planétaires.", searchTerm: "Chaldean numerology system Joanne Justis" },
+  ]} />
 
   <div class="article-footer">
     <p>🔮 Découvrez vos nombres composés avec le <a href="/numerologie/chaldeenne/" style="color:var(--gold);">calculateur chaldéen</a>.</p>
