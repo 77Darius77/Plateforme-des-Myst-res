@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import AffiliateBooks from '../../components/AffiliateBooks.astro';
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -319,6 +320,12 @@ const jsonLd = {
   <p>Et le fait que ce chemin corresponde, lame après lame, aux 22 lettres de la création, aux 22 sentiers de l'Arbre de Vie, aux 22 archétypes de la numérologie, suggère que nous touchons là une <strong>structure fondamentale de la conscience</strong> — une grammaire de l'âme qui dépasse les époques, les cultures et les systèmes de croyance.</p>
 
   <hr>
+
+    <AffiliateBooks books={[
+    { title: "La Voie du Tarot", author: "Alejandro Jodorowsky & Marianne Costa", description: "L'œuvre de référence sur le Tarot de Marseille. Une lecture profonde des 22 arcanes majeurs comme chemin initiatique.", searchTerm: "La voie du tarot Jodorowsky Marianne Costa" },
+    { title: "Jung et le Tarot", author: "Sallie Nichols", description: "Un voyage mythique à travers les arcanes majeurs à la lumière de la psychologie jungienne. Un classique.", searchTerm: "Jung et le Tarot Sallie Nichols arcanes majeurs" },
+    { title: "Méditations sur les 22 arcanes majeurs", author: "Anonyme", description: "Ouvrage ésotérique profond sur la dimension spirituelle des 22 arcanes majeurs du Tarot.", searchTerm: "méditations 22 arcanes majeurs du Tarot livre ésotérique" },
+  ]} />
 
   <div class="article-footer">
     <p>🃏 Explorez le voyage du Mat sur notre plateforme : <a href="/tarologie/voyage-mat/" style="color:var(--gold);">Voyage initiatique interactif</a></p>

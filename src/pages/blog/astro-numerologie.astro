@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import AffiliateBooks from '../../components/AffiliateBooks.astro';
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -402,6 +403,12 @@ const jsonLd = {
   <hr>
 
   <p style="color:var(--text-dim);font-size:0.9rem;text-align:center;"><em>Rédigé en juin 2026, à la croisée des sphères et des nombres.</em></p>
+
+    <AffiliateBooks books={[
+    { title: "Numérologie et Astrologie", author: "Jean-Daniel Fermier", description: "Les correspondances complètes entre planètes et nombres. Une synthèse ésotérique pour une lecture enrichie.", searchTerm: "Jean-Daniel Fermier numérologie astrologie correspondances planètes nombres" },
+    { title: "Le Grand Livre de la Numérologie", author: "Kris Hadar", description: "Ouvrage de référence qui explore aussi les ponts avec l'astrologie. Approche traditionnelle et moderne.", searchTerm: "Kris Hadar grand livre numérologie astrologie correspondances" },
+    { title: "Saturne et les Nombres", author: "David Frawley", description: "Exploration védique des liens entre astrologie et numérologie. Planètes et nombres comme miroirs du karma.", searchTerm: "David Frawley numérologie astrologie védique planètes nombres" },
+  ]} />
 
   <div class="article-footer">
     <p>🔭 Explorez aussi : <a href="/blog/astrologie-tropicale/" style="color:var(--gold);">L'astrologie tropicale — guide complet</a></p>

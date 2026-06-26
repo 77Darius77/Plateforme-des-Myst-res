@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import AffiliateBooks from '../../components/AffiliateBooks.astro';
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -227,9 +228,15 @@ const jsonLd = {
 
   <p>Pour Jung, l'oracle — et particulièrement le Yi King — n'était pas une superstition mais un <strong>dialogue avec l'inconscient via le principe de synchronicité</strong>. Le Miroir prolonge cette intuition : la carte que vous tirez n'est jamais le fruit du hasard, mais le reflet exact de votre état intérieur au moment de la consultation.</p>
 
+    <AffiliateBooks books={[
+    { title: "Oracle des Miroirs", author: "Nathalie Giraud Desforges", description: "Le jeu original de 53 cartes. Chaque carte est un reflet de l'inconscient pour un travail d'introspection profond.", searchTerm: "Oracle des Miroirs 53 cartes Nathalie Giraud Desforges introspection" },
+    { title: "L'Oracle des Miroirs — Livret", author: "Nathalie Giraud Desforges", description: "Guide d'accompagnement complet : 53 interprétations, méthodes de tirage et exercices d'introspection.", searchTerm: "oracle miroirs guide interprétation introspection 53 cartes" },
+    { title: "Le Symbolisme du Miroir", author: "Jean Chevalier", description: "Le miroir dans les traditions ésotériques et la psychologie — du mythe de Narcisse au stade du miroir de Lacan.", searchTerm: "symbolisme miroir ésotérisme psychologie Jung Lacan" },
+  ]} />
+
   <div class="article-footer">
     <p>🪞 Explorez vos reflets intérieurs avec l'<a href="/numerologie/miroirs/" style="color:var(--gold);">Oracle des Miroirs interactif</a> — commencez par le tirage à une carte.</p>
-    <p>📚 Lire aussi : <a href="/blog/ponts-numerologie-tarot/" style="color:var(--gold);">Ponts entre numérologie et Tarot</a> · <a href="/blog/yi-king-synchronicite/" style="color:var(--gold);">Yi King et synchronicité : quand le hasard n'existe pas</a></p>
+    <p>📚 Lire aussi : <a href="/blog/oracle-belline/" style="color:var(--gold);">Oracle de Belline : 53 cartes, 7 planètes</a> · <a href="/blog/yi-king-synchronicite/" style="color:var(--gold);">Yi King et synchronicité : quand le hasard n'existe pas</a></p>
     <a href="/blog/" class="back-link">← Retour au blog</a>
   </div>
 

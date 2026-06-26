@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import AffiliateBooks from '../../components/AffiliateBooks.astro';
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -280,6 +281,12 @@ const jsonLd = {
   <p>Le Tarot est en train de sortir du placard ésotérique pour entrer dans le <strong>dialogue scientifique</strong>. Non pas comme méthode de prédiction, mais comme <strong>technologie symbolique</strong> au service de la santé mentale. C'est exactement ce que Jung pressentait il y a un siècle : que les vieux symboles de l'humanité ne sont pas des superstitions à éliminer, mais des <strong>outils thérapeutiques</strong> à redécouvrir.</p>
 
   <hr>
+
+    <AffiliateBooks books={[
+    { title: "L'Homme et ses symboles", author: "Carl Gustav Jung", description: "L'ouvrage ultime de Jung sur l'inconscient collectif et les archétypes — clé de la lecture psychologique du tarot.", searchTerm: "Carl Gustav Jung l'homme et ses symboles archétypes" },
+    { title: "Jung et le Tarot", author: "Sallie Nichols", description: "Le pont définitif entre la psychologie des profondeurs et les 22 arcanes majeurs. Un voyage archétypal illustré.", searchTerm: "Sallie Nichols Jung tarot voyage archétypal arcanes" },
+    { title: "Psychologie et Alchimie", author: "Carl Gustav Jung", description: "L'œuvre où Jung explore la symbolique alchimique — indispensable pour comprendre les correspondances ésotériques.", searchTerm: "Jung psychologie et alchimie symbolisme ésotérique" },
+  ]} />
 
   <div class="article-footer">
     <p>🃏 Explorez le Tarot comme outil d'introspection : <a href="/tarologie/rider-waite/" style="color:var(--gold);">Tirage Rider-Waite-Smith</a></p>

@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import AffiliateBooks from '../../components/AffiliateBooks.astro';
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -211,6 +212,12 @@ const jsonLd = {
   <blockquote>
     Le Jyotish n'est pas un système de croyance — c'est une <strong>technologie spirituelle</strong>. Il relie l'astronomie observable au karma individuel et à la quête de libération. Pour le pratiquant védique, regarder son thème, c'est regarder le reflet de son âme dans le miroir du temps.
   </blockquote>
+
+    <AffiliateBooks books={[
+    { title: "Lumière sur la Vie", author: "Hart de Fouw & Robert Svoboda", description: "La bible du Jyotish en Occident. Introduction complète à l'astrologie védique : philosophie, calculs, interprétation.", searchTerm: "Hart de Fouw lumière sur la vie jyotish astrologie védique" },
+    { title: "Astrologie védique", author: "David Frawley", description: "Introduction claire au Jyotish par un maître ayurvédique. Karma, dharma et les planètes comme enseignants.", searchTerm: "David Frawley astrologie védique jyotish karma dharma" },
+    { title: "L'Art et la Science de l'Astrologie Védique", author: "Richard Fish", description: "Manuel pratique de Jyotish : calculs, grahas, bhavas, dashas. Pour une approche structurée et complète.", searchTerm: "Richard Fish art science astrologie védique jyotish manuel" },
+  ]} />
 
   <div class="article-footer">
     <p>🙏 Explorez plus en profondeur : <a href="/blog/nakshatras/" style="color:var(--gold);">Les 27 Nakshatras</a> · <a href="/blog/vimshottari-dasha/" style="color:var(--gold);">Le Vimshottari Dasha</a> · <a href="/blog/siderale-vs-tropicale/" style="color:var(--gold);">Sidérale vs Tropicale</a></p>

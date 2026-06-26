@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import AffiliateBooks from '../../components/AffiliateBooks.astro';
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -200,6 +201,12 @@ const jsonLd = {
   <blockquote>
     Le zodiaque que vous choisissez dépend de la question que vous posez. Votre âme vit dans les saisons — votre karma est écrit dans les étoiles. Les deux lectures sont légitimes. Les deux vous parlent.
   </blockquote>
+
+    <AffiliateBooks books={[
+    { title: "Astrologie sidérale", author: "Cyril Fagan", description: "Le fondateur de l'astrologie sidérale occidentale. Histoire, principes et pratique du zodiaque réel.", searchTerm: "Cyril Fagan astrologie sidérale zodiaque réel précession" },
+    { title: "Les Nakshatras", author: "Dennis Harness", description: "Introduction aux 27 demeures lunaires védiques — la dimension sidérale du thème natal enfin accessible.", searchTerm: "Dennis Harness Nakshatras demeures lunaires astrologie védique" },
+    { title: "Précession des équinoxes", author: "Patrice Guinard", description: "Comprendre le phénomène astronomique qui sépare zodiaque tropical et sidéral. Clair et rigoureux.", searchTerm: "précession équinoxes astrologie tropical sidéral différence" },
+  ]} />
 
   <div class="article-footer">
     <p>🌌 Explorez les Nakshatras et le système védique : <a href="/blog/jyotish-introduction/" style="color:var(--gold);">Introduction au Jyotish</a> · <a href="/blog/nakshatras/" style="color:var(--gold);">Les 27 Nakshatras</a>.</p>

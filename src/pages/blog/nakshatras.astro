@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import AffiliateBooks from '../../components/AffiliateBooks.astro';
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -203,6 +204,12 @@ const jsonLd = {
   <blockquote>
     Les Nakshatras ne sont pas des cases dans une grille astrologique — ce sont des <strong>êtres vivants</strong> dans la conscience védique. Chacun a une personnalité, un mythe, un parfum. Apprendre les Nakshatras, c'est apprendre à lire le ciel comme un visage — avec ses expressions, ses humeurs, ses mystères.
   </blockquote>
+
+    <AffiliateBooks books={[
+    { title: "Les Nakshatras — Demeures lunaires", author: "Dennis Harness", description: "Le guide de référence sur les 27 Nakshatras. Histoire, mythologie et interprétation psychologique.", searchTerm: "Dennis Harness Nakshatras demeures lunaires guide complet" },
+    { title: "27 Étoiles, 27 Dieux", author: "Vic DiCara", description: "Exploration astrologique et mythologique des 27 Nakshatras : divinités, animaux, symboles.", searchTerm: "Vic DiCara 27 étoiles dieux Nakshatras astrologie védique" },
+    { title: "Nakshatra : L'astrologie lunaire", author: "Komilla Sutton", description: "Guide complet des Nakshatras selon la tradition indienne : compatibilité, muhurta et remèdes.", searchTerm: "Komilla Sutton Nakshatra astrologie lunaire védique tradition" },
+  ]} />
 
   <div class="article-footer">
     <p>🌙 Découvrez votre Nakshatra de naissance grâce à nos <a href="../astrologie/" style="color:var(--gold);">outils Jyotish</a>.</p>

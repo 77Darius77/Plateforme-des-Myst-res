@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import AffiliateBooks from '../../components/AffiliateBooks.astro';
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -196,6 +197,12 @@ const jsonLd = {
   <blockquote>
     La compatibilité astrologique n'est pas une carte de « avec qui vous devriez être » — c'est une carte de <strong>ce qui sera facile ou difficile</strong> avec telle ou telle personne. Les relations faciles ne sont pas toujours les plus transformatrices. Les relations difficiles ne sont pas toujours vouées à l'échec. L'astrologie éclaire le terrain — c'est à vous de choisir le chemin.
   </blockquote>
+
+    <AffiliateBooks books={[
+    { title: "Signes d'Amour", author: "Linda Goodman", description: "Le classique absolu de la compatibilité astrologique. 78 combinaisons Soleil-Soleil analysées avec esprit.", searchTerm: "Linda Goodman signes amour compatibilité astrologique couples" },
+    { title: "La Synastrie", author: "Alexander Ruperti", description: "L'approche humaniste de la compatibilité : au-delà des signes, l'art de comparer deux thèmes complets.", searchTerm: "Alexander Ruperti synastrie compatibilité astrologique thèmes comparés" },
+    { title: "Astrologie et Relations", author: "Stephen Arroyo", description: "Comment les éléments et les planètes déterminent la dynamique de couple. Profond et pratique.", searchTerm: "Stephen Arroyo astrologie relations dynamique couple éléments planètes" },
+  ]} />
 
   <div class="article-footer">
     <p>❤️ Explorez aussi la compatibilité numérologique et le Tarot relationnel sur notre <a href="../numerologie/" style="color:var(--gold);">page Numérologie</a>.</p>

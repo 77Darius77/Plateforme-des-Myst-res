@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import AffiliateBooks from '../../components/AffiliateBooks.astro';
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -224,6 +225,12 @@ const jsonLd = {
   <blockquote>
     Votre Ascendant est le masque. Votre Soleil est le visage. Votre Lune est le cœur. Aucun n'est faux. Chacun est un niveau différent de votre vérité.
   </blockquote>
+
+    <AffiliateBooks books={[
+    { title: "Les 12 Ascendants", author: "Jodie Forrest", description: "Guide complet ascendant par ascendant : apparence, première impression, style et destinée.", searchTerm: "12 ascendants guide complet astrologie personnalité apparence" },
+    { title: "Les Signes ascendants", author: "Sasha Fenton", description: "Comment votre ascendant colore votre signe solaire. 144 portraits Soleil + Ascendant.", searchTerm: "Sasha Fenton signes ascendants astrologie portraits" },
+    { title: "Les 12 Maisons astrologiques", author: "Howard Sasportas", description: "Le guide de référence sur les maisons en astrologie : chaque sphère de vie décryptée.", searchTerm: "Howard Sasportas 12 maisons astrologiques guide référence" },
+  ]} />
 
   <div class="article-footer">
     <p>🔮 Calculez votre Ascendant et explorez chaque signe en profondeur sur notre <a href="/astrologie/ascendants/" style="color:var(--gold);">page dédiée aux Ascendants</a>.</p>

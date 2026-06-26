@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import AffiliateBooks from '../../components/AffiliateBooks.astro';
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -196,6 +197,12 @@ const jsonLd = {
   <blockquote>
     Connaître votre Soleil, c'est connaître votre mission. Connaître votre Lune, c'est connaître votre besoin. Connaître votre Ascendant, c'est savoir comment le monde vous reçoit — et comment vous pouvez intentionnellement ajuster cette interface. Les trois ensemble forment le portrait le plus synthétique et le plus fiable que l'astrologie puisse offrir en quelques minutes de lecture.
   </blockquote>
+
+    <AffiliateBooks books={[
+    { title: "Les Luminaries", author: "Liz Greene & Howard Sasportas", description: "Soleil et Lune en astrologie : conscience et inconscient. Le duo fondamental du thème natal décrypté.", searchTerm: "Liz Greene luminaries soleil lune astrologie psychologique" },
+    { title: "Signes solaires et signes lunaires", author: "Sasha Fenton", description: "144 combinaisons Soleil-Lune analysées. Pour comprendre la dualité fondamentale de chaque personnalité.", searchTerm: "signes solaires lunaires combinaisons astrologie personnalité" },
+    { title: "L'Ascendant et ses mystères", author: "Hadès", description: "Le guide classique de l'ascendant en astrologie. Comment votre signe ascendant façonne votre personnage extérieur.", searchTerm: "Hadès ascendant astrologie signes maisons interprétation" },
+  ]} />
 
   <div class="article-footer">
     <p>✨ Découvrez votre Ascendant avec nos <a href="/astrologie/ascendants/" style="color:var(--gold);">12 pages détaillées par signe ascendant</a>.</p>

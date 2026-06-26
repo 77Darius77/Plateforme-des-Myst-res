@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import AffiliateBooks from '../../components/AffiliateBooks.astro';
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -256,6 +257,12 @@ const jsonLd = {
   <p>La Croix Celtique est l'outil idéal lorsque vous avez besoin d'une <strong>analyse en profondeur</strong> — une décision importante, une crise, une transition de vie. Faites-en usage avec respect et attention, et elle vous révélera des dimensions de votre situation que vous ne soupçonniez pas.</p>
 
   <hr>
+
+    <AffiliateBooks books={[
+    { title: "La Sagesse du Tarot", author: "Rachel Pollack", description: "Guide complet des tirages de tarot : Croix Celtique, Fer à Cheval et 15 autres spreads expliqués pas à pas.", searchTerm: "Rachel Pollack sagesse tarot tirages spreads livre" },
+    { title: "Le Tarot Initiatique", author: "Colette Silvestre", description: "Méthode française d'apprentissage du tarot : symbolisme des cartes et art du tirage en profondeur.", searchTerm: "Colette Silvestre tarot initiatique tirage symbolisme" },
+    { title: "Twenty-One Ways to Read a Tarot Card", author: "Mary K. Greer", description: "Une méthode révolutionnaire pour approfondir chaque carte et enrichir tous vos tirages.", searchTerm: "Mary Greer 21 ways read tarot card méthode" },
+  ]} />
 
   <div class="article-footer">
     <p>🃏 Essayez le tirage Croix Celtique : <a href="/tarologie/croix-celtique/" style="color:var(--gold);">Tirage interactif en 10 cartes</a></p>

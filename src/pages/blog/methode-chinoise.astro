@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import AffiliateBooks from '../../components/AffiliateBooks.astro';
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -184,6 +185,12 @@ const jsonLd = {
   </div>
 
 </article>
+
+<AffiliateBooks books={[
+    { title: "Astrologie chinoise", author: "Derek Walters", description: "La reference sur la numérologie et l'astrologie chinoise : 12 animaux, 5 elements Wu Xing, calcul du Kua et directions favorables.", searchTerm: "Derek Walters astrologie chinoise Wu Xing Kua" },
+    { title: "Le Carre Magique et le Lo Shu", author: "Chao-Hsiu Chen", description: "Exploration approfondie du carre magique, du Lo Shu et de ses applications en numerologie et Feng Shui.", searchTerm: "Chao-Hsiu Chen Feng Shui carre magique Lo Shu" },
+    { title: "Guide to the Feng Shui Compass", author: "Stephen Skinner", description: "Le compas Feng Shui, les 8 directions et le systeme Ba Zhai pour une lecture complete du Kua personnel.", searchTerm: "Stephen Skinner Feng Shui Compass Ba Zhai Kua" }
+  ]} />
 
   <p slot="sources" style="color:#64748b;font-size:0.75rem;margin-bottom:0.8rem;">
     Sources : Chao-Hsiu Chen, <em>Feng Shui — Le carré magique</em> · Stephen Skinner, <em>Guide to the Feng Shui Compass</em> · Lillian Too, <em>The Fundamentals of Feng Shui</em> · Derek Walters, <em>Chinese Astrology</em> · Wu Xing (5 éléments, tradition taoïste)

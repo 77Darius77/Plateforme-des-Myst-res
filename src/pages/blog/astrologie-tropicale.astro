@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import AffiliateBooks from '../../components/AffiliateBooks.astro';
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -219,6 +220,12 @@ const jsonLd = {
   <blockquote>
     Un thème astrologique n'est pas une condamnation. C'est un <strong>schéma de potentiels</strong>. L'astrologie tropicale ne prédit pas — elle révèle des cohérences, des tensions, des invitations. La liberté humaine reste entière, mais elle est éclairée par la carte.
   </blockquote>
+
+    <AffiliateBooks books={[
+    { title: "Le Grand Livre de l'Astrologie", author: "Kris Hadar", description: "La référence francophone complète : signes, planètes, maisons, aspects. Idéal pour débuter et se perfectionner.", searchTerm: "Kris Hadar grand livre astrologie signes planètes maisons" },
+    { title: "Astrologie, psychologie et les quatre éléments", author: "Stephen Arroyo", description: "Un classique qui relie astrologie et psychologie moderne. Comprendre les tempéraments à travers les éléments.", searchTerm: "Stephen Arroyo astrologie psychologie quatre éléments livre" },
+    { title: "The Only Astrology Book You'll Ever Need", author: "Joanna Martine Woolfolk", description: "Le best-seller américain : calcul du thème, interprétation planète par planète, signe par signe.", searchTerm: "Joanna Woolfolk only astrology book guide complet" },
+  ]} />
 
   <div class="article-footer">
     <p>🔭 Explorez les 12 Ascendants en détail sur nos pages dédiées : <a href="/astrologie/ascendants/" style="color:var(--gold);">Calculateur d'Ascendant</a>.</p>

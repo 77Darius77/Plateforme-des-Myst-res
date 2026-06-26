@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import AffiliateBooks from '../../components/AffiliateBooks.astro';
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -192,6 +193,12 @@ const jsonLd = {
   </ul>
 
   <p>C'est un oracle particulièrement adapté aux <strong>débutants en divination</strong> : sa structure en trois cycles est facile à mémoriser, et son langage psychologique est immédiatement compréhensible. Il n'exige aucune connaissance préalable en ésotérisme.</p>
+
+    <AffiliateBooks books={[
+    { title: "Oracle de la Triade", author: "Dominique Fouquet", description: "Le jeu original de 57 cartes en 3 cycles — Matière, Âme, Esprit. Un chemin d'évolution personnelle illustré.", searchTerm: "Oracle de la Triade 57 cartes Dominique Fouquet évolution" },
+    { title: "Les Oracles de la Triade — Guide", author: "France Cartier", description: "Manuel d'interprétation complet : signification des 57 cartes, tirages et cheminement spirituel.", searchTerm: "guide oracle Triade interprétation 57 cartes spirituel" },
+    { title: "L'Oracle des Chakras", author: "Colette Silvestre", description: "Un autre oracle spirituel pour explorer l'energie des 7 chakras — complement naturel au parcours Corps-Âme-Esprit.", searchTerm: "oracle chakras Colette Silvestre cartes énergie spirituel" },
+  ]} />
 
   <div class="article-footer">
     <p>🌄 Explorez votre chemin d'élévation avec l'<a href="/numerologie/triade/" style="color:var(--gold);">Oracle de la Triade interactif</a> — essayez le tirage en Pyramide.</p>

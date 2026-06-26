@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import AffiliateBooks from '../../components/AffiliateBooks.astro';
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -210,6 +211,12 @@ const jsonLd = {
   <p>Apprendre à lire les arcanes mineurs, c'est apprendre à lire <strong>la vie elle-même</strong> — dans ses détails, ses nuances, ses micro-événements qui, mis bout à bout, forment une destinée.</p>
 
   <hr>
+
+    <AffiliateBooks books={[
+    { title: "Le Tarot de Marseille", author: "Paul Marteau", description: "La référence historique (1930) sur l'interprétation des arcanes mineurs. 56 cartes commentées en profondeur.", searchTerm: "Paul Marteau Le Tarot de Marseille arcanes mineurs" },
+    { title: "Soixante-dix-huit degrés de sagesse", author: "Rachel Pollack", description: "Le guide moderne le plus complet : 78 cartes décryptées, mineurs et majeurs. Une bible.", searchTerm: "Rachel Pollack 78 degrés de sagesse tarot livre français" },
+    { title: "Les 4 Suites du Tarot", author: "Mary K. Greer", description: "Bâtons, Coupes, Épées, Deniers : comprendre les 4 mondes symboliques pour une lecture quotidienne.", searchTerm: "Mary Greer tarot 4 suites symbolisme mineurs" },
+  ]} />
 
   <div class="article-footer">
     <p>🃏 Découvrez nos tirages intégrant les arcanes mineurs : <a href="/tarologie/marseille/" style="color:var(--gold);">Tirage Tarot de Marseille</a> et <a href="/tarologie/rider-waite/" style="color:var(--gold);">Tirage Rider-Waite-Smith</a></p>

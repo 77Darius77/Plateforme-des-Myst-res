@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import AffiliateBooks from '../../components/AffiliateBooks.astro';
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -192,6 +193,12 @@ const jsonLd = {
   <blockquote>
     Le Vimshottari Dasha n'est pas un oracle abstrait. C'est un <strong>calendrier de l'âme</strong> — la traduction temporelle de votre carte karmique. Chaque période est une saison de votre destin, chaque planète un maître différent. Comprendre ce système, c'est apprendre à lire le temps lui-même.
   </blockquote>
+
+    <AffiliateBooks books={[
+    { title: "Le Système des Dashas en Jyotish", author: "Hart de Fouw", description: "Comprendre le Vimshottari Dasha : le cycle de 120 ans qui rythme toute vie selon l'astrologie védique.", searchTerm: "Hart de Fouw dashas jyotish Vimshottari système périodes" },
+    { title: "Prédire avec les Dashas", author: "K.N. Rao", description: "Le maître indien de la prédiction explique comment utiliser les dashas pour des prévisions précises.", searchTerm: "KN Rao prédire dashas jyotish astrologie védique périodes" },
+    { title: "Manuel de Jyotish avancé", author: "Richard Fish", description: "Approfondissement : dashas, transits, yogas. Pour aller au-delà des bases de l'astrologie védique.", searchTerm: "Richard Fish manuel jyotish avancé dashas transits yogas" },
+  ]} />
 
   <div class="article-footer">
     <p>⏳ Découvrez votre Dasha actuelle avec nos <a href="../astrologie/" style="color:var(--gold);">outils Jyotish interactifs</a>.</p>

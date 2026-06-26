@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import AffiliateBooks from '../../components/AffiliateBooks.astro';
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -211,6 +212,12 @@ const jsonLd = {
   <blockquote>
     Le Wu Xing n'est pas un système de cases figées. C'est un <strong>langage du mouvement</strong>. La même énergie qui vous bloque aujourd'hui vous portera demain — tout dépend de la phase du cycle où vous vous trouvez. L'astrologie chinoise est un art du timing autant qu'un art du caractère.
   </blockquote>
+
+    <AffiliateBooks books={[
+    { title: "Astrologie chinoise", author: "Derek Walters", description: "Le guide classique de l'astrologie chinoise : 12 animaux, 5 éléments, cycle sexagésimal. Complet et accessible.", searchTerm: "Derek Walters astrologie chinoise 12 animaux 5 éléments Wu Xing" },
+    { title: "Les 5 Éléments Wu Xing", author: "Jean-Marc Kespi", description: "Comprendre le cycle Sheng et Ke des 5 éléments dans votre thème chinois. Application pratique.", searchTerm: "Wu Xing cinq éléments chinois cycle Sheng Ke astrologie" },
+    { title: "Le Zodiaque chinois", author: "Shelly Wu", description: "Caractérologie complète des 12 signes chinois et leurs combinaisons avec les 5 éléments.", searchTerm: "Shelly Wu zodiaque chinois caractères 12 signes éléments" },
+  ]} />
 
   <div class="article-footer">
     <p>🧧 Calculez votre nombre Kua et explorez le Feng Shui sur notre <a href="/numerologie/kua-ba-zhai/" style="color:var(--gold);">page Kua et Ba Zhai</a>.</p>

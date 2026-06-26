@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import AffiliateBooks from '../../components/AffiliateBooks.astro';
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -198,6 +199,12 @@ const jsonLd = {
   <blockquote>
     « Saturne est la planète des raccourcis impossibles. » Tout ce qui dure demande du temps. Toute maîtrise demande de la répétition. Toute maturité demande des épreuves. Le retour de Saturne est simplement le moment où la vie vous rappelle cette loi fondamentale — et vous offre l'opportunité de l'embrasser pleinement.
   </blockquote>
+
+    <AffiliateBooks books={[
+    { title: "Saturne : un nouveau regard sur un vieux démon", author: "Liz Greene", description: "L'ouvrage de psychologie astrologique le plus célèbre. Saturne comme maître initiatique et non comme malédiction.", searchTerm: "Liz Greene Saturne nouveau regard astrologie psychologique" },
+    { title: "Le Retour de Saturne", author: "Antoinette de Salvan", description: "Guide pratique pour traverser consciemment la crise des 28-30 ans. Exercices spirituels et astrologiques.", searchTerm: "retour de Saturne guide pratique crise 28 ans astrologie" },
+    { title: "Les Dieux du changement", author: "Howard Sasportas", description: "Uranus, Neptune et Pluton en transit : les grandes crises de transformation de l'âge adulte expliquées.", searchTerm: "Howard Sasportas dieux du changement transits Uranus Neptune Pluton" },
+  ]} />
 
   <div class="article-footer">
     <p>🪐 Calculez la position de votre Saturne natal avec notre <a href="../astrologie/" style="color:var(--gold);">outil astrologique</a>.</p>

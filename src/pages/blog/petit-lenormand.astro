@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import AffiliateBooks from '../../components/AffiliateBooks.astro';
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -229,6 +230,12 @@ const jsonLd = {
   <p>Si le tarot est une <strong>psychanalyse de l'âme</strong>, le Lenormand est un <strong>GPS du quotidien</strong>. Le tarot vous dit pourquoi vous traversez une crise. Le Lenormand vous dit que le Serpent croise les Souris à côté de votre carte — attention à la trahison financière cette semaine. Les deux ont leur place. Beaucoup de praticiens utilisent les deux systèmes, réservant le tarot pour les consultations profondes et le Lenormand pour les questions pratiques.</p>
 
   <hr>
+
+    <AffiliateBooks books={[
+    { title: "Le Petit Lenormand", author: "Mademoiselle Lenormand", description: "Le jeu divinatoire original de 36 cartes reproduit dans sa version classique. Symboles simples et puissants.", searchTerm: "Petit Lenormand jeu 36 cartes original divination" },
+    { title: "L'Oracle de Mademoiselle Lenormand", author: "Caitlín Matthews", description: "Guide moderne complet : signification des 36 cartes, méthodes de tirage et interprétation.", searchTerm: "Caitlín Matthews oracle Lenormand guide complet" },
+    { title: "The Essential Lenormand", author: "Rana George", description: "Manuel de référence mondial pour le Petit Lenormand : clair, exhaustif, illustré d'exemples.", searchTerm: "Rana George essential Lenormand guide référence" },
+  ]} />
 
   <div class="article-footer">
     <p>🃏 Utilisez nos tirages Lenormand : <a href="/oracles/lenormand/" style="color:var(--gold);">Tirage Petit Lenormand interactif</a></p>

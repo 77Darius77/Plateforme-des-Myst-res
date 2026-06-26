@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import AffiliateBooks from '../../components/AffiliateBooks.astro';
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -192,6 +193,12 @@ const jsonLd = {
   <p>Chaque fois qu'un débutant tire le Soleil ou le Dix de Coupe et sent quelque chose s'éveiller en lui, c'est à Pamela Colman Smith qu'il le doit. Chaque fois qu'une image de tarot surgit dans un film, un clip vidéo ou une pochette d'album, c'est souvent son œuvre qui est citée — parfois sans que personne ne le sache. Pixie est devenue, malgré elle, l'une des <strong>artistes les plus vues</strong> de l'histoire de l'humanité. Il était temps que son nom soit prononcé.</p>
 
   <hr>
+
+    <AffiliateBooks books={[
+    { title: "The Rider-Waite Tarot Deck", author: "Arthur Edward Waite & Pamela Colman Smith", description: "Le jeu original de 1909, 78 cartes illustrées. Le tarot le plus diffusé au monde (100M+ exemplaires).", searchTerm: "Rider Waite Smith tarot deck original 78 cartes" },
+    { title: "La Golden Dawn", author: "Israel Regardie", description: "Le livre fondateur de l'Ordre hermétique dont Waite et Smith étaient membres. Rituels et enseignements complets.", searchTerm: "Israel Regardie Golden Dawn ordre hermétique livre" },
+    { title: "Pictorial Key to the Tarot", author: "Arthur Edward Waite", description: "Le guide original de Waite pour son propre tarot. Histoire, symbolisme et méthode de tirage authentique.", searchTerm: "Waite pictorial key tarot guide symbolisme" },
+  ]} />
 
   <div class="article-footer">
     <p>🃏 Explorez nos tirages Rider-Waite-Smith : <a href="/tarologie/rider-waite/" style="color:var(--gold);">Tirage interactif</a></p>

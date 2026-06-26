@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import AffiliateBooks from '../../components/AffiliateBooks.astro';
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -238,6 +239,12 @@ const jsonLd = {
   <p>Comme l'écrivait Crowley lui-même : « Ce jeu n'est pas fait pour ceux qui veulent des réponses rapides à des questions simples. Il est fait pour ceux qui veulent comprendre les lois de l'univers. » Le Tarot de Thoth est une <strong>cosmologie peinte</strong> — une tentative de représenter, dans 78 images, la totalité du fonctionnement de la réalité.</p>
 
   <hr>
+
+    <AffiliateBooks books={[
+    { title: "Le Livre de Thoth", author: "Aleister Crowley", description: "L'ouvrage fondateur du Tarot de Thoth écrit par Crowley lui-même. Alchimie, astrologie, kabbale réunies.", searchTerm: "Aleister Crowley livre de Thoth tarot ésotérisme" },
+    { title: "Aleister Crowley Thoth Tarot Deck", author: "Aleister Crowley & Lady Frieda Harris", description: "Le jeu original de 78 cartes, chefs-d'œuvre de Lady Harris. Le tarot le plus ésotérique de l'histoire.", searchTerm: "Thoth tarot deck Crowley Harris 78 cartes" },
+    { title: "Understanding Aleister Crowley's Thoth Tarot", author: "Lon Milo DuQuette", description: "Le guide le plus accessible pour décrypter le tarot le plus complexe. Clair, drôle et profond.", searchTerm: "Lon Milo DuQuette understanding Thoth tarot Crowley" },
+  ]} />
 
   <div class="article-footer">
     <p>🃏 Découvrez nos tirages Thoth : <a href="/tarologie/thoth/" style="color:var(--gold);">Tirage Tarot de Thoth interactif</a></p>

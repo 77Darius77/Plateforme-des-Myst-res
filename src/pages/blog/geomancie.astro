@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import AffiliateBooks from '../../components/AffiliateBooks.astro';
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -316,6 +317,12 @@ const jsonLd = {
   <p>Sa logique binaire et mathématique séduira les esprits rationnels qui pourraient être rebutés par le symbolisme foisonnant du Tarot. La géomancie est un système <strong>élégant, presque algorithmique</strong>, où chaque figure découle nécessairement des précédentes. Il n'y a pas d'arbitraire : le thème entier est une déduction logique d'un hasard initial.</p>
 
   <p>Enfin, la géomancie est un pont entre les cultures. Pratiquée du Mali à l'Indonésie, du Yémen au Brésil, elle témoigne d'une sagesse universelle qui transcende les frontières religieuses et civilisationnelles.</p>
+
+    <AffiliateBooks books={[
+    { title: "L'Art de la Géomancie", author: "John Michael Greer", description: "Guide moderne et complet de géomancie : histoire, technique, boucliers géomantiques et interprétation des 16 figures.", searchTerm: "John Michael Greer art géomancie guide technique figures" },
+    { title: "La Géomancie — Art divinatoire", author: "Robert Fludd", description: "Traité classique de géomancie : les 16 figures, leur formation et leur interprétation selon la tradition hermétique.", searchTerm: "géomancie art divinatoire 16 figures livre tradition hermétique" },
+    { title: "La Géomancie Islamique", author: "Emilie Savage-Smith", description: "Origines et développement de la science du sable dans le monde arabo-musulman — la tradition savante derrière la pratique populaire.", searchTerm: "géomancie islamique art sable science tradition arabe" },
+  ]} />
 
   <div class="article-footer">
     <p>🪨 Découvrez la géomancie avec notre <a href="/numerologie/geomancie/" style="color:var(--gold);">outil de tirage géomantique interactif</a> — 3 méthodes à votre disposition.</p>

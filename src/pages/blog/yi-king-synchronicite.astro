@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import AffiliateBooks from '../../components/AffiliateBooks.astro';
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -195,9 +196,15 @@ const jsonLd = {
 
   <p>Dans les dernières années de sa vie, Jung confia à une élève, Aniéla Jaffé, que la synchronicité était selon lui sa contribution la plus importante à la pensée humaine — plus encore que les archétypes, l'inconscient collectif ou la typologie psychologique. Il y voyait la <strong>réconciliation de la science et de l'âme</strong>, de la matière et de l'esprit, de l'Orient et de l'Occident. Le Yi King, modeste livre de sagesse venu du fond des âges, était le messager silencieux de cette révolution.</p>
 
+    <AffiliateBooks books={[
+    { title: "Synchronicité et Paracelsica", author: "Carl Gustav Jung", description: "L'essai fondateur où Jung expose le principe de synchronicité, né de sa pratique du Yi King.", searchTerm: "Jung synchronicité principe acausal Yi King essai fondateur" },
+    { title: "Yi Jing — Le Classique des Mutations", author: "Cyrille J.-D. Javary", description: "La traduction commentée de référence. Javary éclaire le lien entre Yi King, synchronicité et philosophie chinoise.", searchTerm: "Yi Jing classique mutations Javary traduction commentée" },
+    { title: "Synchronicité : le pont entre l'esprit et la matière", author: "F. David Peat", description: "Exploration scientifique et philosophique de la synchronicité jungienne. Un complément à Jung.", searchTerm: "F David Peat synchronicité pont esprit matière Jung" },
+  ]} />
+
   <div class="article-footer">
     <p>☯️ Faites l'expérience de la synchronicité avec notre <a href="/numerologie/yi-king/" style="color:var(--gold);">outil de tirage Yi King interactif</a>.</p>
-    <p>📚 Lire aussi : <a href="/blog/yi-king/" style="color:var(--gold);">Le Yi King : sagesse et mutations de la Chine ancienne</a> · <a href="/blog/ponts-numerologie-tarot/" style="color:var(--gold);">Ponts entre numérologie et Tarot</a> · <a href="/blog/quel-oracle-choisir/" style="color:var(--gold);">Quel oracle choisir ?</a></p>
+    <p>📚 Lire aussi : <a href="/blog/yi-king/" style="color:var(--gold);">Le Yi King : sagesse et mutations de la Chine ancienne</a> · <a href="/blog/tarot-jung/" style="color:var(--gold);">Tarot et psychologie des profondeurs : Jung</a> · <a href="/blog/quel-oracle-choisir/" style="color:var(--gold);">Quel oracle choisir ?</a></p>
     <a href="/blog/" class="back-link">← Retour au blog</a>
   </div>
 

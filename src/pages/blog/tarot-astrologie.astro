@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import AffiliateBooks from '../../components/AffiliateBooks.astro';
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -405,6 +406,12 @@ const jsonLd = {
   <hr>
 
   <p style="color:var(--text-dim);font-size:0.9rem;text-align:center;"><em>Rédigé en juin 2026, sous le signe d'une triple conjonction ésotérique.</em></p>
+
+    <AffiliateBooks books={[
+    { title: "La Golden Dawn", author: "Israel Regardie", description: "Le livre source des correspondances tarot-astrologie : chaque arcane lié à un signe et une planète selon la tradition hermétique.", searchTerm: "Israel Regardie Golden Dawn correspondances tarot astrologie hermétique" },
+    { title: "Tarot et Astrologie", author: "Corinne Morel", description: "Guide pratique des correspondances entre les 78 arcanes et les signes astrologiques. Synthèse claire et accessible.", searchTerm: "Corinne Morel tarot astrologie correspondances arcanes signes planètes" },
+    { title: "Book T — Le Tarot de la Golden Dawn", author: "S.L. MacGregor Mathers", description: "Le document original de l'Ordre hermétique sur les attributions astrologiques des arcanes. Source historique.", searchTerm: "MacGregor Mathers Book T tarot Golden Dawn astrologie" },
+  ]} />
 
   <div class="article-footer">
     <p>🃏 Explorez aussi : <a href="/blog/ponts-numerologie-tarot/" style="color:var(--gold);">Numérologie et Tarot : les ponts entre deux sagesses</a></p>

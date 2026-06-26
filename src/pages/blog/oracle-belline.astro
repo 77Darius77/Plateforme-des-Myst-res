@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import AffiliateBooks from '../../components/AffiliateBooks.astro';
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -241,6 +242,12 @@ const jsonLd = {
     <li><strong>Tenez un carnet de tirages.</strong> Notez chaque tirage, votre interprétation et, quelques jours plus tard, ce qui s'est réellement passé. Cette rétroaction est le meilleur professeur.</li>
     <li><strong>Ne cherchez pas la précision absolue.</strong> Le Belline est un oracle psychologique avant d'être prédictif. Il vous aide à comprendre une situation, pas à deviner les numéros du loto.</li>
   </ol>
+
+    <AffiliateBooks books={[
+    { title: "Oracle de Belline", author: "Marcel Belline", description: "Le jeu original de 53 cartes créé par le célèbre voyant. Symboles planétaires accessibles pour la divination quotidienne.", searchTerm: "Oracle de Belline jeu 53 cartes original Marcel Belline" },
+    { title: "L'Oracle de Belline — Guide complet", author: "Colette Silvestre", description: "Interprétation détaillée des 53 cartes, méthodes de tirage et approche symbolique du célèbre oracle français.", searchTerm: "Colette Silvestre oracle Belline guide complet interprétation" },
+    { title: "Le Grand Livre des Oracles", author: "Didier Colin", description: "Guide comparatif de tous les oracles divinatoires — Belline, Lenormand, runes, Yi King — pour choisir et approfondir.", searchTerm: "Didier Colin grand livre oracles arts divinatoires" },
+  ]} />
 
   <div class="article-footer">
     <p>🔮 Essayez l'Oracle de Belline avec notre <a href="/numerologie/belline/" style="color:var(--gold);">outil de tirage interactif</a> — choisissez parmi les 4 méthodes de tirage.</p>

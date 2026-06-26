@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import AffiliateBooks from '../../components/AffiliateBooks.astro';
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -267,6 +268,12 @@ const jsonLd = {
     <li><strong>Faites confiance à votre première impression.</strong> Avant de lire l'interprétation fournie, regardez le tirage et demandez-vous : « Qu'est-ce que cela évoque pour moi ? » Votre intuition est le véritable oracle — le système n'en est que le support.</li>
     <li><strong>Soyez patient avec vous-même.</strong> Personne ne maîtrise un oracle en une semaine. Le Yi King récompense des années de pratique ; même le plus accessible des oracles gagne en profondeur avec l'expérience.</li>
   </ol>
+
+    <AffiliateBooks books={[
+    { title: "Le Grand Livre des Oracles", author: "Didier Colin", description: "Panorama complet des arts divinatoires : tarots, oracles, runes, Yi King. Guide comparatif pour choisir.", searchTerm: "Didier Colin grand livre oracles arts divinatoires guide comparatif" },
+    { title: "Le Guide des Arts Divinatoires", author: "Kris Hadar", description: "Présentation et comparaison de 15 systèmes divinatoires. Pour trouver celui qui vous correspond.", searchTerm: "Kris Hadar guide arts divinatoires oracles tarot runes Yi King" },
+    { title: "ABC de la Divination", author: "Jean-Didier", description: "Introduction pratique à tous les outils divinatoires : comment choisir, purifier et utiliser chaque oracle.", searchTerm: "ABC divination choisir oracle guide pratique débutant" },
+  ]} />
 
   <div class="article-footer">
     <p>🔮 Choisissez votre oracle et commencez : <a href="/numerologie/belline/" style="color:var(--gold);">Belline</a> · <a href="/numerologie/geomancie/" style="color:var(--gold);">Géomancie</a> · <a href="/numerologie/triade/" style="color:var(--gold);">Triade</a> · <a href="/numerologie/miroirs/" style="color:var(--gold);">Miroirs</a> · <a href="/numerologie/runes/" style="color:var(--gold);">Runes</a> · <a href="/numerologie/yi-king/" style="color:var(--gold);">Yi King</a></p>
