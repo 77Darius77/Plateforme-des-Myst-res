@@ -34,6 +34,9 @@ import Layout from '../layouts/Layout.astro';
 
     <form id="rapport-form" novalidate>
 
+      <!-- Honeypot anti-bot (champ caché, doit rester vide) -->
+      <p style="display:none"><label>Ne pas remplir : <input type="text" name="bot-field" id="bot-field" tabindex="-1" autocomplete="off"></label></p>
+
       <div class="field-group">
         <label for="prenom">Prénom <span class="req">*</span></label>
         <input type="text" id="prenom" name="prenom" placeholder="Votre prénom de naissance" autocomplete="given-name" required>
@@ -167,6 +170,9 @@ import Layout from '../layouts/Layout.astro';
       email:         document.getElementById('email').value.trim(),
       licenseKey:    document.getElementById('licenseKey').value.trim(),
     };
+
+    // Honeypot : si rempli → bot détecté
+    if (document.getElementById('bot-field')?.value) return;
 
     // Validation côté client
     if (!data.prenom)                    return showError('Le prénom est requis.');

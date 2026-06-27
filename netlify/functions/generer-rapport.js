@@ -24,8 +24,6 @@ async function validerCleGumroad(licenseKey) {
 
   const data = await res.json();
 
-  console.log('Gumroad response:', JSON.stringify(data));
-
   if (!data.success) {
     return { valide: false, raison: `Clé invalide (${data.message || 'erreur inconnue'})` };
   }
@@ -84,7 +82,7 @@ async function envoyerRapport(email, prenom, pdfBuffer, resendApiKey) {
           <p style="font-size:12px;color:#9ca3af;line-height:1.6">
             Ce rapport est personnel et confidentiel.<br>
             Il n'est ni un diagnostic médical, ni un conseil psychologique.<br>
-            <a href="https://plateforme-des-mysteres.netlify.app" style="color:#d4af37">Plateforme des Mystères</a>
+            <a href="https://plateforme-des-mysteres.com" style="color:#d4af37">Plateforme des Mystères</a>
           </p>
         </div>
       </div>
@@ -103,10 +101,14 @@ async function envoyerRapport(email, prenom, pdfBuffer, resendApiKey) {
 
 // ── Validation des entrées ────────────────────────────────────────────────
 function validerEntrees({ prenom, nom, dateNaissance, email, licenseKey }) {
-  if (!prenom?.trim())       return 'Le prénom est requis.';
-  if (!nom?.trim())          return 'Le nom est requis.';
-  if (!email?.includes('@')) return 'L\'adresse email est invalide.';
-  if (!licenseKey?.trim())   return 'La clé de licence est requise.';
+  if (!prenom?.trim())              return 'Le prénom est requis.';
+  if (prenom.trim().length > 60)    return 'Le prénom est trop long.';
+  if (!nom?.trim())                 return 'Le nom est requis.';
+  if (nom.trim().length > 100)      return 'Le nom est trop long.';
+  if (!email?.includes('@'))        return 'L\'adresse email est invalide.';
+  if (email.length > 200)           return 'L\'adresse email est trop longue.';
+  if (!licenseKey?.trim())          return 'La clé de licence est requise.';
+  if (licenseKey.trim().length > 100) return 'Clé de licence invalide.';
 
   const dateRe = /^\d{2}\/\d{2}\/\d{4}$/;
   if (!dateRe.test(dateNaissance)) return 'La date doit être au format JJ/MM/AAAA.';
@@ -144,6 +146,11 @@ export const handler = async (event) => {
     return json(500, { erreur: 'Configuration serveur incomplète.' });
   }
 
+  // Limite de taille du body (5 Ko max)
+  if (event.body && event.body.length > 5000) {
+    return json(413, { erreur: 'Requête trop volumineuse.' });
+  }
+
   // Parse body
   let body;
   try {
@@ -152,7 +159,10 @@ export const handler = async (event) => {
     return json(400, { erreur: 'Corps de requête invalide.' });
   }
 
-  const { prenom, nom, dateNaissance, email, licenseKey } = body;
+  const { prenom, nom, dateNaissance, email, licenseKey, 'bot-field': botField } = body;
+
+  // Honeypot : rejet silencieux si rempli
+  if (botField) return json(200, { message: 'Traitement en cours.' });
 
   // Validation
   const erreurValidation = validerEntrees({ prenom, nom, dateNaissance, email, licenseKey });
@@ -163,19 +173,10 @@ export const handler = async (event) => {
   if (!valide) return json(403, { erreur: raison });
 
   try {
-    // Génération du rapport
-    console.log('Étape: calculerProfil');
     const profil  = calculerProfil(prenom.trim(), nom.trim(), dateNaissance.trim());
-    console.log('Étape: assemblerContenu');
     const contenu = assemblerContenu(profil);
-    console.log('Étape: genererRapportPDF');
     const pdf     = await genererRapportPDF(profil, contenu);
-    console.log('PDF généré, taille:', pdf.length);
-
-    // Envoi email
-    console.log('Étape: envoyerRapport');
     await envoyerRapport(email.trim(), prenom.trim(), pdf, RESEND_API_KEY);
-    console.log('Email envoyé avec succès');
 
     return json(200, {
       message: `Votre rapport a été envoyé à ${email}. Vérifiez aussi vos spams.`,
