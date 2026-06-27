@@ -44,10 +44,10 @@ function normalizeCanonicalPath(p: string): string {
   if (p.endsWith('.html')) return p.slice(0, -5) + '/';
   return p.endsWith('/') ? p : p + '/';
 }
-const canonicalUrl = `https://mysteres.fr/${normalizeCanonicalPath(canonicalPath)}`;
+const canonicalUrl = `https://plateforme-des-mysteres.com/${normalizeCanonicalPath(canonicalPath)}`;
 const finalOgTitle = ogTitle || title;
 const finalOgDescription = ogDescription || description;
-const finalOgImage = ogImage || 'https://mysteres.fr/images/og-default.svg';
+const finalOgImage = ogImage || 'https://plateforme-des-mysteres.com/images/og-default.svg';
 ---
 <!DOCTYPE html>
 <html lang="fr" data-theme="dark">

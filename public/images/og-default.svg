@@ -27,5 +27,5 @@
   <!-- Séparateur décoratif -->
   <line x1="300" y1="420" x2="900" y2="420" stroke="#fbbf24" stroke-width="0.5" opacity="0.4"/>
   <!-- URL -->
-  <text x="600" y="560" text-anchor="middle" font-family="monospace" font-size="22" fill="#64748b" letter-spacing="2">mysteres.fr</text>
+  <text x="600" y="560" text-anchor="middle" font-family="monospace" font-size="22" fill="#64748b" letter-spacing="2">plateforme-des-mysteres.com</text>
 </svg>

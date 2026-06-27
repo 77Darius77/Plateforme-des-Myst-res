@@ -35,15 +35,24 @@ async function validerCleGumroad(licenseKey) {
   return { valide: true };
 }
 
+function escapeHtml(str) {
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
 // ── Envoi email avec PDF en pièce jointe ──────────────────────────────────
 async function envoyerRapport(email, prenom, pdfBuffer, resendApiKey) {
   const resend = new Resend(resendApiKey);
+  const prenomSafe = escapeHtml(prenom);
 
   const { error } = await resend.emails.send({
     from:    'Plateforme des Mystères <onboarding@resend.dev>',
     replyTo: 'plateformedesmysteres@gmail.com',
     to:      [email],
-    subject: `✦ Votre Rapport d'Incarnation, ${prenom}`,
+    subject: `✦ Votre Rapport d'Incarnation, ${prenomSafe}`,
     html: `
       <div style="font-family:Georgia,serif;max-width:560px;margin:0 auto;padding:32px 24px;background:#faf7f2;color:#1a1a2e">
         <div style="text-align:center;margin-bottom:28px">
@@ -52,7 +61,7 @@ async function envoyerRapport(email, prenom, pdfBuffer, resendApiKey) {
           <p style="color:#6b7280;font-size:14px;margin:0">Plateforme des Mystères</p>
         </div>
 
-        <p style="font-size:15px;line-height:1.7">Bonjour <strong>${prenom}</strong>,</p>
+        <p style="font-size:15px;line-height:1.7">Bonjour <strong>${prenomSafe}</strong>,</p>
         <p style="font-size:15px;line-height:1.7">
           Votre Rapport d'Incarnation personnalisé est prêt. Vous le trouverez en pièce jointe de cet email.
         </p>
@@ -116,7 +125,7 @@ export const handler = async (event) => {
     return {
       statusCode: 204,
       headers: {
-        'Access-Control-Allow-Origin':  '*',
+        'Access-Control-Allow-Origin':  'https://plateforme-des-mysteres.com',
         'Access-Control-Allow-Methods': 'POST, OPTIONS',
         'Access-Control-Allow-Headers': 'Content-Type',
       },
@@ -184,7 +193,7 @@ function json(status, body) {
     statusCode: status,
     headers: {
       'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Origin': 'https://plateforme-des-mysteres.com',
     },
     body: JSON.stringify(body),
   };

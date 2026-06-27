@@ -3,7 +3,7 @@ import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
   outDir: './dist',
-  site: 'https://mysteres.fr',
+  site: 'https://plateforme-des-mysteres.com',
   build: {
     format: 'directory'
   },
