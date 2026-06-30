@@ -1,14 +1,23 @@
 ---
 import Layout from '../layouts/Layout.astro';
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "AboutPage",
-  "name": "À propos — Plateforme des Mystères",
-  "url": "https://plateforme-des-mysteres.com/a-propos/",
-  "description": "Notre mission : explorer les sagesses ésotériques gratuitement.",
-  "inLanguage": "fr"
-};
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "name": "À propos — Plateforme des Mystères",
+    "url": "https://plateforme-des-mysteres.com/a-propos/",
+    "description": "Notre mission : explorer les sagesses ésotériques gratuitement.",
+    "inLanguage": "fr"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Plateforme des Mystères",
+    "url": "https://plateforme-des-mysteres.com/a-propos/",
+    "description": "Explorateur des sagesses ésotériques — numérologie, tarot, astrologie, oracles."
+  }
+];
 ---
 
 <Layout
@@ -59,10 +68,28 @@ const jsonLd = {
   </div>
 </section>
 
+<!-- ═══════════ AUTEUR ═══════════ -->
+<section id="auteur" class="apropos-section">
+  <div class="section-title">
+    <div class="num">[ 02 ]</div>
+    <h2>✦ L'Auteur</h2>
+  </div>
+
+  <div class="apropos-card">
+    <p>
+      L'auteur explore les sagesses ésotériques avec rigueur et passion. Il porte beaucoup
+      d'intérêt à la numérologie cabalistique selon la méthode Raúl Durán, et croise les
+      traditions — pythagoricienne, chaldéenne, chinoise — avec le Tarot de Marseille,
+      l'astrologie et les oracles ancestraux. Il partage ses analyses sur la Plateforme
+      des Mystères, un espace sans publicité ni tracking, dédié à la connaissance de soi.
+    </p>
+  </div>
+</section>
+
 <!-- ═══════════ SOURCES ═══════════ -->
 <section id="sources" class="apropos-section">
   <div class="section-title">
-    <div class="num">[ 02 ]</div>
+    <div class="num">[ 03 ]</div>
     <h2>✦ Nos Sources</h2>
   </div>
 
@@ -94,7 +121,7 @@ const jsonLd = {
 <!-- ═══════════ CRÉDITS ═══════════ -->
 <section id="credits" class="apropos-section">
   <div class="section-title">
-    <div class="num">[ 03 ]</div>
+    <div class="num">[ 04 ]</div>
     <h2>✦ Crédits</h2>
   </div>
 

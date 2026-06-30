@@ -4,13 +4,10 @@ import AffiliateBooks from '../../components/AffiliateBooks.astro';
 
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "Article",
+  "@type": "BlogPosting",
   "headline": "Pamela Colman Smith : l'artiste oubliée du Rider-Waite-Smith",
   "description": "Derrière les 78 cartes les plus célèbres du monde se cache une femme extraordinaire : illustratrice jamaïcaine, suffragette, membre de la Golden Dawn, créatrice d'images qui ont façonné l'imaginaire collectif.",
-  "author": {
-    "@type": "Organization",
-    "name": "Plateforme des Mystères"
-  },
+  "author": { "@type": "Person", "name": "Plateforme des Mystères", "url": "https://plateforme-des-mysteres.com/a-propos/", "description": "Explorateur des sagesses ésotériques — numérologie, tarot, astrologie, oracles." },
   "inLanguage": "fr",
   "url": "https://plateforme-des-mysteres.com/blog/pamela-colman-smith/",
   "image": "https://plateforme-des-mysteres.com/images/og-default.svg",

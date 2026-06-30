@@ -4,13 +4,10 @@ import AffiliateBooks from '../../components/AffiliateBooks.astro';
 
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "Article",
+  "@type": "BlogPosting",
   "headline": "Oracle des Miroirs : 53 reflets de l'inconscient",
   "description": "Chaque carte est un miroir : elle ne vous montre pas l'avenir — elle vous montre vous-même. Un oracle psychologique pour explorer les facettes cachées de votre psyché.",
-  "author": {
-    "@type": "Organization",
-    "name": "Plateforme des Mystères"
-  },
+  "author": { "@type": "Person", "name": "Plateforme des Mystères", "url": "https://plateforme-des-mysteres.com/a-propos/", "description": "Explorateur des sagesses ésotériques — numérologie, tarot, astrologie, oracles." },
   "inLanguage": "fr",
   "url": "https://plateforme-des-mysteres.com/blog/oracle-miroirs/",
   "image": "https://plateforme-des-mysteres.com/images/og-default.svg",

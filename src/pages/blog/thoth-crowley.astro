@@ -4,13 +4,10 @@ import AffiliateBooks from '../../components/AffiliateBooks.astro';
 
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "Article",
+  "@type": "BlogPosting",
   "headline": "Tarot de Thoth : Crowley, Harris et la synthèse ésotérique",
   "description": "Le tarot le plus complexe de l'histoire : 78 cartes peintes sur 5 ans par Lady Frieda Harris, guidées par l'occultiste Aleister Crowley. Alchimie, astrologie, kabbale et I Ching réunis en un seul système.",
-  "author": {
-    "@type": "Organization",
-    "name": "Plateforme des Mystères"
-  },
+  "author": { "@type": "Person", "name": "Plateforme des Mystères", "url": "https://plateforme-des-mysteres.com/a-propos/", "description": "Explorateur des sagesses ésotériques — numérologie, tarot, astrologie, oracles." },
   "inLanguage": "fr",
   "url": "https://plateforme-des-mysteres.com/blog/thoth-crowley/",
   "image": "https://plateforme-des-mysteres.com/images/og-default.svg",
