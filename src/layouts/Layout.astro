@@ -12,6 +12,7 @@ interface Props {
   jsonLd?: Record<string, any>;
   useBlogStyles?: boolean;
   noComponents?: boolean;
+  noLayoutSpecific?: boolean;
   scripts?: string[];
   headerLogo?: string;
   headerNavLinks?: Array<{ href: string; text: string }>;
@@ -31,6 +32,7 @@ const {
   jsonLd,
   useBlogStyles = false,
   noComponents = false,
+  noLayoutSpecific = false,
   scripts = [],
   headerLogo,
   headerNavLinks,
@@ -56,6 +58,8 @@ const finalOgImage = ogImage || 'https://plateforme-des-mysteres.com/images/og-d
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Google Search Console — remplacer CONTENT par votre code de vérification -->
+  <!-- <meta name="google-site-verification" content="CONTENT"> -->
   <title>{title}</title>
   <meta name="description" content={description}>
   <meta name="keywords" content={keywords}>
@@ -111,6 +115,7 @@ const finalOgImage = ogImage || 'https://plateforme-des-mysteres.com/images/og-d
   <link rel="stylesheet" href="/assets/css/design-system.css">
   {!noComponents && <link rel="stylesheet" href="/assets/css/components.css">}
   <link rel="stylesheet" href="/assets/css/layout.css">
+  {!noLayoutSpecific && <link rel="stylesheet" href="/assets/css/layout-specific.css">}
   {useBlogStyles && <link rel="stylesheet" href="/assets/css/blog.css">}
 
   <!-- Inline script to prevent FOUC (Flash of Unstyled Content) -->
