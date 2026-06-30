@@ -11,6 +11,7 @@ interface Props {
   ogDescription?: string;
   jsonLd?: Record<string, any>;
   useBlogStyles?: boolean;
+  noComponents?: boolean;
   scripts?: string[];
   headerLogo?: string;
   headerNavLinks?: Array<{ href: string; text: string }>;
@@ -29,6 +30,7 @@ const {
   ogDescription,
   jsonLd,
   useBlogStyles = false,
+  noComponents = false,
   scripts = [],
   headerLogo,
   headerNavLinks,
@@ -107,7 +109,7 @@ const finalOgImage = ogImage || 'https://plateforme-des-mysteres.com/images/og-d
   
   <!-- Central Stylesheets -->
   <link rel="stylesheet" href="/assets/css/design-system.css">
-  <link rel="stylesheet" href="/assets/css/components.css">
+  {!noComponents && <link rel="stylesheet" href="/assets/css/components.css">}
   <link rel="stylesheet" href="/assets/css/layout.css">
   {useBlogStyles && <link rel="stylesheet" href="/assets/css/blog.css">}
 
