@@ -5,15 +5,14 @@
 import PDFDocument from 'pdfkit';
 import { CARD_DATA } from './tarot-data.js';
 import { LENORMAND_DATA } from './lenormand-data.js';
-import { fileURLToPath } from 'url';
-import { dirname, join } from 'path';
+import { join } from 'path';
 
-const moduleDir = dirname(fileURLToPath(import.meta.url));
-const FONT_SANS       = join(moduleDir, 'fonts/Sans-Regular.ttf');
-const FONT_SANS_BOLD  = join(moduleDir, 'fonts/Sans-Bold.ttf');
-const FONT_SERIF      = join(moduleDir, 'fonts/Serif-Regular.ttf');
-const FONT_SERIF_BOLD = join(moduleDir, 'fonts/Serif-Bold.ttf');
-const FONT_SERIF_ITAL = join(moduleDir, 'fonts/Serif-Italic.ttf');
+// Netlify Functions ESM fournit __dirname comme variable globale
+const FONT_SANS       = join(__dirname, 'fonts/Sans-Regular.ttf');
+const FONT_SANS_BOLD  = join(__dirname, 'fonts/Sans-Bold.ttf');
+const FONT_SERIF      = join(__dirname, 'fonts/Serif-Regular.ttf');
+const FONT_SERIF_BOLD = join(__dirname, 'fonts/Serif-Bold.ttf');
+const FONT_SERIF_ITAL = join(__dirname, 'fonts/Serif-Italic.ttf');
 
 // ── Palette ────────────────────────────────────────────────────────────────
 const NAVY  = '#0d1b2a';
