@@ -1,0 +1,35 @@
+# Plateforme des Mystères
+
+> Sagesses ésotériques gratuites — numérologie, tarologie, astrologie, oracles. Sans publicité, sans tracking.
+
+## Outils interactifs
+- [Numérologie Cabalistique](https://plateforme-des-mysteres.com/numerologie/cabalistique/): Calcule ton chemin de vie et ton ticún selon la méthode Raúl Durán. 22 archétypes hébraïques.
+- [Numérologie Pythagoricienne](https://plateforme-des-mysteres.com/numerologie/pythagoricienne/): Les 5 nombres fondamentaux — chemin de vie, expression, âme, personnalité, année personnelle.
+- [Numérologie Chaldéenne](https://plateforme-des-mysteres.com/numerologie/chaldeenne/): Tradition babylonienne — nombre de naissance, nombre du nom, vibrations planétaires.
+- [Numérologie Chinoise](https://plateforme-des-mysteres.com/numerologie/chinoise/): Kua, grille Lo Shu, nombre de vie — sagesse de la tortue du fleuve Lo.
+- [Numérologie du Prénom](https://plateforme-des-mysteres.com/numerologie/prenom/): Nombre actif, leçons karmiques, mémoires transgénérationnelles.
+- [Tirage Tarot Marseille](https://plateforme-des-mysteres.com/tarologie/marseille/trois-cartes/): 3 cartes — Passé, Présent, Futur. 22 arcanes majeurs.
+- [Tirage de Runes](https://plateforme-des-mysteres.com/oracles/runes/trois-runes/): 3 runes du Futhark Ancien. Sagesse nordique d'Odin.
+- [Oracle Yi King](https://plateforme-des-mysteres.com/oracles/yi-king/simple/): 64 hexagrammes du Classique des mutations. Sagesse taoïste.
+- [Oracle Belline](https://plateforme-des-mysteres.com/oracles/belline/trois-cartes/): 3 cartes de l'oracle de Belline. Symbolisme du XIXᵉ siècle.
+- [Oracle Triade](https://plateforme-des-mysteres.com/oracles/triade/trois-cartes/): 3 cartes — Corps, Âme, Esprit. Lecture intuitive.
+- [Oracle Géomancie](https://plateforme-des-mysteres.com/oracles/geomancie/trois-figures/): 3 figures géomantiques — Ilm al-Raml.
+- [Oracle des Miroirs](https://plateforme-des-mysteres.com/oracles/miroirs/trois-cartes/): 3 cartes de l'Oracle des Miroirs.
+
+## Disciplines
+- [Numérologie](https://plateforme-des-mysteres.com/numerologie/): Les 4 traditions — cabalistique, pythagoricienne, chaldéenne, chinoise.
+- [Tarologie](https://plateforme-des-mysteres.com/tarologie/): Marseille, Rider-Waite, Thoth, Lenormand.
+- [Astrologie](https://plateforme-des-mysteres.com/astrologie/): Tropicale, sidérale, védique, chinoise.
+- [Oracles](https://plateforme-des-mysteres.com/oracles/): Belline, Gé, Géomancie, Runes, Triade, Miroirs, Yi King.
+
+## Blog
+- [Blog — 76 articles](https://plateforme-des-mysteres.com/blog/): Analyses, méthodes, portraits numérologiques, guides ésotériques.
+
+## Produits
+- [Rapport d'Incarnation](https://plateforme-des-mysteres.com/rapport/): PDF 20+ pages personnalisé — numérologie, tarot, astrologie, tikoun.
+- [Guide Les 22 Archétypes](https://plateforme-des-mysteres.com/boutique/): PDF ~70 pages — Tarot de Marseille, archétypes de Jung.
+
+## À propos
+- [À propos](https://plateforme-des-mysteres.com/a-propos/): Mission, auteur, sources — Raúl Durán, traditions ésotériques.
+- [Contact](https://plateforme-des-mysteres.com/contact/): Questions, suggestions, signalements.
+- [Mentions légales](https://plateforme-des-mysteres.com/mentions-legales/): Éditeur, hébergeur, propriété intellectuelle, RGPD.

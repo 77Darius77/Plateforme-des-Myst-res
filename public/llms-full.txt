@@ -1,0 +1,51 @@
+# Plateforme des Mystères — Documentation complète
+
+## Mission
+La Plateforme des Mystères rend les sagesses ésotériques accessibles gratuitement, sans publicité, sans inscription et sans collecte de données personnelles. Tous les calculateurs et tirages fonctionnent localement dans le navigateur.
+
+L'auteur explore les traditions numérologiques (cabalistique Raúl Durán, pythagoricienne, chaldéenne, chinoise), la tarologie (Marseille, Rider-Waite, Thoth, Lenormand), l'astrologie (tropicale, sidérale, védique, chinoise) et les oracles (Belline, Gé, Géomancie, Runes, Triade, Miroirs, Yi King).
+
+## Méthodes de calcul
+
+### Numérologie Cabalistique (Raúl Durán)
+- **Chemin de vie** : réduction de la date de naissance (ex: 15/08/1990 → 1+5+0+8+1+9+9+0 = 33 → 3+3 = 6)
+- **Ticún** : défi karmique à rectifier, calculé à partir de la date
+- 22 archétypes hébraïques associés aux 22 lettres de l'alphabet hébreu
+- Chaque archétype a une force (don) et une ombre (défi)
+
+### Numérologie Pythagoricienne
+- Table de correspondance A=1, B=2, ..., I=9, J=1, ...
+- 5 nombres fondamentaux : Chemin de vie, Expression, Désir de l'Âme, Personnalité, Année personnelle
+- Nombres maîtres 11, 22, 33
+
+### Numérologie Chaldéenne
+- Table 1-8 (le 9 est sacré, non attribué)
+- Nombre de naissance et nombre du nom
+- Vibrations planétaires babyloniennes
+
+### Numérologie Chinoise
+- Kua (nombre personnel basé sur l'année de naissance et le sexe)
+- Grille Lo Shu (carré magique 3×3)
+- Wu Xing (5 éléments), cycles Sheng et Ke
+- Ba Zhai (8 maisons, directions favorables/défavorables)
+
+## Outils interactifs disponibles
+Le site propose 12+ calculateurs et tirages interactifs, tous exécutés côté client (JavaScript). Aucune donnée n'est envoyée au serveur.
+
+## Blog
+76 articles couvrant :
+- Articles méthodologiques (comment calculer, interpréter)
+- Portraits numérologiques de personnalités historiques (33 analyses : Einstein, Tesla, de Gaulle, Bowie, etc.)
+- Explorations ésotériques (tarot, astrologie, oracles)
+- Ponts entre disciplines (numérologie et tarot, astrologie et runes, etc.)
+
+## Produits
+- Rapport d'Incarnation (10 €) : PDF 20+ pages personnalisé — numérologie, Lo Shu, Lenormand, tarot, astrologie, tikoun
+- Guide Les 22 Archétypes (7 €) : PDF ~70 pages illustré — Tarot de Marseille, archétypes de Jung
+
+## Transparence
+- Site statique (Astro.js), hébergé sur Netlify
+- Zéro tracking, zéro publicité, zéro cookie non essentiel
+- Calculs 100% locaux (JavaScript dans le navigateur)
+- Pas de compte utilisateur requis
+- Licence Creative Commons BY-NC-SA pour le contenu original

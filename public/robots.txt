@@ -1,13 +1,20 @@
 User-agent: *
 Allow: /
 
-# Bloquer les scrapers de données et crawlers IA agressifs
+# ── Crawlers IA autorisés (citations, recherche, AI Overviews) ──
 User-agent: GPTBot
-Disallow: /
+Allow: /
 
 User-agent: ChatGPT-User
-Disallow: /
+Allow: /
 
+User-agent: Google-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+# ── Crawlers IA bloqués (training data, aspiration massive) ──
 User-agent: CCBot
 Disallow: /
 
@@ -20,12 +27,7 @@ Disallow: /
 User-agent: cohere-ai
 Disallow: /
 
-User-agent: Google-Extended
-Disallow: /
-
-User-agent: PerplexityBot
-Disallow: /
-
+# ── Scrapers SEO agressifs bloqués ──
 User-agent: Bytespider
 Disallow: /
 
