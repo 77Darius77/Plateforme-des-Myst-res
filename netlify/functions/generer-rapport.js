@@ -7,6 +7,19 @@ import { calculerProfil }    from './lib/calculs.js';
 import { assemblerContenu }  from './lib/textes.js';
 import { genererRapportPDF } from './lib/generateur-pdf.js';
 import { Resend }            from 'resend';
+import arcjet, { shield, detectBot, slidingWindow } from '@arcjet/node';
+
+const aj = arcjet({
+  key: process.env.ARCJET_KEY,
+  rules: [
+    shield({ mode: 'LIVE' }),
+    detectBot({
+      mode: 'LIVE',
+      allow: ['CATEGORY:SEARCH_ENGINE', 'CATEGORY:MONITOR', 'CATEGORY:PREVIEW'],
+    }),
+    slidingWindow({ mode: 'LIVE', interval: '10m', max: 5 }),
+  ],
+});
 
 const GUMROAD_PRODUCT_ID = 'faObuZYZEngNX_Pf9BKZFw=='; // product_id Gumroad
 
@@ -121,7 +134,30 @@ function validerEntrees({ prenom, nom, dateNaissance, email, licenseKey }) {
 }
 
 // ── Handler principal ─────────────────────────────────────────────────────
-export const handler = async (event) => {
+export const handler = async (event, context) => {
+  // Protection Arcjet : bouclier, détection bot, rate limit (5 req/10min)
+  const decision = await aj.protect({
+    ip: event.headers['x-forwarded-for'] || event.headers['client-ip'] || '127.0.0.1',
+    method: event.httpMethod,
+    headers: new Headers(event.headers),
+    nextUrl: { pathname: event.path },
+  });
+
+  if (decision.isDenied()) {
+    return {
+      statusCode: decision.reason.isRateLimit() ? 429 : 403,
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': 'https://plateforme-des-mysteres.com',
+      },
+      body: JSON.stringify({
+        erreur: decision.reason.isRateLimit()
+          ? 'Trop de requêtes. Réessayez dans quelques minutes.'
+          : 'Accès refusé.',
+      }),
+    };
+  }
+
   // CORS preflight
   if (event.httpMethod === 'OPTIONS') {
     return {
