@@ -10,6 +10,7 @@ interface Props {
   ogTitle?: string;
   ogDescription?: string;
   jsonLd?: Record<string, any>;
+  noJsonLd?: boolean;
   useBlogStyles?: boolean;
   scripts?: string[];
   headerLogo?: string;
@@ -28,6 +29,7 @@ const {
   ogTitle,
   ogDescription,
   jsonLd,
+  noJsonLd = false,
   useBlogStyles = false,
   scripts = [],
   headerLogo,
@@ -48,6 +50,21 @@ const canonicalUrl = `https://plateforme-des-mysteres.com/${normalizeCanonicalPa
 const finalOgTitle = ogTitle || title;
 const finalOgDescription = ogDescription || description;
 const finalOgImage = ogImage || 'https://plateforme-des-mysteres.com/images/og-default.svg';
+
+// Schema par défaut pour les pages-outils (tirages, calculateurs) qui ne
+// fournissent pas leur propre jsonLd — évite d'avoir des dizaines de pages
+// sans aucune donnée structurée.
+const defaultJsonLd = (!jsonLd && !noJsonLd) ? {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": finalOgTitle,
+  "description": finalOgDescription,
+  "url": canonicalUrl,
+  "applicationCategory": "LifestyleApplication",
+  "operatingSystem": "Any",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
+} : null;
 ---
 <!DOCTYPE html>
 <html lang="fr" data-theme="dark">
@@ -82,6 +99,9 @@ const finalOgImage = ogImage || 'https://plateforme-des-mysteres.com/images/og-d
   <!-- Schema.org JSON-LD -->
   {jsonLd && (
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  )}
+  {defaultJsonLd && (
+    <script type="application/ld+json" set:html={JSON.stringify(defaultJsonLd)} />
   )}
 
   <!-- BreadcrumbList JSON-LD -->
