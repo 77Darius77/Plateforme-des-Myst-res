@@ -202,6 +202,15 @@ body[data-section="oracles"]::before {
 }
 
 /* ═══════════ TYPOGRAPHIE ═══════════ */
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
 h1, h2, h3, h4, .mono { font-family: var(--font-sans); }
 h1 { 
   font-size: clamp(2.5rem, 6vw, 4rem); 
