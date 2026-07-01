@@ -33,6 +33,19 @@
     Cache-Control = "public, max-age=31536000, immutable"
 
 # Redirects .html → URLs propres (compatibilité liens externes)
+# Du plus spécifique (3 segments) au moins spécifique, catch-all 404 en dernier.
+[[redirects]]
+  from = "/:section/:page/index.html"
+  to = "/:section/:page/"
+  status = 301
+  force = false
+
+[[redirects]]
+  from = "/:section/:page/:sub.html"
+  to = "/:section/:page/:sub/"
+  status = 301
+  force = false
+
 [[redirects]]
   from = "/:section/index.html"
   to = "/:section/"
@@ -50,3 +63,11 @@
   to = "/:page/"
   status = 301
   force = false
+
+# Catch-all : force un vrai statut HTTP 404 (doit rester en dernier, sinon
+# neutralise les redirections 301 ci-dessus — voir aussi public/_redirects supprimé,
+# car les règles _redirects sont toujours évaluées avant celles de netlify.toml).
+[[redirects]]
+  from = "/*"
+  to = "/404.html"
+  status = 404
