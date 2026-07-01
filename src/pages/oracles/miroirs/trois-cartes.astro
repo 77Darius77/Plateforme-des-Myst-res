@@ -255,6 +255,7 @@ import Layout from '../../../layouts/Layout.astro';
             const imgEl = document.getElementById(`img-${i}`);
             const cardNum = cardData.id || i;
             imgEl.src = `/images/oracles/miroirs/card_${String(cardNum).padStart(2, '0')}.webp`;
+            imgEl.alt = cardData.name;
             imgEl.onerror = function() { this.style.display = 'none'; };
             imgEl.style.transform = cardData.isReversed ? 'rotate(180deg)' : '';
             setTimeout(() => {

@@ -254,6 +254,7 @@ import Layout from '../../../layouts/Layout.astro';
             const meaningEl = document.getElementById(`meaning-${i}`);
             const cardId = String(cardData.id).padStart(2, '0');
             imgEl.src = `/images/oracles/yi-king/hexagramme-${cardId}.svg`;
+            imgEl.alt = cardData.name;
             imgEl.onerror = function() { this.style.display = 'none'; };
             if (nameEl) nameEl.textContent = cardData.name;
             if (meaningEl) meaningEl.textContent = cardData.theme;

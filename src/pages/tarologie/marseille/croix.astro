@@ -290,6 +290,7 @@ import Layout from '../../../layouts/Layout.astro';
           revealOrder.forEach((slotNum, index) => {
             const cardData = selectedCards[slotNum - 1];
             document.getElementById(`img-${slotNum}`).src = cardData.img;
+            document.getElementById(`img-${slotNum}`).alt = cardData.name;
             document.getElementById(`name-${slotNum}`).innerText = cardData.name;
             document.getElementById(`mean-${slotNum}`).innerText = cardData.meaning;
 

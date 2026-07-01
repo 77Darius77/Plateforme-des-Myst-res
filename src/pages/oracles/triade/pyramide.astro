@@ -309,6 +309,7 @@ import Layout from '../../../layouts/Layout.astro';
 
       const imgEl = document.getElementById(`img-${posKey}`);
       imgEl.src = `/images/oracles/triade/card_${cardData.id}.webp`;
+      imgEl.alt = cardData.name;
       imgEl.onerror = function() { this.style.display = 'none'; };
 
       if (selectedCards.length === MAX_CARDS) {

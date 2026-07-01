@@ -288,6 +288,7 @@ import Layout from '../../../layouts/Layout.astro';
               var imgEl = document.getElementById('img-' + idx);
               var cardNum = cardData.id;
               imgEl.src = '/images/oracles/runes/rune_' + String(cardNum).padStart(2, '0') + '.svg';
+              imgEl.alt = cardData.name;
               imgEl.onerror = function() { this.style.display = 'none'; };
               setTimeout(function() {
                 var slot = document.getElementById('slot-' + idx);

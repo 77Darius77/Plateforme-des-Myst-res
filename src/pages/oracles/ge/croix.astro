@@ -308,6 +308,7 @@ import Layout from '../../../layouts/Layout.astro';
             const imgEl = document.getElementById(`img-${i}`);
             const cardNum = cardData.number !== undefined ? cardData.number : (cardData.id || i);
             imgEl.src = `/images/oracles/ge/card_${String(cardNum).padStart(2, '0')}.webp`;
+            imgEl.alt = cardData.name;
             imgEl.onerror = function() { this.style.display = 'none'; };
             setTimeout(() => {
               document.getElementById(`slot-${i}`).classList.add('flipped');
