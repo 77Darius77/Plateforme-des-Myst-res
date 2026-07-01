@@ -46,7 +46,7 @@ import Layout from '../../../layouts/Layout.astro';
             <div class="card-front empty-slot"></div>
             <div class="card-back">
               <div class="belline-icon" id="icon-1"></div>
-              <img id="img-1" src="" alt="" class="card-img">
+              <img id="img-1" src="" alt="" loading="lazy" class="card-img">
               <div class="belline-label" id="label-1"></div>
             </div>
           </div>
@@ -66,7 +66,7 @@ import Layout from '../../../layouts/Layout.astro';
             <div class="card-front empty-slot"></div>
             <div class="card-back" style="border-color:var(--emerald);">
               <div class="belline-icon" id="icon-2"></div>
-              <img id="img-2" src="" alt="" class="card-img">
+              <img id="img-2" src="" alt="" loading="lazy" class="card-img">
               <div class="belline-label" id="label-2"></div>
             </div>
           </div>
@@ -249,6 +249,7 @@ import Layout from '../../../layouts/Layout.astro';
           for(let i=1; i<=MAX_CARDS; i++) {
             const cardData = selectedCards[i-1];
             document.getElementById(`img-${i}`).src = cardData.img;
+            document.getElementById(`img-${i}`).alt = cardData.name;
             document.getElementById(`icon-${i}`).innerText = cardData.planetEmoji;
             document.getElementById(`label-${i}`).innerText = cardData.name;
             setTimeout(() => {

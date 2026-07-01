@@ -222,6 +222,7 @@ import Layout from '../../../layouts/Layout.astro';
           for(let i=1; i<=MAX_CARDS; i++) {
             const cardData = selectedCards[i-1];
             document.getElementById(`img-${i}`).src = cardData.img;
+            document.getElementById(`img-${i}`).alt = cardData.name;
             document.getElementById(`name-${i}`).innerText = cardData.name;
             setTimeout(() => {
               document.getElementById(`slot-${i}`).classList.add('flipped');

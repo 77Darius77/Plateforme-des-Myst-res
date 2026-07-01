@@ -45,7 +45,7 @@ import Layout from '../../../layouts/Layout.astro';
             <div class="card-front empty-slot"></div>
             <div class="card-back">
               <div class="belline-icon" id="icon-1"></div>
-              <img id="img-1" src="" alt="" class="card-img">
+              <img id="img-1" src="" alt="" loading="lazy" class="card-img">
               <div class="belline-label" id="label-1"></div>
             </div>
           </div>
@@ -59,7 +59,7 @@ import Layout from '../../../layouts/Layout.astro';
             <div class="card-front empty-slot"></div>
             <div class="card-back">
               <div class="belline-icon" id="icon-2"></div>
-              <img id="img-2" src="" alt="" class="card-img">
+              <img id="img-2" src="" alt="" loading="lazy" class="card-img">
               <div class="belline-label" id="label-2"></div>
             </div>
           </div>
@@ -73,7 +73,7 @@ import Layout from '../../../layouts/Layout.astro';
             <div class="card-front empty-slot"></div>
             <div class="card-back">
               <div class="belline-icon" id="icon-3"></div>
-              <img id="img-3" src="" alt="" class="card-img">
+              <img id="img-3" src="" alt="" loading="lazy" class="card-img">
               <div class="belline-label" id="label-3"></div>
             </div>
           </div>
@@ -87,7 +87,7 @@ import Layout from '../../../layouts/Layout.astro';
             <div class="card-front empty-slot" style="border-color:var(--gold);"></div>
             <div class="card-back" style="border-color:var(--gold);">
               <div class="belline-icon" id="icon-4"></div>
-              <img id="img-4" src="" alt="" class="card-img">
+              <img id="img-4" src="" alt="" loading="lazy" class="card-img">
               <div class="belline-label" id="label-4"></div>
             </div>
           </div>
@@ -101,7 +101,7 @@ import Layout from '../../../layouts/Layout.astro';
             <div class="card-front empty-slot"></div>
             <div class="card-back">
               <div class="belline-icon" id="icon-5"></div>
-              <img id="img-5" src="" alt="" class="card-img">
+              <img id="img-5" src="" alt="" loading="lazy" class="card-img">
               <div class="belline-label" id="label-5"></div>
             </div>
           </div>
@@ -115,7 +115,7 @@ import Layout from '../../../layouts/Layout.astro';
             <div class="card-front empty-slot"></div>
             <div class="card-back">
               <div class="belline-icon" id="icon-6"></div>
-              <img id="img-6" src="" alt="" class="card-img">
+              <img id="img-6" src="" alt="" loading="lazy" class="card-img">
               <div class="belline-label" id="label-6"></div>
             </div>
           </div>
@@ -129,7 +129,7 @@ import Layout from '../../../layouts/Layout.astro';
             <div class="card-front empty-slot"></div>
             <div class="card-back" style="border-color:var(--emerald);">
               <div class="belline-icon" id="icon-7"></div>
-              <img id="img-7" src="" alt="" class="card-img">
+              <img id="img-7" src="" alt="" loading="lazy" class="card-img">
               <div class="belline-label" id="label-7"></div>
             </div>
           </div>
@@ -307,6 +307,7 @@ import Layout from '../../../layouts/Layout.astro';
           for(let i=1; i<=MAX_CARDS; i++) {
             const cardData = selectedCards[i-1];
             document.getElementById(`img-${i}`).src = cardData.img;
+            document.getElementById(`img-${i}`).alt = cardData.name;
             document.getElementById(`icon-${i}`).innerText = cardData.planetEmoji;
             document.getElementById(`label-${i}`).innerText = cardData.name;
             setTimeout(() => {

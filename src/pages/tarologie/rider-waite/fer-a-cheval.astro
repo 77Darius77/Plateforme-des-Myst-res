@@ -48,7 +48,7 @@ import Layout from '../../../layouts/Layout.astro';
           <div class="card-inner">
             <div class="card-front empty-slot"></div>
             <div class="card-back">
-              <img id="img-3" src="" alt="" class="card-img">
+              <img id="img-3" src="" alt="" loading="lazy" class="card-img">
               <h3 id="name-3"></h3>
               <p id="mean-3" class="meaning"></p>
             </div>
@@ -63,7 +63,7 @@ import Layout from '../../../layouts/Layout.astro';
           <div class="card-inner">
             <div class="card-front empty-slot"></div>
             <div class="card-back" style="border-color:var(--rose);">
-              <img id="img-4" src="" alt="" class="card-img">
+              <img id="img-4" src="" alt="" loading="lazy" class="card-img">
               <h3 id="name-4" style="color:var(--rose);"></h3>
               <p id="mean-4" class="meaning"></p>
             </div>
@@ -78,7 +78,7 @@ import Layout from '../../../layouts/Layout.astro';
           <div class="card-inner">
             <div class="card-front empty-slot"></div>
             <div class="card-back">
-              <img id="img-5" src="" alt="" class="card-img">
+              <img id="img-5" src="" alt="" loading="lazy" class="card-img">
               <h3 id="name-5"></h3>
               <p id="mean-5" class="meaning"></p>
             </div>
@@ -93,7 +93,7 @@ import Layout from '../../../layouts/Layout.astro';
           <div class="card-inner">
             <div class="card-front empty-slot"></div>
             <div class="card-back">
-              <img id="img-2" src="" alt="" class="card-img">
+              <img id="img-2" src="" alt="" loading="lazy" class="card-img">
               <h3 id="name-2"></h3>
               <p id="mean-2" class="meaning"></p>
             </div>
@@ -108,7 +108,7 @@ import Layout from '../../../layouts/Layout.astro';
           <div class="card-inner">
             <div class="card-front empty-slot"></div>
             <div class="card-back" style="border-color:var(--emerald);">
-              <img id="img-6" src="" alt="" class="card-img">
+              <img id="img-6" src="" alt="" loading="lazy" class="card-img">
               <h3 id="name-6" style="color:var(--emerald);"></h3>
               <p id="mean-6" class="meaning"></p>
             </div>
@@ -123,7 +123,7 @@ import Layout from '../../../layouts/Layout.astro';
           <div class="card-inner">
             <div class="card-front empty-slot"></div>
             <div class="card-back">
-              <img id="img-1" src="" alt="" class="card-img">
+              <img id="img-1" src="" alt="" loading="lazy" class="card-img">
               <h3 id="name-1"></h3>
               <p id="mean-1" class="meaning"></p>
             </div>
@@ -138,7 +138,7 @@ import Layout from '../../../layouts/Layout.astro';
           <div class="card-inner">
             <div class="card-front empty-slot"></div>
             <div class="card-back" style="border-color:var(--gold);">
-              <img id="img-7" src="" alt="" class="card-img">
+              <img id="img-7" src="" alt="" loading="lazy" class="card-img">
               <h3 id="name-7" style="color:var(--gold);"></h3>
               <p id="mean-7" class="meaning"></p>
             </div>
@@ -337,6 +337,7 @@ import Layout from '../../../layouts/Layout.astro';
           for(let i=1; i<=MAX_CARDS; i++) {
             const cardData = selectedCards[i-1];
             document.getElementById(`img-${i}`).src = cardData.img;
+            document.getElementById(`img-${i}`).alt = cardData.name;
             document.getElementById(`name-${i}`).innerText = cardData.name;
             document.getElementById(`mean-${i}`).innerText = cardData.meaning;
             setTimeout(() => {
