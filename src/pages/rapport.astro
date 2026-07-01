@@ -1,11 +1,32 @@
 ---
 import Layout from '../layouts/Layout.astro';
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Rapport d'Incarnation personnalisé",
+  "description": "Rapport personnalisé combinant numérologie, tarot, astrologie et tikoun, généré à partir de vos informations de naissance et envoyé par email.",
+  "url": "https://plateforme-des-mysteres.com/rapport/",
+  "provider": { "@type": "Organization", "name": "Plateforme des Mystères", "url": "https://plateforme-des-mysteres.com" },
+  "offers": {
+    "@type": "Offer",
+    "price": "10.00",
+    "priceCurrency": "EUR",
+    "availability": "https://schema.org/InStock",
+    "url": "https://mystereplateform.gumroad.com/l/rapportdincarnation"
+  }
+};
 ---
 
 <Layout
   title="Générer mon Rapport d'Incarnation | Plateforme des Mystères"
   description="Entrez vos informations pour recevoir votre Rapport d'Incarnation personnalisé par email — Numérologie, Tarot, Astrologie, Tikoun."
   canonicalPath="rapport/"
+  jsonLd={jsonLd}
+  breadcrumb={[
+    { name: "Accueil", item: "https://plateforme-des-mysteres.com/" },
+    { name: "Rapport d'Incarnation", item: "https://plateforme-des-mysteres.com/rapport/" }
+  ]}
 >
 <section id="rapport-hero">
   <div class="hero-badge">
