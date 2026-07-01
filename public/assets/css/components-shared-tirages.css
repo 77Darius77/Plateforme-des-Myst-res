@@ -1,0 +1,182 @@
+/* ═══════════════════════════════════════════
+   PLATEFORME DES MYSTÈRES — Composants partagés
+   Lecture des tirages par carte / par plan
+   Chargé sur : oracles + tarologie
+   (extrait de components.css)
+   ═══════════════════════════════════════════ */
+
+/* ─── Section de lecture des tirages ─── */
+.tr-outer { text-align: left; }
+.tr-section { background: rgba(255,255,255,0.03); border: 1px solid rgba(212,175,55,0.15); border-radius: 12px; padding: 2rem; margin-top: 1rem; }
+.tr-header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.6rem; }
+.tr-star { color: var(--gold); font-size: 1.2rem; flex-shrink: 0; }
+.tr-title { color: var(--gold); font-size: 1.25rem; margin: 0; font-weight: 600; letter-spacing: 0.02em; }
+.tr-intro { font-size: 0.9rem; color: var(--slate, #94a3b8); line-height: 1.7; margin: 0 0 0.5rem; font-style: italic; }
+.tr-divider { border: none; border-top: 1px solid rgba(212,175,55,0.12); margin: 1.4rem 0; }
+.tr-entry { padding: 0.9rem 0; border-bottom: 1px solid rgba(255,255,255,0.04); }
+.tr-entry:last-of-type { border-bottom: none; }
+.tr-entry-head { display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.4rem; flex-wrap: wrap; }
+.tr-pos { font-family: var(--font-mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gold); font-weight: 600; flex-shrink: 0; }
+.tr-card-nm { font-size: 0.97rem; font-weight: 600; color: var(--text, #e2e8f0); }
+.tr-entry-text { font-size: 0.87rem; line-height: 1.75; color: var(--slate, #94a3b8); margin: 0; }
+.tr-sub { font-family: var(--font-mono); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gold); font-weight: 600; margin: 0 0 0.8rem; }
+.tr-pair { background: rgba(212,175,55,0.04); border-left: 2px solid rgba(212,175,55,0.35); border-radius: 0 6px 6px 0; padding: 0.7rem 1rem; margin-bottom: 0.6rem; }
+.tr-pair-lbl { display: block; font-family: var(--font-mono); font-size: 0.78rem; color: var(--gold); font-weight: 600; margin-bottom: 0.3rem; }
+.tr-pair-txt { font-size: 0.85rem; line-height: 1.7; color: var(--slate, #94a3b8); margin: 0; }
+.tr-synth { font-size: 0.9rem; line-height: 1.8; color: var(--slate, #94a3b8); margin: 0; }
+.tr-triad { background: rgba(183,139,250,0.05); border-left-color: rgba(183,139,250,0.4); }
+.tr-triad .tr-pair-lbl { color: var(--violet, #b78bfa); }
+
+/* ─── Onglets de lecture par plan ─── */
+.tr-planes-wrapper { margin-top: 1.5rem; }
+.tr-planes-tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  border-bottom: 1px solid rgba(212,175,55,0.15);
+  padding-bottom: 0.5rem;
+}
+.tr-plane-tab {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.5rem 1rem;
+  background: transparent;
+  border: 1px solid rgba(212,175,55,0.2);
+  border-radius: 6px;
+  color: var(--slate, #94a3b8);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.tr-plane-tab:hover { border-color: rgba(212,175,55,0.5); color: var(--gold); }
+.tr-plane-tab.active {
+  background: rgba(212,175,55,0.12);
+  border-color: var(--gold);
+  color: var(--gold);
+}
+.tr-planes-content { position: relative; }
+.tr-plane-pane { display: none; }
+.tr-plane-pane.active { display: block; animation: trPlaneFade 0.3s ease; }
+@keyframes trPlaneFade {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── Bloc lecture par plan ─── */
+.tr-plane-section {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(212,175,55,0.12);
+  border-radius: 10px;
+  padding: 1.25rem 1.5rem;
+}
+.tr-plane-header {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.6rem;
+}
+.tr-plane-icon { font-size: 1.1rem; color: var(--gold); }
+.tr-plane-title {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--gold);
+  margin: 0;
+  font-weight: 600;
+}
+.tr-plane-intro {
+  font-size: 0.85rem;
+  color: var(--slate, #94a3b8);
+  font-style: italic;
+  line-height: 1.65;
+  margin: 0 0 1rem;
+}
+.tr-plane-entries { display: flex; flex-direction: column; gap: 0.8rem; }
+.tr-plane-entry {
+  padding: 0.7rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+.tr-plane-entry:last-child { border-bottom: none; }
+.tr-plane-entry-head {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.35rem;
+}
+.tr-plane-pos {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--gold);
+  font-weight: 600;
+}
+.tr-plane-kw {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  padding: 0.15rem 0.5rem;
+  background: rgba(212,175,55,0.08);
+  border: 1px solid rgba(212,175,55,0.2);
+  border-radius: 4px;
+  color: var(--gold);
+  font-style: italic;
+}
+.tr-plane-text {
+  font-size: 0.87rem;
+  line-height: 1.75;
+  color: var(--slate, #94a3b8);
+  margin: 0;
+}
+.tr-plane-synth {
+  margin-top: 1rem;
+  padding-top: 0.8rem;
+  border-top: 1px solid rgba(212,175,55,0.12);
+}
+.tr-plane-synth-lbl {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--gold);
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+.tr-plane-synth p {
+  font-size: 0.88rem;
+  line-height: 1.75;
+  color: var(--slate, #94a3b8);
+  margin: 0;
+}
+
+/* ─── Light mode overrides ─── */
+[data-theme="light"] .tr-section {
+  background: rgba(0,0,0,0.02);
+  border-color: rgba(180,133,59,0.2);
+}
+[data-theme="light"] .tr-entry {
+  border-bottom-color: rgba(0,0,0,0.06);
+}
+
+[data-theme="light"] .tr-plane-section {
+  background: #ffffff;
+  border-color: rgba(0,0,0,0.08);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+}
+[data-theme="light"] .tr-plane-entry { border-bottom-color: rgba(0,0,0,0.06); }
+[data-theme="light"] .tr-plane-intro,
+[data-theme="light"] .tr-plane-text,
+[data-theme="light"] .tr-plane-synth p { color: #334155; }
+[data-theme="light"] .tr-plane-tab { color: #475569; border-color: rgba(0,0,0,0.15); }
+[data-theme="light"] .tr-plane-tab:hover { color: #92400e; border-color: rgba(146,64,14,0.4); }
+[data-theme="light"] .tr-plane-tab.active {
+  background: rgba(180,133,59,0.1);
+  border-color: #b4853b;
+  color: #92400e;
+}
+[data-theme="light"] .tr-planes-tabs { border-bottom-color: rgba(0,0,0,0.1); }
+[data-theme="light"] .tr-plane-synth { border-top-color: rgba(0,0,0,0.08); }

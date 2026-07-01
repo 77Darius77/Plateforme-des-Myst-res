@@ -1,0 +1,26 @@
+/* ═══════════════════════════════════════════
+   PLATEFORME DES MYSTÈRES — Composants ORACLES
+   (extrait de components.css)
+   ═══════════════════════════════════════════ */
+
+/* ─── Trait mutant (Yi King) ─── */
+.tr-mutation-entry {
+  background: rgba(232,121,130,0.05);
+  border: 1px solid rgba(232,121,130,0.2);
+  border-radius: 10px;
+  padding: 1.1rem 1.3rem;
+  border-bottom: 1px solid rgba(232,121,130,0.2) !important;
+}
+.tr-mutation-pos { color: var(--rose, #e87982) !important; font-size: 0.78rem; }
+.tr-mutation-text { color: var(--slate, #94a3b8); }
+.tr-mutation-reveals {
+  margin-top: 0.7rem;
+  padding: 0.8rem 1rem;
+  background: rgba(232,121,130,0.06);
+  border-left: 2px solid var(--rose, #e87982);
+  border-radius: 0 6px 6px 0;
+  font-size: 0.88rem;
+  line-height: 1.7;
+  color: var(--text, #e2e8f0);
+}
+.tr-mutation-icon { color: var(--rose, #e87982); font-size: 1rem; margin-right: 0.3rem; }

@@ -1,0 +1,303 @@
+/* ═══════════════════════════════════════════
+   PLATEFORME DES MYSTÈRES — Composants partagés
+   Formulaires de date de naissance & blocs de résultats
+   Chargé sur : numérologie + astrologie
+   (extrait de components.css)
+   ═══════════════════════════════════════════ */
+
+/* ─── Result cards ─── */
+.result-card {
+  background: linear-gradient(150deg, rgba(18, 25, 42, 0.90) 0%, rgba(10, 13, 23, 0.96) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  text-align: left;
+  transition: var(--transition);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.40), 0 0 0 1px rgba(255,255,255,0.025) inset;
+}
+.result-card:hover {
+  border-color: rgba(255,255,255,0.13);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.50), 0 0 30px -8px var(--gold);
+}
+.result-card .big-num {
+  font-family: var(--font-mono);
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+.result-card .label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.5rem;
+}
+.result-card .desc {
+  font-size: 0.9rem;
+  color: var(--slate);
+}
+.result-card.gold { border-color: var(--gold); }
+.result-card.gold .big-num { color: var(--gold); }
+.result-card.gold:hover { box-shadow: 0 12px 40px rgba(0,0,0,0.50), 0 0 30px -8px var(--gold); }
+.result-card.emerald-card { border-color: var(--emerald); }
+.result-card.emerald-card .big-num { color: var(--emerald); }
+.result-card.emerald-card:hover { box-shadow: 0 12px 40px rgba(0,0,0,0.50), 0 0 30px -8px var(--emerald); }
+
+/* ─── Step (méthode) ─── */
+.step {
+  background: linear-gradient(150deg, rgba(18, 25, 42, 0.90) 0%, rgba(10, 13, 23, 0.96) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  text-align: center;
+  transition: var(--transition);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.40);
+}
+.step:hover {
+  border-color: rgba(255,255,255,0.13);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.50), 0 0 30px -8px var(--gold);
+}
+.step .step-num {
+  font-family: var(--font-mono);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--gold);
+  margin-bottom: 0.5rem;
+}
+.step h3 { margin-bottom: 0.5rem; }
+.step p { font-size: 0.9rem; color: var(--slate); }
+
+@media (prefers-reduced-motion: reduce) {
+  .result-card:hover {
+    transform: none !important;
+  }
+  .step:hover {
+    border-color: var(--gold);
+    transform: none !important;
+  }
+}
+
+/* ─── Utilitaires couleur texte (partagés Pythagoricienne/Chaldéenne/Astrologie) ─── */
+.cf-emerald { color: var(--emerald) !important; }
+.cf-violet  { color: var(--violet)  !important; }
+.cf-cyan    { color: var(--cyan)    !important; }
+.cf-gold    { color: var(--gold)    !important; }
+.cf-rose    { color: var(--rose)    !important; }
+
+/* ─── Formulaire de saisie (date de naissance) ─── */
+.pyth-form {
+  max-width: 620px;
+  margin: 0 auto;
+  background: linear-gradient(150deg, rgba(18,25,42,0.90) 0%, rgba(10,13,23,0.95) 100%);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+  padding: 2rem;
+  backdrop-filter: blur(12px);
+}
+.pyth-form-group { margin-bottom: 1.25rem; }
+.pyth-label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
+}
+.pyth-date-row {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+}
+.pyth-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  flex: 1;
+}
+.pyth-field--wide { flex: 1.5; }
+.pyth-field-label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  text-align: center;
+}
+.pyth-input {
+  width: 100%;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 10px;
+  padding: 0.8rem 1rem;
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  color: var(--text);
+  text-align: center;
+  box-sizing: border-box;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  -moz-appearance: textfield;
+}
+.pyth-input::-webkit-outer-spin-button,
+.pyth-input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.pyth-input:focus {
+  outline: none;
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(223,178,108,0.15);
+}
+.pyth-form-actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+}
+.pyth-btn-example {
+  flex: 1;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.12);
+  color: var(--text-muted);
+  padding: 0.85rem 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  transition: border-color 0.2s, color 0.2s;
+  min-width: 140px;
+}
+.pyth-btn-example:hover { border-color: var(--gold); color: var(--gold); }
+.pyth-btn-calc {
+  flex: 2;
+  background: linear-gradient(135deg, var(--gold), #b8872a);
+  border: none;
+  color: #0a0f1c;
+  padding: 0.9rem 1.5rem;
+  border-radius: 10px;
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  transition: opacity 0.2s, transform 0.2s;
+  min-width: 200px;
+}
+.pyth-btn-calc:hover { opacity: 0.92; transform: translateY(-1px); }
+
+/* ─── Séparateur résultats ─── */
+.pyth-section-sep {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(223,178,108,0.3), transparent);
+  margin: 2.5rem 0;
+}
+
+/* ─── Blocs de résultats (titre de section) ─── */
+.pyth-result-block { margin-bottom: 2.5rem; }
+.pyth-result-title {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+  font-weight: 400;
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+[data-theme="light"] .pyth-result-title {
+  color: #0f172a;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+[data-theme="light"] .pyth-result-title .cn-result-hint {
+  color: #475569;
+  font-weight: 500;
+}
+
+/* ─── Encart différences de méthodes / comparaisons ─── */
+.pyth-diff-box {
+  max-width: 760px;
+  margin: 2rem auto 0;
+  background: linear-gradient(150deg, rgba(18,25,42,0.85) 0%, rgba(10,13,23,0.92) 100%);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 14px;
+  padding: 1.5rem 2rem;
+}
+.pyth-diff-title {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  font-weight: 400;
+  margin-bottom: 1.25rem;
+}
+.pyth-diff-grid { display: flex; flex-direction: column; gap: 0.85rem; }
+.pyth-diff-item {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  line-height: 1.6;
+}
+.pyth-diff-lbl {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  min-width: 130px;
+  flex-shrink: 0;
+}
+
+/* ─── Light theme overrides ─── */
+[data-theme="light"] .result-card,
+[data-theme="light"] .step,
+[data-theme="light"] #calculateur,
+[data-theme="light"] .pyth-diff-box {
+  background: #ffffff;
+  border-color: var(--border);
+}
+
+/* Formulaire de saisie (light) */
+[data-theme="light"] .pyth-form {
+  background: #ffffff;
+  border-color: rgba(0,0,0,0.09);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+}
+[data-theme="light"] .pyth-input {
+  background: #f8fafc;
+  border-color: rgba(0,0,0,0.15);
+  color: var(--text);
+}
+[data-theme="light"] .pyth-input:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(180,133,59,0.15);
+}
+[data-theme="light"] .pyth-btn-example {
+  border-color: rgba(0,0,0,0.14);
+  color: var(--text-muted);
+}
+[data-theme="light"] .pyth-btn-example:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+/* Bloc de comparaison (light) — remplace le fond du bloc précédent */
+[data-theme="light"] .pyth-diff-box {
+  background: #f8fafc;
+  border-color: rgba(0,0,0,0.08);
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 520px) {
+  .pyth-diff-item { flex-direction: column; gap: 0.25rem; }
+  .pyth-diff-lbl { min-width: auto; }
+  .pyth-form-actions { flex-direction: column; }
+  .pyth-btn-example, .pyth-btn-calc { flex: none; width: 100%; }
+}

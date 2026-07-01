@@ -40,6 +40,19 @@ const {
   ogImage
 } = Astro.props;
 
+// CSS de composants scindé par domaine (voir docs/analyse-couverture-css.md) :
+// components.css (41 Ko) était chargé sur 100% des pages alors qu'il n'était
+// utilisé qu'à ~3% sur accueil/boutique. Les fichiers "shared-*" couvrent les
+// classes réellement partagées entre deux domaines (formulaires de date de
+// naissance pour numerologie+astrologie, lecture de tirages pour oracles+tarologie).
+const domainStylesheets: Record<string, string[]> = {
+  numerologie: ['components-shared-formulaires.css', 'components-numerologie.css'],
+  astrologie: ['components-shared-formulaires.css', 'components-astrologie.css'],
+  oracles: ['components-shared-tirages.css', 'components-oracles.css'],
+  tarologie: ['components-shared-tirages.css', 'components-tarologie.css'],
+};
+const extraStylesheets = section ? (domainStylesheets[section] ?? []) : [];
+
 function normalizeCanonicalPath(p: string): string {
   if (p === '' || p === 'index.html') return '';
   if (p.endsWith('/index.html')) return p.slice(0, -'index.html'.length);
@@ -128,7 +141,10 @@ const defaultJsonLd = (!jsonLd && !noJsonLd) ? {
   
   <!-- Central Stylesheets -->
   <link rel="stylesheet" href="/assets/css/design-system.css">
-  <link rel="stylesheet" href="/assets/css/components.css">
+  <link rel="stylesheet" href="/assets/css/components-global.css">
+  {extraStylesheets.map(href => (
+    <link rel="stylesheet" href={`/assets/css/${href}`} />
+  ))}
   <link rel="stylesheet" href="/assets/css/layout.css">
   <link rel="stylesheet" href="/assets/css/layout-specific.css">
   {useBlogStyles && <link rel="stylesheet" href="/assets/css/blog.css">}

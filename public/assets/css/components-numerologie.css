@@ -1,0 +1,505 @@
+/* ═══════════════════════════════════════════
+   PLATEFORME DES MYSTÈRES — Composants NUMÉROLOGIE
+   (extrait de components.css)
+   ═══════════════════════════════════════════ */
+
+/* ─── Calculateur — Formulaire ─── */
+.calc-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem 0;
+}
+
+.calc-form input {
+  padding: 0.9rem 1.2rem;
+  border-radius: 8px;
+  border: 1.5px solid var(--border);
+  background: var(--bg-card);
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  width: 220px;
+  transition: var(--transition);
+}
+.calc-form input:focus {
+  outline: none;
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.15);
+}
+
+.calc-form button {
+  padding: 0.9rem 2rem;
+  background: var(--gold);
+  color: var(--bg-deep);
+  font-family: var(--font-mono);
+  font-weight: 700;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: var(--transition);
+}
+.calc-form button:hover {
+  background: #fcd34d;
+  transform: translateY(-1px);
+}
+.calc-form button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ─── Error message ─── */
+.error-msg {
+  color: var(--rose);
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+  min-height: 1.2em;
+}
+
+/* ─── Interpretation block ─── */
+.result-interpretation {
+  background: rgba(251, 191, 36, 0.05);
+  border: 1px solid rgba(251, 191, 36, 0.2);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  margin-top: 1.5rem;
+  text-align: left;
+  font-style: italic;
+  color: var(--slate);
+  line-height: 1.8;
+}
+
+/* ─── Archetype cards ─── */
+.archetype-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.3rem;
+  cursor: pointer;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+  perspective: 1000px;
+  min-height: 190px;
+}
+.archetype-card:hover {
+  border-color: var(--gold);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+}
+.archetype-card .card-inner {
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+.archetype-card.flipped .card-inner {
+  transform: rotateY(180deg);
+}
+
+.archetype-card .num-circle {
+  font-family: var(--font-mono);
+  font-size: 1.5rem;
+  font-weight: 700;
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+}
+
+.archetype-card .force { color: var(--emerald); font-weight: 600; margin-bottom: 0.3rem; }
+.archetype-card .faiblesse { color: var(--slate); font-size: 0.85rem; }
+.archetype-card .flip-hint {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--text-dim);
+  margin-top: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+}
+
+/* ─── Tooltip texte complet côté ombre ─── */
+.arch-tooltip {
+  position: fixed;
+  width: 460px;
+  max-height: 70vh;
+  overflow-y: auto;
+  background: linear-gradient(150deg, rgba(10,15,28,0.98) 0%, rgba(20,32,52,0.98) 100%);
+  border: 1px solid var(--gold);
+  border-radius: 12px;
+  padding: 1.1rem 1.3rem;
+  font-size: 0.82rem;
+  line-height: 1.75;
+  color: var(--text-dim);
+  z-index: 9999;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.75), 0 0 40px -12px var(--gold);
+  backdrop-filter: blur(12px);
+  pointer-events: none;
+  animation: archTooltipIn 0.18s ease;
+  scrollbar-width: thin;
+  scrollbar-color: var(--gold) transparent;
+}
+@keyframes archTooltipIn {
+  from { opacity: 0; transform: scale(0.93) translateY(-6px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+[data-theme="light"] .arch-tooltip {
+  background: linear-gradient(150deg, #ffffff 0%, #f8fafc 100%);
+  border-color: var(--gold);
+  color: #334155;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.18), 0 0 40px -12px var(--gold);
+}
+
+/* ─── Couleurs par numéro d'archétype ─── */
+.c-1 .num-circle { background: rgba(251,191,36,0.15); color: #fbbf24; border: 1px solid #fbbf24; }
+.c-2 .num-circle { background: rgba(34,211,238,0.1); color: #22d3ee; border: 1px solid #22d3ee; }
+.c-3 .num-circle { background: rgba(251,146,60,0.1); color: #fb923c; border: 1px solid #fb923c; }
+.c-4 .num-circle { background: rgba(167,139,250,0.1); color: #a78bfa; border: 1px solid #a78bfa; }
+.c-5 .num-circle { background: rgba(52,211,153,0.1); color: #34d399; border: 1px solid #34d399; }
+.c-6 .num-circle { background: rgba(251,113,133,0.1); color: #fb7185; border: 1px solid #fb7185; }
+.c-7 .num-circle { background: rgba(148,163,184,0.1); color: #94a3b8; border: 1px solid #94a3b8; }
+.c-8 .num-circle { background: rgba(251,191,36,0.15); color: #fbbf24; border: 1px solid #fbbf24; }
+.c-9 .num-circle { background: rgba(34,211,238,0.1); color: #22d3ee; border: 1px solid #22d3ee; }
+.c-10 .num-circle { background: rgba(167,139,250,0.1); color: #a78bfa; border: 1px solid #a78bfa; }
+.c-11 .num-circle { background: rgba(251,146,60,0.1); color: #fb923c; border: 1px solid #fb923c; }
+.c-12 .num-circle { background: rgba(52,211,153,0.1); color: #34d399; border: 1px solid #34d399; }
+.c-13 .num-circle { background: rgba(251,113,133,0.2); color: #fb7185; border: 2px solid #fb7185; }
+.c-14 .num-circle { background: rgba(148,163,184,0.1); color: #94a3b8; border: 1px solid #94a3b8; }
+.c-15 .num-circle { background: rgba(251,191,36,0.15); color: #fbbf24; border: 1px solid #fbbf24; }
+.c-16 .num-circle { background: rgba(34,211,238,0.1); color: #22d3ee; border: 1px solid #22d3ee; }
+.c-17 .num-circle { background: rgba(251,146,60,0.1); color: #fb923c; border: 1px solid #fb923c; }
+.c-18 .num-circle { background: rgba(167,139,250,0.1); color: #a78bfa; border: 1px solid #a78bfa; }
+.c-19 .num-circle { background: rgba(52,211,153,0.1); color: #34d399; border: 1px solid #34d399; }
+.c-20 .num-circle { background: rgba(251,113,133,0.1); color: #fb7185; border: 1px solid #fb7185; }
+.c-21 .num-circle { background: rgba(148,163,184,0.1); color: #94a3b8; border: 1px solid #94a3b8; }
+.c-22 .num-circle { background: rgba(251,191,36,0.25); color: #fbbf24; border: 2px solid #fbbf24; }
+.c-33 .num-circle { background: rgba(251,129,149,0.25); color: #fb8195; border: 2px solid #fb8195; }
+
+/* ─── Reveal / Staggered appearance ─── */
+.reveal-section {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.reveal-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── Répartition SVG ─── */
+.repartition-section {
+  margin-top: 1.5rem;
+  text-align: center;
+}
+.repart-svg {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+.repart-svg text {
+  font-family: var(--font-mono, 'Courier New', monospace);
+  fill: currentColor;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-section {
+    opacity: 1;
+    transform: translateY(0);
+    transition: none !important;
+  }
+  .archetype-card:hover {
+    transform: none !important;
+  }
+}
+
+/* ─── Utilitaires couleur fond (Pythagoricienne/Chaldéenne) ─── */
+.cf-bg-emerald { background: rgba(61,211,153,0.10)  !important; }
+.cf-bg-violet  { background: rgba(183,139,250,0.10) !important; }
+.cf-bg-cyan    { background: rgba(59,211,238,0.10)  !important; }
+.cf-bg-rose    { background: rgba(251,129,149,0.12) !important; }
+.cf-bg-gold    { background: rgba(223,178,108,0.12) !important; }
+
+.pyth-input--full { text-align: left; }
+
+/* ─── Formule de calcul ─── */
+.pyth-formule {
+  background: linear-gradient(150deg, rgba(18,25,42,0.85) 0%, rgba(10,13,23,0.92) 100%);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 14px;
+  padding: 1.5rem;
+  font-family: var(--font-mono);
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+.pf-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+.pf-lbl {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  min-width: 140px;
+  flex-shrink: 0;
+}
+.pf-calc {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  flex: 1;
+}
+.pf-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 8px;
+  padding: 0.25rem 0.6rem;
+  min-width: 40px;
+}
+.pf-wname {
+  font-size: 0.58rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.2;
+}
+.pf-wval  { font-size: 1rem; font-weight: 700; line-height: 1.2; }
+.pf-op    { color: var(--text-muted); font-size: 0.85rem; }
+.pf-sum   { font-size: 1rem; font-weight: 600; color: var(--slate); background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07); border-radius: 6px; padding: 0.15rem 0.45rem; }
+.pf-arrow { color: var(--text-muted); font-size: 0.9rem; }
+.pf-res   { font-size: 0.92rem; }
+
+/* ─── Grille des 4 nombres fondamentaux ─── */
+.pyth-core-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+.core-card {
+  background: linear-gradient(150deg, rgba(18,25,42,0.92) 0%, rgba(10,13,23,0.97) 100%);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 14px;
+  padding: 1.25rem 1rem;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.30);
+  transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s cubic-bezier(0.16,1,0.3,1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+}
+.core-num {
+  font-family: var(--font-mono);
+  font-size: 2.2rem;
+  font-weight: 700;
+  line-height: 1;
+  position: relative;
+}
+.core-label {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: var(--text-muted);
+  margin-top: 0.2rem;
+}
+.core-titre { font-size: 0.82rem; font-weight: 600; color: var(--text-dim); margin-top: 0.2rem; }
+.core-note  { font-size: 0.72rem; color: var(--text-muted); line-height: 1.4; margin-top: 0.2rem; }
+
+/* ─── Cartes de détail ─── */
+.pyth-details { display: flex; flex-direction: column; gap: 1.5rem; }
+.pd-card {
+  background: linear-gradient(150deg, rgba(18,25,42,0.90) 0%, rgba(10,13,23,0.96) 100%);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 14px;
+  padding: 1.5rem 2rem;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.30);
+  transition: transform 0.3s cubic-bezier(0.16,1,0.3,1);
+}
+.pd-card:hover { transform: translateY(-2px); }
+.pd-header {
+  display: flex;
+  gap: 1.25rem;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+.pd-num {
+  font-family: var(--font-mono);
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1;
+  flex-shrink: 0;
+}
+.pd-info { flex: 1; }
+.pd-titre {
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+}
+.pd-note {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+.pd-keys {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+.pd-key {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 6px;
+}
+.pd-force { background: rgba(61,211,153,0.1);  color: var(--emerald); border: 1px solid rgba(61,211,153,0.2); }
+.pd-defi  { background: rgba(251,129,149,0.1); color: var(--rose);    border: 1px solid rgba(251,129,149,0.2); }
+.pd-interp {
+  font-size: 0.87rem;
+  color: var(--text-dim);
+  line-height: 1.75;
+  margin-bottom: 1rem;
+}
+
+/* ─── Table de correspondance (Pyth + Chald) ─── */
+.pyth-table-wrapper {
+  max-width: 540px;
+  margin: 0 auto 2.5rem;
+  background: linear-gradient(150deg, rgba(18,25,42,0.90) 0%, rgba(10,13,23,0.96) 100%);
+  border: 1px solid rgba(223,178,108,0.2);
+  border-radius: 14px;
+  padding: 1.5rem 2rem;
+  backdrop-filter: blur(10px);
+  text-align: center;
+}
+.pyth-table-title {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  margin-bottom: 1.25rem;
+  font-weight: 400;
+}
+.pyth-table { display: flex; flex-direction: column; gap: 0.35rem; }
+.pyth-table-row {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  gap: 0.25rem;
+}
+.pyth-table-row span {
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  padding: 0.4rem 0.2rem;
+  border-radius: 6px;
+  color: var(--text-dim);
+}
+.pyth-table-header span {
+  background: rgba(223,178,108,0.12);
+  color: var(--gold);
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+.pyth-table-note {
+  font-size: 0.76rem;
+  color: var(--text-muted);
+  margin-top: 1rem;
+  margin-bottom: 0;
+  font-style: italic;
+}
+
+/* ─── Nombre maître (badge grille vibrations) ─── */
+.maitre-sup {
+  font-size: 0.65rem;
+  vertical-align: super;
+  letter-spacing: 0;
+  color: var(--gold);
+  margin-left: 2px;
+}
+.master-badge {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--gold);
+  background: rgba(223,178,108,0.1);
+  border: 1px solid rgba(223,178,108,0.25);
+  border-radius: 4px;
+  padding: 0.1rem 0.4rem;
+  margin-top: 0.3rem;
+}
+
+/* ─── Grille vibrations (Pyth & Chald) ─── */
+#vibrations .grid,
+#chaldVibrations .grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+  max-width: 100%;
+}
+
+/* ─── Light theme overrides ─── */
+[data-theme="light"] .archetype-card,
+[data-theme="light"] .pyth-table-wrapper,
+[data-theme="light"] .chald-composes-box,
+[data-theme="light"] .ch-loshu-cell,
+[data-theme="light"] .ch-ls-row,
+[data-theme="light"] .ch-fleche,
+[data-theme="light"] .ch-ls-all-present,
+[data-theme="light"] .ch-loshu-legend {
+  background: #ffffff;
+  border-color: var(--border);
+}
+[data-theme="light"] .pyth-formule {
+  background: #f8fafc;
+  border-color: rgba(0,0,0,0.08);
+}
+[data-theme="light"] .pf-sum {
+  background: rgba(0,0,0,0.04);
+  border-color: rgba(0,0,0,0.1);
+}
+[data-theme="light"] .pf-wname { color: rgba(0,0,0,0.4); }
+[data-theme="light"] .core-card,
+[data-theme="light"] .pd-card,
+[data-theme="light"] .pa-card,
+[data-theme="light"] .ch-ls-section,
+[data-theme="light"] .ch-fleches-section {
+  background: #ffffff;
+  border-color: rgba(0,0,0,0.08);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+[data-theme="light"] .ch-ls-h4,
+[data-theme="light"] .ch-loshu-domaine,
+[data-theme="light"] .ch-loshu-legend,
+[data-theme="light"] .ch-ls-surplus-watch,
+[data-theme="light"] .ch-fleche-axe,
+[data-theme="light"] .ch-fleche-desc { color: #475569; }
+[data-theme="light"] .ch-ls-manifestation { color: #be123c; }
+[data-theme="light"] .ch-loshu-cell.ch-loshu-empty { opacity: 0.55; }
+
+/* ─── Responsive formulaire ─── */
+@media (max-width: 768px) {
+  .pyth-core-grid { grid-template-columns: repeat(2, 1fr); }
+  .pd-header { flex-direction: column; gap: 0.75rem; }
+  .pd-num { font-size: 2.2rem; }
+}
+@media (max-width: 520px) {
+  .pyth-core-grid { grid-template-columns: 1fr 1fr; }
+  .pf-lbl { min-width: 90px; font-size: 0.62rem; }
+  .pf-row { flex-direction: column; align-items: flex-start; }
+}
