@@ -256,8 +256,14 @@ import Layout from '../../../layouts/Layout.astro';
         card.style.transform = `translateY(${yOffset}px) rotate(${rotation}deg)`;
         card.dataset.index = deckIndices[i];
         card.dataset.id = i;
-        
+        card.setAttribute('tabindex', '0');
+        card.setAttribute('role', 'button');
+        card.setAttribute('aria-label', `Carte ${i + 1} sur ${deckSize}, face cachée`);
+
         card.addEventListener('click', () => selectCard(card));
+        card.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); selectCard(card); }
+        });
         container.appendChild(card);
       }
     });
