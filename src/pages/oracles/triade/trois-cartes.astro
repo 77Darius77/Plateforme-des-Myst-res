@@ -42,7 +42,7 @@ import Layout from '../../../layouts/Layout.astro';
   <div id="spread-container" style="display:none;margin-bottom:2rem;">
     <p style="text-align:center;color:var(--text-muted);font-size:0.8rem;margin-bottom:0.5rem;">Sélectionnez 3 cartes dans l'éventail</p>
     <div id="card-counter" style="text-align:center;color:var(--cyan);font-family:var(--font-mono);font-size:1.1rem;font-weight:bold;margin-bottom:0.5rem;">0 / 3</div>
-    <div id="spread-row" style="position:relative;height:160px;overflow:visible;"></div>
+    <div id="spread-row" style="position:relative;height:210px;overflow-x:auto;overflow-y:visible;-webkit-overflow-scrolling:touch;"></div>
   </div>
 
   <div id="selected-container" style="margin-bottom:2rem;">
@@ -198,7 +198,8 @@ import Layout from '../../../layouts/Layout.astro';
       const deckSize = 57;
       deckIndices = Array.from({length: deckSize}, (_, i) => i).sort(() => 0.5 - Math.random());
       const cardWidth = 56;
-      const step = (containerWidth - cardWidth) / Math.max(deckSize - 1, 1);
+      const naturalStep = (containerWidth - cardWidth) / Math.max(deckSize - 1, 1);
+      const step = containerWidth <= 640 ? Math.max(naturalStep, cardWidth + 8) : naturalStep;
 
       deckIndices.forEach((cardIdx, i) => {
         const card = document.createElement('div');

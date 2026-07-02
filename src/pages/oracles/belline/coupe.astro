@@ -30,7 +30,7 @@ import Layout from '../../../layouts/Layout.astro';
   <div id="deck-area" style="margin-top:2rem;position:relative;height:250px;display:flex;justify-content:center;align-items:center;">
     <button id="btn-spread" class="btn-explore" style="font-size:1.2rem;padding:1rem 2rem;cursor:pointer;z-index:10;">Étaler les cartes ✦</button>
     
-    <div id="spread-container" style="display:none;position:relative;width:100%;height:100%;max-width:700px;margin:0 auto;">
+    <div id="spread-container" style="display:none;position:relative;width:100%;height:100%;max-width:700px;margin:0 auto;overflow-x:auto;-webkit-overflow-scrolling:touch;">
       <p id="instruction-text" style="position:absolute;top:-40px;width:100%;color:var(--gold);font-weight:bold;font-size:1.1rem;">Sélectionnez 2 cartes (0/2)</p>
     </div>
   </div>
@@ -190,7 +190,8 @@ import Layout from '../../../layouts/Layout.astro';
       void container.offsetWidth;
       const containerWidth = container.offsetWidth > 0 ? container.offsetWidth : Math.min(window.innerWidth - 40, 700);
       const cardWidth = 56;
-      const step = (containerWidth - cardWidth) / (deckSize - 1);
+      const naturalStep = (containerWidth - cardWidth) / (deckSize - 1);
+      const step = containerWidth <= 640 ? Math.max(naturalStep, cardWidth + 8) : naturalStep;
       
       for(let i=0; i<deckSize; i++) {
         const card = document.createElement('div');
