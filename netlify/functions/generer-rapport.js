@@ -28,17 +28,27 @@ if (process.env.ARCJET_KEY) {
 
 const GUMROAD_PRODUCT_ID = 'faObuZYZEngNX_Pf9BKZFw=='; // product_id Gumroad
 
-// ── Validation de la clé Gumroad ──────────────────────────────────────────
-async function validerCleGumroad(licenseKey) {
-  const res = await fetch('https://api.gumroad.com/v2/licenses/verify', {
-    method:  'POST',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body:    new URLSearchParams({
-      product_id:           GUMROAD_PRODUCT_ID,
-      license_key:          licenseKey,
-      increment_uses_count: 'true',
-    }),
-  });
+// ── Validation de la clé Gumroad (avec retry léger sur erreur réseau) ────
+async function validerCleGumroad(licenseKey, tentativesRestantes = 2) {
+  let res;
+  try {
+    res = await fetch('https://api.gumroad.com/v2/licenses/verify', {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body:    new URLSearchParams({
+        product_id:           GUMROAD_PRODUCT_ID,
+        license_key:          licenseKey,
+        increment_uses_count: 'true',
+      }),
+    });
+  } catch (err) {
+    if (tentativesRestantes > 0) {
+      await new Promise((r) => setTimeout(r, 500));
+      return validerCleGumroad(licenseKey, tentativesRestantes - 1);
+    }
+    console.error('Gumroad injoignable après retries:', err?.message || err);
+    return { valide: false, raison: 'Service de vérification de licence indisponible. Réessayez dans un instant.' };
+  }
 
   const data = await res.json();
 
@@ -140,6 +150,35 @@ function validerEntrees({ prenom, nom, dateNaissance, email, licenseKey }) {
 
 // ── Handler principal ─────────────────────────────────────────────────────
 export const handler = async (event, context) => {
+  // CORS preflight : toujours répondu, même si la protection est mal configurée
+  // (aucune donnée n'est exposée par une réponse à OPTIONS).
+  if (event.httpMethod === 'OPTIONS') {
+    return {
+      statusCode: 204,
+      headers: {
+        'Access-Control-Allow-Origin':  'https://plateforme-des-mysteres.com',
+        'Access-Control-Allow-Methods': 'POST, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type',
+      },
+    };
+  }
+
+  // Fail-closed : en production, refuser tout traitement si Arcjet n'est pas
+  // configuré plutôt que de continuer sans protection en silence (le CONTEXT
+  // Netlify natif distingue production/deploy-preview/branch-deploy/dev — ne
+  // jamais bloquer en dehors de production, où l'absence de clé est légitime).
+  if (!aj && process.env.CONTEXT === 'production') {
+    console.error('ARCJET_KEY manquante en production — requête refusée (fail-closed)');
+    return {
+      statusCode: 503,
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': 'https://plateforme-des-mysteres.com',
+      },
+      body: JSON.stringify({ erreur: 'Service temporairement indisponible.' }),
+    };
+  }
+
   // Protection Arcjet : bouclier, détection bot, rate limit (5 req/10min)
   if (aj) {
     const decision = await aj.protect({
@@ -163,18 +202,6 @@ export const handler = async (event, context) => {
         }),
       };
     }
-  }
-
-  // CORS preflight
-  if (event.httpMethod === 'OPTIONS') {
-    return {
-      statusCode: 204,
-      headers: {
-        'Access-Control-Allow-Origin':  'https://plateforme-des-mysteres.com',
-        'Access-Control-Allow-Methods': 'POST, OPTIONS',
-        'Access-Control-Allow-Headers': 'Content-Type',
-      },
-    };
   }
 
   if (event.httpMethod !== 'POST') {
