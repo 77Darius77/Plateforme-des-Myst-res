@@ -42,7 +42,7 @@ import Layout from '../../../layouts/Layout.astro';
   <div id="spread-container" style="display:none;margin-bottom:2rem;">
     <p style="text-align:center;color:var(--text-muted);font-size:0.8rem;margin-bottom:0.5rem;">Sélectionnez 5 cartes dans l'éventail</p>
     <div id="card-counter" style="text-align:center;color:var(--cyan);font-family:var(--font-mono);font-size:1.1rem;font-weight:bold;margin-bottom:0.5rem;">0 / 5</div>
-    <div id="spread-row" style="position:relative;height:210px;overflow-x:auto;overflow-y:visible;-webkit-overflow-scrolling:touch;"></div>
+    <div id="spread-row" style="position:relative;height:160px;overflow:visible;"></div>
   </div>
 
   <div id="selected-container" style="margin-bottom:2rem;">
@@ -173,6 +173,37 @@ import Layout from '../../../layouts/Layout.astro';
   }
   .spread-card:hover { transform:translateY(-18px)!important;z-index:100!important;box-shadow:0px 12px 20px rgba(0,0,0,0.7),0 0 12px rgba(var(--cyan-rgb),0.5); }
   .spread-card.selected { opacity:0;pointer-events:none;transition:opacity 0.3s ease,transform 0.3s ease; }
+
+  /* ─── Roue verticale (mobile uniquement, ≤640px) ─── */
+  #wheel-viewport {
+    height: 280px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scroll-snap-type: y mandatory;
+    -webkit-overflow-scrolling: touch;
+    perspective: 600px;
+    margin: 0 auto;
+    max-width: 200px;
+  }
+  .wheel-card {
+    width: 56px;
+    height: 100px;
+    margin: 10px auto;
+    background-image: url('/images/oracles/triade-card-back.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 1px solid var(--cyan);
+    border-radius: 6px;
+    cursor: pointer;
+    scroll-snap-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    will-change: transform, opacity;
+  }
+  .wheel-card.selected {
+    opacity: 0 !important;
+    pointer-events: none;
+  }
 </style>
 
 <script is:inline src="/js/triade-data.js"></script>
@@ -199,12 +230,20 @@ import Layout from '../../../layouts/Layout.astro';
 
       const deckSize = 57;
       deckIndices = Array.from({length: deckSize}, (_, i) => i).sort(() => 0.5 - Math.random());
-      
+
+      if (window.innerWidth <= 640) {
+        buildWheel(container, deckSize);
+      } else {
+        buildFan(container, deckSize);
+      }
+    });
+
+    // ─── Desktop : éventail original, inchangé ───
+    function buildFan(container, deckSize) {
       void container.offsetWidth;
       const containerWidth = container.offsetWidth > 0 ? container.offsetWidth : Math.min(window.innerWidth - 40, 1000);
       const cardWidth = 56;
-      const naturalStep = (containerWidth - cardWidth) / (deckSize - 1);
-      const step = containerWidth <= 640 ? Math.max(naturalStep, cardWidth + 8) : naturalStep;
+      const step = (containerWidth - cardWidth) / (deckSize - 1);
 
       deckIndices.forEach((cardIdx, i) => {
         const card = document.createElement('div');
@@ -228,7 +267,58 @@ import Layout from '../../../layouts/Layout.astro';
         });
         container.appendChild(card);
       });
-    });
+    }
+
+    // ─── Mobile : roue verticale 3D (scroll pour parcourir, tap/clavier pour choisir) ───
+    function buildWheel(container, deckSize) {
+      const viewport = document.createElement('div');
+      viewport.id = 'wheel-viewport';
+
+      const spacerH = 90;
+      const topSpacer = document.createElement('div');
+      topSpacer.style.height = spacerH + 'px';
+      viewport.appendChild(topSpacer);
+
+      deckIndices.forEach((cardIdx, i) => {
+        const card = document.createElement('div');
+        card.className = 'wheel-card';
+        card.dataset.index = cardIdx;
+        card.dataset.id = i;
+        card.setAttribute('tabindex', '0');
+        card.setAttribute('role', 'button');
+        card.setAttribute('aria-label', `Carte ${i + 1} sur ${deckSize}, face cachée`);
+        card.addEventListener('click', () => selectCard(card));
+        card.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); selectCard(card); }
+        });
+        viewport.appendChild(card);
+      });
+
+      const bottomSpacer = document.createElement('div');
+      bottomSpacer.style.height = spacerH + 'px';
+      viewport.appendChild(bottomSpacer);
+
+      container.appendChild(viewport);
+
+      let ticking = false;
+      function updateTilt() {
+        const center = viewport.scrollTop + viewport.clientHeight / 2;
+        viewport.querySelectorAll('.wheel-card').forEach(card => {
+          const cardCenter = card.offsetTop + card.offsetHeight / 2;
+          const norm = Math.max(-1.6, Math.min(1.6, (cardCenter - center) / (viewport.clientHeight / 2)));
+          const angle = norm * 55;
+          const scale = Math.max(0.55, 1 - Math.abs(norm) * 0.34);
+          const opacity = Math.max(0.28, 1 - Math.abs(norm) * 0.6);
+          card.style.transform = `rotateX(${angle}deg) scale(${scale})`;
+          card.style.opacity = opacity;
+        });
+        ticking = false;
+      }
+      viewport.addEventListener('scroll', () => {
+        if (!ticking) { requestAnimationFrame(updateTilt); ticking = true; }
+      }, { passive: true });
+      updateTilt();
+    }
 
     const posNames = ['Forces', 'Obstacles', 'Environnement', 'Résultat', 'Synthèse'];
     const posTargets = ['cross-top','cross-left','cross-right','cross-bottom','cross-synth'];

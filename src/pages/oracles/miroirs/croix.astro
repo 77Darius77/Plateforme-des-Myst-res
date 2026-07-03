@@ -30,7 +30,7 @@ import Layout from '../../../layouts/Layout.astro';
   <div id="deck-area" style="margin-top:2rem;position:relative;height:250px;display:flex;justify-content:center;align-items:center;">
     <button id="btn-spread" class="btn-explore" style="z-index:10;">Étaler les cartes ✦</button>
     
-    <div id="spread-container" style="display:none;position:relative;width:100%;height:100%;max-width:800px;margin:0 auto;overflow-x:auto;-webkit-overflow-scrolling:touch;">
+    <div id="spread-container" style="display:none;position:relative;width:100%;height:100%;max-width:800px;margin:0 auto;">
       <p id="instruction-text" style="position:absolute;top:-40px;width:100%;color:var(--gold);font-weight:bold;font-size:1.1rem;">Sélectionnez 5 cartes (0/5)</p>
     </div>
   </div>
@@ -187,6 +187,37 @@ import Layout from '../../../layouts/Layout.astro';
     font-size: 0.8em;
     margin-left: 0.3em;
   }
+
+  /* ─── Roue verticale (mobile uniquement, ≤640px) ─── */
+  #wheel-viewport {
+    height: 280px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scroll-snap-type: y mandatory;
+    -webkit-overflow-scrolling: touch;
+    perspective: 600px;
+    margin: 0 auto;
+    max-width: 200px;
+  }
+  .wheel-card {
+    width: 72px;
+    height: 100px;
+    margin: 10px auto;
+    background-image: url('/images/oracles/miroirs-card-back.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 1px solid var(--gold);
+    border-radius: 6px;
+    cursor: pointer;
+    scroll-snap-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    will-change: transform, opacity;
+  }
+  .wheel-card.selected {
+    opacity: 0 !important;
+    pointer-events: none;
+  }
 </style>
 
 <script is:inline src="/js/miroirs-data.js"></script>
@@ -209,29 +240,37 @@ import Layout from '../../../layouts/Layout.astro';
       newBtnSpread.style.display = 'none';
       const container = document.getElementById('spread-container');
       container.style.display = 'block';
-      
-      container.querySelectorAll('.spread-card').forEach(c => c.remove());
-      
+
+      container.querySelectorAll('.spread-card, #wheel-viewport').forEach(c => c.remove());
+
       const deckSize = window.miroirsData.length;
       deckIndices = Array.from({length: deckSize}, (_, i) => i).sort(() => 0.5 - Math.random());
-      
+
+      if (window.innerWidth <= 640) {
+        buildWheel(container, deckSize);
+      } else {
+        buildFan(container, deckSize);
+      }
+    });
+
+    // ─── Desktop : éventail original, inchangé ───
+    function buildFan(container, deckSize) {
       void container.offsetWidth;
       const containerWidth = container.offsetWidth > 0 ? container.offsetWidth : Math.min(window.innerWidth - 40, 800);
       const cardWidth = 56;
-      const naturalStep = (containerWidth - cardWidth) / (deckSize - 1);
-      const step = containerWidth <= 640 ? Math.max(naturalStep, cardWidth + 8) : naturalStep;
-      
+      const step = (containerWidth - cardWidth) / (deckSize - 1);
+
       for(let i=0; i<deckSize; i++) {
         const card = document.createElement('div');
         card.className = 'spread-card';
         card.style.left = `${i * step}px`;
         card.style.zIndex = i;
-        
+
         const middle = (deckSize - 1) / 2;
         const distanceFromCenter = Math.abs(i - middle);
         const yOffset = (distanceFromCenter * distanceFromCenter) * 0.03;
         const rotation = (i - middle) * (40 / deckSize);
-        
+
         card.style.transform = `translateY(${yOffset}px) rotate(${rotation}deg)`;
         card.dataset.index = deckIndices[i];
         card.dataset.id = i;
@@ -245,7 +284,58 @@ import Layout from '../../../layouts/Layout.astro';
         });
         container.appendChild(card);
       }
-    });
+    }
+
+    // ─── Mobile : roue verticale 3D (scroll pour parcourir, tap/clavier pour choisir) ───
+    function buildWheel(container, deckSize) {
+      const viewport = document.createElement('div');
+      viewport.id = 'wheel-viewport';
+
+      const spacerH = 90;
+      const topSpacer = document.createElement('div');
+      topSpacer.style.height = spacerH + 'px';
+      viewport.appendChild(topSpacer);
+
+      for (let i = 0; i < deckSize; i++) {
+        const card = document.createElement('div');
+        card.className = 'wheel-card';
+        card.dataset.index = deckIndices[i];
+        card.dataset.id = i;
+        card.setAttribute('tabindex', '0');
+        card.setAttribute('role', 'button');
+        card.setAttribute('aria-label', `Carte ${i + 1} sur ${deckSize}, face cachée`);
+        card.addEventListener('click', () => selectCard(card));
+        card.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); selectCard(card); }
+        });
+        viewport.appendChild(card);
+      }
+
+      const bottomSpacer = document.createElement('div');
+      bottomSpacer.style.height = spacerH + 'px';
+      viewport.appendChild(bottomSpacer);
+
+      container.appendChild(viewport);
+
+      let ticking = false;
+      function updateTilt() {
+        const center = viewport.scrollTop + viewport.clientHeight / 2;
+        viewport.querySelectorAll('.wheel-card').forEach(card => {
+          const cardCenter = card.offsetTop + card.offsetHeight / 2;
+          const norm = Math.max(-1.6, Math.min(1.6, (cardCenter - center) / (viewport.clientHeight / 2)));
+          const angle = norm * 55;
+          const scale = Math.max(0.55, 1 - Math.abs(norm) * 0.34);
+          const opacity = Math.max(0.28, 1 - Math.abs(norm) * 0.6);
+          card.style.transform = `rotateX(${angle}deg) scale(${scale})`;
+          card.style.opacity = opacity;
+        });
+        ticking = false;
+      }
+      viewport.addEventListener('scroll', () => {
+        if (!ticking) { requestAnimationFrame(updateTilt); ticking = true; }
+      }, { passive: true });
+      updateTilt();
+    }
 
     function selectCard(cardEl) {
       if(selectedCards.length >= MAX_CARDS) return;
