@@ -196,7 +196,7 @@ const defaultJsonLd = (!jsonLd && !noJsonLd) ? {
 
   <!-- Page-Specific JavaScripts -->
   {scripts.map(src => (
-    <script is:inline src={src}></script>
+    <script is:inline defer src={src}></script>
   ))}
 
   <!-- Scroll to Top Button -->
