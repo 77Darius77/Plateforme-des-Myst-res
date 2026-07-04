@@ -32,9 +32,7 @@ import Layout from '../../../layouts/Layout.astro';
   </header>
 
   <div style="text-align:center;margin-bottom:1.5rem;">
-    <button id="btn-spread" style="padding:0.8rem 2rem;background:transparent;border:2px solid var(--cyan);color:var(--cyan);border-radius:8px;cursor:pointer;font-family:var(--font-mono);font-size:0.95rem;transition:all 0.3s;"
-      onmouseover="this.style.background='var(--cyan)';this.style.color='#0a0a1a';"
-      onmouseout="this.style.background='transparent';this.style.color='var(--cyan)';">
+    <button id="btn-spread" style="padding:0.8rem 2rem;background:transparent;border:2px solid var(--cyan);color:var(--cyan);border-radius:8px;cursor:pointer;font-family:var(--font-mono);font-size:0.95rem;transition:all 0.3s;">
       ⊕ BRASSER ET TIRER
     </button>
   </div>
@@ -118,9 +116,7 @@ import Layout from '../../../layouts/Layout.astro';
   </div>
 
   <div id="reveal-container" style="display:none;text-align:center;margin-bottom:2rem;">
-    <button id="btn-reveal" style="padding:0.8rem 2rem;background:transparent;border:2px solid var(--gold);color:var(--gold);border-radius:8px;cursor:pointer;font-family:var(--font-mono);font-size:0.95rem;transition:all 0.3s;"
-      onmouseover="this.style.background='var(--gold)';this.style.color='#0a0a1a';"
-      onmouseout="this.style.background='transparent';this.style.color='var(--gold)';">
+    <button id="btn-reveal" style="padding:0.8rem 2rem;background:transparent;border:2px solid var(--gold);color:var(--gold);border-radius:8px;cursor:pointer;font-family:var(--font-mono);font-size:0.95rem;transition:all 0.3s;">
       ✦ RÉVÉLER LES CARTES
     </button>
   </div>
@@ -206,6 +202,11 @@ import Layout from '../../../layouts/Layout.astro';
   }
 </style>
 
+<style>
+  /* Remplace onmouseover/onmouseout inline des boutons (CSP script-src). */
+  #btn-spread:hover { background: var(--cyan); color: #0a0a1a; }
+  #btn-reveal:hover { background: var(--gold); color: #0a0a1a; }
+</style>
 <script is:inline src="/js/triade-data.js"></script>
 <script is:inline src="/js/triade-interp.js"></script>
 <script is:inline src="/js/triade-planes.js"></script>
@@ -369,7 +370,7 @@ import Layout from '../../../layouts/Layout.astro';
       let html = '<div style="margin-top:2rem;"><div style="display:flex;gap:0.5rem;margin-bottom:1rem;flex-wrap:wrap;">';
       planes.forEach(p => {
         const proj = window.triadePlanes.projectSpread(cards, p);
-        html += `<button onclick="switchPlane('${p}')" id="tab-${p}" class="plane-tab" style="padding:0.4rem 1rem;border:1px solid var(--cyan);border-radius:6px;background:${p==='personnel'?'rgba(var(--cyan-rgb),0.15)':'transparent'};color:var(--cyan);cursor:pointer;font-family:var(--font-mono);font-size:0.78rem;">${proj.planeLabel}</button>`;
+        html += `<button data-plane="${p}" id="tab-${p}" class="plane-tab" style="padding:0.4rem 1rem;border:1px solid var(--cyan);border-radius:6px;background:${p==='personnel'?'rgba(var(--cyan-rgb),0.15)':'transparent'};color:var(--cyan);cursor:pointer;font-family:var(--font-mono);font-size:0.78rem;">${proj.planeLabel}</button>`;
       });
       html += '</div><div id="plane-content"></div></div>';
       setTimeout(() => { switchPlane('personnel'); }, 100);
@@ -397,6 +398,12 @@ import Layout from '../../../layouts/Layout.astro';
   }
 
   window.addEventListener('DOMContentLoaded', initBellineSpread);
+
+  // Delegation d'evenement pour les onglets de plan (remplace onclick inline, CSP).
+  document.addEventListener('click', function (ev) {
+    var tab = ev.target.closest('.plane-tab');
+    if (tab && tab.dataset.plane) switchPlane(tab.dataset.plane);
+  });
 </script>
 
 </Layout>

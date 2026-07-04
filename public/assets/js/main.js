@@ -21,6 +21,18 @@ document.addEventListener('DOMContentLoaded', function () {
   const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
   updateThemeIcon(currentTheme);
 
+  // ---- Theme toggle button (remplace onclick="toggleTheme()" inline, CSP) ----
+  const themeToggleBtn = document.getElementById('themeToggle');
+  if (themeToggleBtn) {
+    themeToggleBtn.addEventListener('click', toggleTheme);
+  }
+
+  // ---- Prévention de soumission des formulaires sans JS de reload ----
+  // Remplace onsubmit="return false;" inline (CSP script-src sans unsafe-inline).
+  document.querySelectorAll('form[data-prevent-submit]').forEach(function (form) {
+    form.addEventListener('submit', function (e) { e.preventDefault(); });
+  });
+
   // ---- Skip-link focus management ----
   const skipLink = document.querySelector('.skip-link');
   if (skipLink) {
@@ -65,6 +77,10 @@ document.addEventListener('DOMContentLoaded', function () {
   // ---- Scroll Top Button ----
   const scrollBtn = document.getElementById('scrollTopBtn');
   if (scrollBtn) {
+    // Remplace onclick="window.scrollTo(...)" inline (CSP script-src).
+    scrollBtn.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
     window.addEventListener('scroll', function () {
       if (window.scrollY > 400) {
         scrollBtn.style.opacity = '1';

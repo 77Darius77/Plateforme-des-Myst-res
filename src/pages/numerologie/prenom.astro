@@ -57,7 +57,7 @@ const jsonLd = {
     <p class="slate">Entrez votre prénom usuel (ou votre premier prénom à l'état civil) pour révéler son message énergétique caché.</p>
   </div>
 
-  <form class="pyth-form" id="prenom-form" onsubmit="return false;">
+  <form class="pyth-form" id="prenom-form" data-prevent-submit>
     <div class="pyth-form-group">
       <label class="pyth-label" for="input-prenom">Votre Prénom</label>
       <input type="text" id="input-prenom" class="pyth-input pyth-input--full" placeholder="ex. Alexandre ou Marie" aria-label="Prénom à analyser" autocomplete="given-name" required>

@@ -51,7 +51,7 @@ function isActive(linkHref: string, path: string): boolean {
           <a href={href} class={isActive(href, currentPath) ? 'active' : ''}>{text}</a>
         ))}
       </nav>
-      <button id="themeToggle" onclick="toggleTheme()" class="theme-btn" aria-label="Changer le thème">🌙</button>
+      <button id="themeToggle" type="button" class="theme-btn" aria-label="Changer le thème">🌙</button>
       <button
         id="menuToggle"
         type="button"

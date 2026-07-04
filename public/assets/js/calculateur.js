@@ -442,6 +442,20 @@ document.addEventListener('DOMContentLoaded', function() {
   initFromURL();
   buildArchetypesGrid();
 
+  /* ─── Boutons (remplace onclick inline, CSP script-src stricte) ─── */
+  const calcBtn = document.getElementById('calcBtn');
+  if (calcBtn) {
+    calcBtn.addEventListener('click', reveal);
+  }
+  const exampleBtn = document.getElementById('exampleBtn');
+  if (exampleBtn) {
+    exampleBtn.addEventListener('click', function() {
+      const di = document.getElementById('dateInput');
+      if (di) di.value = '23/10/1990';
+      reveal();
+    });
+  }
+
   /* ─── Feedback visuel on-input ─── */
   const dateInput = document.getElementById('dateInput');
   if (dateInput) {

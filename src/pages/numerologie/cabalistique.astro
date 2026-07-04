@@ -73,8 +73,8 @@ const jsonLd = {
 
   <div class="calc-form">
     <input type="text" id="dateInput" inputmode="numeric" pattern="\d{2}/\d{2}/\d{4}" placeholder="JJ/MM/AAAA" maxlength="10" autocomplete="off" aria-label="Date de naissance au format JJ/MM/AAAA">
-    <button type="button" onclick="document.getElementById('dateInput').value='23/10/1990';reveal()" style="background:transparent;border:1px solid #334155;color:#94a3b8;padding:0.9rem 1.2rem;border-radius:8px;cursor:pointer;font-family:var(--font-mono);font-size:0.85rem;">Essayer avec un exemple</button>
-    <button id="calcBtn" onclick="reveal()" aria-label="Calculer ma numérologie">Révéler mes nombres ✦</button>
+    <button type="button" id="exampleBtn" style="background:transparent;border:1px solid #334155;color:#94a3b8;padding:0.9rem 1.2rem;border-radius:8px;cursor:pointer;font-family:var(--font-mono);font-size:0.85rem;">Essayer avec un exemple</button>
+    <button type="button" id="calcBtn" aria-label="Calculer ma numérologie">Révéler mes nombres ✦</button>
   </div>
   <div class="error-msg" id="errorMsg"></div>
 
