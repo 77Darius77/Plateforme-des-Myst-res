@@ -39,19 +39,29 @@ function isActive(linkHref: string, path: string): boolean {
         <span class="symbol">◈</span>
         <span class="text">{logo}</span>
       </a>
-      <nav>
+      <nav id="mainNav">
         {navLinks.map(({ href, text }) => (
           <a href={href} class={isActive(href, currentPath) ? 'active' : ''}>{text}</a>
         ))}
       </nav>
     </div>
     <div class="header-right">
-      <nav>
+      <nav id="secondaryNav">
         {rightNavLinks.map(({ href, text }) => (
           <a href={href} class={isActive(href, currentPath) ? 'active' : ''}>{text}</a>
         ))}
       </nav>
       <button id="themeToggle" onclick="toggleTheme()" class="theme-btn" aria-label="Changer le thème">🌙</button>
+      <button
+        id="menuToggle"
+        type="button"
+        class="menu-toggle"
+        aria-expanded="false"
+        aria-controls="mainNav secondaryNav"
+        aria-label="Ouvrir le menu"
+      >
+        <span aria-hidden="true">☰</span>
+      </button>
     </div>
   </div>
 </header>
@@ -73,3 +83,52 @@ function isActive(linkHref: string, path: string): boolean {
     border-color: rgba(223,178,108,0.55);
   }
 </style>
+
+<script>
+  const menuToggle = document.getElementById('menuToggle');
+  const headerEl = menuToggle?.closest('header');
+  const menuToggleIcon = menuToggle?.querySelector('span');
+
+  function closeMobileMenu() {
+    if (!headerEl || !menuToggle) return;
+    headerEl.classList.remove('nav-open');
+    menuToggle.setAttribute('aria-expanded', 'false');
+    menuToggle.setAttribute('aria-label', 'Ouvrir le menu');
+    if (menuToggleIcon) menuToggleIcon.textContent = '☰';
+  }
+
+  function openMobileMenu() {
+    if (!headerEl || !menuToggle) return;
+    headerEl.classList.add('nav-open');
+    menuToggle.setAttribute('aria-expanded', 'true');
+    menuToggle.setAttribute('aria-label', 'Fermer le menu');
+    if (menuToggleIcon) menuToggleIcon.textContent = '✕';
+  }
+
+  if (headerEl && menuToggle) {
+    menuToggle.addEventListener('click', () => {
+      if (headerEl.classList.contains('nav-open')) {
+        closeMobileMenu();
+      } else {
+        openMobileMenu();
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && headerEl.classList.contains('nav-open')) {
+        closeMobileMenu();
+        menuToggle.focus();
+      }
+    });
+
+    // Sécurité : si le viewport repasse en desktop pendant que le menu est
+    // ouvert, on réinitialise l'état (les règles CSS sont de toute façon
+    // scopées à @media (max-width: 768px), donc ceci n'affecte jamais le
+    // rendu desktop, seulement la cohérence de l'état ARIA).
+    window.addEventListener('resize', () => {
+      if (window.innerWidth >= 768 && headerEl.classList.contains('nav-open')) {
+        closeMobileMenu();
+      }
+    });
+  }
+</script>

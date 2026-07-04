@@ -407,6 +407,8 @@ import Layout from '../../../layouts/Layout.astro';
 
       const imgEl = document.getElementById(`img-${posKey}`);
       imgEl.src = `/images/oracles/triade/card_${cardData.id}.webp`;
+      imgEl.srcset = `/images/oracles/triade/card_${cardData.id}-300w.webp 300w, /images/oracles/triade/card_${cardData.id}-450w.webp 450w, /images/oracles/triade/card_${cardData.id}-600w.webp 600w, /images/oracles/triade/card_${cardData.id}.webp 1400w`;
+      imgEl.sizes = "(max-width: 900px) 100px, 135px";
       imgEl.alt = cardData.name;
       imgEl.onerror = function() { this.style.display = 'none'; };
 

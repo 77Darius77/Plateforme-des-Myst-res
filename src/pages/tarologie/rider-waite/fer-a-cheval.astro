@@ -433,8 +433,11 @@ import Layout from '../../../layouts/Layout.astro';
         setTimeout(() => {
           for(let i=1; i<=MAX_CARDS; i++) {
             const cardData = selectedCards[i-1];
-            document.getElementById(`img-${i}`).src = cardData.img;
-            document.getElementById(`img-${i}`).alt = cardData.name;
+            const imgEl = document.getElementById(`img-${i}`);
+            imgEl.src = cardData.img;
+            imgEl.srcset = `${cardData.img.replace('.webp', '-300w.webp')} 300w, ${cardData.img.replace('.webp', '-450w.webp')} 450w, ${cardData.img.replace('.webp', '-600w.webp')} 600w, ${cardData.img} 960w`;
+            imgEl.sizes = "170px";
+            imgEl.alt = cardData.name;
             document.getElementById(`name-${i}`).innerText = cardData.name;
             document.getElementById(`mean-${i}`).innerText = cardData.meaning;
             setTimeout(() => {
