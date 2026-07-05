@@ -45,7 +45,7 @@ const jsonLd = {
 
   <!-- ═══════════ CHOIX DU TIRAGE ═══════════ -->
   <section id="spread-selector" style="margin-bottom:3rem;">
-    <h2 style="text-align:center;font-size:1.4rem;color:var(--gold);margin-bottom:1.5rem;font-family:var(--font-mono);">✦ Choisissez votre Méthode de Tirage ✦</h2>
+    <h2 style="text-align:center;font-size:1.4rem;color:var(--gold-text);margin-bottom:1.5rem;font-family:var(--font-mono);">✦ Choisissez votre Méthode de Tirage ✦</h2>
     <div class="selector-grid">
       <div class="selector-card active" data-spread="quotidien">
         <div class="sel-icon">🏇</div>
@@ -73,7 +73,7 @@ const jsonLd = {
   <!-- ═══════════ ZONE DE TIRAGE (INTERACTIF) ═══════════ -->
   <section id="table-area" style="background:rgba(255,255,255,0.02); border:1px solid rgba(212,175,55,0.1); border-radius:12px; padding:2rem; min-height:300px; margin-bottom:3rem; position:relative;">
     <div id="deck-status" style="text-align:center; margin-bottom:1.5rem;">
-      <p id="deck-instruction" style="color:var(--gold); font-family:var(--font-mono); font-size:1.1rem; font-weight:bold;">Préparez vos cartes en cliquant sur le bouton ci-dessous</p>
+      <p id="deck-instruction" style="color:var(--gold-text); font-family:var(--font-mono); font-size:1.1rem; font-weight:bold;">Préparez vos cartes en cliquant sur le bouton ci-dessous</p>
     </div>
 
     <!-- Pile / Boutons d'action -->
@@ -121,7 +121,7 @@ const jsonLd = {
     transform: translateY(-4px);
   }
   .selector-card.active {
-    border-color: var(--gold);
+    border-color: var(--gold-text);
     background: rgba(212, 175, 55, 0.08);
     box-shadow: 0 0 15px rgba(212, 175, 55, 0.15);
   }
@@ -131,7 +131,7 @@ const jsonLd = {
   }
   .selector-card h3 {
     font-size: 1.1rem;
-    color: var(--gold);
+    color: var(--gold-text);
     margin-bottom: 0.5rem;
     font-family: var(--font-mono);
   }
@@ -277,7 +277,7 @@ const jsonLd = {
   }
   .card-back-title {
     font-size: 0.9rem;
-    color: var(--gold);
+    color: var(--gold-text);
     font-weight: bold;
     margin: 0 0 0.3rem;
     text-align: center;
@@ -325,7 +325,7 @@ const jsonLd = {
   .grid-carre-de-neuf .card-name-below {
     font-family: var(--font-mono);
     font-size: 0.79rem;
-    color: var(--gold);
+    color: var(--gold-text);
     text-align: center;
     line-height: 1.2;
     opacity: 0;
@@ -430,15 +430,15 @@ const jsonLd = {
   .tr-section { margin-bottom: 2.5rem; }
   .tr-header { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1.5rem; }
   .tr-star { color: var(--gold); font-size: 1.2rem; }
-  .tr-title { font-family: var(--font-mono); color: var(--gold); font-size: 1.3rem; margin: 0; }
+  .tr-title { font-family: var(--font-mono); color: var(--gold-text); font-size: 1.3rem; margin: 0; }
   .tr-intro { font-size: 0.95rem; line-height: 1.6; color: var(--text-muted); margin-bottom: 1.5rem; }
   .tr-divider { height: 1px; background: rgba(212,175,55,0.15); margin: 1.5rem 0; }
   .tr-entry { margin-bottom: 1.5rem; }
   .tr-entry-head { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; margin-bottom: 0.5rem; }
-  .tr-pos { font-family: var(--font-mono); font-size: 0.75rem; color: var(--gold); text-transform: uppercase; letter-spacing: 1px; }
+  .tr-pos { font-family: var(--font-mono); font-size: 0.75rem; color: var(--gold-text); text-transform: uppercase; letter-spacing: 1px; }
   .tr-card-nm { font-weight: bold; font-size: 1.05rem; color: var(--text); }
   .tr-entry-text { font-size: 0.9rem; line-height: 1.6; color: var(--text); margin: 0; }
-  .tr-sub { font-family: var(--font-mono); color: var(--gold); font-size: 1.1rem; margin-top: 2rem; margin-bottom: 1rem; }
+  .tr-sub { font-family: var(--font-mono); color: var(--gold-text); font-size: 1.1rem; margin-top: 2rem; margin-bottom: 1rem; }
   .tr-pair { background: rgba(255,255,255,0.01); border: 1px dashed rgba(212,175,55,0.2); border-radius: 8px; padding: 1.2rem; margin-bottom: 1.5rem; }
   .tr-pair-lbl { font-family: var(--font-mono); font-size: 0.8rem; color: var(--rose); text-transform: uppercase; display: block; margin-bottom: 0.5rem; }
   .tr-pair-txt { font-size: 0.9rem; line-height: 1.6; margin: 0; color: var(--text); }
@@ -449,25 +449,25 @@ const jsonLd = {
   .tr-planes-tabs { display: flex; gap: 0.5rem; border-bottom: 1px solid rgba(212,175,55,0.15); margin-bottom: 1.5rem; }
   .tr-plane-tab { background: none; border: none; border-bottom: 2px solid transparent; color: var(--text-muted); padding: 0.8rem 1.2rem; cursor: pointer; font-family: var(--font-mono); font-size: 0.85rem; transition: all 0.3s; }
   .tr-plane-tab:hover { color: var(--text); }
-  .tr-plane-tab.active { color: var(--gold); border-bottom-color: var(--gold); }
+  .tr-plane-tab.active { color: var(--gold-text); border-bottom-color: var(--gold-text); }
   .tr-plane-pane { display: none; }
   .tr-plane-pane.active { display: block; }
   
   .tr-plane-header { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem; }
   .tr-plane-icon { font-size: 1.2rem; color: var(--gold); }
-  .tr-plane-title { font-family: var(--font-mono); color: var(--gold); font-size: 1.15rem; margin: 0; }
+  .tr-plane-title { font-family: var(--font-mono); color: var(--gold-text); font-size: 1.15rem; margin: 0; }
   .tr-plane-intro { font-size: 0.9rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 1.5rem; }
   
   .tr-plane-entry { margin-bottom: 1.2rem; padding-bottom: 1.2rem; border-bottom: 1px dashed rgba(255,255,255,0.05); }
   .tr-plane-entry-head { display: flex; align-items: center; gap: 0.8rem; flex-wrap: wrap; margin-bottom: 0.4rem; }
-  .tr-plane-pos { font-family: var(--font-mono); font-size: 0.7rem; color: var(--gold); text-transform: uppercase; }
+  .tr-plane-pos { font-family: var(--font-mono); font-size: 0.7rem; color: var(--gold-text); text-transform: uppercase; }
   .tr-plane-card { font-weight: bold; font-size: 0.95rem; color: var(--text); }
-  .tr-plane-kw { background: rgba(212,175,55,0.1); border: 1px solid rgba(212,175,55,0.25); color: var(--gold); font-size: 0.65rem; padding: 0.15rem 0.4rem; border-radius: 4px; font-family: var(--font-mono); }
+  .tr-plane-kw { background: rgba(212,175,55,0.1); border: 1px solid rgba(212,175,55,0.25); color: var(--gold-text); font-size: 0.65rem; padding: 0.15rem 0.4rem; border-radius: 4px; font-family: var(--font-mono); }
   .tr-plane-text { font-size: 0.85rem; line-height: 1.5; color: var(--text); margin: 0; }
 
   .tr-plane-synth, .tr-plane-conseil, .tr-plane-question { margin-top: 1.5rem; padding: 1rem; border-radius: 8px; font-size: 0.85rem; line-height: 1.5; }
   .tr-plane-synth { background: rgba(212,175,55,0.03); border: 1px solid rgba(212,175,55,0.1); }
-  .tr-plane-synth-lbl { font-family: var(--font-mono); color: var(--gold); font-weight: bold; display: block; margin-bottom: 0.3rem; text-transform: uppercase; font-size: 0.75rem; }
+  .tr-plane-synth-lbl { font-family: var(--font-mono); color: var(--gold-text); font-weight: bold; display: block; margin-bottom: 0.3rem; text-transform: uppercase; font-size: 0.75rem; }
   .tr-plane-conseil { background: rgba(16,185,129,0.03); border: 1px solid rgba(16,185,129,0.1); }
   .tr-plane-conseil-lbl { font-family: var(--font-mono); color: var(--emerald); font-weight: bold; display: block; margin-bottom: 0.3rem; text-transform: uppercase; font-size: 0.75rem; }
   .tr-plane-question { background: rgba(244,63,94,0.03); border: 1px solid rgba(244,63,94,0.1); }

@@ -9,19 +9,19 @@
 .tr-outer { text-align: left; }
 .tr-section { background: rgba(255,255,255,0.03); border: 1px solid rgba(212,175,55,0.15); border-radius: 12px; padding: 2rem; margin-top: 1rem; }
 .tr-header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.6rem; }
-.tr-star { color: var(--gold); font-size: 1.2rem; flex-shrink: 0; }
-.tr-title { color: var(--gold); font-size: 1.25rem; margin: 0; font-weight: 600; letter-spacing: 0.02em; }
+.tr-star { color: var(--gold-text); font-size: 1.2rem; flex-shrink: 0; }
+.tr-title { color: var(--gold-text); font-size: 1.25rem; margin: 0; font-weight: 600; letter-spacing: 0.02em; }
 .tr-intro { font-size: 0.9rem; color: var(--slate, #94a3b8); line-height: 1.7; margin: 0 0 0.5rem; font-style: italic; }
 .tr-divider { border: none; border-top: 1px solid rgba(212,175,55,0.12); margin: 1.4rem 0; }
 .tr-entry { padding: 0.9rem 0; border-bottom: 1px solid rgba(255,255,255,0.04); }
 .tr-entry:last-of-type { border-bottom: none; }
 .tr-entry-head { display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.4rem; flex-wrap: wrap; }
-.tr-pos { font-family: var(--font-mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gold); font-weight: 600; flex-shrink: 0; }
+.tr-pos { font-family: var(--font-mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gold-text); font-weight: 600; flex-shrink: 0; }
 .tr-card-nm { font-size: 0.97rem; font-weight: 600; color: var(--text, #e2e8f0); }
 .tr-entry-text { font-size: 0.87rem; line-height: 1.75; color: var(--slate, #94a3b8); margin: 0; }
-.tr-sub { font-family: var(--font-mono); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gold); font-weight: 600; margin: 0 0 0.8rem; }
+.tr-sub { font-family: var(--font-mono); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gold-text); font-weight: 600; margin: 0 0 0.8rem; }
 .tr-pair { background: rgba(212,175,55,0.04); border-left: 2px solid rgba(212,175,55,0.35); border-radius: 0 6px 6px 0; padding: 0.7rem 1rem; margin-bottom: 0.6rem; }
-.tr-pair-lbl { display: block; font-family: var(--font-mono); font-size: 0.78rem; color: var(--gold); font-weight: 600; margin-bottom: 0.3rem; }
+.tr-pair-lbl { display: block; font-family: var(--font-mono); font-size: 0.78rem; color: var(--gold-text); font-weight: 600; margin-bottom: 0.3rem; }
 .tr-pair-txt { font-size: 0.85rem; line-height: 1.7; color: var(--slate, #94a3b8); margin: 0; }
 .tr-synth { font-size: 0.9rem; line-height: 1.8; color: var(--slate, #94a3b8); margin: 0; }
 .tr-triad { background: rgba(183,139,250,0.05); border-left-color: rgba(183,139,250,0.4); }
@@ -50,11 +50,11 @@
   cursor: pointer;
   transition: all 0.2s ease;
 }
-.tr-plane-tab:hover { border-color: rgba(212,175,55,0.5); color: var(--gold); }
+.tr-plane-tab:hover { border-color: rgba(212,175,55,0.5); color: var(--gold-text); }
 .tr-plane-tab.active {
   background: rgba(212,175,55,0.12);
   border-color: var(--gold);
-  color: var(--gold);
+  color: var(--gold-text);
 }
 .tr-planes-content { position: relative; }
 .tr-plane-pane { display: none; }
@@ -77,13 +77,13 @@
   gap: 0.6rem;
   margin-bottom: 0.6rem;
 }
-.tr-plane-icon { font-size: 1.1rem; color: var(--gold); }
+.tr-plane-icon { font-size: 1.1rem; color: var(--gold-text); }
 .tr-plane-title {
   font-family: var(--font-mono);
   font-size: 0.85rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: var(--gold);
+  color: var(--gold-text);
   margin: 0;
   font-weight: 600;
 }
@@ -112,7 +112,7 @@
   font-size: 0.7rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: var(--gold);
+  color: var(--gold-text);
   font-weight: 600;
 }
 .tr-plane-kw {
@@ -122,7 +122,7 @@
   background: rgba(212,175,55,0.08);
   border: 1px solid rgba(212,175,55,0.2);
   border-radius: 4px;
-  color: var(--gold);
+  color: var(--gold-text);
   font-style: italic;
 }
 .tr-plane-text {
@@ -142,7 +142,7 @@
   font-size: 0.72rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: var(--gold);
+  color: var(--gold-text);
   font-weight: 600;
   margin-bottom: 0.4rem;
 }

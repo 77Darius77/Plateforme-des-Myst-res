@@ -8,8 +8,12 @@
   --bg-card: #0f131e;
   --bg-card-hover: #151b2a;
   --border: rgba(255, 255, 255, 0.07);
+  /* --gold : usage fond / bordure / icônes décoratives (ne pas utiliser pour du texte en mode clair, contraste insuffisant) */
   --gold: #dfb26c;
   --gold-dim: #c59750;
+  /* --gold-text : couleur de police dorée — alias de --gold en mode sombre (déjà ≥4.5:1),
+     redéfini en mode clair (cf. [data-theme="light"]) pour respecter le contraste WCAG AA */
+  --gold-text: var(--gold);
   --emerald: #3dd399;
   --cyan: #3bd3ee;
   --cyan-rgb: 59, 211, 238;
@@ -21,7 +25,8 @@
   --text: #f1f5f9;
   --text-dim: #94a3b8;
   --text-secondary: #cbd5e1;
-  --text-muted: #64748b;
+  /* --text-muted (sombre) : #7484a0 choisi pour repasser ≥4.5:1 sur fond --bg-deep (#080a10) — voir scripts/contrast-check.mjs */
+  --text-muted: #7484a0;
   --font-mono: 'Fira Code', 'Courier New', Courier, monospace;
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
   --radius: 16px;
@@ -228,7 +233,7 @@ h3 {
   letter-spacing: -0.01em;
 }
 
-.gold { color: var(--gold); }
+.gold { color: var(--gold-text); }
 .emerald { color: var(--emerald); }
 .cyan { color: var(--cyan); }
 .slate { color: var(--slate); }
@@ -242,8 +247,11 @@ h3 {
   --text: #020617;
   --text-dim: #1e293b;
   --text-muted: #475569;
+  /* --gold reste #b4853b pour fonds/bordures (3.10:1 en texte, insuffisant WCAG AA) */
   --gold: #b4853b;
   --gold-dim: #8b6020;
+  /* --gold-text réutilise --gold-dim (#8b6020) : ≥4.5:1 sur --bg-deep/--bg-card clairs — voir scripts/contrast-check.mjs */
+  --gold-text: var(--gold-dim);
   --emerald: #059669;
   --cyan: #0891b2;
   --cyan-rgb: 8, 145, 178;

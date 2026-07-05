@@ -116,7 +116,7 @@ import Layout from '../../../layouts/Layout.astro';
   </div>
 
   <div id="reveal-container" style="display:none;text-align:center;margin-bottom:2rem;">
-    <button id="btn-reveal" style="padding:0.8rem 2rem;background:transparent;border:2px solid var(--gold);color:var(--gold);border-radius:8px;cursor:pointer;font-family:var(--font-mono);font-size:0.95rem;transition:all 0.3s;">
+    <button id="btn-reveal" style="padding:0.8rem 2rem;background:transparent;border:2px solid var(--gold);color:var(--gold-text);border-radius:8px;cursor:pointer;font-family:var(--font-mono);font-size:0.95rem;transition:all 0.3s;">
       ✦ RÉVÉLER LES CARTES
     </button>
   </div>
@@ -133,8 +133,8 @@ import Layout from '../../../layouts/Layout.astro';
   .cross-row { display:flex;gap:1.5rem;align-items:center;justify-content:center; }
   .cross-center { margin:0 0.5rem; }
   .tarot-card-container { width: 200px; }
-  .tarot-pos { font-family:var(--font-mono);font-size:0.75rem;color:var(--gold);margin-bottom:0.4rem;text-transform:uppercase;letter-spacing:1px; }
-  .tarot-pos-center { font-family:var(--font-mono);font-size:0.75rem;color:var(--gold);margin-bottom:0.4rem;text-transform:uppercase;letter-spacing:1px;font-weight:bold; }
+  .tarot-pos { font-family:var(--font-mono);font-size:0.75rem;color:var(--gold-text);margin-bottom:0.4rem;text-transform:uppercase;letter-spacing:1px; }
+  .tarot-pos-center { font-family:var(--font-mono);font-size:0.75rem;color:var(--gold-text);margin-bottom:0.4rem;text-transform:uppercase;letter-spacing:1px;font-weight:bold; }
   .tarot-card { width:100%;height:320px;perspective:1000px; }
   .card-inner { position:relative;width:100%;height:100%;text-align:center;transition:transform 0.8s ease;transform-style:preserve-3d; }
   .tarot-card.flipped .card-inner { transform:rotateY(180deg); }
@@ -145,7 +145,7 @@ import Layout from '../../../layouts/Layout.astro';
   .filled-slot { background-image:url('/images/oracles/triade-card-back.svg');background-size:cover;background-position:center;background-repeat:no-repeat;border:2px solid var(--cyan);box-shadow:0 0 10px rgba(var(--cyan-rgb),0.3); }
 
   .card-back { background:var(--bg-card);transform:rotateY(180deg);box-shadow:0 8px 16px rgba(0,0,0,0.6);overflow:hidden;justify-content:center;align-items:center;padding:0; }
-  .card-back h3 { font-size:1rem;margin-bottom:0.25rem;padding-bottom:0.25rem;width:100%;color:var(--gold); }
+  .card-back h3 { font-size:1rem;margin-bottom:0.25rem;padding-bottom:0.25rem;width:100%;color:var(--gold-text); }
   .card-img { width:98%;height:auto;max-height:97%;border-radius:4px;object-fit:contain;margin:0 0 0.2rem; }
   .meaning { font-size:0.78rem;line-height:1.4;color:var(--text-muted);text-align:left; }
 
@@ -385,7 +385,7 @@ import Layout from '../../../layouts/Layout.astro';
     let html = `<p style="color:var(--text-muted);font-style:italic;margin-bottom:1rem;">${proj.intro}</p>`;
     proj.entries.forEach(e => {
       html += `<div style="margin-bottom:1rem;padding:0.8rem;background:rgba(var(--cyan-rgb),0.04);border-radius:8px;border-left:3px solid var(--cyan);">
-        <strong style="color:var(--gold);">${e.cardName}</strong> <span style="color:var(--cyan);font-size:0.8rem;">· ${e.kw}</span>
+        <strong style="color:var(--gold-text);">${e.cardName}</strong> <span style="color:var(--cyan);font-size:0.8rem;">· ${e.kw}</span>
         <p style="color:var(--text-muted);font-size:0.85rem;margin:0.3rem 0 0;">${e.text}</p>
       </div>`;
     });

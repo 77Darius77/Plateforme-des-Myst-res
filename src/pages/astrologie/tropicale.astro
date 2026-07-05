@@ -208,7 +208,7 @@ const jsonLd = {
     <div id="atComboBlock"></div>
     <p class="at-disclaimer">
       ⚠ L'ascendant est calculé en temps universel (UT) avec correction automatique du fuseau horaire et de l'heure d'été/hiver —
-      fuseau appliqué : <span id="atTzNote" style="color:var(--gold);font-weight:600;"></span>.
+      fuseau appliqué : <span id="atTzNote" style="color:var(--gold-text);font-weight:600;"></span>.
       Approximation : ±5 à 10° selon l'heure exacte et le système de maisons.
       Pour un thème natal certifié, utilisez un logiciel astral dédié.
     </p>
@@ -644,7 +644,7 @@ const jsonLd = {
   transition: border-color 0.2s;
 }
 .at-select-native:hover { border-color: #64748b; }
-.at-select-native:focus { border-color: var(--gold); outline: 2px solid rgba(212,175,55,0.18); outline-offset: 2px; }
+.at-select-native:focus { border-color: var(--gold-text); outline: 2px solid rgba(212,175,55,0.18); outline-offset: 2px; }
 .at-select-native option,
 .at-select-native optgroup { background: #1e293b; color: var(--text); }
 .at-select-chevron { position: absolute; right: 0.75rem; top: 50%; transform: translateY(-50%); color: var(--gold); pointer-events: none; font-size: 0.95rem; }
@@ -670,7 +670,7 @@ const jsonLd = {
 /* ─── Tableau ─── */
 .at-table-wrap { overflow-x: auto; margin-bottom: 2rem; }
 .at-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
-.at-table th { padding: 0.45rem 0.7rem; border-bottom: 1px solid rgba(255,255,255,0.08); color: var(--gold); font-family: var(--font-mono); font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.05em; text-align: left; font-weight: 600; }
+.at-table th { padding: 0.45rem 0.7rem; border-bottom: 1px solid rgba(255,255,255,0.08); color: var(--gold-text); font-family: var(--font-mono); font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.05em; text-align: left; font-weight: 600; }
 .at-table td { padding: 0.42rem 0.7rem; border-bottom: 1px solid rgba(255,255,255,0.05); color: var(--slate); line-height: 1.5; }
 .at-table tr:last-child td { border-bottom: none; }
 .at-sym { font-size: 1.1rem; }
@@ -713,7 +713,7 @@ const jsonLd = {
 /* ─── Méthode blocks ─── */
 .at-method-block { max-width: 860px; margin: 1.5rem auto; padding: 1.5rem; background: rgba(255,255,255,0.02); border: 1px solid #1e293b; border-radius: 12px; }
 .at-method-h3 { font-size: 1rem; font-family: var(--font-mono); color: var(--text); margin-bottom: 0.8rem; }
-.at-method-sub { font-size: 0.85rem; font-family: var(--font-mono); color: var(--gold); margin: 1.4rem 0 0.5rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; }
+.at-method-sub { font-size: 0.85rem; font-family: var(--font-mono); color: var(--gold-text); margin: 1.4rem 0 0.5rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; }
 .at-method-p { font-size: 0.9rem; line-height: 1.75; color: var(--slate); margin-bottom: 0.7rem; }
 .at-method-note { font-size: 0.83rem; color: var(--text-muted); margin-top: 1rem; padding: 0.7rem 1rem; background: rgba(212,175,55,0.04); border-left: 2px solid rgba(212,175,55,0.3); border-radius: 0 6px 6px 0; line-height: 1.65; }
 
@@ -728,7 +728,7 @@ const jsonLd = {
 .at-asp-orb { font-family: var(--font-mono); font-size: 0.68rem; color: var(--text-muted); }
 .at-asp-desc { font-size: 0.78rem; color: var(--slate); line-height: 1.55; margin-top: 0.3rem; }
 .at-asp-conj { background: rgba(212,175,55,0.08); border: 1px solid rgba(212,175,55,0.25); }
-.at-asp-conj .at-asp-name, .at-asp-conj .at-asp-deg { color: var(--gold); }
+.at-asp-conj .at-asp-name, .at-asp-conj .at-asp-deg { color: var(--gold-text); }
 .at-asp-sex { background: rgba(61,211,153,0.07); border: 1px solid rgba(61,211,153,0.22); }
 .at-asp-sex .at-asp-name, .at-asp-sex .at-asp-deg { color: var(--emerald); }
 .at-asp-carre { background: rgba(251,129,149,0.07); border: 1px solid rgba(251,129,149,0.22); }
@@ -741,22 +741,22 @@ const jsonLd = {
 /* ─── Footer carte résultat (décan) ─── */
 .at-rc-footer { display: flex; gap: 0.6rem; align-items: center; flex-wrap: wrap; margin-top: 0.8rem; }
 .at-rc-deg { font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-muted); }
-.at-decan-badge { font-family: var(--font-mono); font-size: 0.7rem; padding: 0.18rem 0.55rem; border-radius: 4px; background: rgba(212,175,55,0.08); border: 1px solid rgba(212,175,55,0.2); color: var(--gold); }
+.at-decan-badge { font-family: var(--font-mono); font-size: 0.7rem; padding: 0.18rem 0.55rem; border-radius: 4px; background: rgba(212,175,55,0.08); border: 1px solid rgba(212,175,55,0.2); color: var(--gold-text); }
 .at-decan-phrase { font-size: 0.78rem; color: var(--slate); font-style: italic; margin-top: 0.35rem; line-height: 1.5; }
 
 /* ─── Bloc synthèse combinée ─── */
 .at-combo-block { margin: 1.8rem 0 0.5rem; padding: 1.6rem; background: rgba(212,175,55,0.03); border: 1px solid rgba(212,175,55,0.15); border-radius: 12px; }
-.at-combo-title { font-family: var(--font-mono); font-size: 0.95rem; color: var(--gold); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 1.2rem; font-weight: 600; display: flex; align-items: center; gap: 0.5rem; }
+.at-combo-title { font-family: var(--font-mono); font-size: 0.95rem; color: var(--gold-text); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 1.2rem; font-weight: 600; display: flex; align-items: center; gap: 0.5rem; }
 .at-combo-sections { display: flex; flex-direction: column; gap: 1.2rem; }
 .at-combo-section { border-left: 2px solid rgba(212,175,55,0.25); padding-left: 1.2rem; }
-.at-combo-sec-title { font-size: 0.9rem; font-weight: 600; color: var(--gold); margin-bottom: 0.35rem; }
+.at-combo-sec-title { font-size: 0.9rem; font-weight: 600; color: var(--gold-text); margin-bottom: 0.35rem; }
 .at-combo-sec-text { font-size: 0.88rem; color: #d0d6e0; line-height: 1.75; margin: 0; }
 
 /* ─── cf-* color utilities (partagés) ─── */
 .cf-rose   { color: var(--rose); }
 .cf-emerald{ color: var(--emerald); }
 .cf-cyan   { color: var(--cyan); }
-.cf-gold   { color: var(--gold); }
+.cf-gold   { color: var(--gold-text); }
 .cf-violet { color: var(--violet); }
 
 /* ─── Ascendants ─── */
@@ -776,7 +776,7 @@ const jsonLd = {
 .at-cycle-card { background: rgba(255,255,255,0.03); border: 1px solid #1e293b; border-radius: 10px; padding: 1.2rem; display: flex; flex-direction: column; gap: 0.25rem; }
 .at-cycle-sym { font-size: 2rem; line-height: 1; margin-bottom: 0.2rem; }
 .at-cycle-name { font-weight: 700; font-size: 0.92rem; color: var(--text); }
-.at-cycle-age { font-family: var(--font-mono); font-size: 0.72rem; color: var(--gold); margin-bottom: 0.4rem; }
+.at-cycle-age { font-family: var(--font-mono); font-size: 0.72rem; color: var(--gold-text); margin-bottom: 0.4rem; }
 .at-cycle-desc { font-size: 0.82rem; color: var(--slate); line-height: 1.6; margin: 0; }
 </style>
 
@@ -792,13 +792,13 @@ const jsonLd = {
 .at-rc-interp { font-size: 0.87rem; line-height: 1.75; color: #d0d6e0; }
 .at-rc-footer { display: flex; gap: 0.6rem; align-items: center; flex-wrap: wrap; margin-top: 0.8rem; }
 .at-rc-deg { font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-muted); }
-.at-decan-badge { font-family: var(--font-mono); font-size: 0.7rem; padding: 0.18rem 0.55rem; border-radius: 4px; background: rgba(212,175,55,0.08); border: 1px solid rgba(212,175,55,0.2); color: var(--gold); }
+.at-decan-badge { font-family: var(--font-mono); font-size: 0.7rem; padding: 0.18rem 0.55rem; border-radius: 4px; background: rgba(212,175,55,0.08); border: 1px solid rgba(212,175,55,0.2); color: var(--gold-text); }
 .at-decan-phrase { font-size: 0.78rem; color: var(--slate); font-style: italic; margin-top: 0.35rem; line-height: 1.5; }
 .at-combo-block { margin: 1.8rem 0 0.5rem; padding: 1.6rem; background: rgba(212,175,55,0.03); border: 1px solid rgba(212,175,55,0.15); border-radius: 12px; }
-.at-combo-title { font-family: var(--font-mono); font-size: 0.95rem; color: var(--gold); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 1.2rem; font-weight: 600; display: flex; align-items: center; gap: 0.5rem; }
+.at-combo-title { font-family: var(--font-mono); font-size: 0.95rem; color: var(--gold-text); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 1.2rem; font-weight: 600; display: flex; align-items: center; gap: 0.5rem; }
 .at-combo-sections { display: flex; flex-direction: column; gap: 1.2rem; }
 .at-combo-section { border-left: 2px solid rgba(212,175,55,0.25); padding-left: 1.2rem; }
-.at-combo-sec-title { font-size: 0.9rem; font-weight: 600; color: var(--gold); margin-bottom: 0.35rem; }
+.at-combo-sec-title { font-size: 0.9rem; font-weight: 600; color: var(--gold-text); margin-bottom: 0.35rem; }
 .at-combo-sec-text { font-size: 0.88rem; color: #d0d6e0; line-height: 1.75; margin: 0; }
 
 /* ─── Titres sections résultats ─── */
@@ -837,7 +837,7 @@ const jsonLd = {
   margin-left: auto;
   opacity: 0.9;
 }
-.at-ht-gold .at-title-left { color: var(--gold); }
+.at-ht-gold .at-title-left { color: var(--gold-text); }
 .at-ht-gold { border-bottom-color: rgba(234,179,8,0.35); }
 .at-ht-violet .at-title-left { color: var(--violet); }
 .at-ht-violet { border-bottom-color: rgba(167,139,250,0.35); }

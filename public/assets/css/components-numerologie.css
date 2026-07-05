@@ -411,7 +411,7 @@
 }
 .pyth-table-header span {
   background: rgba(223,178,108,0.12);
-  color: var(--gold);
+  color: var(--gold-text);
   font-weight: 700;
   font-size: 0.85rem;
 }
@@ -428,7 +428,7 @@
   font-size: 0.65rem;
   vertical-align: super;
   letter-spacing: 0;
-  color: var(--gold);
+  color: var(--gold-text);
   margin-left: 2px;
 }
 .master-badge {
@@ -436,7 +436,7 @@
   font-size: 0.6rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: var(--gold);
+  color: var(--gold-text);
   background: rgba(223,178,108,0.1);
   border: 1px solid rgba(223,178,108,0.25);
   border-radius: 4px;

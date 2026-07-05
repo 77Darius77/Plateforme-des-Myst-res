@@ -31,7 +31,7 @@ import Layout from '../../../layouts/Layout.astro';
     <button id="btn-spread" class="btn-explore" style="font-size:1.2rem;padding:1rem 2rem;cursor:pointer;z-index:10;">Étaler les cartes ✦</button>
     
     <div id="spread-container" style="display:none;position:relative;width:100%;height:100%;max-width:1000px;margin:0 auto;">
-      <p id="instruction-text" style="position:absolute;top:-40px;width:100%;color:var(--gold);font-weight:bold;font-size:1.1rem;">Sélectionnez 7 cartes (0/7)</p>
+      <p id="instruction-text" style="position:absolute;top:-40px;width:100%;color:var(--gold-text);font-weight:bold;font-size:1.1rem;">Sélectionnez 7 cartes (0/7)</p>
     </div>
   </div>
 
@@ -84,8 +84,8 @@ import Layout from '../../../layouts/Layout.astro';
         <div class="tarot-pos tarot-pos-center">✦ 4. Présent ✦</div>
         <div class="tarot-card" id="slot-4">
           <div class="card-inner">
-            <div class="card-front empty-slot" style="border-color:var(--gold);"></div>
-            <div class="card-back" style="border-color:var(--gold);">
+            <div class="card-front empty-slot" style="border-color:var(--gold-text);"></div>
+            <div class="card-back" style="border-color:var(--gold-text);">
               <div class="belline-icon" id="icon-4"></div>
               <img id="img-4" src="" alt="" loading="lazy" class="card-img">
               <div class="belline-label" id="label-4"></div>
@@ -150,8 +150,8 @@ import Layout from '../../../layouts/Layout.astro';
 
 <style>
   .tarot-card-container { width: 155px; }
-  .tarot-pos { font-family: var(--font-mono); font-size: 0.7rem; color: var(--gold); margin-bottom: 0.3rem; text-transform: uppercase; letter-spacing: 0.5px; }
-  .tarot-pos-center { color: var(--gold); font-weight: bold; font-size: 0.75rem; }
+  .tarot-pos { font-family: var(--font-mono); font-size: 0.7rem; color: var(--gold-text); margin-bottom: 0.3rem; text-transform: uppercase; letter-spacing: 0.5px; }
+  .tarot-pos-center { color: var(--gold-text); font-weight: bold; font-size: 0.75rem; }
   .tarot-card { width: 100%; height: 280px; perspective: 1000px; }
   .card-inner { position: relative; width: 100%; height: 100%; text-align: center; transition: transform 0.8s; transform-style: preserve-3d; }
   .tarot-card.flipped .card-inner { transform: rotateY(180deg); }
@@ -181,7 +181,7 @@ import Layout from '../../../layouts/Layout.astro';
   }
   
   .card-back { background: var(--bg-card); transform: rotateY(180deg); box-shadow: 0 6px 12px rgba(0,0,0,0.5); overflow-y: auto; justify-content: flex-start; align-items: center; }
-  .card-back h3 { color: var(--gold); font-size: 0.85rem; margin-bottom: 0.15rem; padding-bottom: 0.15rem; width: 100%; }
+  .card-back h3 { color: var(--gold-text); font-size: 0.85rem; margin-bottom: 0.15rem; padding-bottom: 0.15rem; width: 100%; }
   .card-img { width: 92%; height: auto; max-height: 78%; border-radius: 4px; object-fit: contain; margin: 0.15rem 0 0.2rem; }
   .meaning { font-size: 0.7rem; line-height: 1.35; color: var(--text-muted); text-align: left; }
 

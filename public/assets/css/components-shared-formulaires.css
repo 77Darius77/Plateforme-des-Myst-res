@@ -41,7 +41,7 @@
   color: var(--slate);
 }
 .result-card.gold { border-color: var(--gold); }
-.result-card.gold .big-num { color: var(--gold); }
+.result-card.gold .big-num { color: var(--gold-text); }
 .result-card.gold:hover { box-shadow: 0 12px 40px rgba(0,0,0,0.50), 0 0 30px -8px var(--gold); }
 .result-card.emerald-card { border-color: var(--emerald); }
 .result-card.emerald-card .big-num { color: var(--emerald); }
@@ -66,7 +66,7 @@
   font-family: var(--font-mono);
   font-size: 2rem;
   font-weight: 700;
-  color: var(--gold);
+  color: var(--gold-text);
   margin-bottom: 0.5rem;
 }
 .step h3 { margin-bottom: 0.5rem; }
@@ -86,7 +86,7 @@
 .cf-emerald { color: var(--emerald) !important; }
 .cf-violet  { color: var(--violet)  !important; }
 .cf-cyan    { color: var(--cyan)    !important; }
-.cf-gold    { color: var(--gold)    !important; }
+.cf-gold    { color: var(--gold-text)    !important; }
 .cf-rose    { color: var(--rose)    !important; }
 
 /* ─── Formulaire de saisie (date de naissance) ─── */
@@ -169,7 +169,7 @@
   transition: border-color 0.2s, color 0.2s;
   min-width: 140px;
 }
-.pyth-btn-example:hover { border-color: var(--gold); color: var(--gold); }
+.pyth-btn-example:hover { border-color: var(--gold); color: var(--gold-text); }
 .pyth-btn-calc {
   flex: 2;
   background: linear-gradient(135deg, var(--gold), #b8872a);
@@ -285,7 +285,7 @@
 }
 [data-theme="light"] .pyth-btn-example:hover {
   border-color: var(--gold);
-  color: var(--gold);
+  color: var(--gold-text);
 }
 
 /* Bloc de comparaison (light) — remplace le fond du bloc précédent */

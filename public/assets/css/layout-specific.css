@@ -41,7 +41,7 @@
 }
 .share-btn:hover {
   border-color: var(--gold);
-  color: var(--gold);
+  color: var(--gold-text);
   background: rgba(223, 178, 108, 0.06);
 }
 
@@ -54,7 +54,7 @@
 .related-articles h3 {
   font-family: var(--font-mono);
   font-size: 0.8rem;
-  color: var(--gold);
+  color: var(--gold-text);
   text-transform: uppercase;
   letter-spacing: 0.15em;
   margin-bottom: 1.5rem;
@@ -94,7 +94,7 @@
   transition: var(--transition);
 }
 .related-card:hover .related-title {
-  color: var(--gold);
+  color: var(--gold-text);
 }
 
 /* ─── Placeholder Page Enriched ─── */
@@ -136,7 +136,7 @@
 .fact-card h4 {
   font-size: 0.95rem;
   font-weight: 600;
-  color: var(--gold);
+  color: var(--gold-text);
   margin-bottom: 0.5rem;
 }
 .fact-card p {
@@ -158,7 +158,7 @@
   display: block;
   margin-top: 0.8rem;
   font-style: normal;
-  color: var(--gold);
+  color: var(--gold-text);
   font-size: 0.85rem;
 }
 /* ─── Hub Sidebar Layout ─── */

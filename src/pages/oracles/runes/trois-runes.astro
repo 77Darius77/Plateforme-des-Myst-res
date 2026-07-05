@@ -31,7 +31,7 @@ import Layout from '../../../layouts/Layout.astro';
     <button id="btn-spread" class="btn-explore" style="font-size:1.2rem;padding:1rem 2rem;cursor:pointer;z-index:10;">Étaler les runes ᚱ</button>
     
     <div id="spread-container" style="display:none;position:relative;width:100%;height:100%;max-width:800px;margin:0 auto;">
-      <p id="instruction-text" style="position:absolute;top:-40px;width:100%;color:var(--gold);font-weight:bold;font-size:1.1rem;">Sélectionnez 3 runes (0/3)</p>
+      <p id="instruction-text" style="position:absolute;top:-40px;width:100%;color:var(--gold-text);font-weight:bold;font-size:1.1rem;">Sélectionnez 3 runes (0/3)</p>
     </div>
   </div>
 
@@ -83,12 +83,12 @@ import Layout from '../../../layouts/Layout.astro';
     <p style="margin-top:2rem;font-style:italic;color:var(--text-muted);">Les runes éclairent, elles ne contraignent pas. Le libre arbitre reste la rune suprême.</p>
   </div>
 
-  <div style="max-width:720px;margin:3rem auto 1rem;text-align:left;padding:0 1rem;"><h2 style="font-size:1.3rem;color:var(--gold);margin-bottom:1rem;">Les Runes — l'alphabet sacré nordique</h2><p style="color:var(--text-dim);line-height:1.8;margin-bottom:1rem;">Le Futhark Ancien (24 runes) fut utilisé du IIᵉ au VIIIᵉ siècle. Odin découvrit les runes après neuf nuits pendu à Yggdrasil. Le tirage des Nornes s'inspire des trois déesses du destin : <strong>Urðr</strong> (passé), <strong>Verðandi</strong> (présent) et <strong>Skuld</strong> (futur).</p><p style="color:var(--text-dim);line-height:1.8;">Les runes ne répondent pas par oui ou non — elles révèlent les forces qui traversent votre situation.</p></div>
+  <div style="max-width:720px;margin:3rem auto 1rem;text-align:left;padding:0 1rem;"><h2 style="font-size:1.3rem;color:var(--gold-text);margin-bottom:1rem;">Les Runes — l'alphabet sacré nordique</h2><p style="color:var(--text-dim);line-height:1.8;margin-bottom:1rem;">Le Futhark Ancien (24 runes) fut utilisé du IIᵉ au VIIIᵉ siècle. Odin découvrit les runes après neuf nuits pendu à Yggdrasil. Le tirage des Nornes s'inspire des trois déesses du destin : <strong>Urðr</strong> (passé), <strong>Verðandi</strong> (présent) et <strong>Skuld</strong> (futur).</p><p style="color:var(--text-dim);line-height:1.8;">Les runes ne répondent pas par oui ou non — elles révèlent les forces qui traversent votre situation.</p></div>
 </main>
 
 <style>
   .tarot-card-container { width: 252px; }
-  .tarot-pos { font-family: var(--font-mono); font-size: 0.85rem; color: var(--gold); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 1px; }
+  .tarot-pos { font-family: var(--font-mono); font-size: 0.85rem; color: var(--gold-text); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 1px; }
   .tarot-card { width: 100%; height: 460px; perspective: 1000px; }
   .card-inner { position: relative; width: 100%; height: 100%; text-align: center; transition: transform 0.8s; transform-style: preserve-3d; }
   .tarot-card.flipped .card-inner { transform: rotateY(180deg); }

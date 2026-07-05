@@ -32,7 +32,7 @@ import Layout from '../../../layouts/Layout.astro';
     <button id="btn-spread" class="btn-explore" style="font-size:1.2rem;padding:1rem 2rem;cursor:pointer;z-index:10;">Étaler les hexagrammes ✦</button>
     
     <div id="spread-container" style="display:none;position:relative;width:100%;height:100%;max-width:800px;margin:0 auto;">
-      <p id="instruction-text" style="position:absolute;top:-40px;width:100%;color:var(--gold);font-weight:bold;font-size:1.1rem;">Sélectionnez 1 hexagramme (0/1)</p>
+      <p id="instruction-text" style="position:absolute;top:-40px;width:100%;color:var(--gold-text);font-weight:bold;font-size:1.1rem;">Sélectionnez 1 hexagramme (0/1)</p>
     </div>
   </div>
 
@@ -62,12 +62,12 @@ import Layout from '../../../layouts/Layout.astro';
     <p style="margin-top:2rem;font-style:italic;color:var(--text-muted);">Le Yi King n'est pas un oracle de prédiction — il éclaire le moment présent et les mutations à l'œuvre. Le libre arbitre reste votre meilleur guide.</p>
   </div>
 
-  <div style="max-width:720px;margin:3rem auto 1rem;text-align:left;padding:0 1rem;"><h2 style="font-size:1.3rem;color:var(--gold);margin-bottom:1rem;">Le Yi King — le Classique des Mutations</h2><p style="color:var(--text-dim);line-height:1.8;margin-bottom:1rem;">Vieux de plus de 3000 ans, le Yi King (Yì Jīng) est composé de 64 hexagrammes. Chaque hexagramme décrit l'état présent du cosmos et sa tendance de transformation — car <strong>tout change constamment</strong>.</p><p style="color:var(--text-dim);line-height:1.8;">L'hexagramme que vous recevrez est un miroir de votre situation. Méditez-le.</p></div>
+  <div style="max-width:720px;margin:3rem auto 1rem;text-align:left;padding:0 1rem;"><h2 style="font-size:1.3rem;color:var(--gold-text);margin-bottom:1rem;">Le Yi King — le Classique des Mutations</h2><p style="color:var(--text-dim);line-height:1.8;margin-bottom:1rem;">Vieux de plus de 3000 ans, le Yi King (Yì Jīng) est composé de 64 hexagrammes. Chaque hexagramme décrit l'état présent du cosmos et sa tendance de transformation — car <strong>tout change constamment</strong>.</p><p style="color:var(--text-dim);line-height:1.8;">L'hexagramme que vous recevrez est un miroir de votre situation. Méditez-le.</p></div>
 </main>
 
 <style>
   .hex-card-container { width: 300px; }
-  .hex-pos { font-family: var(--font-mono); font-size: 0.85rem; color: var(--gold); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 1px; }
+  .hex-pos { font-family: var(--font-mono); font-size: 0.85rem; color: var(--gold-text); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 1px; }
   .hex-card { width: 100%; height: 420px; perspective: 1000px; }
   .card-inner { position: relative; width: 100%; height: 100%; text-align: center; transition: transform 0.8s; transform-style: preserve-3d; }
   .hex-card.flipped .card-inner { transform: rotateY(180deg); }
@@ -98,7 +98,7 @@ import Layout from '../../../layouts/Layout.astro';
   
   .card-back { background: var(--bg-card); transform: rotateY(180deg); box-shadow: 0 8px 16px rgba(0,0,0,0.6); overflow: hidden; justify-content: flex-start; align-items: center; gap: 0.5rem; }
   .card-img { width: 200px; height: auto; margin-top: 0.8rem; object-fit: contain; }
-  .card-name { color: var(--gold); font-size: 1.1rem; margin: 0.3rem 0; padding: 0; width: 100%; text-align: center; }
+  .card-name { color: var(--gold-text); font-size: 1.1rem; margin: 0.3rem 0; padding: 0; width: 100%; text-align: center; }
   .card-meaning { font-size: 0.78rem; line-height: 1.5; color: var(--text-muted); text-align: center; padding: 0 0.6rem; overflow-y: auto; max-height: 130px; }
 
   @media (max-width: 768px) {

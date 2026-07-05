@@ -31,7 +31,7 @@ import Layout from '../../../layouts/Layout.astro';
     <button id="btn-spread" class="btn-explore" style="font-size:1.2rem;padding:1rem 2rem;cursor:pointer;z-index:10;">Étaler les runes ᚱ</button>
     
     <div id="spread-container" style="display:none;position:relative;width:100%;height:100%;max-width:800px;margin:0 auto;">
-      <p id="instruction-text" style="position:absolute;top:-40px;width:100%;color:var(--gold);font-weight:bold;font-size:1.1rem;">Sélectionnez 5 runes (0/5)</p>
+      <p id="instruction-text" style="position:absolute;top:-40px;width:100%;color:var(--gold-text);font-weight:bold;font-size:1.1rem;">Sélectionnez 5 runes (0/5)</p>
     </div>
   </div>
 
@@ -105,7 +105,7 @@ import Layout from '../../../layouts/Layout.astro';
 
 <style>
   .tarot-card-container { width: 200px; }
-  .tarot-pos { font-family: var(--font-mono); font-size: 0.8rem; color: var(--gold); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 1px; }
+  .tarot-pos { font-family: var(--font-mono); font-size: 0.8rem; color: var(--gold-text); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 1px; }
   .tarot-card { width: 100%; height: 370px; perspective: 1000px; }
   .card-inner { position: relative; width: 100%; height: 100%; text-align: center; transition: transform 0.8s; transform-style: preserve-3d; }
   .tarot-card.flipped .card-inner { transform: rotateY(180deg); }

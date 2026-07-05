@@ -60,13 +60,13 @@ header .logo {
 }
 
 header .logo .symbol {
-  color: var(--gold);
+  color: var(--gold-text);
   font-size: 1.3rem;
   animation: spinSlow 20s linear infinite;
 }
 
 header .logo:hover {
-  color: var(--gold);
+  color: var(--gold-text);
 }
 
 @keyframes spinSlow {
@@ -138,7 +138,7 @@ nav a:hover::after, nav a.active::after {
 .theme-btn:hover {
   background: rgba(255, 255, 255, 0.08);
   border-color: rgba(255, 255, 255, 0.2);
-  color: var(--gold);
+  color: var(--gold-text);
   transform: scale(1.05);
 }
 
@@ -172,7 +172,7 @@ nav a:hover::after, nav a.active::after {
 .menu-toggle:hover {
   background: rgba(255, 255, 255, 0.08);
   border-color: rgba(255, 255, 255, 0.2);
-  color: var(--gold);
+  color: var(--gold-text);
 }
 
 [data-theme="light"] .menu-toggle:hover {
@@ -238,7 +238,7 @@ section {
 .section-title .num {
   font-family: var(--font-mono);
   font-size: 0.85rem;
-  color: var(--gold);
+  color: var(--gold-text);
   letter-spacing: 0.3em;
   margin-bottom: 0.75rem;
   text-transform: uppercase;
@@ -352,7 +352,7 @@ footer::before {
   font-family: var(--font-mono);
   font-size: 0.75rem;
   font-weight: 600;
-  color: var(--gold);
+  color: var(--gold-text);
   text-transform: uppercase;
   letter-spacing: 0.15em;
   margin-bottom: 1rem;
@@ -377,7 +377,7 @@ footer::before {
   transition: var(--transition);
 }
 .footer-col ul li a:hover {
-  color: var(--gold);
+  color: var(--gold-text);
 }
 .footer-badge {
   display: inline-block;
@@ -404,7 +404,7 @@ footer::before {
   font-size: 0.78rem;
 }
 .footer-bottom .heart { color: var(--rose); }
-footer a { color: var(--gold); text-decoration: none; transition: var(--transition); }
+footer a { color: var(--gold-text); text-decoration: none; transition: var(--transition); }
 footer a:hover { color: #fcd34d; }
 
 /* Light mode footer overrides */
