@@ -375,11 +375,28 @@ function reveal() {
         repartSection.innerHTML = buildRepartitionSVG(r);
       }
 
+      // Partage du résultat (image générée) — reveal() peut être rappelé après
+      // un nouveau calcul, on repart d'une zone vide à chaque fois.
+      const shareZone = document.getElementById('shareImageZone');
+      if (shareZone && window.PlateformePartage) {
+        shareZone.innerHTML = '';
+        window.PlateformePartage.afficherBoutons(shareZone, {
+          type: 'numerologie',
+          titre: 'Numérologie Cabalistique',
+          sousTitre: 'Chemin de vie & Ticún',
+          valeurs: [
+            { label: 'Chemin de vie', valeur: r.chemin },
+            { label: 'Ticún', valeur: r.ticun }
+          ]
+        });
+      }
+
       // Staggered reveal sections
       revealSection(document.getElementById('calcDetail'), 0);
       revealSection(document.getElementById('resultCards'), 0);
       revealSection(document.getElementById('resultInterpretation'), 1 * staggerMs);
       revealSection(document.getElementById('repartitionSection'), 2 * staggerMs);
+      revealSection(shareZone, 3 * staggerMs);
 
       resultat.classList.add('visible');
       resultat.scrollIntoView({ behavior: 'smooth', block: 'center' });

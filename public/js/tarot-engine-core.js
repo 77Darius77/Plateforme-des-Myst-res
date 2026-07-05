@@ -206,8 +206,20 @@ window.createTarotEngine = function (config) {
 
     html += '<div class="tr-divider"></div>'
       + '<h3 class="tr-sub">' + labels.synthesisHeader + '</h3>'
-      + '<p class="tr-synth">' + buildSynthesis(cards, spreadType, pairs, triads) + '</p>'
-      + '</div>';
+      + '<p class="tr-synth">' + buildSynthesis(cards, spreadType, pairs, triads) + '</p>';
+
+    if (window.PlateformePartage) {
+      var nomTirage = spreadType.split('-').map(cap).join(' ');
+      var config = {
+        type: 'tirage',
+        titre: labels.readingTitle,
+        sousTitre: nomTirage,
+        cartes: cards.map(function (c) { return { nom: c.name, image: c.img }; })
+      };
+      html += window.PlateformePartage.construireBoutonsHTML(config);
+    }
+
+    html += '</div>';
 
     return html;
   }
