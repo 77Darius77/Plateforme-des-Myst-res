@@ -634,14 +634,8 @@ function renderResults(res) {
   if (shareZone && window.PlateformePartage) {
     shareZone.innerHTML = '';
     window.PlateformePartage.afficherBoutons(shareZone, {
-      type: 'numerologie',
-      titre: 'Numérologie du Prénom',
-      sousTitre: 'La mission cachée dans ton prénom',
-      valeurs: [
-        { label: 'Nombre Actif', valeur: res.actifFinal },
-        { label: 'Désir de l\'Âme', valeur: res.sommeVoyelles },
-        { label: 'Personnalité', valeur: res.sommeConsonnes }
-      ]
+      cible: '#prenom-resultats',
+      titre: 'numerologie-prenom'
     });
   }
 

@@ -303,12 +303,9 @@ window.yiKingInterp = (function () {
       html += generateAllPlaneReadings(spreadType, cards);
     }
     if (window.PlateformePartage) {
-      var nomTirage = spreadType.split('-').map(cap).join(' ');
       var config = {
-        type: 'tirage',
-        titre: 'Lecture de votre tirage Yi King',
-        sousTitre: nomTirage,
-        cartes: cards.map(function (c) { return { nom: c.name, image: '/images/oracles/yi-king/hexagramme-' + c.id + '.svg' }; })
+        cible: '#resultats',
+        titre: 'yi-king-' + spreadType
       };
       html += window.PlateformePartage.construireBoutonsHTML(config);
     }

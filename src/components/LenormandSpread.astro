@@ -7,6 +7,8 @@
 const { spread } = Astro.props;
 ---
 
+<!-- #resultats : conteneur commun tirage + lecture, cible du partage PDF (share-image.js) -->
+<div id="resultats">
 <!-- ═══════════ ZONE DE TIRAGE (INTERACTIF) ═══════════ -->
 <section id="table-area" data-spread={spread} style="background:rgba(255,255,255,0.02); border:1px solid rgba(212,175,55,0.1); border-radius:12px; padding:2rem; min-height:300px; margin-bottom:3rem; position:relative;">
   <div id="deck-status" style="text-align:center; margin-bottom:1.5rem;">
@@ -28,6 +30,7 @@ const { spread } = Astro.props;
 
 <!-- ═══════════ INTERPRÉTATIONS DYNAMIQUES ═══════════ -->
 <section id="reading-section" class="tr-outer" style="display:none; margin-top:3rem; scroll-margin-top:2rem;"></section>
+</div>
 
 <p style="text-align:center; font-style:italic; color:var(--text-muted); font-size:0.9rem; margin-top:2rem;">
   Oracle Petit Lenormand traditionnel. Les prédictions décrivent des tendances concrètes de vie. Le libre arbitre reste votre guide absolu.

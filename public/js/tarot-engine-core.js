@@ -209,12 +209,9 @@ window.createTarotEngine = function (config) {
       + '<p class="tr-synth">' + buildSynthesis(cards, spreadType, pairs, triads) + '</p>';
 
     if (window.PlateformePartage) {
-      var nomTirage = spreadType.split('-').map(cap).join(' ');
       var config = {
-        type: 'tirage',
-        titre: labels.readingTitle,
-        sousTitre: nomTirage,
-        cartes: cards.map(function (c) { return { nom: c.name, image: c.img }; })
+        cible: '#resultats',
+        titre: 'tirage-' + spreadType
       };
       html += window.PlateformePartage.construireBoutonsHTML(config);
     }

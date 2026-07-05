@@ -127,11 +127,6 @@ window.geomancieInterp = (function () {
       text: 'Lancement rapide, succès initial prometteur. La tête du dragon ouvre le chemin, la petite fortune accélère les premiers résultats. Ce début brillant demande un suivi structuré.' },
   ];
 
-  /* ── Utilitaire de capitalisation ───────────────────────────────────────── */
-  function cap(str) {
-    return str.charAt(0).toUpperCase() + str.slice(1);
-  }
-
   /* ── Détection des résonances ────────────────────────────────────────────── */
   function detectPairs(figures) {
     var ids = figures.map(function(f) { return f.id; });
@@ -202,14 +197,9 @@ window.geomancieInterp = (function () {
       + '<p class="tr-synth">' + buildSynthesis(figures, spreadType, pairs) + '</p>';
 
     if (window.PlateformePartage) {
-      var nomTirage = spreadType.split('-').map(cap).join(' ');
       var config = {
-        type: 'tirage',
-        titre: 'Lecture de votre tirage Géomancie',
-        sousTitre: nomTirage,
-        cartes: figures.map(function (f) {
-          return { nom: f.nomFrancais, svg: renderFigureSVG(f.lignes, 'md') };
-        })
+        cible: '#reading-section',
+        titre: 'geomancie-' + spreadType
       };
       html += window.PlateformePartage.construireBoutonsHTML(config);
     }

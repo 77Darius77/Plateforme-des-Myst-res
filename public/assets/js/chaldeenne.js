@@ -274,15 +274,8 @@ function afficherResultats(r) {
   if (shareZone && window.PlateformePartage) {
     shareZone.innerHTML = '';
     window.PlateformePartage.afficherBoutons(shareZone, {
-      type: 'numerologie',
-      titre: 'Numérologie Chaldéenne',
-      sousTitre: 'Tes 4 nombres fondamentaux',
-      valeurs: [
-        { label: 'Nombre Actif', valeur: r.actif },
-        { label: 'Nombre de Destin', valeur: r.destin },
-        { label: 'Nombre de Naissance', valeur: r.naissance },
-        { label: 'Nombre de Vie', valeur: r.vie }
-      ]
+      cible: '#chaldResultats',
+      titre: 'numerologie-chaldeenne'
     });
   }
 

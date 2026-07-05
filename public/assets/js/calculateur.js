@@ -381,13 +381,8 @@ function reveal() {
       if (shareZone && window.PlateformePartage) {
         shareZone.innerHTML = '';
         window.PlateformePartage.afficherBoutons(shareZone, {
-          type: 'numerologie',
-          titre: 'Numérologie Cabalistique',
-          sousTitre: 'Chemin de vie & Ticún',
-          valeurs: [
-            { label: 'Chemin de vie', valeur: r.chemin },
-            { label: 'Ticún', valeur: r.ticun }
-          ]
+          cible: '#resultat',
+          titre: 'numerologie-cabalistique'
         });
       }
 

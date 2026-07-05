@@ -722,17 +722,9 @@ window.tarotLenormandInterp = (function () {
     }
 
     if (window.PlateformePartage) {
-      var nomTirage = spreadType.split('-').map(cap).join(' ');
       var config = {
-        type: 'tirage',
-        titre: 'Lecture Lenormand',
-        sousTitre: nomTirage,
-        cartes: cards.map(function (c) {
-          return {
-            nom: c.name,
-            image: '/images/tarot/lenormand/' + (window.tarotLenormandFilenames ? window.tarotLenormandFilenames[c.id] : '')
-          };
-        })
+        cible: '#resultats',
+        titre: 'lenormand-' + spreadType
       };
       html += window.PlateformePartage.construireBoutonsHTML(config);
     }

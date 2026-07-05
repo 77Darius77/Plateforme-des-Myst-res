@@ -293,12 +293,9 @@ window.bellineInterp = (function () {
       + '<p class="tr-synth">' + buildSynthesis(cards, spreadType, pairs, triads, planetInfo) + '</p>';
 
     if (window.PlateformePartage) {
-      var nomTirage = spreadType.split('-').map(cap).join(' ');
       var config = {
-        type: 'tirage',
-        titre: 'Lecture de votre tirage Belline',
-        sousTitre: nomTirage,
-        cartes: cards.map(function (c) { return { nom: c.name, image: c.img }; })
+        cible: '#resultats',
+        titre: 'belline-' + spreadType
       };
       html += window.PlateformePartage.construireBoutonsHTML(config);
     }

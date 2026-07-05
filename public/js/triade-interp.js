@@ -388,10 +388,8 @@ window.triadeInterp = (function () {
 
     if (window.PlateformePartage) {
       var config = {
-        type: 'tirage',
-        titre: 'Lecture Oracle Triade',
-        sousTitre: reading.spreadName,
-        cartes: cards.map(function (c) { return { nom: c.name, image: '/images/oracles/triade/card_' + String(c.id).padStart(2, '0') + '.webp' }; })
+        cible: '#reading-section',
+        titre: 'triade-' + spreadType
       };
       html += window.PlateformePartage.construireBoutonsHTML(config);
     }

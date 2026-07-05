@@ -381,15 +381,8 @@ function afficherResultats(r) {
   if (shareZone && window.PlateformePartage) {
     shareZone.innerHTML = '';
     window.PlateformePartage.afficherBoutons(shareZone, {
-      type: 'numerologie',
-      titre: 'Numérologie Pythagoricienne',
-      sousTitre: 'Tes 4 nombres fondamentaux',
-      valeurs: [
-        { label: 'Chemin de Vie', valeur: r.chemin },
-        { label: 'Expression', valeur: r.expression },
-        { label: 'Désir de l\'Âme', valeur: r.ame },
-        { label: 'Personnalité', valeur: r.personnalite }
-      ]
+      cible: '#pythResultats',
+      titre: 'numerologie-pythagoricienne'
     });
   }
 

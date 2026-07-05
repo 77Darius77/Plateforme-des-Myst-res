@@ -484,12 +484,9 @@ window.geInterp = (function () {
       + '<p class="tr-synth">' + buildSynthesis(cards, spreadType, pairs, triads, tonalInfo) + '</p>';
 
     if (window.PlateformePartage) {
-      var nomTirage = spreadType.split('-').map(cap).join(' ');
       var config = {
-        type: 'tirage',
-        titre: 'Lecture de votre tirage Gé',
-        sousTitre: nomTirage,
-        cartes: cards.map(function (c) { return { nom: c.name, image: '/images/oracles/ge/card_' + String(c.id).padStart(2, '0') + '.webp' }; })
+        cible: '#resultats',
+        titre: 'ge-' + spreadType
       };
       html += window.PlateformePartage.construireBoutonsHTML(config);
     }

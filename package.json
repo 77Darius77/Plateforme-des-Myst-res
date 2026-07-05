@@ -13,6 +13,8 @@
     "@arcjet/node": "^1.5.0",
     "@astrojs/sitemap": "^3.7.3",
     "astro": "^5.0.6",
+    "html2canvas": "^1.4.1",
+    "jspdf": "^4.2.1",
     "pdfkit": "^0.15.2",
     "resend": "^4.0.0"
   },

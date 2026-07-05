@@ -336,12 +336,9 @@ window.runesInterp = (function () {
     }
     var html = mainReading + planesHtml;
     if (window.PlateformePartage) {
-      var nomTirage = spreadType.split('-').map(capFirst).join(' ');
       var config = {
-        type: 'tirage',
-        titre: 'Lecture Runes',
-        sousTitre: nomTirage,
-        cartes: cards.map(function (c) { return { nom: c.name, image: '/images/oracles/runes/rune_' + String(c.id).padStart(2, '0') + '.svg' }; })
+        cible: '#resultats',
+        titre: 'runes-' + spreadType
       };
       html += window.PlateformePartage.construireBoutonsHTML(config);
     }
