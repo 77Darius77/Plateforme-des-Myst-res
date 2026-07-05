@@ -858,6 +858,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     initLoShuResultTooltips();
 
+    const shareZone = document.getElementById('shareImageZone');
+    if (shareZone && window.PlateformePartage) {
+      shareZone.innerHTML = '';
+      window.PlateformePartage.afficherBoutons(shareZone, {
+        type: 'numerologie',
+        titre: 'Numérologie Chinoise',
+        sousTitre: 'Ton Kua et ton Nombre de Vie',
+        valeurs: [
+          { label: 'Kua', valeur: kua },
+          { label: 'Trigramme', valeur: KUA_DATA[kua].trigram_nom },
+          { label: 'Nombre de Vie', valeur: nv }
+        ]
+      });
+    }
+
     const section = document.getElementById('chResultats');
     section.hidden = false;
     setTimeout(() => section.scrollIntoView({ behavior:'smooth', block:'start' }), 80);

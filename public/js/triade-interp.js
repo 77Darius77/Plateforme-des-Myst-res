@@ -384,8 +384,19 @@ window.triadeInterp = (function () {
       });
     }
 
-    html += '<p class="tr-synth-overall">' + reading.synthesis.overallMessage + '</p>'
-      + '</div>';
+    html += '<p class="tr-synth-overall">' + reading.synthesis.overallMessage + '</p>';
+
+    if (window.PlateformePartage) {
+      var config = {
+        type: 'tirage',
+        titre: 'Lecture Oracle Triade',
+        sousTitre: reading.spreadName,
+        cartes: cards.map(function (c) { return { nom: c.name, image: '/images/oracles/triade/card_' + String(c.id).padStart(2, '0') + '.webp' }; })
+      };
+      html += window.PlateformePartage.construireBoutonsHTML(config);
+    }
+
+    html += '</div>';
 
     return html;
   }

@@ -108,6 +108,14 @@
     const y = 300;
 
     const images = await Promise.all(cartes.map(function (c) {
+      if (c.svg) {
+        let svg = c.svg.replace(/currentColor/g, OR);
+        if (!/xmlns=/.test(svg)) {
+          svg = svg.replace('<svg ', '<svg xmlns="http://www.w3.org/2000/svg" ');
+        }
+        const src = 'data:image/svg+xml;base64,' + btoa(unescape(encodeURIComponent(svg)));
+        return chargerImage(src).catch(function () { return null; });
+      }
       return c.image ? chargerImage(c.image).catch(function () { return null; }) : Promise.resolve(null);
     }));
 

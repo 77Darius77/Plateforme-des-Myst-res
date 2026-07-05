@@ -46,6 +46,8 @@
     "36": "36_cross.png"
   };
 
+  window.tarotLenormandFilenames = FILENAMES;
+
   function initLenormandSpread() {
     const tableArea = document.getElementById('table-area');
     if (!tableArea || tableArea.dataset.initialized) return;

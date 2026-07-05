@@ -721,6 +721,22 @@ window.tarotLenormandInterp = (function () {
       html += window.tarotLenormandPlanes.generateAllPlaneReadings(spreadType, drawnCards);
     }
 
+    if (window.PlateformePartage) {
+      var nomTirage = spreadType.split('-').map(cap).join(' ');
+      var config = {
+        type: 'tirage',
+        titre: 'Lecture Lenormand',
+        sousTitre: nomTirage,
+        cartes: cards.map(function (c) {
+          return {
+            nom: c.name,
+            image: '/images/tarot/lenormand/' + (window.tarotLenormandFilenames ? window.tarotLenormandFilenames[c.id] : '')
+          };
+        })
+      };
+      html += window.PlateformePartage.construireBoutonsHTML(config);
+    }
+
     return html;
   }
 

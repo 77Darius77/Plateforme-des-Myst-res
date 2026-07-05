@@ -334,7 +334,18 @@ window.runesInterp = (function () {
         planesHtml = '<p style="color:var(--rose);">Erreur plans: ' + e.message + '</p>';
       }
     }
-    return mainReading + planesHtml;
+    var html = mainReading + planesHtml;
+    if (window.PlateformePartage) {
+      var nomTirage = spreadType.split('-').map(capFirst).join(' ');
+      var config = {
+        type: 'tirage',
+        titre: 'Lecture Runes',
+        sousTitre: nomTirage,
+        cartes: cards.map(function (c) { return { nom: c.name, image: '/images/oracles/runes/rune_' + String(c.id).padStart(2, '0') + '.svg' }; })
+      };
+      html += window.PlateformePartage.construireBoutonsHTML(config);
+    }
+    return html;
   }
 
   return {

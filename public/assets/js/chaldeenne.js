@@ -270,6 +270,22 @@ function afficherResultats(r) {
   document.getElementById('chaldCoreGrid').innerHTML = buildCoreGrid(r);
   document.getElementById('chaldDetails').innerHTML = buildDetails(r);
 
+  const shareZone = document.getElementById('shareImageZone');
+  if (shareZone && window.PlateformePartage) {
+    shareZone.innerHTML = '';
+    window.PlateformePartage.afficherBoutons(shareZone, {
+      type: 'numerologie',
+      titre: 'Numérologie Chaldéenne',
+      sousTitre: 'Tes 4 nombres fondamentaux',
+      valeurs: [
+        { label: 'Nombre Actif', valeur: r.actif },
+        { label: 'Nombre de Destin', valeur: r.destin },
+        { label: 'Nombre de Naissance', valeur: r.naissance },
+        { label: 'Nombre de Vie', valeur: r.vie }
+      ]
+    });
+  }
+
   const section = document.getElementById('chaldResultats');
   section.hidden = false;
   setTimeout(() => section.scrollIntoView({ behavior: 'smooth', block: 'start' }), 80);

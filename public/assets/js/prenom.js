@@ -630,6 +630,21 @@ function renderResults(res) {
   document.getElementById('prenom-karma-block').innerHTML = htmlKarma;
   document.getElementById('prenom-transgen-block').innerHTML = htmlTransgen;
 
+  const shareZone = document.getElementById('shareImageZone');
+  if (shareZone && window.PlateformePartage) {
+    shareZone.innerHTML = '';
+    window.PlateformePartage.afficherBoutons(shareZone, {
+      type: 'numerologie',
+      titre: 'Numérologie du Prénom',
+      sousTitre: 'La mission cachée dans ton prénom',
+      valeurs: [
+        { label: 'Nombre Actif', valeur: res.actifFinal },
+        { label: 'Désir de l\'Âme', valeur: res.sommeVoyelles },
+        { label: 'Personnalité', valeur: res.sommeConsonnes }
+      ]
+    });
+  }
+
   // Rendre visible et scroller
   container.hidden = false;
   setTimeout(() => container.scrollIntoView({ behavior: 'smooth', block: 'start' }), 80);
