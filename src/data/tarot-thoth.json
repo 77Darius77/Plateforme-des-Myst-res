@@ -1,0 +1,564 @@
+{
+  "cardData": {
+    "10": {
+      "theme": "l'alignement harmonieux avec les cycles de l'univers et les tournants du destin",
+      "shadow": "la résistance opiniâtre aux changements nécessaires, l'attachement aux illusions"
+    },
+    "11": {
+      "theme": "l'extase créatrice sauvage unissant l'esprit pur et la passion animale sacrée",
+      "shadow": "l'épuisement libidinal, la débauche chaotique ou la répression brutale de l'élan"
+    },
+    "12": {
+      "theme": "le sacrifice conscient de l'ego personnel pour atteindre la vision spirituelle inversée",
+      "shadow": "le complexe du martyr, la stagnation passive ou la victimisation névrotique"
+    },
+    "13": {
+      "theme": "la métamorphose initiatique par la dissolution nécessaire de l'ancien moi",
+      "shadow": "la peur panique de la fin, la résistance au deuil et l'attachement morbide"
+    },
+    "14": {
+      "theme": "la fusion alchimique harmonieuse du feu et de l'eau pour créer l'élixir d'or",
+      "shadow": "le dosage instable des énergies, la discorde interne ou l'impureté spirituelle"
+    },
+    "15": {
+      "theme": "l'énergie brute et joyeuse de la terre créatrice, le regard lucide sur ses chaînes",
+      "shadow": "l'obsession matérielle étroite, la manipulation machiavélique ou la soumission à l'ego"
+    },
+    "16": {
+      "theme": "l'éclair destructeur de la vérité détruisant la prison de vos illusions rigides",
+      "shadow": "l'effondrement traumatique subi dans la résistance, le déni du bouleversement"
+    },
+    "17": {
+      "theme": "la pureté céleste de l'espérance et l'inspiration cosmique irriguant l'esprit",
+      "shadow": "la perte de connexion spirituelle, la désillusion mélancolique ou l'utopie naïve"
+    },
+    "18": {
+      "theme": "la traversée lucide du labyrinthe de l'inconscient et de vos peurs ancestrales",
+      "shadow": "l'égarement dans les angoisses irrationnelles, la tromperie psychique ou les cauchemars"
+    },
+    "19": {
+      "theme": "le rayonnement glorieux de la conscience solaire et de la joie créatrice pure",
+      "shadow": "la vanité arrogante, l'aveuglement par orgueil ou le besoin d'éblouir sans chaleur"
+    },
+    "20": {
+      "theme": "l'éveil d'une ère nouvelle et la vision spirituelle panoramique du destin",
+      "shadow": "le refus de s'éveiller, la culpabilité karmique stagnante ou l'aveuglement temporel"
+    },
+    "21": {
+      "theme": "l'accomplissement suprême du Grand Œuvre et la danse unie de l'univers entier",
+      "shadow": "le cycle inachevé, la peur d'intégrer la plénitude ou la limitation matérielle"
+    },
+    "00": {
+      "theme": "la liberté absolue et le saut spirituel dans le gouffre créateur",
+      "shadow": "l'irresponsabilité aveugle, le refus de prendre conscience de la réalité matérielle"
+    },
+    "01": {
+      "theme": "la puissance de manifestation active par l'alignement du mental et du verbe",
+      "shadow": "l'illusion trompeuse, la jonglerie égocentrique ou la manipulation des esprits"
+    },
+    "02": {
+      "theme": "l'intuition pure et passive, le décodage direct des mystères inconscients",
+      "shadow": "l'indolence glaciale, le repli excessif dans le secret ou le refus d'agir"
+    },
+    "03": {
+      "theme": "l'expression vivante de l'amour universel et de la créativité organique",
+      "shadow": "l'étouffement affectif, l'orgueil stérile ou la stagnation possessive"
+    },
+    "04": {
+      "theme": "l'instauration de l'ordre souverain, la structure stable et le pouvoir de la volonté",
+      "shadow": "la tyrannie sèche et autoritaire, la rigidité dogmatique par peur du chaos"
+    },
+    "05": {
+      "theme": "l'initiation aux mystères spirituels, la guidance éthique et l'alliance sacrée",
+      "shadow": "le dogmatisme clérical, l'hypocrisie morale ou l'adhésion aveugle aux rituels vides"
+    },
+    "06": {
+      "theme": "l'intégration des forces opposées par le mariage alchimique et le choix conscient",
+      "shadow": "la division interne du cœur, le conflit des désirs et la dispersion spirituelle"
+    },
+    "07": {
+      "theme": "le triomphe de la volonté sacrée portant le Graal de l'âme au-delà des dualités",
+      "shadow": "la dispersion de l'élan victorieux, la rigidité blindée ou l'orgueil destructeur"
+    },
+    "08": {
+      "theme": "l'équilibre dynamique de la justice cosmique et la compensation karmique juste",
+      "shadow": "le déséquilibre légaliste, l'auto-justification ou la partialité subjective"
+    },
+    "09": {
+      "theme": "la lumière de la contemplation solitaire, la guidance discrète du maître intérieur",
+      "shadow": "l'isolation misanthrope, le repli craintif ou la rétention égoïste de la connaissance"
+    },
+    "W01": {
+      "theme": "l'étincelle de volonté primitive",
+      "shadow": "l'impulsion agressive s'éteignant prématurément"
+    },
+    "W02": {
+      "theme": "l'autorité souveraine établie (Domination)",
+      "shadow": "la brutalité excessive imposée au réel"
+    },
+    "W03": {
+      "theme": "l'intégrité éthique de l'action (Vertu)",
+      "shadow": "le dogme personnel rigide bloquant l'élan"
+    },
+    "W04": {
+      "theme": "la structure harmonieuse et achevée (Achèvement)",
+      "shadow": "la rigidité limitant l'adaptation"
+    },
+    "W05": {
+      "theme": "le défi alchimique purificateur (Lutte)",
+      "shadow": "les querelles stériles et la perte d'énergie"
+    },
+    "W06": {
+      "theme": "le triomphe public et l'harmonie (Victoire)",
+      "shadow": "la fierté vaniteuse après le succès"
+    },
+    "W07": {
+      "theme": "le courage solitaire face aux oppositions (Vaillance)",
+      "shadow": "l'obstination fatiguée ou l'insouciance"
+    },
+    "W08": {
+      "theme": "le mouvement rapide et la communication d'idées (Rapidité)",
+      "shadow": "la précipitation chaotique sans ancrage"
+    },
+    "W09": {
+      "theme": "l'intégration stable des forces de volonté (Force)",
+      "shadow": "l'attitude défensive craintive et le repli"
+    },
+    "W10": {
+      "theme": "le fardeau de la volonté matérialisée (Oppression)",
+      "shadow": "la soumission passive aux contraintes"
+    },
+    "W11": {
+      "theme": "l'audace sauvage et le message volcanique",
+      "shadow": "la colère impulsive stérile"
+    },
+    "W12": {
+      "theme": "la quête noble mais impatiente d'action",
+      "shadow": "l'instabilité et la dispersion fiévreuse"
+    },
+    "W13": {
+      "theme": "le charisme généreux et la maîtrise tranquille",
+      "shadow": "la jalousie possessive ou l'irritabilité"
+    },
+    "W14": {
+      "theme": "l'étincelle électrique de l'initiative suprême",
+      "shadow": "la tyrannie active et destructive"
+    },
+    "C01": {
+      "theme": "l'élixir débordant de l'amour inconditionnel",
+      "shadow": "l'instabilité émotionnelle ou l'illusion affective"
+    },
+    "C02": {
+      "theme": "l'harmonie magnétique des cœurs unis (Amour)",
+      "shadow": "la jalousie ou l'attraction destructive"
+    },
+    "C03": {
+      "theme": "la célébration spirituelle de la fertilité (Abondance)",
+      "shadow": "le gaspillage sensuel ou la complaisance"
+    },
+    "C04": {
+      "theme": "la stagnation émotionnelle de l'abondance (Luxe)",
+      "shadow": "l'ennui blasé et la recherche de paradis artificiels"
+    },
+    "C05": {
+      "theme": "la putréfaction initiatique purgeant les regrets (Déception)",
+      "shadow": "la fixation stérile sur la perte subie"
+    },
+    "C06": {
+      "theme": "la pureté du cœur et la joie d'exister (Plaisir)",
+      "shadow": "la nostalgie enfantine fuyant le présent"
+    },
+    "C07": {
+      "theme": "l'illusion trompeuse des vapeurs psychiques (Débauche)",
+      "shadow": "la dépendance aux fantasmes destructeurs"
+    },
+    "C08": {
+      "theme": "le départ nécessaire hors du désert affectif (Indolence)",
+      "shadow": "la paresse passive ou la dépression stagnante"
+    },
+    "C09": {
+      "theme": "le bonheur profond et l'épanouissement intime (Bonheur)",
+      "shadow": "la suffisance égoïste ou la peur de perdre"
+    },
+    "C10": {
+      "theme": "la satiété et la paix définitive des sens (Satiété)",
+      "shadow": "l'épuisement tranquille ou la routine fade"
+    },
+    "C11": {
+      "theme": "l'émergence poétique de l'intuition réceptive",
+      "shadow": "la sensiblerie excessive ou le caprice"
+    },
+    "C12": {
+      "theme": "le secret d'une passion dissimulée sous l'air",
+      "shadow": "l'intrigue manipulatrice ou les secrets toxiques"
+    },
+    "C13": {
+      "theme": "le miroir tranquille révélant l'âme de l'autre",
+      "shadow": "la froideur de marbre ou les caprices d'humeur"
+    },
+    "C14": {
+      "theme": "l'élan mystique unissant le feu et l'eau",
+      "shadow": "l'idéalisme déconnecté ou l'infidélité passive"
+    },
+    "S01": {
+      "theme": "le glaive absolu de la clarté intellectuelle",
+      "shadow": "la cruauté logique ou la pensée tranchante blessante"
+    },
+    "S02": {
+      "theme": "la trêve mentale et l'équilibre dynamique (Paix)",
+      "shadow": "l'indécision lâche ou la froideur calculatrice"
+    },
+    "S03": {
+      "theme": "la coupure douloureuse révélant la vérité (Chagrin)",
+      "shadow": "l'apitoiement morbide sur ses souffrances"
+    },
+    "S04": {
+      "theme": "le silence méditatif restaurant l'esprit (Trêve)",
+      "shadow": "la paresse mentale ou la passivité sous la menace"
+    },
+    "S05": {
+      "theme": "la ruine de la raison par l'orgueil blessé (Défaite)",
+      "shadow": "la vengeance sournoise ou le goût du chaos"
+    },
+    "S06": {
+      "theme": "la pensée logique orientée vers l'harmonie (Science)",
+      "shadow": "le rationalisme sec et sans âme"
+    },
+    "S07": {
+      "theme": "la dispersion instable des plans mentaux (Futilité)",
+      "shadow": "la ruse malhonnête ou la trahison de confiance"
+    },
+    "S08": {
+      "theme": "la paralysie mentale par sur-rationalisation (Interférence)",
+      "shadow": "l'accumulation anxieuse de détails futiles"
+    },
+    "S09": {
+      "theme": "le cauchemar de la conscience s'accusant elle-même (Cruauté)",
+      "shadow": "le sadisme intellectuel ou l'auto-flagellation"
+    },
+    "S10": {
+      "theme": "la faillite définitive des certitudes obsolètes (Ruine)",
+      "shadow": "le sentiment d'être brisé sans recours possible"
+    },
+    "S11": {
+      "theme": "la clarté incisive dénonçant les failles",
+      "shadow": "le cynisme moqueur ou la méfiance compulsive"
+    },
+    "S12": {
+      "theme": "la charge rationnelle et l'idéalisme enflammé",
+      "shadow": "l'arrogance fanatique refusant le débat"
+    },
+    "S13": {
+      "theme": "la justesse digne observant le monde sans fard",
+      "shadow": "la froideur rancunière ou l'absence d'empathie"
+    },
+    "S14": {
+      "theme": "le jugement impartial et l'équité logique",
+      "shadow": "le despote froid appliquant la sentence sans cœur"
+    },
+    "D01": {
+      "theme": "la graine fertile de la matière vivante",
+      "shadow": "le matérialisme grossier ou le manque d'ancrage physique"
+    },
+    "D02": {
+      "theme": "le changement rotatif maintenant l'équilibre (Changement)",
+      "shadow": "l'instabilité fiévreuse ou le jonglage permanent"
+    },
+    "D03": {
+      "theme": "le grand œuvre matériel et l'effort technique (Travaux)",
+      "shadow": "le manque de rigueur ou la mauvaise qualité du labeur"
+    },
+    "D04": {
+      "theme": "le pouvoir de préservation des acquis concrets (Pouvoir)",
+      "shadow": "l'avarice craintive ou la peur du manque bloquant le flux"
+    },
+    "D05": {
+      "theme": "l'inquiétude passagère des fluctuations physiques (Inquiétude)",
+      "shadow": "la ruine matérielle perçue avec désespoir"
+    },
+    "D06": {
+      "theme": "le succès matériel partagé avec équité (Succès)",
+      "shadow": "l'ostentation vaniteuse ou la charité condescendante"
+    },
+    "D07": {
+      "theme": "la stagnation inerte de la matière sans souffle (Échec)",
+      "shadow": "la paresse lourde ou le renoncement devant l'obstacle"
+    },
+    "D08": {
+      "theme": "la cuisson lente et la patience méthodique (Prudence)",
+      "shadow": "la frilosité excessive bloquant toute prise de risque"
+    },
+    "D09": {
+      "theme": "le gain substantiel et le confort terrestre (Gain)",
+      "shadow": "la prison dorée ou l'égoïsme fortuné"
+    },
+    "D10": {
+      "theme": "l'abondance stabilisée et la pierre philosophale (Richesse)",
+      "shadow": "la décomposition des structures par l'excès"
+    },
+    "D11": {
+      "theme": "la gestation tranquille d'une opportunité terrestre",
+      "shadow": "la paresse physique ou le manque de pragmatisme"
+    },
+    "D12": {
+      "theme": "la patience bâtisseuse consolidant les fondations",
+      "shadow": "l'obstination bornée refusant de s'adapter"
+    },
+    "D13": {
+      "theme": "la souveraineté nourricière connectée au corps",
+      "shadow": "la possessivité jalouse ou le luxe stérile"
+    },
+    "D14": {
+      "theme": "la persévérance inébranlable protégeant le domaine",
+      "shadow": "la lourdeur inerte ou la peur de l'inconnu"
+    },
+    "P01": {
+      "theme": "la graine fertile de la matière vivante",
+      "shadow": "le matérialisme grossier ou le manque d'ancrage physique"
+    },
+    "P02": {
+      "theme": "le changement rotatif maintenant l'équilibre (Changement)",
+      "shadow": "l'instabilité fiévreuse ou le jonglage permanent"
+    },
+    "P03": {
+      "theme": "le grand œuvre matériel et l'effort technique (Travaux)",
+      "shadow": "le manque de rigueur ou la mauvaise qualité du labeur"
+    },
+    "P04": {
+      "theme": "le pouvoir de préservation des acquis concrets (Pouvoir)",
+      "shadow": "l'avarice craintive ou la peur du manque bloquant le flux"
+    },
+    "P05": {
+      "theme": "l'inquiétude passagère des fluctuations physiques (Inquiétude)",
+      "shadow": "la ruine matérielle perçue avec désespoir"
+    },
+    "P06": {
+      "theme": "le succès matériel partagé avec équité (Succès)",
+      "shadow": "l'ostentation vaniteuse ou la charité condescendante"
+    },
+    "P07": {
+      "theme": "la stagnation inerte de la matière sans souffle (Échec)",
+      "shadow": "la paresse lourde ou le renoncement devant l'obstacle"
+    },
+    "P08": {
+      "theme": "la cuisson lente et la patience méthodique (Prudence)",
+      "shadow": "la frilosité excessive bloquant toute prise de risque"
+    },
+    "P09": {
+      "theme": "le gain substantiel et le confort terrestre (Gain)",
+      "shadow": "la prison dorée ou l'égoïsme fortuné"
+    },
+    "P10": {
+      "theme": "l'abondance stabilisée et la pierre philosophale (Richesse)",
+      "shadow": "la décomposition des structures par l'excès"
+    },
+    "P11": {
+      "theme": "la gestation tranquille d'une opportunité terrestre",
+      "shadow": "la paresse physique ou le manque de pragmatisme"
+    },
+    "P12": {
+      "theme": "la patience bâtisseuse consolidant les fondations",
+      "shadow": "l'obstination bornée refusant de s'adapter"
+    },
+    "P13": {
+      "theme": "la souveraineté nourricière connectée au corps",
+      "shadow": "la possessivité jalouse ou le luxe stérile"
+    },
+    "P14": {
+      "theme": "la persévérance inébranlable protégeant le domaine",
+      "shadow": "la lourdeur inerte ou la peur de l'inconnu"
+    }
+  },
+  "spreads": {
+    "arbre-de-vie": {
+      "intro": "Le tirage de l'Arbre de Vie est la méthode sacrée par excellence de la Kabbale et du Tarot de Thoth. Il déploie votre question sur les 10 Sephiroth pour révéler le chemin spirituel de sa manifestation.",
+      "positions": [
+        {
+          "name": "1. Kether (La Couronne - Le But spirituel)",
+          "shadow": false,
+          "tpl": "Votre aspiration spirituelle la plus haute et le potentiel divin sont marqués par {T}."
+        },
+        {
+          "name": "2. Chokmah (La Sagesse - L'Impulsion créatrice)",
+          "shadow": false,
+          "tpl": "L'énergie active, le père intérieur et l'impulsion de départ résident dans {T}."
+        },
+        {
+          "name": "3. Binah (L'Intelligence - La Structure / La Mère)",
+          "shadow": false,
+          "tpl": "Le cadre, les limites nécessaires, la forme et la structure se consolident à travers {T}."
+        },
+        {
+          "name": "4. Chesed (La Miséricorde - L'Expansion / Le Soutien)",
+          "shadow": false,
+          "tpl": "Les forces d'expansion, de générosité, de croissance et de protection vous apportent {T}."
+        },
+        {
+          "name": "5. Geburah (La Force - Le Défi / La Rigueur)",
+          "shadow": true,
+          "tpl": "La rigueur nécessaire, l'obstacle à surmonter ou le test de force se manifestent sous les traits de {T}."
+        },
+        {
+          "name": "6. Tiphereth (La Beauté - L'Harmonie du Cœur)",
+          "shadow": false,
+          "tpl": "Le centre d'équilibre de votre être, le cœur et la conscience intégrée vibrent avec {T}."
+        },
+        {
+          "name": "7. Netzach (La Victoire - Le Désir / Les Émotions)",
+          "shadow": false,
+          "tpl": "Vos désirs profonds, votre créativité instinctive et vos passions émotionnelles portent la marque de {T}."
+        },
+        {
+          "name": "8. Hod (La Gloire - Le Mental / La Logique)",
+          "shadow": false,
+          "tpl": "Votre logique, votre raisonnement intellectuel, vos croyances et votre communication se structurent via {T}."
+        },
+        {
+          "name": "9. Yesod (Le Fondement - L'Inconscient / L'Intime)",
+          "shadow": false,
+          "tpl": "La racine astrale de la situation, vos rêves, vos peurs et votre inconscient reposent sur {T}."
+        },
+        {
+          "name": "10. Malkuth (Le Royaume - La Manifestation concrète)",
+          "shadow": false,
+          "tpl": "L'aboutissement matériel tangible et la réalité physique finale se dessinent sous la forme de {T}."
+        }
+      ]
+    },
+    "etoile-de-david": {
+      "intro": "L'Étoile de David est un tirage astrologique en 7 cartes structuré autour des 7 planètes de l'astrologie traditionnelle, révélant les énergies célestes à l'œuvre dans votre vie.",
+      "positions": [
+        {
+          "name": "1. Le Soleil (La Conscience / L'Identité)",
+          "shadow": false,
+          "tpl": "Votre identité profonde, votre force de vie consciente et ce qui doit briller au grand jour est {T}."
+        },
+        {
+          "name": "2. La Lune (L'Inconscient / Le Flux émotif)",
+          "shadow": false,
+          "tpl": "Vos besoins intimes, votre mémoire karmique et vos rythmes changeants sont colorés par {T}."
+        },
+        {
+          "name": "3. Mercure (Le Mental / La Communication)",
+          "shadow": false,
+          "tpl": "Votre façon d'analyser, d'apprendre et d'échanger avec l'entourage est régie par {T}."
+        },
+        {
+          "name": "4. Vénus (L'Harmonie / Les Désirs)",
+          "shadow": false,
+          "tpl": "Votre rapport à l'art, à la séduction, à l'amour et à l'attraction esthétique vibre sous {T}."
+        },
+        {
+          "name": "5. Mars (L'Action / La Volonté)",
+          "shadow": true,
+          "tpl": "La force d'affirmation de soi, le combat nécessaire et votre façon de surmonter les crises résident dans {T}."
+        },
+        {
+          "name": "6. Jupiter (L'Expansion / La Chance)",
+          "shadow": false,
+          "tpl": "Les opportunités d'apprentissage supérieur, la sagesse acquise et les ouvertures providentielles portent la vibration de {T}."
+        },
+        {
+          "name": "7. Saturne (La Structure / Les Limites)",
+          "shadow": true,
+          "tpl": "Le travail de patience, les responsabilités lourdes, le temps et la sagesse du gardien du seuil s'incarnent dans {T}."
+        }
+      ]
+    },
+    "angle-mort": {
+      "intro": "Ce tirage psychologique en 4 cartes (fenêtre de Johari) explore les dynamiques de l'ego, du conscient et de l'inconscient pour révéler vos angles morts.",
+      "positions": [
+        {
+          "name": "1. Le Grand Jour (Connu de soi et des autres)",
+          "shadow": false,
+          "tpl": "Ce que vous montrez clairement et que l'entourage perçoit sans détour est {T}."
+        },
+        {
+          "name": "2. L'Angle Mort (Caché à soi, connu des autres)",
+          "shadow": true,
+          "tpl": "Ce que les autres perçoivent de vous mais que vous refusez de voir porte les traits de {T}."
+        },
+        {
+          "name": "3. Le Jardin Secret (Connu de soi, caché aux autres)",
+          "shadow": false,
+          "tpl": "Vos secrets intimes, vos forces cachées ou vos doutes dissimulés à l'entourage sont colorés par {T}."
+        },
+        {
+          "name": "4. Le Grand Mystère (Inconnu de soi et des autres)",
+          "shadow": false,
+          "tpl": "Le potentiel pur en gestation et la surprise du destin résident dans {T}."
+        }
+      ]
+    },
+    "spirituel": {
+      "intro": "L'Alignement Alchimique des Quatre Éléments explore la cohérence de vos plans d'expression à travers le Feu, l'Eau, l'Air et la Terre.",
+      "positions": [
+        {
+          "name": "1. Le Feu (Volonté & Passion)",
+          "shadow": false,
+          "tpl": "Votre élan vital, votre créativité et vos initiatives sont animés par {T}."
+        },
+        {
+          "name": "2. L'Eau (Émotions & Intuition)",
+          "shadow": false,
+          "tpl": "Vos ressentis profonds, votre empathie et votre intuition s'écoulent à travers {T}."
+        },
+        {
+          "name": "3. L'Air (Pensée & Discernement)",
+          "shadow": false,
+          "tpl": "Votre clarté intellectuelle, vos choix logiques et votre stratégie sont régulés par {T}."
+        },
+        {
+          "name": "4. La Terre (Ancrage & Corps physique)",
+          "shadow": false,
+          "tpl": "Votre santé corporelle, vos finances et votre réalisation matérielle s'ancrent dans {T}."
+        }
+      ]
+    }
+  },
+  "pairs": [
+    {
+      "ids": [
+        "00",
+        "21"
+      ],
+      "label": "Le Fou (0) · L'Univers (XXI)",
+      "text": "La boucle sacrée du Grand Œuvre est accomplie. L'innocence absolue du Fou trouve sa forme ultime et stable dans la danse glorieuse de l'Univers."
+    },
+    {
+      "ids": [
+        "01",
+        "02"
+      ],
+      "label": "Le Mage (I) · La Prêtresse (II)",
+      "text": "L'équilibre dynamique du Verbe actif (Mercure) et du Mystère silencieux (Lune). Votre tirage demande d'allier action et écoute passive."
+    },
+    {
+      "ids": [
+        "13",
+        "14"
+      ],
+      "label": "La Mort (XIII) · L'Art (XIV)",
+      "text": "La putréfaction initiatique suivie de la transmutation alchimique. Vos épreuves actuelles sont les étapes obligées de votre guérison spirituelle."
+    },
+    {
+      "ids": [
+        "15",
+        "16"
+      ],
+      "label": "Le Diable (XV) · La Tour (XVI)",
+      "text": "L'explosion des chaînes de la matière. La destruction violente et libératrice de vos croyances de soumission vous propulse vers la liberté."
+    }
+  ],
+  "triads": [
+    {
+      "ids": [
+        "00",
+        "01",
+        "21"
+      ],
+      "label": "Le Fou · Le Mage · L'Univers",
+      "text": "Le sentier complet de l'initié : du potentiel pur (Fool) à la manifestation par le verbe (Magus) jusqu'à l'accomplissement total (Universe)."
+    }
+  ]
+}

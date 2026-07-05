@@ -1,0 +1,48 @@
+---
+/* TarotDeckData.astro — injecte les données d'un jeu de tarot (CARD_DATA,
+   SPREADS, PAIRS, TRIADS, FAMILIES) dans la page sous forme d'un bloc JSON
+   inerte, parsé de façon SYNCHRONE par le moteur d'interprétation
+   (public/js/tarot-*-interp.js) via JSON.parse(textContent).
+
+   Pourquoi pas fetch() : les scripts tarot-*-interp.js sont chargés en
+   <script is:inline src="..."> classiques (pas de modules ES, pas de
+   bundler) et créent window.tarotXxxInterp de façon SYNCHRONE, dans le
+   même passage d'exécution que l'attache des gestionnaires de clic sur
+   les cartes (voir initTarotSpread() dans chaque page). Un fetch() est
+   asynchrone : rien ne garantirait que les données soient arrivées avant
+   qu'un utilisateur clique sur "Étaler le jeu" ou sur une carte, ce qui
+   casserait silencieusement le tirage (course critique). Le bloc
+   <script type="application/json"> est ajouté au DOM de façon synchrone
+   pendant le parsing HTML (comme un <script type="application/ld+json">
+   déjà utilisé ailleurs sur ce site pour le SEO) : aucune requête réseau,
+   donc aucune course possible.
+
+   Source de vérité : src/data/tarot-{deck}.json (relit à chaque build par
+   scripts/verify-data.mjs, indépendamment de ce composant). */
+import marseilleData from '../data/tarot-marseille.json';
+import rwsData from '../data/tarot-rws.json';
+import thothData from '../data/tarot-thoth.json';
+
+interface Props {
+  deck: 'marseille' | 'rws' | 'thoth';
+}
+
+const { deck } = Astro.props;
+
+const DATASETS: Record<string, unknown> = {
+  marseille: marseilleData,
+  rws: rwsData,
+  thoth: thothData,
+};
+
+const data = DATASETS[deck];
+if (!data) {
+  throw new Error(`TarotDeckData : deck inconnu "${deck}" (attendu : marseille | rws | thoth)`);
+}
+
+// Échappement défensif "JSON dans HTML" : empêche toute sous-chaîne
+// "</script" de clore prématurément la balise, même si le contenu actuel
+// est entièrement maîtrisé (pas de saisie utilisateur).
+const json = JSON.stringify(data).replace(/</g, '\\u003c');
+---
+<script type="application/json" id={`tarot-${deck}-data`} set:html={json} />

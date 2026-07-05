@@ -1,5 +1,6 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
+import TarotDeckData from '../../../components/TarotDeckData.astro';
 ---
 
 <Layout
@@ -245,6 +246,7 @@ import Layout from '../../../layouts/Layout.astro';
 <script is:inline src="/js/tarot-positions.js"></script>
 <script is:inline src="/js/tarot-cardtypes.js"></script>
 <script is:inline src="/js/tarot-thoth-planes.js"></script>
+<TarotDeckData deck="thoth" />
 <script is:inline src="/js/tarot-engine-core.js"></script>
 <script is:inline src="/js/tarot-thoth-interp.js"></script>
 <script is:inline>
