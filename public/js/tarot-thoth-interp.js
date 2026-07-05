@@ -227,228 +227,62 @@ window.tarotThothInterp = (function () {
   var TRIADS = [
     { ids: ['00','01','21'], label: 'Le Fou · Le Mage · L\'Univers', text: 'Le sentier complet de l\'initié : du potentiel pur (Fool) à la manifestation par le verbe (Magus) jusqu\'à l\'accomplissement total (Universe).' }
   ];
-
-  function getTheme(card, useShadow) {
-    var d = CARD_DATA[card.id];
-    if (!d) return card.name;
-    return useShadow ? d.shadow : d.theme;
-  }
-
-  function cap(str) {
-    return str.charAt(0).toUpperCase() + str.slice(1);
-  }
-
-  function applyLens(pos, card) {
-    var t = getTheme(card, !!pos.shadow);
-    var text = pos.tpl.replace(/\{T\}/g, t).replace(/\{TC\}/g, cap(t));
-
-    try {
-      if (window.tarotPositions && window.tarotCardTypes) {
-        var posMod = window.tarotPositions.getModifier(pos.name);
-        var cardDesc = window.tarotCardTypes.describe(card.id);
-
-        if (posMod && cardDesc) {
-          var prefix = '';
-          if (posMod.intro) {
-            prefix += posMod.intro + ' — ';
-          }
-          if (cardDesc.major) {
-            prefix += 'l\'archétype du ' + card.name + ' ';
-          } else if (cardDesc.suit && cardDesc.number) {
-            // Remplacement de Pentacles par Disques en cas de Thoth
-            var suitName = cardDesc.suit.name === 'Pentacles' ? 'Disques' : cardDesc.suit.name;
-            var numName = cardDesc.number.name;
-            // Traduction des cartes de cour Thoth
-            if (numName === 'Valet') numName = 'Princesse';
-            if (numName === 'Cavalier') numName = 'Prince';
-            if (numName === 'Roi') numName = 'Chevalier';
-            prefix += 'le ' + numName + ' de ' + suitName + ' ';
-          }
-
-          var suffix = '';
-          if (posMod.verbe) {
-            suffix += ' Cette carte ' + posMod.verbe + ' la dynamique';
-          }
-          if (cardDesc.suit) {
-            var el = cardDesc.suit.element === 'Terre' ? 'terre philosophique' : cardDesc.suit.element.toLowerCase();
-            suffix += ' dans le domaine du ' + el + '.';
-          } else if (cardDesc.major) {
-            suffix += ' sur le plan du destin spirituel.';
-          }
-
-          if (prefix) text = cap(prefix) + ' : ' + text.charAt(0).toLowerCase() + text.slice(1);
-          if (suffix) text += suffix;
+  /* ── Moteur commun ──────────────────────────────────────────────────────── */
+  return window.createTarotEngine({
+    cardData: CARD_DATA,
+    spreads: SPREADS,
+    pairs: PAIRS,
+    triads: TRIADS,
+    planesGlobal: 'tarotThothPlanes',
+    passSpreadType: true,
+    extraExports: { SPREADS: SPREADS },
+    labels: {
+      readingTitle: 'Lecture ésotérique Tarot de Thoth',
+      triadsHeader: 'Triades Sacrées',
+      pairsHeader: 'Harmonies Alchimiques',
+      synthesisHeader: 'Synthèse Alchimique'
+    },
+    lens: {
+      suitTransform: function (name) { return name === 'Pentacles' ? 'Disques' : name; },
+      courtTransform: function (name) {
+        if (name === 'Valet') return 'Princesse';
+        if (name === 'Cavalier') return 'Prince';
+        if (name === 'Roi') return 'Chevalier';
+        return name;
+      },
+      verbeObject: 'la dynamique',
+      suitRegister: 'dans le domaine du ',
+      elementTransform: function (el) { return el === 'Terre' ? 'terre philosophique' : el.toLowerCase(); },
+      majorSuffix: ' sur le plan du destin spirituel.',
+      warnMsg: 'Erreur enrichissement Thoth:'
+    },
+    synthesis: {
+      useFamilies: false,
+      openings: {
+        'arbre-de-vie': function (cards, api) {
+          var kether = cards[0], malkuth = cards[9];
+          return 'Le flux de votre manifestation spirituelle, initié à la Couronne par <strong>' + kether.name + '</strong>, trouve son incarnation finale dans le Royaume terrestre grâce à <strong>' + malkuth.name + '</strong>. ';
+        },
+        'etoile-de-david': function (cards, api) {
+          var sun = cards[0], saturn = cards[6];
+          return 'Votre identité consciente (Soleil) guidée par <strong>' + sun.name + '</strong> s\'harmonise avec les structures et limitations temporelles (Saturne) imposées par <strong>' + saturn.name + '</strong>. ';
+        },
+        'angle-mort': function (cards, api) {
+          var light = cards[0], blind = cards[1];
+          return 'Bien que vous affichiez au grand jour l\'énergie de <strong>' + light.name + '</strong>, votre entourage perçoit chez vous l\'influence cachée de <strong>' + blind.name + '</strong> (votre angle mort actuel). ';
+        },
+        'spirituel': function (cards, api) {
+          var fire = cards[0], earth = cards[3];
+          return 'La volonté ardente de vos projets (Feu) portée par <strong>' + fire.name + '</strong> doit s\'ancrer concrètement dans la matière (Terre) représentée par <strong>' + earth.name + '</strong>. ';
         }
-      }
-    } catch (e) {
-      console.warn('Erreur enrichissement Thoth:', e);
+      },
+      triadPhrase: function (triads) {
+        return 'La présence de la triade initiatique <strong>' + triads[0].label + '</strong> signale un alignement de destin exceptionnel : ' + triads[0].text + ' ';
+      },
+      pairPhrase: function (pairs) {
+        return 'La résonance sacrée de la paire <strong>' + pairs[0].label + '</strong> enrichit votre lecture : ' + pairs[0].text + ' ';
+      },
+      closing: 'Le Tarot de Thoth d\'Aleister Crowley vous invite à regarder au-delà des apparences pour transmuter votre plomb intérieur en or philosophique.'
     }
-
-    return text;
-  }
-
-  function detectPairs(cards) {
-    var ids = cards.map(function (c) { return c.id; });
-    return PAIRS.filter(function (p) {
-      return p.ids.every(function (id) { return ids.indexOf(id) !== -1; });
-    }).slice(0, 4);
-  }
-
-  function detectTriads(cards) {
-    var ids = cards.map(function (c) { return c.id; });
-    return TRIADS.filter(function (t) {
-      return t.ids.every(function (id) { return ids.indexOf(id) !== -1; });
-    }).slice(0, 2);
-  }
-
-  function buildSynthesis(cards, spreadType, pairs, triads) {
-    var text = '';
-    if (spreadType === 'arbre-de-vie') {
-      var kether = cards[0], malkuth = cards[9];
-      text = 'Le flux de votre manifestation spirituelle, initié à la Couronne par <strong>' + kether.name + '</strong>, trouve son incarnation finale dans le Royaume terrestre grâce à <strong>' + malkuth.name + '</strong>. ';
-    } else if (spreadType === 'etoile-de-david') {
-      var sun = cards[0], saturn = cards[6];
-      text = 'Votre identité consciente (Soleil) guidée par <strong>' + sun.name + '</strong> s\'harmonise avec les structures et limitations temporelles (Saturne) imposées par <strong>' + saturn.name + '</strong>. ';
-    } else if (spreadType === 'angle-mort') {
-      var light = cards[0], blind = cards[1];
-      text = 'Bien que vous affichiez au grand jour l\'énergie de <strong>' + light.name + '</strong>, votre entourage perçoit chez vous l\'influence cachée de <strong>' + blind.name + '</strong> (votre angle mort actuel). ';
-    } else if (spreadType === 'spirituel') {
-      var fire = cards[0], earth = cards[3];
-      text = 'La volonté ardente de vos projets (Feu) portée par <strong>' + fire.name + '</strong> doit s\'ancrer concrètement dans la matière (Terre) représentée par <strong>' + earth.name + '</strong>. ';
-    }
-
-    if (triads.length > 0) {
-      text += 'La présence de la triade initiatique <strong>' + triads[0].label + '</strong> signale un alignement de destin exceptionnel : ' + triads[0].text + ' ';
-    } else if (pairs.length > 0) {
-      text += 'La résonance sacrée de la paire <strong>' + pairs[0].label + '</strong> enrichit votre lecture : ' + pairs[0].text + ' ';
-    }
-
-    text += 'Le Tarot de Thoth d\'Aleister Crowley vous invite à regarder au-delà des apparences pour transmuter votre plomb intérieur en or philosophique.';
-    return text;
-  }
-
-  function generateReading(spreadType, cards) {
-    var cfg = SPREADS[spreadType];
-    if (!cfg || !cards || !cards.length) return '';
-
-    var pairs  = detectPairs(cards);
-    var triads = detectTriads(cards);
-
-    var html = '<div class="tr-section">'
-      + '<div class="tr-header"><span class="tr-star">✦</span><h2 class="tr-title">Lecture ésotérique Tarot de Thoth</h2></div>'
-      + '<p class="tr-intro">' + cfg.intro + '</p>'
-      + '<div class="tr-divider"></div>';
-
-    cards.forEach(function (card, i) {
-      var pos = cfg.positions[i];
-      if (!pos) return;
-
-      html += '<div class="tr-entry">'
-        + '<div class="tr-entry-head">'
-        + '<span class="tr-pos">' + pos.name + '</span>'
-        + '<span class="tr-card-nm">' + card.name + '</span>'
-        + '</div>'
-        + '<p class="tr-entry-text">' + applyLens(pos, card) + '</p>'
-        + '</div>';
-    });
-
-    if (triads.length > 0) {
-      html += '<div class="tr-divider"></div><h3 class="tr-sub">Triades Sacrées</h3>';
-      triads.forEach(function (t) {
-        html += '<div class="tr-pair tr-triad">'
-          + '<span class="tr-pair-lbl">' + t.label + '</span>'
-          + '<p class="tr-pair-txt">' + t.text + '</p>'
-          + '</div>';
-      });
-    }
-
-    if (pairs.length > 0) {
-      html += '<div class="tr-divider"></div><h3 class="tr-sub">Harmonies Alchimiques</h3>';
-      pairs.forEach(function (p) {
-        html += '<div class="tr-pair">'
-          + '<span class="tr-pair-lbl">' + p.label + '</span>'
-          + '<p class="tr-pair-txt">' + p.text + '</p>'
-          + '</div>';
-      });
-    }
-
-    html += '<div class="tr-divider"></div>'
-      + '<h3 class="tr-sub">Synthèse Alchimique</h3>'
-      + '<p class="tr-synth">' + buildSynthesis(cards, spreadType, pairs, triads) + '</p>'
-      + '</div>';
-
-    return html;
-  }
-
-  function generatePlaneReading(spreadType, cards, plane) {
-    if (!window.tarotThothPlanes) return '';
-    var proj = window.tarotThothPlanes.projectSpread(cards, plane, spreadType);
-    if (!proj) return '';
-
-    var cfg = SPREADS[spreadType];
-    var positions = cfg ? cfg.positions : [];
-
-    var html = '<div class="tr-plane-section" data-plane="' + plane + '">'
-      + '<div class="tr-plane-header">'
-      + '<span class="tr-plane-icon">' + (plane === 'personnel' ? '☾' : plane === 'professionnel' ? '☉' : '♡') + '</span>'
-      + '<h3 class="tr-plane-title">Lecture sur le plan ' + proj.planeLabel + '</h3>'
-      + '</div>'
-      + '<p class="tr-plane-intro">' + proj.intro + '</p>'
-      + '<div class="tr-plane-entries">';
-
-    proj.entries.forEach(function (entry, i) {
-      var posName = positions[i] ? positions[i].name : ('Carte ' + (i + 1));
-      html += '<div class="tr-plane-entry">'
-        + '<div class="tr-plane-entry-head">'
-        + '<span class="tr-plane-pos">' + posName + '</span>'
-        + '<span class="tr-plane-card">' + entry.cardName + '</span>'
-        + (entry.kw ? '<span class="tr-plane-kw">' + entry.kw + '</span>' : '')
-        + '</div>'
-        + '<p class="tr-plane-text">' + entry.text + '</p>'
-        + '</div>';
-    });
-
-    html += '</div>'
-      + '<div class="tr-plane-synth">'
-      + '<span class="tr-plane-synth-lbl">Synthèse</span>'
-      + '<p>' + proj.synth + '</p>'
-      + '</div>'
-      + (proj.conseil ? '<div class="tr-plane-conseil">'
-        + '<span class="tr-plane-conseil-lbl">Conseil</span>'
-        + '<p>' + proj.conseil + '</p>'
-        + '</div>' : '')
-      + (proj.question ? '<div class="tr-plane-question">'
-        + '<span class="tr-plane-question-lbl">Question à méditer</span>'
-        + '<p>' + proj.question + '</p>'
-        + '</div>' : '')
-      + '</div>';
-
-    return html;
-  }
-
-  function generateAllPlaneReadings(spreadType, cards) {
-    if (!window.tarotThothPlanes) return '';
-    var planes = ['personnel', 'professionnel', 'relationnel'];
-    var html = '<div class="tr-planes-wrapper">'
-      + '<div class="tr-planes-tabs">'
-      + '<button class="tr-plane-tab active" data-plane="personnel">☾ Personnel</button>'
-      + '<button class="tr-plane-tab" data-plane="professionnel">☉ Professionnel</button>'
-      + '<button class="tr-plane-tab" data-plane="relationnel">♡ Relationnel</button>'
-      + '</div>'
-      + '<div class="tr-planes-content">';
-    planes.forEach(function (p, i) {
-      html += '<div class="tr-plane-pane' + (i === 0 ? ' active' : '') + '" data-plane="' + p + '">'
-        + generatePlaneReading(spreadType, cards, p)
-        + '</div>';
-    });
-    html += '</div></div>';
-    return html;
-  }
-
-  return {
-    generateReading: generateReading,
-    generatePlaneReading: generatePlaneReading,
-    generateAllPlaneReadings: generateAllPlaneReadings,
-    SPREADS: SPREADS
-  };
+  });
 })();

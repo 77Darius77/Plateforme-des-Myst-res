@@ -386,223 +386,47 @@ window.tarotRwsInterp = (function () {
     { ids: ['00','01','21'], label: 'Le Fou · Le Magicien · Le Monde', text: 'Le chemin de l\'initié : du saut créatif à la manifestation consciente pour finir dans la plénitude du grand Tout. Une réussite spirituelle et matérielle totale.' },
     { ids: ['13','16','20'], label: 'La Mort · La Tour · Le Jugement', text: 'La grande transmutation : la fin inéluctable d\'un cycle, la destruction des illusions de l\'ego, suivies immédiatement d\'une renaissance resplendissante.' }
   ];
-
-  function getTheme(card, useShadow) {
-    var d = CARD_DATA[card.id];
-    if (!d) return card.name;
-    return useShadow ? d.shadow : d.theme;
-  }
-
-  function cap(str) {
-    return str.charAt(0).toUpperCase() + str.slice(1);
-  }
-
-  function applyLens(pos, card) {
-    var t = getTheme(card, !!pos.shadow);
-    var text = pos.tpl.replace(/\{T\}/g, t).replace(/\{TC\}/g, cap(t));
-
-    /* Enrichissement avec les modificateurs positionnels et de type */
-    try {
-      if (window.tarotPositions && window.tarotCardTypes) {
-        var posMod = window.tarotPositions.getModifier(pos.name);
-        var cardDesc = window.tarotCardTypes.describe(card.id);
-
-        if (posMod && cardDesc) {
-          /* Préfixe : intro positionnelle + type de carte */
-          var prefix = '';
-          if (posMod.intro) {
-            prefix += posMod.intro + ' — ';
-          }
-          if (cardDesc.major) {
-            prefix += 'l\'archétype du ' + card.name + ' ';
-          } else if (cardDesc.suit && cardDesc.number) {
-            prefix += 'le ' + cardDesc.number.name + ' de ' + cardDesc.suit.name + ' ';
-          }
-
-          /* Suffixe : verbe positionnel + élément */
-          var suffix = '';
-          if (posMod.verbe) {
-            suffix += ' Cette carte ' + posMod.verbe + ' ta situation';
-          }
-          if (cardDesc.suit) {
-            suffix += ' dans le registre du ' + cardDesc.suit.element.toLowerCase() + '.';
-          } else if (cardDesc.major) {
-            suffix += ' avec la profondeur d\'un arcane majeur.';
-          }
-
-          if (prefix) text = cap(prefix) + ' : ' + text.charAt(0).toLowerCase() + text.slice(1);
-          if (suffix) text += suffix;
+  /* ── Moteur commun ──────────────────────────────────────────────────────── */
+  return window.createTarotEngine({
+    cardData: CARD_DATA,
+    spreads: SPREADS,
+    pairs: PAIRS,
+    triads: TRIADS,
+    planesGlobal: 'tarotRwsPlanes',
+    passSpreadType: true,
+    labels: {
+      readingTitle: 'Lecture symbolique Rider-Waite-Smith',
+      triadsHeader: 'Triades Sacrées',
+      pairsHeader: 'Harmonies de cartes',
+      synthesisHeader: 'Synthèse du Tirage'
+    },
+    synthesis: {
+      useFamilies: false,
+      openings: {
+        'croix-celtique': function (cards, api) {
+          var sit = cards[0], outcome = cards[9];
+          return 'Votre situation présente animée par <strong>' + sit.name + '</strong> trouve son dénouement logique et constructif à travers <strong>' + outcome.name + '</strong> (' + api.getTheme(outcome, false) + '). ';
+        },
+        'fer-a-cheval': function (cards, api) {
+          var conseil = cards[5], issue = cards[6];
+          return 'Pour avancer au mieux face à ce défi, le tirage conseille d\'incarner l\'énergie de <strong>' + conseil.name + '</strong> afin d\'ouvrir la voie vers <strong>' + issue.name + '</strong>. ';
+        },
+        'relation': function (cards, api) {
+          var dynamic = cards[2], fut = cards[4];
+          return 'La relation repose actuellement sur l\'échange de <strong>' + dynamic.name + '</strong>, avec un très bel horizon de croissance vers <strong>' + fut.name + '</strong>. ';
+        },
+        'spirituel': function (cards, api) {
+          var mental = cards[1], spirit = cards[2];
+          return 'Votre mental orienté vers <strong>' + mental.name + '</strong> doit s\'aligner avec les appels spirituels de <strong>' + spirit.name + '</strong>. ';
         }
-      }
-    } catch (e) {
-      /* En cas d'erreur, on garde le texte de base */
-      console.warn('Erreur enrichissement tarot:', e);
+      },
+      triadPhrase: function (triads) {
+        return 'La présence de la triade <strong>' + triads[0].label + '</strong> signale un alignement de destin exceptionnel : ' + triads[0].text + ' ';
+      },
+      pairPhrase: function (pairs) {
+        return 'La résonance de <strong>' + pairs[0].label + '</strong> enrichit le tirage : ' + pairs[0].text + ' ';
+      },
+      closing: 'Les cartes du Rider-Waite-Smith révèlent vos paysages mentaux et spirituels pour éclairer votre libre arbitre.'
     }
-
-    return text;
-  }
-
-  function detectPairs(cards) {
-    var ids = cards.map(function (c) { return c.id; });
-    return PAIRS.filter(function (p) {
-      return p.ids.every(function (id) { return ids.indexOf(id) !== -1; });
-    }).slice(0, 4);
-  }
-
-  function detectTriads(cards) {
-    var ids = cards.map(function (c) { return c.id; });
-    return TRIADS.filter(function (t) {
-      return t.ids.every(function (id) { return ids.indexOf(id) !== -1; });
-    }).slice(0, 2);
-  }
-
-  function buildSynthesis(cards, spreadType, pairs, triads) {
-    var text = '';
-    if (spreadType === 'croix-celtique') {
-      var sit = cards[0], outcome = cards[9];
-      text = 'Votre situation présente animée par <strong>' + sit.name + '</strong> trouve son dénouement logique et constructif à travers <strong>' + outcome.name + '</strong> (' + getTheme(outcome, false) + '). ';
-    } else if (spreadType === 'fer-a-cheval') {
-      var conseil = cards[5], issue = cards[6];
-      text = 'Pour avancer au mieux face à ce défi, le tirage conseille d\'incarner l\'énergie de <strong>' + conseil.name + '</strong> afin d\'ouvrir la voie vers <strong>' + issue.name + '</strong>. ';
-    } else if (spreadType === 'relation') {
-      var dynamic = cards[2], fut = cards[4];
-      text = 'La relation repose actuellement sur l\'échange de <strong>' + dynamic.name + '</strong>, avec un très bel horizon de croissance vers <strong>' + fut.name + '</strong>. ';
-    } else if (spreadType === 'spirituel') {
-      var mental = cards[1], spirit = cards[2];
-      text = 'Votre mental orienté vers <strong>' + mental.name + '</strong> doit s\'aligner avec les appels spirituels de <strong>' + spirit.name + '</strong>. ';
-    }
-
-    if (triads.length > 0) {
-      text += 'La présence de la triade <strong>' + triads[0].label + '</strong> signale un alignement de destin exceptionnel : ' + triads[0].text + ' ';
-    } else if (pairs.length > 0) {
-      text += 'La résonance de <strong>' + pairs[0].label + '</strong> enrichit le tirage : ' + pairs[0].text + ' ';
-    }
-
-    text += 'Les cartes du Rider-Waite-Smith révèlent vos paysages mentaux et spirituels pour éclairer votre libre arbitre.';
-    return text;
-  }
-
-  function generateReading(spreadType, cards) {
-    var cfg = SPREADS[spreadType];
-    if (!cfg || !cards || !cards.length) return '';
-
-    var pairs  = detectPairs(cards);
-    var triads = detectTriads(cards);
-
-    var html = '<div class="tr-section">'
-      + '<div class="tr-header"><span class="tr-star">✦</span><h2 class="tr-title">Lecture symbolique Rider-Waite-Smith</h2></div>'
-      + '<p class="tr-intro">' + cfg.intro + '</p>'
-      + '<div class="tr-divider"></div>';
-
-    cards.forEach(function (card, i) {
-      var pos = cfg.positions[i];
-      if (!pos) return;
-      html += '<div class="tr-entry">'
-        + '<div class="tr-entry-head">'
-        + '<span class="tr-pos">' + pos.name + '</span>'
-        + '<span class="tr-card-nm">' + card.name + '</span>'
-        + '</div>'
-        + '<p class="tr-entry-text">' + applyLens(pos, card) + '</p>'
-        + '</div>';
-    });
-
-    if (triads.length > 0) {
-      html += '<div class="tr-divider"></div><h3 class="tr-sub">Triades Sacrées</h3>';
-      triads.forEach(function (t) {
-        html += '<div class="tr-pair tr-triad">'
-          + '<span class="tr-pair-lbl">' + t.label + '</span>'
-          + '<p class="tr-pair-txt">' + t.text + '</p>'
-          + '</div>';
-      });
-    }
-
-    if (pairs.length > 0) {
-      html += '<div class="tr-divider"></div><h3 class="tr-sub">Harmonies de cartes</h3>';
-      pairs.forEach(function (p) {
-        html += '<div class="tr-pair">'
-          + '<span class="tr-pair-lbl">' + p.label + '</span>'
-          + '<p class="tr-pair-txt">' + p.text + '</p>'
-          + '</div>';
-      });
-    }
-
-    html += '<div class="tr-divider"></div>'
-      + '<h3 class="tr-sub">Synthèse du Tirage</h3>'
-      + '<p class="tr-synth">' + buildSynthesis(cards, spreadType, pairs, triads) + '</p>'
-      + '</div>';
-
-    return html;
-  }
-
-  /* ── Générateur de lecture par plan (RWS) ──────────────────────────────── */
-  function generatePlaneReading(spreadType, cards, plane) {
-    if (!window.tarotRwsPlanes) return '';
-    var proj = window.tarotRwsPlanes.projectSpread(cards, plane, spreadType);
-    if (!proj) return '';
-
-    var cfg = SPREADS[spreadType];
-    var positions = cfg ? cfg.positions : [];
-
-    var html = '<div class="tr-plane-section" data-plane="' + plane + '">'
-      + '<div class="tr-plane-header">'
-      + '<span class="tr-plane-icon">' + (plane === 'personnel' ? '☾' : plane === 'professionnel' ? '☉' : '♡') + '</span>'
-      + '<h3 class="tr-plane-title">Lecture sur le plan ' + proj.planeLabel + '</h3>'
-      + '</div>'
-      + '<p class="tr-plane-intro">' + proj.intro + '</p>'
-      + '<div class="tr-plane-entries">';
-
-    proj.entries.forEach(function (entry, i) {
-      var posName = positions[i] ? positions[i].name : ('Carte ' + (i + 1));
-      html += '<div class="tr-plane-entry">'
-        + '<div class="tr-plane-entry-head">'
-        + '<span class="tr-plane-pos">' + posName + '</span>'
-        + '<span class="tr-plane-card">' + entry.cardName + '</span>'
-        + (entry.kw ? '<span class="tr-plane-kw">' + entry.kw + '</span>' : '')
-        + '</div>'
-        + '<p class="tr-plane-text">' + entry.text + '</p>'
-        + '</div>';
-    });
-
-    html += '</div>'
-      + '<div class="tr-plane-synth">'
-      + '<span class="tr-plane-synth-lbl">Synthèse</span>'
-      + '<p>' + proj.synth + '</p>'
-      + '</div>'
-      + (proj.conseil ? '<div class="tr-plane-conseil">'
-        + '<span class="tr-plane-conseil-lbl">Conseil</span>'
-        + '<p>' + proj.conseil + '</p>'
-        + '</div>' : '')
-      + (proj.question ? '<div class="tr-plane-question">'
-        + '<span class="tr-plane-question-lbl">Question à méditer</span>'
-        + '<p>' + proj.question + '</p>'
-        + '</div>' : '')
-      + '</div>';
-
-    return html;
-  }
-
-  function generateAllPlaneReadings(spreadType, cards) {
-    if (!window.tarotRwsPlanes) return '';
-    var planes = ['personnel', 'professionnel', 'relationnel'];
-    var html = '<div class="tr-planes-wrapper">'
-      + '<div class="tr-planes-tabs">'
-      + '<button class="tr-plane-tab active" data-plane="personnel">☾ Personnel</button>'
-      + '<button class="tr-plane-tab" data-plane="professionnel">☉ Professionnel</button>'
-      + '<button class="tr-plane-tab" data-plane="relationnel">♡ Relationnel</button>'
-      + '</div>'
-      + '<div class="tr-planes-content">';
-    planes.forEach(function (p, i) {
-      html += '<div class="tr-plane-pane' + (i === 0 ? ' active' : '') + '" data-plane="' + p + '">'
-        + generatePlaneReading(spreadType, cards, p)
-        + '</div>';
-    });
-    html += '</div></div>';
-    return html;
-  }
-
-  return {
-    generateReading: generateReading,
-    generatePlaneReading: generatePlaneReading,
-    generateAllPlaneReadings: generateAllPlaneReadings
-  };
+  });
 })();
