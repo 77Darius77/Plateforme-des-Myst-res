@@ -1,0 +1,53 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import LenormandSpread from '../../../components/LenormandSpread.astro';
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "name": "Ligne du Temps — Petit Lenormand",
+  "url": "https://plateforme-des-mysteres.com/tarologie/lenormand/ligne-du-temps/",
+  "description": "Tirage en 3 cartes du Petit Lenormand, lues comme une phrase narrative reliant passé, présent et futur proche.",
+  "inLanguage": "fr"
+};
+---
+
+<Layout
+  title="Ligne du Temps — Petit Lenormand"
+  description="Ligne du Temps du Petit Lenormand : 3 cartes lues comme une phrase narrative reliant votre passé, présent et futur proche. Tirage gratuit et interactif."
+  keywords="petit lenormand, ligne du temps, tirage 3 cartes, passé présent futur, divination, tarologie"
+  canonicalPath="tarologie/lenormand/ligne-du-temps/"
+  jsonLd={jsonLd}
+  breadcrumb={[
+    { name: "Accueil", item: "https://plateforme-des-mysteres.com/" },
+    { name: "Tarologie", item: "https://plateforme-des-mysteres.com/tarologie/" },
+    { name: "Petit Lenormand", item: "https://plateforme-des-mysteres.com/tarologie/lenormand/" },
+    { name: "Ligne du Temps", item: "https://plateforme-des-mysteres.com/tarologie/lenormand/ligne-du-temps/" }
+  ]}
+  section="tarologie"
+>
+
+<!-- ═══════════ FIL D'ARIANE ═══════════ -->
+<nav class="breadcrumb" aria-label="Fil d'Ariane" style="padding:0.8rem 1.5rem;font-family:var(--font-mono);font-size:0.8rem;color:var(--text-muted);max-width:1200px;margin:0 auto;">
+  <a href="/" style="color:var(--cyan);">Accueil</a> &rsaquo;
+  <a href="/tarologie/" style="color:var(--cyan);">Tarologie</a> &rsaquo;
+  <a href="/tarologie/lenormand/" style="color:var(--cyan);">Petit Lenormand</a> &rsaquo;
+  <span style="color:var(--text);">Ligne du Temps</span>
+</nav>
+
+<main style="max-width:1200px;margin:0 auto;padding:2rem 1.5rem;">
+  <section id="hero" style="text-align:center;padding:2rem 1.5rem 2rem;max-width:800px;margin:0 auto;">
+    <h1>
+      <span class="pulse"></span>
+      ⏳ <span class="gold">Ligne du Temps</span><br>Passé, présent, <span class="rose">futur</span>
+    </h1>
+    <p class="subtitle">
+      Trois cartes du Petit Lenormand lues comme une phrase narrative reliant votre passé, votre présent et votre futur proche. Idéal pour comprendre l'évolution d'une situation.
+    </p>
+    <h2 class="sr-only">Résultat du tirage</h2>
+  </section>
+
+  <LenormandSpread spread="trois-cartes" />
+</main>
+
+</Layout>

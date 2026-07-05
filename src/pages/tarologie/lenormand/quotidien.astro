@@ -1,0 +1,53 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import LenormandSpread from '../../../components/LenormandSpread.astro';
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "name": "Tirage Quotidien — Petit Lenormand",
+  "url": "https://plateforme-des-mysteres.com/tarologie/lenormand/quotidien/",
+  "description": "Tirez une carte du Petit Lenormand pour obtenir un conseil concret et une prédiction rapide pour votre journée.",
+  "inLanguage": "fr"
+};
+---
+
+<Layout
+  title="Tirage Quotidien — Petit Lenormand"
+  description="Tirage quotidien du Petit Lenormand : 1 carte pour un conseil concret ou une prédiction rapide pour votre journée. Tirage gratuit et interactif."
+  keywords="petit lenormand, tirage quotidien, carte du jour, divination, tirage gratuit, tarologie"
+  canonicalPath="tarologie/lenormand/quotidien/"
+  jsonLd={jsonLd}
+  breadcrumb={[
+    { name: "Accueil", item: "https://plateforme-des-mysteres.com/" },
+    { name: "Tarologie", item: "https://plateforme-des-mysteres.com/tarologie/" },
+    { name: "Petit Lenormand", item: "https://plateforme-des-mysteres.com/tarologie/lenormand/" },
+    { name: "Tirage Quotidien", item: "https://plateforme-des-mysteres.com/tarologie/lenormand/quotidien/" }
+  ]}
+  section="tarologie"
+>
+
+<!-- ═══════════ FIL D'ARIANE ═══════════ -->
+<nav class="breadcrumb" aria-label="Fil d'Ariane" style="padding:0.8rem 1.5rem;font-family:var(--font-mono);font-size:0.8rem;color:var(--text-muted);max-width:1200px;margin:0 auto;">
+  <a href="/" style="color:var(--cyan);">Accueil</a> &rsaquo;
+  <a href="/tarologie/" style="color:var(--cyan);">Tarologie</a> &rsaquo;
+  <a href="/tarologie/lenormand/" style="color:var(--cyan);">Petit Lenormand</a> &rsaquo;
+  <span style="color:var(--text);">Tirage Quotidien</span>
+</nav>
+
+<main style="max-width:1200px;margin:0 auto;padding:2rem 1.5rem;">
+  <section id="hero" style="text-align:center;padding:2rem 1.5rem 2rem;max-width:800px;margin:0 auto;">
+    <h1>
+      <span class="pulse"></span>
+      🏇 <span class="gold">Tirage Quotidien</span><br>La carte du <span class="rose">jour</span>
+    </h1>
+    <p class="subtitle">
+      Une seule carte du Petit Lenormand pour obtenir un conseil concret ou une prédiction rapide sur le ton de votre journée. Concentrez-vous sur votre question, puis piochez.
+    </p>
+    <h2 class="sr-only">Résultat du tirage</h2>
+  </section>
+
+  <LenormandSpread spread="quotidien" />
+</main>
+
+</Layout>

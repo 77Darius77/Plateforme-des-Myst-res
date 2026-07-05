@@ -1,0 +1,53 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import LenormandSpread from '../../../components/LenormandSpread.astro';
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "name": "Le Grand Tableau — Petit Lenormand",
+  "url": "https://plateforme-des-mysteres.com/tarologie/lenormand/grand-tableau/",
+  "description": "Le Grand Tableau du Petit Lenormand : le tirage traditionnel suprême disposant les 36 cartes pour cartographier toute votre vie.",
+  "inLanguage": "fr"
+};
+---
+
+<Layout
+  title="Le Grand Tableau — Petit Lenormand"
+  description="Le Grand Tableau du Petit Lenormand : le tirage suprême disposant les 36 cartes pour cartographier tous les domaines de votre vie. Tirage gratuit."
+  keywords="petit lenormand, grand tableau, 36 cartes, tirage complet, maisons, divination, tarologie"
+  canonicalPath="tarologie/lenormand/grand-tableau/"
+  jsonLd={jsonLd}
+  breadcrumb={[
+    { name: "Accueil", item: "https://plateforme-des-mysteres.com/" },
+    { name: "Tarologie", item: "https://plateforme-des-mysteres.com/tarologie/" },
+    { name: "Petit Lenormand", item: "https://plateforme-des-mysteres.com/tarologie/lenormand/" },
+    { name: "Le Grand Tableau", item: "https://plateforme-des-mysteres.com/tarologie/lenormand/grand-tableau/" }
+  ]}
+  section="tarologie"
+>
+
+<!-- ═══════════ FIL D'ARIANE ═══════════ -->
+<nav class="breadcrumb" aria-label="Fil d'Ariane" style="padding:0.8rem 1.5rem;font-family:var(--font-mono);font-size:0.8rem;color:var(--text-muted);max-width:1200px;margin:0 auto;">
+  <a href="/" style="color:var(--cyan);">Accueil</a> &rsaquo;
+  <a href="/tarologie/" style="color:var(--cyan);">Tarologie</a> &rsaquo;
+  <a href="/tarologie/lenormand/" style="color:var(--cyan);">Petit Lenormand</a> &rsaquo;
+  <span style="color:var(--text);">Le Grand Tableau</span>
+</nav>
+
+<main style="max-width:1200px;margin:0 auto;padding:2rem 1.5rem;">
+  <section id="hero" style="text-align:center;padding:2rem 1.5rem 2rem;max-width:800px;margin:0 auto;">
+    <h1>
+      <span class="pulse"></span>
+      🏰 <span class="gold">Le Grand Tableau</span><br>Cartographiez votre <span class="rose">vie</span>
+    </h1>
+    <p class="subtitle">
+      Le tirage traditionnel suprême du Petit Lenormand : les 36 cartes disposées en tableau pour cartographier tous les domaines de votre vie à travers le système des maisons.
+    </p>
+    <h2 class="sr-only">Résultat du tirage</h2>
+  </section>
+
+  <LenormandSpread spread="grand-tableau" />
+</main>
+
+</Layout>

@@ -1,0 +1,374 @@
+---
+/*
+ * Table de tirage interactive du Petit Lenormand, partagée par les 4 sous-pages.
+ * La prop `spread` (quotidien | trois-cartes | carre-de-neuf | grand-tableau)
+ * est transmise au moteur via l'attribut data-spread de #table-area.
+ */
+const { spread } = Astro.props;
+---
+
+<!-- ═══════════ ZONE DE TIRAGE (INTERACTIF) ═══════════ -->
+<section id="table-area" data-spread={spread} style="background:rgba(255,255,255,0.02); border:1px solid rgba(212,175,55,0.1); border-radius:12px; padding:2rem; min-height:300px; margin-bottom:3rem; position:relative;">
+  <div id="deck-status" style="text-align:center; margin-bottom:1.5rem;">
+    <p id="deck-instruction" style="color:var(--gold-text); font-family:var(--font-mono); font-size:1.1rem; font-weight:bold;">Préparez vos cartes en cliquant sur le bouton ci-dessous</p>
+  </div>
+
+  <!-- Pile / Boutons d'action -->
+  <div style="text-align:center; margin-bottom:2rem; z-index:10; position:relative;">
+    <button id="btn-shuffle" class="btn-explore" style="font-size:1.1rem; padding:0.8rem 1.8rem;">Mélanger et Étaler ✦</button>
+    <button id="btn-reveal-all" class="btn-explore" style="display:none; font-size:1.1rem; padding:0.8rem 1.8rem; margin:0 auto; background:var(--emerald); border-color:var(--emerald);">Révéler toutes les cartes ✦</button>
+  </div>
+
+  <!-- Container pour les cartes étalées à piocher -->
+  <div id="fan-container" style="display:none; position:relative; width:100%; height:150px; max-width:850px; margin:0 auto 2.5rem;"></div>
+
+  <!-- Grille des emplacements de cartes piochées (Slots) -->
+  <div id="slots-container" style="display:none;"></div>
+</section>
+
+<!-- ═══════════ INTERPRÉTATIONS DYNAMIQUES ═══════════ -->
+<section id="reading-section" class="tr-outer" style="display:none; margin-top:3rem; scroll-margin-top:2rem;"></section>
+
+<p style="text-align:center; font-style:italic; color:var(--text-muted); font-size:0.9rem; margin-top:2rem;">
+  Oracle Petit Lenormand traditionnel. Les prédictions décrivent des tendances concrètes de vie. Le libre arbitre reste votre guide absolu.
+</p>
+
+<style is:global>
+  /* --- Styles interactifs de tirage --- */
+  #slots-container {
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  /* Grilles dynamiques */
+  .grid-quotidien {
+    display: flex;
+    justify-content: center;
+    padding: 1rem 0;
+  }
+  .grid-quotidien .lenormand-card {
+    height: 368px;
+  }
+  .grid-trois-cartes {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    max-width: 800px;
+    margin: 0 auto;
+    align-items: start;
+  }
+  .grid-trois-cartes .lenormand-card {
+    height: 380px;
+  }
+  .grid-carre-de-neuf {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, auto);
+    gap: 1rem;
+    max-width: 650px;
+    margin: 0 auto;
+  }
+  .grid-carre-de-neuf .lenormand-card {
+    height: 309px;
+  }
+  .grid-grand-tableau {
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    gap: 0.5rem;
+    max-width: 1050px;
+    margin: 0 auto;
+  }
+
+  /* --- Carte Lenormand 3D (style Thoth) --- */
+  .lenormand-slot {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 190px;
+    margin: 0 auto;
+  }
+  .tarot-pos {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--cyan);
+    margin-bottom: 0.4rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center;
+  }
+  .lenormand-card {
+    position: relative;
+    width: 100%;
+    height: 350px;
+    perspective: 1000px;
+    cursor: pointer;
+  }
+  .grid-grand-tableau .lenormand-card {
+    height: 180px;
+  }
+  .grid-grand-tableau .card-back {
+    justify-content: center;
+  }
+  .card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-style: preserve-3d;
+    text-align: center;
+  }
+  .lenormand-card.flipped .card-inner {
+    transform: rotateY(180deg);
+  }
+  .card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 8px;
+    border: 2px solid var(--gold);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0.5rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  }
+  .card-front {
+    background:
+      url('/images/tarot/lenormand/card-back.svg'),
+      linear-gradient(135deg, #2D0A14 0%, #1A060C 40%, #3D1020 70%, #1A060C 100%);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  .lenormand-card.empty-slot .card-front {
+    background-image: none;
+    background: rgba(255, 255, 255, 0.02);
+    border: 2px dashed rgba(212, 175, 55, 0.25);
+  }
+  .card-back {
+    background: var(--bg-card);
+    transform: rotateY(180deg);
+    border: 2px solid var(--gold);
+    overflow-y: auto;
+    justify-content: flex-start;
+  }
+  .card-img {
+    width: 100%;
+    border-radius: 4px;
+    margin-bottom: 0.4rem;
+    max-height: 240px;
+    object-fit: contain;
+  }
+  .grid-grand-tableau .card-img {
+    max-height: 132px;
+  }
+  .card-back-title {
+    font-size: 0.9rem;
+    color: var(--gold-text);
+    font-weight: bold;
+    margin: 0 0 0.3rem;
+    text-align: center;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+    padding-bottom: 0.3rem;
+    width: 100%;
+  }
+  .grid-grand-tableau .card-back-title {
+    display: none;
+  }
+  .esoteric-metadata {
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    text-align: left;
+    width: 100%;
+    margin-bottom: 0.4rem;
+    background: rgba(255,255,255,0.02);
+    padding: 0.3rem;
+    border-radius: 4px;
+    border: 1px solid rgba(255,255,255,0.05);
+  }
+  .meta-row {
+    margin-bottom: 0.15rem;
+    line-height: 1.2;
+  }
+  .card-back-kw {
+    font-size: 0.7rem;
+    line-height: 1.3;
+    color: var(--text-muted);
+    text-align: left;
+    margin: 0;
+    width: 100%;
+  }
+  /* --- Nom sous la carte (Grand Tableau & Carré de 9) --- */
+  .grid-grand-tableau .card-name-sep,
+  .grid-carre-de-neuf .card-name-sep {
+    width: 100%;
+    border: none;
+    border-top: 1px solid rgba(212, 175, 55, 0.25);
+    margin: 0.3rem 0 0.2rem;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .grid-grand-tableau .card-name-below,
+  .grid-carre-de-neuf .card-name-below {
+    font-family: var(--font-mono);
+    font-size: 0.79rem;
+    color: var(--gold-text);
+    text-align: center;
+    line-height: 1.2;
+    opacity: 0;
+    transition: opacity 0.3s;
+    min-height: 0.7rem;
+  }
+  .grid-grand-tableau .lenormand-card.flipped ~ .card-name-sep,
+  .grid-grand-tableau .lenormand-card.flipped ~ .card-name-below,
+  .grid-carre-de-neuf .lenormand-card.flipped ~ .card-name-sep,
+  .grid-carre-de-neuf .lenormand-card.flipped ~ .card-name-below {
+    opacity: 1;
+  }
+
+  /* --- Masquer métadonnées et titre dans le cadre --- */
+  .grid-carre-de-neuf .esoteric-metadata,
+  .grid-carre-de-neuf .card-back-kw,
+  .grid-grand-tableau .esoteric-metadata,
+  .grid-grand-tableau .card-back-kw {
+    display: none;
+  }
+  .grid-carre-de-neuf .card-back-title {
+    display: none;
+  }
+  .grid-carre-de-neuf .card-back {
+    justify-content: center;
+    padding: 0.2rem;
+  }
+  .grid-carre-de-neuf .card-img,
+  .grid-grand-tableau .card-img {
+    margin-bottom: 0;
+  }
+  .grid-grand-tableau .card-back {
+    justify-content: center;
+    padding: 0.15rem;
+  }
+
+  @media (max-width: 800px) {
+    .grid-trois-cartes {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.8rem;
+    }
+    .grid-trois-cartes .lenormand-card {
+      height: 320px;
+    }
+    .grid-carre-de-neuf {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.5rem;
+    }
+    .grid-grand-tableau {
+      grid-template-columns: repeat(6, 1fr); /* Grille adaptative 6 cols sur mobile */
+      gap: 0.3rem;
+    }
+    .grid-grand-tableau .lenormand-card {
+      max-width: 70px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .grid-grand-tableau {
+      grid-template-columns: repeat(4, 1fr); /* 4 cols pour petits écrans */
+    }
+  }
+
+  /* --- Cartes du Fan (étalées en arc) --- */
+  .fan-card {
+    position: absolute;
+    width: 55px;
+    height: 95px;
+    background:
+      url('/images/tarot/lenormand/card-back.svg'),
+      linear-gradient(135deg, #2D0A14 0%, #1A060C 40%, #3D1020 70%, #1A060C 100%);
+    background-size: cover;
+    background-position: center;
+    border: 1px solid var(--gold);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+    top: 20px;
+    box-shadow: -3px 0 6px rgba(0,0,0,0.6), 0 0 3px rgba(212,175,55,0.2);
+  }
+  .fan-card:hover,
+  .fan-card:focus-visible {
+    transform: translateY(-20px) scale(1.1) !important;
+    z-index: 200 !important;
+    box-shadow: 0 10px 18px rgba(0,0,0,0.7), 0 0 10px rgba(212,175,55,0.4);
+    outline: 2px solid var(--gold-text);
+    outline-offset: 2px;
+  }
+  .fan-card.drawn {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  /* --- Styles du Moteur de lecture (injecté) --- */
+  .tr-outer {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(212,175,55,0.15);
+    border-radius: 12px;
+    padding: 2rem;
+    max-width: 950px;
+    margin: 0 auto;
+  }
+  .tr-section { margin-bottom: 2.5rem; }
+  .tr-header { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1.5rem; }
+  .tr-star { color: var(--gold); font-size: 1.2rem; }
+  .tr-title { font-family: var(--font-mono); color: var(--gold-text); font-size: 1.3rem; margin: 0; }
+  .tr-intro { font-size: 0.95rem; line-height: 1.6; color: var(--text-muted); margin-bottom: 1.5rem; }
+  .tr-divider { height: 1px; background: rgba(212,175,55,0.15); margin: 1.5rem 0; }
+  .tr-entry { margin-bottom: 1.5rem; }
+  .tr-entry-head { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; margin-bottom: 0.5rem; }
+  .tr-pos { font-family: var(--font-mono); font-size: 0.75rem; color: var(--gold-text); text-transform: uppercase; letter-spacing: 1px; }
+  .tr-card-nm { font-weight: bold; font-size: 1.05rem; color: var(--text); }
+  .tr-entry-text { font-size: 0.9rem; line-height: 1.6; color: var(--text); margin: 0; }
+  .tr-sub { font-family: var(--font-mono); color: var(--gold-text); font-size: 1.1rem; margin-top: 2rem; margin-bottom: 1rem; }
+  .tr-pair { background: rgba(255,255,255,0.01); border: 1px dashed rgba(212,175,55,0.2); border-radius: 8px; padding: 1.2rem; margin-bottom: 1.5rem; }
+  .tr-pair-lbl { font-family: var(--font-mono); font-size: 0.8rem; color: var(--rose); text-transform: uppercase; display: block; margin-bottom: 0.5rem; }
+  .tr-pair-txt { font-size: 0.9rem; line-height: 1.6; margin: 0; color: var(--text); }
+  .tr-synth { font-size: 0.95rem; line-height: 1.6; color: var(--text); font-style: italic; }
+
+  /* --- Styles des Onglets de Plans --- */
+  .tr-planes-wrapper { margin-top: 2rem; }
+  .tr-planes-tabs { display: flex; gap: 0.5rem; border-bottom: 1px solid rgba(212,175,55,0.15); margin-bottom: 1.5rem; }
+  .tr-plane-tab { background: none; border: none; border-bottom: 2px solid transparent; color: var(--text-muted); padding: 0.8rem 1.2rem; cursor: pointer; font-family: var(--font-mono); font-size: 0.85rem; transition: all 0.3s; }
+  .tr-plane-tab:hover { color: var(--text); }
+  .tr-plane-tab.active { color: var(--gold-text); border-bottom-color: var(--gold-text); }
+  .tr-plane-pane { display: none; }
+  .tr-plane-pane.active { display: block; }
+
+  .tr-plane-header { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem; }
+  .tr-plane-icon { font-size: 1.2rem; color: var(--gold); }
+  .tr-plane-title { font-family: var(--font-mono); color: var(--gold-text); font-size: 1.15rem; margin: 0; }
+  .tr-plane-intro { font-size: 0.9rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 1.5rem; }
+
+  .tr-plane-entry { margin-bottom: 1.2rem; padding-bottom: 1.2rem; border-bottom: 1px dashed rgba(255,255,255,0.05); }
+  .tr-plane-entry-head { display: flex; align-items: center; gap: 0.8rem; flex-wrap: wrap; margin-bottom: 0.4rem; }
+  .tr-plane-pos { font-family: var(--font-mono); font-size: 0.7rem; color: var(--gold-text); text-transform: uppercase; }
+  .tr-plane-card { font-weight: bold; font-size: 0.95rem; color: var(--text); }
+  .tr-plane-kw { background: rgba(212,175,55,0.1); border: 1px solid rgba(212,175,55,0.25); color: var(--gold-text); font-size: 0.65rem; padding: 0.15rem 0.4rem; border-radius: 4px; font-family: var(--font-mono); }
+  .tr-plane-text { font-size: 0.85rem; line-height: 1.5; color: var(--text); margin: 0; }
+
+  .tr-plane-synth, .tr-plane-conseil, .tr-plane-question { margin-top: 1.5rem; padding: 1rem; border-radius: 8px; font-size: 0.85rem; line-height: 1.5; }
+  .tr-plane-synth { background: rgba(212,175,55,0.03); border: 1px solid rgba(212,175,55,0.1); }
+  .tr-plane-synth-lbl { font-family: var(--font-mono); color: var(--gold-text); font-weight: bold; display: block; margin-bottom: 0.3rem; text-transform: uppercase; font-size: 0.75rem; }
+  .tr-plane-conseil { background: rgba(16,185,129,0.03); border: 1px solid rgba(16,185,129,0.1); }
+  .tr-plane-conseil-lbl { font-family: var(--font-mono); color: var(--emerald); font-weight: bold; display: block; margin-bottom: 0.3rem; text-transform: uppercase; font-size: 0.75rem; }
+  .tr-plane-question { background: rgba(244,63,94,0.03); border: 1px solid rgba(244,63,94,0.1); }
+  .tr-plane-question-lbl { font-family: var(--font-mono); color: var(--rose); font-weight: bold; display: block; margin-bottom: 0.3rem; text-transform: uppercase; font-size: 0.75rem; }
+</style>
+
+<script is:inline src="/js/tarot-lenormand-data.js"></script>
+<script is:inline src="/js/tarot-lenormand-interp.js"></script>
+<script is:inline src="/js/tarot-lenormand-planes.js"></script>
+<script is:inline src="/js/tarot-lenormand-spread.js"></script>
