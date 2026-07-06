@@ -102,6 +102,12 @@ document.addEventListener('DOMContentLoaded', function () {
     }, { passive: true });
   }
 
+  // ---- Tirage du jour : affichage de la date courante (accueil) ----
+  const tirageJourDate = document.getElementById('tirageJourDate');
+  if (tirageJourDate) {
+    tirageJourDate.textContent = new Date().toLocaleDateString('fr-FR', { day: 'numeric', month: 'long' });
+  }
+
   // ---- Share Button ----
   const shareBtn = document.querySelector('.share-btn');
   if (shareBtn) {

@@ -37,6 +37,18 @@ const jsonLd = {
   </div>
 </section>
 
+<!-- ═══════════ TIRAGE DU JOUR ═══════════ -->
+<section id="tirage-jour">
+  <a href="/tarologie/lenormand/quotidien/" class="tirage-jour-card">
+    <div class="tirage-jour-text">
+      <div class="tirage-jour-badge">✦ <span id="tirageJourDate"></span></div>
+      <h2>Ta carte du jour</h2>
+      <p>Une carte du Petit Lenormand, un conseil concret pour aujourd'hui.</p>
+    </div>
+    <span class="tirage-jour-cta">🔮 Tirer ma carte du jour</span>
+  </a>
+</section>
+
 <!-- ═══════════ OUTILS RAPIDES ═══════════ -->
 <section id="outils-rapides">
   <div class="section-title">
@@ -613,6 +625,66 @@ const jsonLd = {
 @media (max-width: 600px) {
   .rapport-teaser-text { font-size: 0.76rem; }
   .rapport-hero-teaser { gap: 0.6rem; }
+}
+
+/* ═══════════ TIRAGE DU JOUR ═══════════ */
+#tirage-jour {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem 2.5rem;
+}
+.tirage-jour-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  padding: 1.5rem 2rem;
+  background: linear-gradient(135deg, rgba(223,178,108,0.12) 0%, var(--bg-card) 100%);
+  border: 1px solid rgba(223,178,108,0.25);
+  border-radius: 16px;
+  text-decoration: none;
+  color: var(--text);
+  transition: all 0.25s ease;
+}
+.tirage-jour-card:hover {
+  border-color: rgba(223,178,108,0.5);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.3);
+}
+.tirage-jour-badge {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--gold-text);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.4rem;
+}
+.tirage-jour-text h2 {
+  font-size: 1.25rem;
+  margin: 0 0 0.3rem;
+  color: var(--text);
+}
+.tirage-jour-text p {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin: 0;
+}
+.tirage-jour-cta {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--gold-text);
+  white-space: nowrap;
+  padding: 0.7rem 1.3rem;
+  border: 1px solid var(--gold);
+  border-radius: 8px;
+  transition: var(--transition);
+}
+.tirage-jour-card:hover .tirage-jour-cta {
+  background: rgba(223,178,108,0.1);
+}
+@media (max-width: 600px) {
+  .tirage-jour-card { padding: 1.25rem; }
 }
 
 /* ═══════════ OUTILS RAPIDES ═══════════ */
