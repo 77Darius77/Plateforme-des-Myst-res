@@ -209,7 +209,8 @@ window.triadeInterp = (function () {
 
   function applyLens(pos, card) {
     var t = card.theme || card.meaning || '';
-    return pos.tpl.replace(/\{T\}/g, t).replace(/\{TC\}/g, cap(t));
+    var result = pos.tpl.replace(/\{T\}/g, t).replace(/\{TC\}/g, cap(t));
+    return result.replace(/\.{2,}/g, '.');
   }
 
   /* ── Lookup ────────────────────────────────────────────────────────────── */
