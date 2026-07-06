@@ -9,11 +9,11 @@ window.triadeInterp = (function () {
       intro: 'Trois lames pour éclairer le fil du temps : le passé qui a tissé, le présent qui vibre, le futur qui appelle. La carte centrale est le pivot — elle révèle comment le chemin d\'hier ouvre la porte de demain.',
       positions: [
         { name: 'Passé', level: null, label: 'Ce qui fut',
-          tpl: '{TC} — telle est l\'énergie qui a préparé ce moment. {T}' },
+          tpl: '{TC} — telle est l\'énergie qui a préparé ce moment.' },
         { name: 'Présent', level: null, label: 'Ce qui est',
-          tpl: '{TC} — c\'est le cœur battant de votre situation. {T}' },
+          tpl: '{TC} — c\'est le cœur battant de votre situation.' },
         { name: 'Futur', level: null, label: 'Ce qui vient',
-          tpl: '{TC} — la trajectoire qui s\'annonce. {T}' }
+          tpl: '{TC} — la trajectoire qui s\'annonce.' }
       ]
     },
     CROIX: {
@@ -22,17 +22,17 @@ window.triadeInterp = (function () {
       intro: 'Six piliers pour une lecture en profondeur : au centre votre essence, autour les forces qui vous entourent, et une synthèse qui éclaire l\'ensemble.',
       positions: [
         { name: 'Le Consultant', level: null, label: 'Centre',
-          tpl: 'Au cœur du tirage, {TC} vous définit dans cette situation. {T}' },
+          tpl: 'Au cœur du tirage, {TC} vous définit dans cette situation.' },
         { name: 'Forces', level: null, label: 'Gauche',
-          tpl: 'Ce qui vous soutient : {TC}. {T}' },
+          tpl: 'Ce qui vous soutient : {TC}.' },
         { name: 'Obstacles', level: null, label: 'Droite',
-          tpl: 'Ce qui vous défie : {TC}. {T}' },
+          tpl: 'Ce qui vous défie : {TC}.' },
         { name: 'Environnement', level: null, label: 'Haut',
-          tpl: 'Ce qui vous entoure : {TC}. {T}' },
+          tpl: 'Ce qui vous entoure : {TC}.' },
         { name: 'Résultat', level: null, label: 'Bas horizontal',
-          tpl: 'L\'aboutissement probable : {TC}. {T}' },
+          tpl: 'L\'aboutissement probable : {TC}.' },
         { name: 'Synthèse', level: null, label: 'Bas vertical',
-          tpl: 'La clé de compréhension : {TC}. {T}' }
+          tpl: 'La clé de compréhension : {TC}.' }
       ]
     },
     PYRAMIDE: {
@@ -41,25 +41,25 @@ window.triadeInterp = (function () {
       intro: 'Dix lames disposées selon la Tétraktys pythagoricienne : de l\'unité spirituelle au sommet jusqu\'aux quatre piliers de la manifestation concrète à la base. Une lecture qui relie le ciel et la terre.',
       positions: [
         { name: 'Spiritualité', level: 1, label: 'Niveau 1 — L\'Un',
-          tpl: 'Le principe supérieur qui gouverne ce tirage : {TC}. {T}' },
+          tpl: 'Le principe supérieur qui gouverne ce tirage : {TC}.' },
         { name: 'Idées (1)', level: 2, label: 'Niveau 2 — La Dualité',
-          tpl: 'Première idée-force : {TC}. {T}' },
+          tpl: 'Première idée-force : {TC}.' },
         { name: 'Idées (2)', level: 2, label: 'Niveau 2 — La Dualité',
-          tpl: 'Seconde idée-force : {TC}. {T}' },
+          tpl: 'Seconde idée-force : {TC}.' },
         { name: 'Action (1)', level: 3, label: 'Niveau 3 — La Triade',
-          tpl: 'Première impulsion d\'action : {TC}. {T}' },
+          tpl: 'Première impulsion d\'action : {TC}.' },
         { name: 'Action (2)', level: 3, label: 'Niveau 3 — La Triade',
-          tpl: 'Deuxième impulsion d\'action : {TC}. {T}' },
+          tpl: 'Deuxième impulsion d\'action : {TC}.' },
         { name: 'Action (3)', level: 3, label: 'Niveau 3 — La Triade',
-          tpl: 'Troisième impulsion d\'action : {TC}. {T}' },
+          tpl: 'Troisième impulsion d\'action : {TC}.' },
         { name: 'Concret (1)', level: 4, label: 'Niveau 4 — La Manifestation',
-          tpl: 'Premier pilier de manifestation : {TC}. {T}' },
+          tpl: 'Premier pilier de manifestation : {TC}.' },
         { name: 'Concret (2)', level: 4, label: 'Niveau 4 — La Manifestation',
-          tpl: 'Deuxième pilier de manifestation : {TC}. {T}' },
+          tpl: 'Deuxième pilier de manifestation : {TC}.' },
         { name: 'Concret (3)', level: 4, label: 'Niveau 4 — La Manifestation',
-          tpl: 'Troisième pilier de manifestation : {TC}. {T}' },
+          tpl: 'Troisième pilier de manifestation : {TC}.' },
         { name: 'Concret (4)', level: 4, label: 'Niveau 4 — La Manifestation',
-          tpl: 'Quatrième pilier de manifestation : {TC}. {T}' }
+          tpl: 'Quatrième pilier de manifestation : {TC}.' }
       ],
       levels: [
         { level: 1, name: 'Spiritualité', desc: 'L\'essence spirituelle, le souffle premier qui initie toute chose.' },
@@ -272,7 +272,6 @@ window.triadeInterp = (function () {
       overallMessage = 'Les résonances <strong>' + pairs[0].label + '</strong>' + (pairs.length > 1 ? ' et <strong>' + pairs[1].label + '</strong>' : '') + ' éclairent les forces à l\'œuvre dans ce tirage. ';
     }
 
-    overallMessage += tonalInfo.text + ' ';
     overallMessage += 'L\'Oracle de la Triade n\'est pas un verdict — c\'est un miroir tendu à votre âme au moment présent. Votre libre arbitre demeure la boussole suprême de votre chemin.';
 
     return {
