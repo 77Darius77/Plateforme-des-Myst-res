@@ -48,7 +48,7 @@ async function validerCleGumroad(licenseKey, tentativesRestantes = 2) {
 async function envoyerRapport(env, email, prenom, pdfBuffer) {
   const prenomSafe = escapeHtml(prenom);
   await envoyerEmailResend(env, {
-    from:     'Plateforme des Mystères <onboarding@resend.dev>',
+    from:     'Plateforme des Mystères <rapport@plateforme-des-mysteres.com>',
     reply_to: 'plateformedesmysteres@gmail.com',
     to:       [email],
     subject:  `✦ Votre Rapport d'Incarnation, ${prenomSafe}`,

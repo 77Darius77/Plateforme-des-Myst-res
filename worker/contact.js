@@ -42,7 +42,7 @@ export async function handleContact(request, env) {
 
   try {
     await envoyerEmailResend(env, {
-      from:     'Plateforme des Mystères <onboarding@resend.dev>',
+      from:     'Plateforme des Mystères <contact@plateforme-des-mysteres.com>',
       to:       [DESTINATAIRE],
       reply_to: email,
       subject:  `[Contact] ${SUJETS[sujet]} — ${prenom}`.replace(/[\r\n]+/g, ' '),
