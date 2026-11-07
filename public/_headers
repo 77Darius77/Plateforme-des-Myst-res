@@ -1,0 +1,13 @@
+# En-têtes de cache (remplace les [[headers]] de netlify.toml).
+# Les en-têtes de sécurité (CSP, HSTS…) sont posés par worker/index.js :
+# le CSP dépasse la limite de 2000 caractères par ligne de ce fichier.
+/assets/css/*
+  Cache-Control: public, max-age=31536000, immutable
+/assets/js/*
+  Cache-Control: public, max-age=31536000, immutable
+/js/*
+  Cache-Control: public, max-age=31536000, immutable
+/assets/images/*
+  Cache-Control: public, max-age=31536000, immutable
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
