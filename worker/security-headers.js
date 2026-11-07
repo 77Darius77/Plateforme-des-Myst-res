@@ -1,10 +1,27 @@
-// Généré depuis netlify.toml ([[headers]] for="/*"). Le CSP dépasse la limite de
-// 2000 caractères/ligne du fichier _headers : on l'applique donc depuis le Worker.
+// En-têtes de sécurité (équivalent du [[headers]] for="/*" de netlify.toml).
+// Le CSP dépasse la limite de 2000 caractères/ligne du fichier _headers : il est
+// donc posé par le Worker. Les empreintes script-src sont générées à chaque build
+// par scripts/generate-csp-hashes.mjs (worker/script-hashes.json).
+import scriptHashes from './script-hashes.json';
+
+const csp = [
+  `script-src 'self' ${scriptHashes.map((h) => `'sha256-${h}'`).join(' ')}`,
+  "default-src 'self'",
+  "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+  "img-src 'self' data: https:",
+  "font-src 'self' data: https://fonts.gstatic.com",
+  "connect-src 'self' https://api.gumroad.com",
+  "frame-ancestors 'none'",
+  "object-src 'none'",
+  "base-uri 'self'",
+  "form-action 'self'",
+].join('; ');
+
 export const SECURITY_HEADERS = {
   "X-Frame-Options": "DENY",
   "X-Content-Type-Options": "nosniff",
   "Referrer-Policy": "strict-origin-when-cross-origin",
   "Permissions-Policy": "camera=(), microphone=(), geolocation=()",
-  "Content-Security-Policy": "default-src 'self'; script-src 'self' 'sha256-+0/3IaAkUPij4T34azRnwbuwcD54uuaos5lNjhoQMWA=' 'sha256-+qrc5XJGIIis9PGCaJ2a/jErl8n1x3t7+uEHGWyUNF0=' 'sha256-0etj9tDQw6gX+GBaNKwGVB6G9kHw3XguwLUtiaETjfw=' 'sha256-1w6p+W0OqwIwPgeNUtXOk2F7tz6hKpex+z9O7pdvkO8=' 'sha256-Ah/17rpymnyjqPIbLmhimlrOp3QMbTGuLRXmTGT7RLQ=' 'sha256-AkkTMq6Z47tSvZAvmMWpBQSGh7UU7VBk6ECNLNSce5Y=' 'sha256-C9zAucwpxfuoWM4TZRIj5ZJxmRXUsJVKJjq3lIafQ1Y=' 'sha256-DQ09BiGQin289TeAv69zCUpNXj/IouLzIaxTUTNC4RY=' 'sha256-Fb6EoGobeM0Ry8DDU1AMhfk9JKZV2Law9tbBSlFn3kY=' 'sha256-GpChypX/RwT9Kkf5jVgoUfy8nfznJ5lFilewE3pbkwo=' 'sha256-LWYgqqsIDZ1kXhTnb4I6ZXdVe5lY2xC/OXbwi8qBZjE=' 'sha256-NjoYgGPX5YDHJ5vNVIua8FlwgGikFQQWlWdqrrEXY5g=' 'sha256-O2lK/D/4vh2xJBBPHDEvp/tVT+tAs7KDIjCT1jNfvxM=' 'sha256-OloyQQbkA0oH+A6XvAxGct7QwPKMiUHCrADewO20Q/Y=' 'sha256-SyUjdLbBd5rKsH0x+Z3BLWwDIX5PW/g4Ve6z0yE+gJ8=' 'sha256-TEa5KwG6WCnePw0XvH04KZVWiXRQEmislmzDaEYp9vo=' 'sha256-Wa41CQSFnKMnP0jjlP3HIORUN//LFFH1cTZu9thLhOM=' 'sha256-XdHUchMXo7wJgDWeZ7c77x3i1L1M5FeSIikSX9jlCuY=' 'sha256-YVvNeeBQ455y0LYpuImUS825XHUa5S5rI+Z5ckYZEFk=' 'sha256-ZO6i2cx2xajFt1/QQdFcMR0ReVIoD8lOV8CnbQPvdL8=' 'sha256-aKn4PwJ3TyqDUDcIf+nC9iCAgvenXpAX/EJ3Iqr15fo=' 'sha256-aOzPPxlyRhqDV2y8L/ut+ZWkLXpD9Nbdzp08KVJpChw=' 'sha256-b5REDqvtbzVK4U0AsOYeuQqdD0c79jnhISaOvFd1lCM=' 'sha256-gbHe9hvVQIFf+1Yvtz2HUXDq14gPpwnxbIYefCHbIOg=' 'sha256-grcBNAUNq3FXlQb/0Kwx0hZ6tVpkSejW55ERX+2c2h4=' 'sha256-hBismoAY68spehrCdFvid05LvM1EzwcBOwh/6jPlQww=' 'sha256-hQDjoc5ee3Woo5PTbYx6Ku49ToazKEV1Iz7ixEjkWB4=' 'sha256-j3M4y9cqjRhz3PentHpV2cjcgJ0IHHVlcLE9Brdg3gM=' 'sha256-jEwk1qhNk02s8Z/jVyw7whRt1hwO0rewp5Ss9jirrW8=' 'sha256-k+gqJh1194/hHqTtMGXqravMCL7BreG4+phkNBAvGXo=' 'sha256-lkL4lH+5jHg9eqSo2P+cvAgxIZoeY8AYvqZj5x2QXf8=' 'sha256-mACFk5AZKDpTsOn0A7sz7MwhqaXZphYmfKK2MwzYGbE=' 'sha256-oI/7kTejsxR+dVuk0rlmFo9JER0DsYga1kOYOVhh45o=' 'sha256-r2ZkL4A4xOc/sKCarPPiAswv540g0o1abLYI/dMhn50=' 'sha256-rv+dfgRouAO4hQLm7+Z6rkBVNw8XLjSI5Hz3KiBvnmQ=' 'sha256-uDcQSM/1OeTTwpe0L+KxPnf0J/jUlrmVvBCVnGr/vtc=' 'sha256-w2xAyTLhMtrcU9XDuWuKVTydPR3yV2OpFheQOGFTBUE=' 'sha256-wOVYj16DaCuIN0JK81IKfMqTC1rnUDQSJYV0XuY5fws=' 'sha256-yfkyiyl6pXrwekxE+ngoa7HWPeEaYjbz4rNZ5Ei6+I0=' 'sha256-yz+cJ2TSEmFZnH6llghyISa8d4GJY4K8GvQp6e8Cxcw=' 'sha256-zfwlVDW8vguoYXIHhVdKxw3v47P/Vu9L4ZZFDsbGZeA='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https://api.gumroad.com; frame-ancestors 'none'; object-src 'none'; base-uri 'self'; form-action 'self'",
-  "Strict-Transport-Security": "max-age=300"
+  "Strict-Transport-Security": "max-age=300",
+  'Content-Security-Policy': csp,
 };
