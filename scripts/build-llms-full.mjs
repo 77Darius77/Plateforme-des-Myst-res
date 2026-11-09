@@ -98,7 +98,7 @@ Le site propose 12+ calculateurs et tirages interactifs, tous exécutés côté 
 - Guide Les 22 Archétypes (7 €) : PDF ~70 pages illustré — Tarot de Marseille, archétypes de Jung
 
 ## Transparence
-- Site statique (Astro.js), hébergé sur Netlify
+- Site statique (Astro.js), hébergé sur Cloudflare
 - Zéro tracking, zéro publicité, zéro cookie non essentiel
 - Calculs 100% locaux (JavaScript dans le navigateur)
 - Pas de compte utilisateur requis

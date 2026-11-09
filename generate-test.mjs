@@ -1,7 +1,7 @@
 import { writeFileSync } from 'fs';
-import { calculerProfil } from './netlify/functions/lib/calculs.js';
-import { assemblerContenu } from './netlify/functions/lib/textes.js';
-import { genererRapportPDF } from './netlify/functions/lib/generateur-pdf.js';
+import { calculerProfil } from './worker/lib/calculs.js';
+import { assemblerContenu } from './worker/lib/textes.js';
+import { genererRapportPDF } from './worker/lib/generateur-pdf.js';
 
 const profil  = calculerProfil('Blaise', 'Ganhao', '17/02/1977');
 console.log('Profil calculé :', JSON.stringify({
