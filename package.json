@@ -5,8 +5,9 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "node scripts/verify-data.mjs && astro build && node postbuild.js",
+    "build": "node scripts/verify-data.mjs && astro build && node postbuild.js && node scripts/generate-csp-hashes.mjs",
     "preview": "astro preview",
+    "deploy": "npm run build && wrangler deploy",
     "astro": "astro"
   },
   "dependencies": {
@@ -19,6 +20,7 @@
     "resend": "^4.0.0"
   },
   "devDependencies": {
-    "terser": "^5.48.0"
+    "terser": "^5.48.0",
+    "wrangler": "^4.158.0"
   }
 }

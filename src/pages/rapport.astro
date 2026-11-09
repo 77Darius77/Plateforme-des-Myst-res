@@ -204,7 +204,7 @@ const jsonLd = {
     setLoading(true);
 
     try {
-      const res = await fetch('/.netlify/functions/generer-rapport', {
+      const res = await fetch('/api/generer-rapport', {
         method:  'POST',
         headers: { 'Content-Type': 'application/json' },
         body:    JSON.stringify(data),

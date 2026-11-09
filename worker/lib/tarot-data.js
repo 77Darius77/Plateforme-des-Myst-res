@@ -1,0 +1,26 @@
+/* Données Tarot de Marseille — thème et ombre des 22 arcanes majeurs.
+   Extrait de public/js/tarot-interp.js pour usage serverless (ESM). */
+export const CARD_DATA = {
+  '00': { theme: 'élan libre et saut vers l\'inconnu — un potentiel brut qui s\'élance sans filet', shadow: 'instabilité et refus des limites — un mouvement qui s\'épuise dans la dispersion' },
+  '01': { theme: 'initiative créatrice et maîtrise des commencements — les outils du changement en main', shadow: 'ruse et légèreté irresponsable — l\'agitation superficielle sans fondement véritable' },
+  '02': { theme: 'savoir intérieur et gestation silencieuse — l\'intelligence qui écoute avant d\'agir', shadow: 'secret stérile et attente passive — une résistance à s\'ouvrir qui isole' },
+  '03': { theme: 'communication rayonnante et abondance créatrice — l\'expression fertile qui engendre', shadow: 'dispersion et bavardage — une énergie qui se dilue au lieu de se concentrer' },
+  '04': { theme: 'structure solide et autorité bienveillante — le cadre qui protège et permet d\'avancer', shadow: 'rigidité et contrôle excessif — une autorité qui étouffe plutôt qu\'elle ne guide' },
+  '05': { theme: 'guidance spirituelle et transmission du savoir — le lien vivant entre visible et invisible', shadow: 'dogmatisme et conformisme — l\'imposition des règles au détriment de l\'expérience vécue' },
+  '06': { theme: 'choix du cœur et alliance entre êtres — le désir comme boussole authentique', shadow: 'indécision et dépendance affective — la séduction qui confond amour libre et emprise' },
+  '07': { theme: 'triomphe par l\'action et maîtrise de l\'élan — la volonté qui trace sa voie', shadow: 'brutalité et fuite en avant — la victoire creuse qui ne tient pas ses promesses' },
+  '08': { theme: 'équilibre juste et droiture dans les décisions — la capacité à distinguer le vrai du faux', shadow: 'jugement implacable et froideur — l\'application rigide des règles sans nuance ni miséricorde' },
+  '09': { theme: 'sagesse solitaire et maturation dans le silence — la lanterne qui guide de l\'intérieur', shadow: 'isolement stérile et fermeture aux autres — un repli qui protège mais aussi emprisonne' },
+  '10': { theme: 'tournant du destin et mouvement de cycle — une opportunité dans le flux du temps', shadow: 'dépendance au hasard — subir le mouvement au lieu de le prendre en main' },
+  '11': { theme: 'force douce et courage tranquille — la puissance intérieure qui apprivoise sans forcer', shadow: 'répression des instincts et épuisement — une rage refoulée qui cherche une issue' },
+  '12': { theme: 'lâcher-prise et regard renversé sur la situation — la suspension qui permet de voir autrement', shadow: 'blocage prolongé et sacrifice subi — une immobilité qui dure au-delà du nécessaire' },
+  '13': { theme: 'transformation radicale et nettoyage profond — l\'espace libéré pour que le neuf advienne', shadow: 'résistance au changement et deuil non accompli — s\'accrocher à ce qui ne peut plus demeurer' },
+  '14': { theme: 'harmonie retrouvée et circulation fluide — l\'art de doser et d\'équilibrer les contraires', shadow: 'attentisme et demi-mesures — une modération qui évite la décision qui s\'impose' },
+  '15': { theme: 'puissance vitale et ancrage dans la matière — l\'énergie brute qui crée et génère', shadow: 'emprise et excès destructeur — une dépendance qui chaîne davantage qu\'elle ne libère' },
+  '16': { theme: 'libération brutale et illumination par l\'effondrement — ce qui s\'effondre pour laisser passer la lumière', shadow: 'choc non préparé et traumatisme non intégré — la violence du changement subi sans ressource' },
+  '17': { theme: 'espoir serein et connexion à l\'essentiel — la grâce d\'une vision au-delà du bruit', shadow: 'idéalisme naïf et vulnérabilité — rêver sans ancrage au risque de la désillusion' },
+  '18': { theme: 'profondeur de l\'inconscient et fertilité imaginaire — ce que l\'ombre recèle de richesse', shadow: 'illusion et confusion — la peur de regarder en face ce qui vit dans les profondeurs' },
+  '19': { theme: 'épanouissement total et clarté rayonnante — la joie simple d\'être pleinement soi', shadow: 'arrogance et sur-exposition — briller si fort que l\'on aveugle et isole autour de soi' },
+  '20': { theme: 'renaissance inattendue et vocation qui s\'éveille — l\'appel intérieur qui change tout', shadow: 'fuite du passé et incapacité à tirer les leçons — la nostalgie qui empêche d\'entendre l\'appel' },
+  '21': { theme: 'accomplissement total et intégration harmonieuse — le cycle qui se ferme dans la plénitude', shadow: 'stagnation dans la réussite acquise — difficulté à ouvrir le prochain cycle nécessaire' },
+};
